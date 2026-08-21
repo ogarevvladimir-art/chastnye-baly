@@ -1,0 +1,1677 @@
+/* =========================================================
+   ЧАСТНЫЕ БАЛЫ — прототип
+   Дизайн-система: ORE-язык + токены chastnyebalystyles.json
+   ========================================================= */
+
+/* ---------- 1. ТОКЕНЫ ---------- */
+:root {
+  /* Global — цвет */
+  --gray-1000:  #060606;
+  --gray-900:   #1B1717;
+  --gray-700:   #2E2E2E;
+  --gray-600:   #545454;
+  --gray-400:   #7C7C7C;
+  --white:      #FFFFFF;
+
+  --greige-700: #653624;
+  --greige-500: #A84F2D;
+  --greige-300: #ABA79A;
+  --greige-200: #C2BFB5;
+  --greige-100: #ABA385;
+
+  --terracotta: #C96A42;   /* small nomber — акцент из tilda-стилей */
+
+  /* Alias — роли */
+  --surface-void:        var(--gray-1000);
+  --surface-deep:        var(--gray-900);
+  --surface-clay:        var(--greige-700);
+  --surface-paper:       var(--greige-300);
+
+  --text-on-void:        var(--greige-300);
+  --text-on-void-strong: var(--greige-200);
+  --text-on-void-muted:  rgba(171, 167, 154, .5);
+  --text-on-paper:       var(--gray-1000);
+  --text-on-paper-muted: rgba(6, 6, 6, .55);
+
+  --border-subtle:       rgba(171, 167, 154, .16);
+  --interactive:         var(--terracotta);
+
+  /* Типографика */
+  --font-display: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --font-serif:   "Old Standard TT", "Times New Roman", serif;
+  --font-text:    "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", "Consolas", monospace;
+
+  /* Spacing — 8px-сетка */
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --gutter: clamp(20px, 4vw, 72px);
+  /* Служебная полоса слева: первая колонка сетки, контент в ней не живёт */
+  --rail: clamp(64px, 8vw, 132px);
+
+  /* Форма и движение */
+  --radius: 0;
+  --duration-reveal: 900ms;
+  --delay-step: 90ms;
+  --ease-reveal: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* ---------- 2. БАЗА ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  /* scroll-behavior здесь не задаём: инерционный скролл ведёт Lenis, и нативная
+     плавность конфликтует с ним — якорные переходы дёргаются. Запасной вариант
+     (Lenis не загрузился / prefers-reduced-motion) включает .no-lenis ниже. */
+  background: var(--surface-void);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-void);
+  color: var(--text-on-void);
+  font-family: var(--font-text);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Скролл без Lenis (скрипт не загрузился или пользователь просил меньше
+   движения) — возвращаем нативную плавность для якорей. */
+html.no-lenis { scroll-behavior: smooth; }
+
+/* ---------- 2b. ИНЕРЦИОННЫЙ СКРОЛЛ (Lenis) ---------- */
+/* Lenis двигает страницу трансформом на своей обёртке — нативный scroll-behavior
+   и scroll-snap внутри должны быть выключены, иначе движения складываются. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+/* Пока скролл остановлен (открыто меню) — страница не двигается */
+.lenis.lenis-stopped { overflow: clip; }
+/* Горизонтальная лента прокручивается сама: Lenis её события не забирает */
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+img, video { max-width: 100%; display: block; border-radius: var(--radius); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+::selection { background: var(--terracotta); color: var(--gray-1000); }
+
+/* Скрытая ссылка для клавиатуры */
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 999;
+  background: var(--terracotta); color: var(--gray-1000);
+  padding: 12px 20px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+}
+.skip:focus { left: var(--gutter); top: 12px; }
+
+:focus-visible {
+  outline: 1px solid var(--interactive);
+  outline-offset: 4px;
+}
+
+/* ---------- 3. ТИПОГРАФИКА (из chastnyebalystyles.json) ---------- */
+
+/* H1 — display, uppercase, вес 700, line-height 1 */
+.t-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 10.5vw, 130px);
+  font-weight: 800;
+  line-height: .88;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+  color: var(--text-on-void);
+  opacity: .9;
+  margin: 0;
+}
+
+/* H2 — Old Standard TT, лёгкий вес, отрицательный трекинг, line-height .8 */
+.t-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 400;
+  line-height: .85;
+  letter-spacing: clamp(-6px, -.06em, -2px);
+  color: var(--text-on-void);
+  opacity: .9;
+  margin: 0;
+}
+
+/* H3 — uppercase, вес 700 */
+.t-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(25px, 2.6vw, 48px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: var(--text-on-void);
+  opacity: .85;
+  margin: 0;
+}
+
+/* text — мелкий uppercase, вес 600, opacity 50% */
+.t-label {
+  font-family: var(--font-text);
+  font-size: clamp(11px, .85vw, 14px);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-on-void);
+  opacity: .5;
+  margin: 0;
+}
+
+/* micro text italic — Old Standard TT Italic */
+.t-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.1vw, 30px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: var(--text-on-void);
+  margin: 0;
+}
+
+/* small nomber — моно-акцент */
+.t-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  line-height: 1.2;
+  color: var(--interactive);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+/* Основной корпус */
+.t-body {
+  font-family: var(--font-text);
+  font-size: clamp(15px, 1.05vw, 18px);
+  font-weight: 400;
+  line-height: 1.62;
+  color: var(--text-on-void);
+  opacity: .72;
+  margin: 0 0 1.1em;
+  max-width: 46ch;
+}
+.t-body:last-child { margin-bottom: 0; }
+.t-body strong { font-weight: 700; opacity: 1; color: var(--text-on-void-strong); }
+
+/* Инверсия на светлых секциях */
+.on-paper .t-h1,
+.on-paper .t-h2,
+.on-paper .t-h3,
+.on-paper .t-italic { color: var(--text-on-paper); }
+.on-paper .t-label,
+.on-paper .t-body   { color: var(--text-on-paper); }
+.on-paper .t-body strong { color: var(--text-on-paper); }
+
+/* ---------- 4. СЕТКА ---------- */
+.section {
+  position: relative;
+  padding: clamp(80px, 11vw, 176px) var(--gutter);
+}
+.section--tight { padding-block: clamp(56px, 7vw, 104px); }
+
+/* Иерархия плотности: опорные секции дышат шире, служебные — уже.
+   Ритм страницы задаётся не одинаковым шагом, а разницей между главами. */
+.section--major { padding-block: clamp(120px, 15vw, 240px); }
+.section--minor { padding-block: clamp(48px, 6vw, 88px); }
+.section--void  { background: var(--surface-void); }
+.section--deep  { background: var(--surface-deep); }
+.section--clay  { background: var(--surface-clay); }
+.section--paper { background: var(--surface-paper); color: var(--text-on-paper); }
+
+/* Асимметричная сетка: слева служебная полоса, дальше 11 контентных колонок.
+   Контент в полосе не живёт — в неё уходят только номера секций.
+   Нумерация линий сдвинута на +1: контентная колонка N начинается с линии N+1. */
+.grid {
+  display: grid;
+  grid-template-columns: var(--rail) repeat(11, 1fr);
+  gap: var(--space-6) clamp(16px, 2.2vw, 32px);
+  max-width: 1680px;
+  margin-inline: auto;
+}
+/* Grid-элементы по умолчанию min-width:auto — широкое содержимое
+   (горизонтальная лента) растягивало бы всю сетку. */
+.grid > * { min-width: 0; }
+
+/* Утилиты колонок — с учётом служебной полосы (линия 1 отдана ей) */
+.col-1-5  { grid-column: 2 / span 5; }
+.col-1-6  { grid-column: 2 / span 6; }
+.col-1-7  { grid-column: 2 / span 7; }
+.col-7-e  { grid-column: 8 / -1; }
+.col-8-e  { grid-column: 9 / -1; }
+.col-full { grid-column: 2 / -1; }
+
+/* Эйбрау секции: номер уходит в служебную полосу, подпись — в контентную зону,
+   hairline проходит под обеими зонами на всю ширину сетки. */
+.eyebrow {
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: clamp(40px, 5vw, 88px);
+  grid-column: 1 / -1;
+}
+/* subgrid не везде поддержан — падаем на ту же раскладку явными треками */
+@supports not (grid-template-columns: subgrid) {
+  .eyebrow {
+    grid-template-columns: var(--rail) repeat(11, 1fr);
+    column-gap: clamp(16px, 2.2vw, 32px);
+  }
+}
+/* Номер держим в одну строку: узкая полоса рвала бы «01 — ФОРМАТЫ» пополам */
+.eyebrow > .t-num   { grid-column: 1; white-space: nowrap; }
+.eyebrow > .t-label { grid-column: 2 / -1; }
+.on-paper .eyebrow { border-bottom-color: rgba(6, 6, 6, .18); }
+
+/* ---------- 5. ХЕДЕР ---------- */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  /* Выше оверлея меню (200): кнопка «Меню/Закрыть» и лого остаются доступны */
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  height: 80px;
+  padding-inline: var(--gutter);
+  transition: background 400ms var(--ease-reveal),
+              backdrop-filter 400ms var(--ease-reveal),
+              border-color 400ms var(--ease-reveal);
+  border-bottom: 1px solid transparent;
+  /* Пустая середина полосы не должна перехватывать клики по оверлею */
+  pointer-events: none;
+}
+.header > * { pointer-events: auto; }
+.header.is-solid {
+  background: rgba(6, 6, 6, .82);
+  backdrop-filter: blur(14px);
+  border-bottom-color: var(--border-subtle);
+}
+
+/* Логотип: знак материнского бренда (Plyaskin Events) + имя проекта.
+   Сетка, а не колонка: знак занимает оба ряда слева, справа имя и подпись. */
+.logo {
+  --logo-mark: 84px;
+  /* Зазор делится пополам линией-разделителем — по 11px воздуха с каждой стороны */
+  --logo-gap: 22px;
+
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: var(--logo-gap);
+  line-height: 1;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-on-void-strong);
+
+  /* Разделитель — одна сплошная линия на оба ряда. Рисуем фоном на самой сетке:
+     бордюры на строках дали бы разрыв между рядами, а псевдоэлемент внутри
+     .logo__mark срезала бы его же маска. */
+  background-image: linear-gradient(var(--border-subtle), var(--border-subtle));
+  background-size: 1px 100%;
+  background-repeat: no-repeat;
+  background-position: calc(var(--logo-mark) + var(--logo-gap) / 2) 0;
+}
+
+/* Исходник — плашка одного цвета (#7d6838) на прозрачном фоне и вопреки имени
+   файла не белый: на --surface-void он почти не читается, поэтому осветляем.
+
+   Именно <img> с фильтром, а не маска с currentColor: Chrome считает каждый
+   file:// документ отдельным источником и блокирует mask-image с соседнего
+   файла — при открытии макета двойным щелчком знак пропадал полностью.
+   brightness поднимает золото до греж-тона системы, никаких запросов наружу. */
+.logo__mark {
+  grid-row: 1 / 3;
+  width: var(--logo-mark);
+  /* 1716×738 — держим пропорции, иначе знак «поплывёт» */
+  height: auto;
+  filter: brightness(2.42) saturate(.16);
+  opacity: .92;
+  transition: opacity 300ms var(--ease-reveal), filter 300ms var(--ease-reveal);
+}
+.logo:hover .logo__mark { opacity: 1; }
+
+.logo__name {
+  align-self: end;
+}
+.logo__sub {
+  align-self: start;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: none;
+  opacity: .5;
+  margin-top: 4px;
+}
+
+/* В футере знак крупнее — там больше воздуха */
+.logo--footer { --logo-mark: 104px; }
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+  /* Хедер под оверлеем по стеку — поднимаем управление над ним */
+  position: relative;
+  z-index: 210;
+}
+
+.header__phone {
+  display: flex;
+  align-items: center;
+  opacity: .8;
+  transition: opacity 300ms var(--ease-reveal);
+}
+.header__phone:hover { opacity: 1; }
+.header__phone-icon { display: none; }
+
+/* Кнопка «Меню / Закрыть» — текст сдвигается вверх, плюс поворот иконки */
+.menu-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  color: var(--text-on-void-strong);
+}
+.menu-button__text {
+  display: block;
+  position: relative;
+  height: 1.15em;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+.menu-button__text > span {
+  display: block;
+  height: 1.15em;
+}
+.menu-button__icon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  color: var(--interactive);
+}
+.menu-button__icon svg { width: 100%; height: 100%; display: block; }
+
+/* ---------- 5b. ПОЛНОЭКРАННОЕ МЕНЮ ---------- */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+}
+
+.nav-overlay__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 6, 6, .72);
+  backdrop-filter: blur(6px);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.menu-panel {
+  position: relative;
+  margin-left: auto;
+  width: min(760px, 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(88px, 10vh, 128px) var(--gutter) clamp(40px, 6vh, 72px);
+  overflow: hidden;
+}
+
+/* Три слоя, въезжающие каскадом справа */
+.menu-panel__bg { position: absolute; inset: 0; z-index: 0; }
+.backdrop-layer {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-void);
+  border-left: 1px solid var(--border-subtle);
+}
+.backdrop-layer--first  { background: var(--surface-clay); }
+.backdrop-layer--second { background: var(--surface-deep); }
+
+/* Библиотека схем: только источник <symbol>, из потока выключена */
+.scheme-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* Фоновая графика */
+.ambient-shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-shape {
+  position: absolute;
+  top: 50%; right: -8%;
+  width: min(620px, 82%);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+}
+.bg-shape.active { opacity: 1; visibility: visible; }
+/* Скрытое исходное состояние — только для схем меню: там их проявляет GSAP.
+   В контентных схемах те же узлы ведёт прочерчивание, и глобальное
+   opacity:0 гасило бы линии насовсем. */
+.bg-shape .shape-element { opacity: 0; transform-origin: center; transform-box: fill-box; }
+
+.menu-panel__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 560px;
+}
+
+.menu-panel__eyebrow {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: clamp(24px, 4vh, 48px);
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu-list-item { border-bottom: 1px solid var(--border-subtle); }
+
+/* Ссылка: маска для въезда снизу, подложка-заливка при наведении */
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: clamp(14px, 2vw, 28px);
+  padding: clamp(12px, 1.6vh, 20px) clamp(12px, 2vw, 24px) clamp(12px, 1.6vh, 20px) 0;
+  overflow: hidden;
+  will-change: transform;
+}
+.nav-link__num {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  color: var(--interactive);
+  opacity: .7;
+  transition: opacity 340ms var(--ease-reveal);
+  flex: none;
+}
+.nav-link__text {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.4vw, 56px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  color: var(--text-on-void);
+  opacity: .82;
+  transition: opacity 340ms var(--ease-reveal),
+              color 340ms var(--ease-reveal),
+              transform 480ms var(--ease-reveal);
+}
+.nav-link__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--interactive);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: .1;
+  transition: transform 480ms var(--ease-reveal);
+}
+.nav-link:hover .nav-link__bg { transform: scaleX(1); }
+.nav-link:hover .nav-link__text {
+  opacity: 1;
+  color: var(--text-on-void-strong);
+  transform: translateX(clamp(8px, 1.2vw, 18px));
+}
+.nav-link:hover .nav-link__num { opacity: 1; }
+
+.menu-panel__foot {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 32px);
+  margin-top: clamp(32px, 6vh, 72px);
+  padding-top: clamp(20px, 3vh, 32px);
+  border-top: 1px solid var(--border-subtle);
+}
+.menu-panel__foot-col .t-label { margin-bottom: 8px; }
+.menu-panel__contact {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--text-on-void-strong);
+  opacity: .85;
+  transition: color 300ms var(--ease-reveal), opacity 300ms var(--ease-reveal);
+}
+.menu-panel__contact:hover { color: var(--interactive); opacity: 1; }
+.menu-panel__geo {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-on-void);
+  opacity: .6;
+}
+
+/* Без JS/GSAP меню остаётся доступным как обычный оверлей */
+.nav-overlay[data-nav="open"] { display: block; }
+
+/* ---------- 6. HERO ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 var(--gutter) clamp(40px, 5vw, 72px);
+  overflow: hidden;
+}
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* Подложка на время буферизации: пока видео не отдало первый кадр,
+     в кадре тёмная «сцена», а не белая вспышка */
+  background: radial-gradient(120% 90% at 50% 40%, #1a1713 0%, #0c0b0a 55%, #060606 100%);
+}
+.hero__media video,
+.hero__media img {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.hero__video {
+  /* Плавное появление, когда браузер готов рисовать кадры */
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+}
+.hero__video[data-ready] { opacity: 1; }
+
+/* Пользователь просил меньше движения — оставляем статичный кадр */
+@media (prefers-reduced-motion: reduce) {
+  .hero__video { transition: none; }
+}
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top,
+    rgba(6, 6, 6, .92) 0%,
+    rgba(6, 6, 6, .55) 32%,
+    rgba(6, 6, 6, .2) 62%,
+    rgba(6, 6, 6, .5) 100%);
+}
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: var(--rail) repeat(11, 1fr);
+  gap: var(--space-4) clamp(16px, 2.2vw, 32px);
+  align-items: end;
+  width: 100%;
+  max-width: 1680px;
+  margin-inline: auto;
+}
+.hero__title { grid-column: 2 / -1; }
+.hero__title .line-2 {
+  display: block;
+  margin-top: .12em;
+}
+/* Отступ — на внутреннем span: .line обрезает по overflow */
+.hero__title .line-2 > span {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: -.035em;
+  font-size: clamp(28px, 6.2vw, 82px);
+  opacity: .78;
+  padding-left: clamp(0px, 8vw, 180px);
+}
+.hero__meta {
+  grid-column: 2 / span 5;
+  margin-top: clamp(24px, 3vw, 48px);
+}
+.hero__meta-right {
+  /* Оставляем справа коридор под индикатор скролла */
+  grid-column: 9 / span 4;
+  margin-top: clamp(24px, 3vw, 48px);
+  text-align: right;
+}
+
+/* Индикатор скролла */
+.scroll-hint {
+  position: absolute;
+  z-index: 3;
+  right: var(--gutter);
+  bottom: clamp(14px, 1.6vw, 22px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--text-on-void-muted);
+}
+.scroll-hint i {
+  display: block;
+  width: 44px; height: 1px;
+  opacity: .45;
+  background: currentColor;
+  transform-origin: left;
+}
+
+/* ---------- 7. СЕГМЕНТАЦИЯ — две карточки ---------- */
+/* Пропорция продиктована текстом: у «Корпоративного бала» абзац длиннее,
+   ему отдаём больше ширины — колонки не равны и не должны быть. */
+.segments { grid-column: 2 / -1; display: grid; grid-template-columns: 5.4fr 6.6fr; gap: 1px; background: var(--border-subtle); }
+.segment {
+  position: relative;
+  background: var(--surface-void);
+  padding: clamp(28px, 3.4vw, 56px);
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(420px, 46vw, 620px);
+  overflow: hidden;
+  transition: background 500ms var(--ease-reveal);
+}
+.segment__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: .34;
+  transition: opacity 600ms var(--ease-reveal), transform 900ms var(--ease-reveal);
+}
+.segment:hover .segment__media { opacity: .5; transform: scale(1.04); }
+.segment > * { position: relative; z-index: 1; }
+.segment__top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.segment__title { margin-top: auto; }
+.segment__title .t-h3 { max-width: 12ch; }
+.segment__sub { margin-top: 14px; }
+.segment__text { margin-top: clamp(18px, 2vw, 28px); max-width: 44ch; }
+
+/* ---------- 8. ПРОЦЕСС «Как мы готовим ваш вечер» ---------- */
+/* Крупный заголовок-графика + рассыпанная микротипографика (язык ORE),
+   ниже — липкий индикатор этапов и полосы шагов с медиа. */
+
+.proc { overflow: hidden; }
+
+/* — 8.1 Заголовок — */
+.proc__head {
+  grid-column: 2 / -1;
+  position: relative;
+  margin-bottom: clamp(40px, 4.5vw, 80px);
+}
+/* Намеренный выход за сетку №1: заголовок начинается от левого края экрана,
+   игнорируя и служебную полосу, и внешний --gutter секции.
+   Сдвиг на самом заголовке, а не на .proc__head — подписи ниже остаются в сетке. */
+.proc__title {
+  margin: 0 0 0 calc((var(--rail) + clamp(16px, 2.2vw, 32px) + var(--gutter)) * -1);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 9.4vw, 156px);
+  font-weight: 800;
+  line-height: .86;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+  color: var(--text-on-void-strong);
+  opacity: .92;
+}
+/* Вторая строка сдвинута вправо и набрана антиквой — как в референсе */
+.proc__title-2 { display: block; margin-top: .04em; }
+.proc__title-2 > span {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: -.04em;
+  font-size: clamp(34px, 7.4vw, 126px);
+  opacity: .8;
+  padding-left: clamp(0px, 22vw, 420px);
+}
+
+/* Рассыпанные подписи — не в колонку, а по разным осям */
+.proc__scatter {
+  position: relative;
+  margin-top: clamp(28px, 3.4vw, 52px);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4) clamp(16px, 2.2vw, 32px);
+  align-items: start;
+}
+.proc__note { max-width: 34ch; }
+.proc__note--a { grid-column: 1 / span 4; }
+.proc__note--b { grid-column: 6 / span 4; margin-top: clamp(18px, 2.6vw, 44px); }
+.proc__count   { grid-column: 11 / -1; text-align: right; }
+
+/* — 8.2 Каркас: липкая колонка + шаги — */
+.proc__body {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: minmax(220px, 3.2fr) 8.8fr;
+  gap: clamp(32px, 5vw, 96px);
+  align-items: start;
+}
+.proc__sticky { position: sticky; top: 128px; display: flex; flex-direction: column; }
+.proc__lead { margin-bottom: clamp(32px, 4vw, 56px); }
+
+/* Вертикальный индикатор прогресса */
+.proc__track { position: relative; display: flex; gap: clamp(16px, 1.6vw, 24px); }
+.proc__track-line {
+  position: relative;
+  width: 1px;
+  flex: 0 0 1px;
+  background: var(--border-subtle);
+}
+.proc__track-line i {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: block;
+  width: 1px;
+  height: 0;
+  background: var(--interactive);
+  transition: height 420ms var(--ease-reveal);
+}
+.proc__dots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.5vw, 22px);
+}
+.proc__dots li {
+  font-family: var(--font-text);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-on-void);
+  opacity: .32;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  transition: opacity 400ms var(--ease-reveal), color 400ms var(--ease-reveal);
+}
+.proc__dots li span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  font-variant-numeric: tabular-nums;
+}
+.proc__dots li.is-active { opacity: 1; color: var(--interactive); }
+.proc__dots li.is-done   { opacity: .6; }
+
+.proc__cta {
+  margin-top: clamp(32px, 4vw, 56px);
+  align-self: flex-start;
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  transition: color 300ms var(--ease-reveal), gap 300ms var(--ease-spring);
+}
+.proc__cta svg path { transition: transform 300ms var(--ease-spring); }
+
+/* — 8.3 Шаги — */
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.step {
+  position: relative;
+  padding: clamp(28px, 3.4vw, 56px) 0;
+  border-top: 1px solid var(--border-subtle);
+  display: grid;
+  grid-template-columns: clamp(110px, 12vw, 180px) minmax(0, 1fr) clamp(120px, 15vw, 240px);
+  gap: clamp(20px, 2.6vw, 48px);
+  align-items: start;
+  transition: border-color 500ms var(--ease-reveal);
+}
+.step:last-child { border-bottom: 1px solid var(--border-subtle); }
+
+/* Тонкая линия-подсветка активного шага */
+.step::before {
+  content: "";
+  position: absolute;
+  left: 0; top: -1px;
+  height: 1px; width: 100%;
+  background: var(--interactive);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 700ms var(--ease-reveal);
+}
+.step.is-active::before { transform: scaleX(1); }
+
+.step__rail { display: flex; flex-direction: column; gap: 10px; }
+.step__num {
+  font-size: clamp(13px, 1.1vw, 15px);
+  opacity: .55;
+  transition: opacity 400ms var(--ease-reveal);
+}
+.step.is-active .step__num { opacity: 1; }
+.step__tag { max-width: 16ch; }
+
+.step__title {
+  font-size: clamp(22px, 2.2vw, 40px);
+  margin-bottom: clamp(12px, 1.4vw, 20px);
+  transition: opacity 400ms var(--ease-reveal);
+}
+.step.is-active .step__title { opacity: 1; }
+.step__body .t-body { max-width: 52ch; }
+
+/* Медиа шага — появляется на ховере/активном шаге, не перегружая полосу */
+.step__media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--surface-void);
+  opacity: .5;
+  filter: saturate(.5);
+  transform: scale(.97);
+  transition: opacity 600ms var(--ease-reveal),
+              filter 600ms var(--ease-reveal),
+              transform 900ms var(--ease-reveal);
+}
+.step.is-active .step__media,
+.step:hover .step__media { opacity: 1; filter: none; transform: none; }
+
+/* ---------- 9. ГОРИЗОНТАЛЬНАЯ ЛЕНТА (структура вечера) ---------- */
+.rail-wrap { position: relative; min-width: 0; max-width: 100%; }
+.rail {
+  display: flex;
+  gap: 1px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Лента прокручивается до правого края вьюпорта, но слева остаётся
+     в контентной зоне — служебную полосу она не занимает. */
+  margin-right: calc(var(--gutter) * -1);
+  padding-right: var(--gutter);
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail__item {
+  flex: 0 0 clamp(280px, 30vw, 460px);
+  scroll-snap-align: start;
+  background: var(--surface-void);
+  border: 1px solid var(--border-subtle);
+  padding: clamp(24px, 2.6vw, 40px);
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(360px, 34vw, 480px);
+  transition: background 400ms var(--ease-reveal), border-color 400ms var(--ease-reveal);
+}
+.rail__item:hover { background: var(--surface-deep); border-color: rgba(201, 106, 66, .4); }
+.rail__num { margin-bottom: clamp(40px, 5vw, 72px); }
+/* Заголовок и текст держатся вместе и прижаты к низу карточки */
+.rail__item .t-h3 { font-size: clamp(19px, 1.5vw, 26px); margin: auto 0 16px; }
+
+/* — 9.1 Схемы в карточках — */
+/* Схема лежит подложкой: карточка становится системой координат,
+   текст сохраняет свой поток и остаётся над графикой. */
+.rail__item { position: relative; overflow: hidden; }
+.rail__item > :not(.scheme) { position: relative; z-index: 1; }
+
+.scheme {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: min(88%, 340px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  opacity: .5;
+  pointer-events: none;
+}
+
+/* Прочерчивание: длину линии проставляет JS в --len,
+   класс .is-in на самой схеме отпускает dashoffset к нулю. */
+.scheme [data-draw] {
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  transition: stroke-dashoffset 1.6s var(--ease-reveal);
+  transition-delay: calc(var(--i, 0) * 140ms);
+}
+.scheme.is-in [data-draw] { stroke-dashoffset: 0; }
+
+/* Точки не прочерчиваются — проявляются с той же задержкой */
+.scheme [data-dot] {
+  opacity: 0;
+  transition: opacity 900ms var(--ease-reveal);
+  transition-delay: calc(var(--i, 0) * 140ms);
+}
+.scheme.is-in [data-dot] { opacity: 1; }
+
+/* Схема в служебной полосе процесса: вертикальная линия с засечками.
+   Прочерчивание ведёт прогресс скролла, а не transition, — dashoffset
+   пересчитывается из JS, поэтому перехода по dashoffset здесь нет. */
+.scheme--track {
+  position: absolute;
+  top: 0;
+  left: -22px;
+  width: 20px;
+  height: 100%;
+  aspect-ratio: auto;
+  transform: none;
+  opacity: .5;
+}
+.scheme--track [data-draw] {
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--off, var(--len));
+  transition: stroke-dashoffset 420ms var(--ease-reveal);
+  transition-delay: 0ms;
+}
+.scheme--track [data-tick] {
+  opacity: 0;
+  transition: opacity 420ms var(--ease-reveal);
+}
+.scheme--track [data-tick].is-lit { opacity: 1; }
+
+/* ---------- 10. МУЗЫКА — три состава ---------- */
+/* Средняя колонка уже: у духового оркестра и джаз-бэнда текст самый короткий */
+.music { grid-column: 2 / -1; display: grid; grid-template-columns: 4.4fr 3.2fr 4.4fr; gap: 1px; background: var(--border-subtle); }
+.music__item {
+  background: var(--surface-void);
+  padding: clamp(28px, 3vw, 52px);
+  display: flex; flex-direction: column; gap: 18px;
+  min-height: clamp(300px, 26vw, 400px);
+  position: relative;
+  overflow: hidden;
+}
+.music__item::before {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--interactive);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 600ms var(--ease-reveal);
+}
+.music__item:hover::before { transform: scaleX(1); }
+.music__item .t-h3 { font-size: clamp(18px, 1.4vw, 24px); margin-top: auto; }
+
+/* Фото состава — приглушённый фон карточки, как в блоке «Форматы» */
+.music__media {
+  position: absolute; inset: 0; z-index: 0;
+  opacity: .26;
+  transition: opacity 600ms var(--ease-reveal), transform 900ms var(--ease-reveal);
+}
+.music__item:hover .music__media { opacity: .44; transform: scale(1.04); }
+.music__item > *:not(.music__media) { position: relative; z-index: 1; }
+
+/* ---------- 11. ЛЮДИ — танцмейстер / ассистент (крупные полосы) ---------- */
+.figure-row {
+  /* Полоса начинается в контентной зоне; внутри — своя 12-колоночная сетка */
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(24px, 3vw, 56px);
+  align-items: center;
+  padding-block: clamp(48px, 6vw, 104px);
+  border-top: 1px solid var(--border-subtle);
+}
+.figure-row:last-of-type { border-bottom: 1px solid var(--border-subtle); }
+.figure-row:first-of-type { border-top: 2px solid var(--interactive); }
+.figure-row__media { grid-column: 1 / span 5; aspect-ratio: 4 / 5; }
+.figure-row__text  { grid-column: 7 / -1; }
+.figure-row--flip .figure-row__media { grid-column: 8 / -1; grid-row: 1; }
+.figure-row--flip .figure-row__text  { grid-column: 1 / span 5; grid-row: 1; }
+.figure-row .t-h2 { margin-bottom: clamp(20px, 2.4vw, 36px); }
+
+/* Третья полоса ломает чередование 5/7 → 7/5: узкий вертикальный кадр,
+   текст рядом, справа две колонки остаются пустыми. */
+.figure-row--narrow .figure-row__media { grid-column: 1 / span 4; aspect-ratio: 3 / 4; }
+.figure-row--narrow .figure-row__text  { grid-column: 5 / span 6; }
+
+/* ---------- 12. ЭТИКЕТ / ДРЕСС-КОД — колонки правил ---------- */
+/* Третья колонка — ремарка, а не равный столбец: в «Мы помогаем» три пункта
+   против четырёх у соседей, поэтому она заметно уже. */
+.rules { grid-column: 2 / -1; display: grid; grid-template-columns: 1fr 1fr .72fr; gap: clamp(24px, 3vw, 56px); }
+.rules__col { border-top: 1px solid rgba(6, 6, 6, .2); padding-top: var(--space-4); }
+.section--void .rules__col, .section--deep .rules__col { border-top-color: var(--border-subtle); }
+.rules__list { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.rules__list li {
+  font-size: clamp(14px, .95vw, 16px);
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+  opacity: .78;
+}
+.rules__list li::before {
+  content: "";
+  position: absolute; left: 0; top: .62em;
+  width: 10px; height: 1px;
+  background: var(--interactive);
+}
+
+/* Переключатель «Этикет / Дресс-код» над общей сеткой правил.
+   Progressive enhancement: без JS панель табов скрыта, обе группы видны. */
+.tabs { grid-column: 2 / -1; display: none; gap: clamp(20px, 2.6vw, 40px); }
+.js .tabs { display: flex; }
+.tab {
+  padding: 0 0 var(--space-4);
+  font-family: var(--font-text);
+  font-size: clamp(11px, .85vw, 14px);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-on-void);
+  opacity: .5;
+  border-bottom: 1px solid transparent;
+  transition: opacity 300ms var(--ease-reveal), border-color 300ms var(--ease-reveal);
+}
+.tab:hover { opacity: .8; }
+.tab[aria-selected="true"] { opacity: 1; border-bottom-color: var(--interactive); }
+
+/* Скрытой остаётся только неактивная группа — и только когда JS есть.
+   Тем же правилом переключаются вводные абзацы над сеткой. */
+.js [data-tab]:not(.is-active) { display: none; }
+
+/* Заголовки обеих групп живут в одной ячейке сетки и меняются вместе с табом */
+.rules-title { margin: 0; }
+.rules-title + .rules-title { margin-top: clamp(16px, 2vw, 28px); }
+.js .rules-title + .rules-title { margin-top: 0; }
+
+/* ---------- 13. КЕЙС ---------- */
+.case { grid-column: 2 / -1; }
+/* Намеренный выход за сетку №2: кадр 21/9 идёт от края до края вьюпорта,
+   вырываясь и из служебной полосы, и из --gutter секции. */
+.case__hero {
+  position: relative;
+  aspect-ratio: 21 / 9;
+  margin-bottom: clamp(32px, 4vw, 64px);
+  margin-inline: calc((var(--rail) + clamp(16px, 2.2vw, 32px) + var(--gutter)) * -1)
+                 calc(var(--gutter) * -1);
+}
+.case__grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(24px, 3vw, 56px); }
+
+/* Асимметричный диптих: один вертикальный кадр во всю высоту слева,
+   два горизонтальных стопкой справа. Ряд одинаковых квадратов — не кадры, а плитка. */
+.case__gallery {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  grid-template-rows: auto auto;
+  gap: clamp(12px, 1.5vw, 24px);
+  margin-top: clamp(32px, 4vw, 64px);
+}
+/* Позиции задаём явно: при автопотоке второй и третий кадры
+   вставали в одну ячейку и перекрывали друг друга. */
+.case__gallery > :first-child  { grid-column: 1; grid-row: 1 / 3; aspect-ratio: 3 / 4; }
+.case__gallery > :nth-child(2) { grid-column: 2; grid-row: 1; aspect-ratio: 4 / 3; }
+.case__gallery > :nth-child(3) { grid-column: 2; grid-row: 2; aspect-ratio: 4 / 3; }
+
+/* Паспарту: единственный кадр в оправе, как в каталоге аукционного дома. */
+.media--framed {
+  border: 1px solid var(--border-subtle);
+  padding: clamp(8px, .8vw, 14px);
+  background: transparent;
+}
+
+.case__lead { grid-column: 1 / span 5; }
+
+/* Не дашборд из четырёх плиток, а список строк: значение слева, подпись справа,
+   между ними hairline на всё свободное место. */
+.case__facts { grid-column: 7 / -1; display: grid; grid-template-columns: 1fr; gap: 0; }
+.case__facts .fact {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  column-gap: clamp(16px, 2vw, 32px);
+  border-top: 1px solid var(--border-subtle);
+  padding-block: clamp(14px, 1.6vw, 24px);
+}
+.case__facts .fact:last-of-type { border-bottom: 1px solid var(--border-subtle); }
+.case__facts .fact__value { margin: 0; }
+/* Соединительная линия между значением и подписью */
+.case__facts .fact::after {
+  content: "";
+  grid-column: 2;
+  height: 1px;
+  background: var(--border-subtle);
+  align-self: center;
+}
+.case__facts .fact .t-label { grid-column: 3; text-align: right; max-width: 26ch; }
+/* Развёрнутый текст под цифрами — на всю ширину блока фактов */
+.case__facts-note { grid-column: 1 / -1; }
+.fact { border-top: 1px solid var(--border-subtle); padding-top: var(--space-4); }
+.fact__value {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.2vw, 52px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--text-on-void-strong);
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 10px;
+}
+
+/* ---------- 13b. МАНИФЕСТ — один экран, только фраза ---------- */
+/* Ни эйбрау, ни номера, ни медиа: пауза между главами.
+   Текст держится по левому краю контентной зоны, по центру по вертикали. */
+.manifesto {
+  /* Ровно один экран: вертикальные отступы секции обнуляем, иначе
+     100svh + padding дают полтора экрана и «пустота» перестаёт читаться */
+  min-height: 100svh;
+  padding-block: 0;
+  display: grid;
+  align-content: center;
+}
+.manifesto .grid { width: 100%; }
+.manifesto__text {
+  grid-column: 2 / -1;
+  max-width: 26ch;
+  font-size: clamp(24px, 3.2vw, 48px);
+}
+
+/* ---------- 14. CTA-ССЫЛКА (единственный стиль призыва) ---------- */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-on-void-strong);
+  padding-block: 8px;
+  transition: color 300ms var(--ease-reveal), gap 300ms var(--ease-reveal);
+}
+.cta svg { width: 26px; height: 8px; overflow: visible; }
+.cta svg path { stroke: currentColor; stroke-width: 1; fill: none; transition: transform 300ms var(--ease-reveal); }
+.cta:hover { color: var(--interactive); gap: 18px; }
+.on-paper .cta { color: var(--text-on-paper); }
+.on-paper .cta:hover { color: var(--greige-700); }
+
+/* ---------- 15. КОНТАКТЫ / ФУТЕР ---------- */
+.contact__title { grid-column: 2 / -1; margin-bottom: clamp(32px, 4vw, 64px); }
+.contact__lead { grid-column: 2 / span 4; }
+.contact__form { grid-column: 8 / -1; }
+
+.field { border-bottom: 1px solid rgba(6, 6, 6, .28); padding-bottom: 10px; margin-bottom: clamp(24px, 2.6vw, 40px); }
+.field label {
+  display: block;
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  opacity: .55; margin-bottom: 10px;
+}
+.field input, .field textarea {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  font-family: var(--font-text);
+  font-size: clamp(15px, 1.1vw, 18px);
+  color: var(--text-on-paper);
+  padding: 0;
+  resize: vertical;
+}
+.field input:focus, .field textarea:focus { outline: none; }
+.field:focus-within { border-bottom-color: var(--greige-700); }
+
+.submit {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 4vw, 60px);
+  font-style: italic;
+  line-height: 1;
+  color: var(--greige-700);
+  letter-spacing: -.03em;
+  transition: color 300ms var(--ease-reveal), transform 400ms var(--ease-reveal);
+  transform-origin: left;
+}
+.submit:hover { color: var(--greige-500); transform: translateX(8px); }
+
+.footer {
+  background: var(--surface-void);
+  padding: clamp(56px, 6vw, 88px) var(--gutter) clamp(32px, 3vw, 48px);
+  border-top: 1px solid var(--border-subtle);
+}
+.footer__grid {
+  display: grid; grid-template-columns: var(--rail) repeat(11, 1fr);
+  gap: var(--space-6) clamp(16px, 2.2vw, 32px);
+  max-width: 1680px; margin-inline: auto;
+}
+.footer__brand { grid-column: 2 / span 3; }
+/* Явный старт, а не auto-placement: иначе колонка могла бы встать в служебную полосу */
+/* Ширина колонки — по длине её ссылок: «Разделы» и «Контакты» шире «Гостей» */
+.footer__brand ~ .footer__col                 { grid-column: 5 / span 3; }
+.footer__col ~ .footer__col                   { grid-column: 8 / span 2; }
+.footer__col ~ .footer__col ~ .footer__col    { grid-column: 10 / span 3; }
+.footer__col ul { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.footer__col a { font-size: 13px; opacity: .65; transition: opacity 250ms, color 250ms; }
+.footer__col a:hover { opacity: 1; color: var(--interactive); }
+.footer__bottom {
+  grid-column: 2 / -1;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  margin-top: clamp(40px, 5vw, 72px);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ---------- 16. МЕДИА-БЛОКИ ---------- */
+.media { position: relative; overflow: hidden; background: var(--surface-deep); }
+.media--wide  { aspect-ratio: 16 / 9; }
+.media--tall  { aspect-ratio: 3 / 4; }
+.media--square{ aspect-ratio: 1 / 1; }
+.media img { transition: transform 1200ms var(--ease-reveal); }
+.media:hover img { transform: scale(1.04); }
+.media__caption { margin-top: 14px; }
+
+/* Контентная фотография: всегда заполняет свою рамку.
+   Кадрирование задаём точечно через object-position в разметке. */
+.photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+}
+
+/* ---------- 17. АНИМАЦИЯ ПОЯВЛЕНИЯ ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity var(--duration-reveal) var(--ease-reveal),
+    transform var(--duration-reveal) var(--ease-reveal);
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal="x"] { transform: translateX(50px); }
+[data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Hero и заголовок «Процесса» перешли на посимвольное появление,
+   но структура .line > span нужна вёрстке (вторая строка, курсив, отступы).
+   line-height наследуем явно: inline-block буквы иначе набирают лишний
+   интерлиньяж и заголовок раздувается по высоте. */
+[data-gradual] .line,
+[data-gradual] .line > span {
+  display: block;
+  line-height: inherit;
+}
+[data-gradual] .word,
+[data-gradual] .char { line-height: inherit; vertical-align: top; }
+
+/* Посимвольное появление заголовков секций.
+   Родительский [data-reveal] не должен гасить заголовок — он ведёт себя сам. */
+[data-reveal] [data-gradual] { opacity: 1; }
+
+[data-gradual] {
+  --gradual-step: 68ms;
+  --gradual-dur: 1040ms;
+}
+
+/* Слово — неразрывный блок: иначе inline-block на буквах
+   разрешает перенос внутри слова («ве / чер»).
+   Слово, не влезающее в свою колонку («Корпоративный» в max-width: 12ch),
+   выходит за неё целиком — это лучше, чем рвать его без переноса. */
+[data-gradual] .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+[data-gradual] .char {
+  display: inline-block;
+  white-space: pre;
+  opacity: 0;
+  transform: translateX(-.32em);
+  transition:
+    opacity var(--gradual-dur) var(--ease-reveal),
+    transform var(--gradual-dur) var(--ease-reveal);
+  transition-delay: calc(var(--i, 0) * var(--gradual-step));
+  will-change: opacity, transform;
+}
+[data-gradual].is-in .char { opacity: 1; transform: none; }
+
+/* Длинные заголовки набираются быстрее, иначе хвост слова отстаёт */
+[data-gradual].is-long { --gradual-step: 44ms; }
+
+/* Параллакс медиа при скролле */
+[data-parallax] { will-change: transform; }
+
+/* ---------- 17b. ПОЯВЛЕНИЕ МЕДИА МАСКОЙ ---------- */
+/* Кадр раскрывается снизу вверх, картинка внутри идёт навстречу маске.
+   Начальное состояние ставит JS (класс .is-masked) — до его загрузки
+   и без GSAP кадры видны обычным образом. */
+.is-masked {
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
+}
+/* У кадра теперь своя механика появления — штатный opacity + translateY
+   больше не нужен, иначе движения складываются в двойной сдвиг.
+   Класс ставит JS только когда маска действительно заработала. */
+[data-reveal].is-masked,
+[data-reveal].is-revealed,
+[data-reveal].is-masked-wrap { opacity: 1; transform: none; transition: none; }
+/* Пока маска не раскрыта, картинка сдвинута и увеличена — контр-движение.
+   Собственный transition .media img здесь только мешает: анимацию ведёт GSAP. */
+.is-masked > img,
+.is-masked > .photo { transition: none; }
+
+/* Ховер-зум ждёт окончания раскрытия: иначе курсор над кадром
+   перебивает transform, который в этот момент ведёт GSAP. */
+.is-masked:hover img { transform: none; }
+
+/* ---------- 17c. ПРОЧЕРЧИВАЮЩИЕСЯ HAIRLINE ---------- */
+/* Линия рисуется слева направо при входе в кадр. Приём точечный —
+   применяется только к четырём местам, перечисленным ниже.
+   Рисуем псевдоэлементом поверх штатной границы, а саму границу гасим:
+   так не съезжает раскладка и не трогается padding. */
+[data-line] { position: relative; }
+[data-line]::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: .001;              /* цвет берём из border-color ниже */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms cubic-bezier(.16, 1, .3, 1);
+  pointer-events: none;
+}
+[data-line].is-in::after { transform: scaleX(1); }
+
+/* Эйбрау: линия под всей шириной сетки, штатный border-bottom прячем */
+.eyebrow[data-line] { border-bottom-color: transparent; }
+.eyebrow[data-line]::after {
+  bottom: -1px;
+  background: var(--border-subtle);
+  opacity: 1;
+  /* Эйбрау — grid: псевдоэлемент иначе встал бы отдельной ячейкой */
+  grid-column: 1 / -1;
+}
+.on-paper .eyebrow[data-line]::after { background: rgba(6, 6, 6, .18); }
+
+/* Шаги процесса: верхняя граница каждого шага.
+   ::before уже занят подсветкой активного шага — берём ::after. */
+.step[data-line] { border-top-color: transparent; }
+.step[data-line]::after {
+  top: -1px;
+  background: var(--border-subtle);
+  opacity: 1;
+}
+.step[data-line]:last-child { border-bottom-color: transparent; }
+
+/* Факты кейса: верхние границы строк и нижняя у последней */
+.case__facts .fact[data-line] { border-top-color: transparent; }
+.case__facts .fact[data-line]::after {
+  top: -1px;
+  background: var(--border-subtle);
+  opacity: 1;
+  /* .fact — grid из трёх колонок: линия идёт на всю строку */
+  grid-column: 1 / -1;
+}
+.case__facts .fact[data-line]:last-of-type { border-bottom-color: transparent; }
+.case__facts .fact[data-line]:last-of-type.is-in {
+  border-bottom-color: var(--border-subtle);
+  transition: border-bottom-color 300ms 700ms linear;
+}
+
+/* Секция этикета: верхние границы колонок правил */
+.rules__col[data-line] { border-top-color: transparent; }
+.rules__col[data-line]::after {
+  top: -1px;
+  background: var(--border-subtle);
+  opacity: 1;
+}
+
+/* ---------- 17d. STICKY-СТОПКА В «ЛЮДЯХ» ---------- */
+/* Обёртка занимает ту же контентную зону, что занимали сами полосы. */
+/* Обёртка встаёт ровно туда, где раньше стояли сами полосы,
+   внутри неё они идут обычным блочным потоком на всю её ширину. */
+.figure-stack { grid-column: 2 / -1; }
+
+/* Полосы накладываются: каждая липнет к верху экрана и уходит вглубь,
+   когда на неё наезжает следующая. Фон обязателен — иначе просвечивает. */
+@media (min-width: 1025px) {
+  .figure-stack .figure-row {
+    position: sticky;
+    top: clamp(72px, 9vh, 112px);
+    /* Непрозрачный фон обязателен: карточка должна полностью закрывать
+       предыдущую, иначе та просвечивает сквозь неё */
+    background: var(--surface-void);
+    /* Точка «глубины» — по верхнему краю: карточка отъезжает от зрителя,
+       оставаясь прижатой к линии залипания */
+    transform-origin: center top;
+    will-change: transform, opacity;
+  }
+  /* Залипают все три: каждая держится у линии, пока следующая не подойдёт
+     снизу и не закроет её. Последнюю отпускает уже конец секции —
+     если оставить ей обычный поток, она уедет вверх и обнажит стопку. */
+
+  /* Уходящую вглубь полосу гасим не её собственной прозрачностью, а плёнкой
+     поверх содержимого: opacity на самой карточке сделала бы полупрозрачным
+     и её фон, и сквозь него просвечивала бы лежащая ниже полоса. */
+  .figure-stack .figure-row::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--surface-void);
+    /* 0.4 плёнки поверх = та же читаемая «глубина», что дал бы opacity .6,
+       но фон карточки при этом остаётся полностью непрозрачным */
+    opacity: var(--stack-dim, 0);
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+/* ---------- 18. АДАПТИВ ---------- */
+/* Планшетный диапазон замкнут снизу: ниже 760px служебной полосы уже нет,
+   и правила с !important ниже перебивали бы мобильную раскладку в одну колонку
+   (колонки оставались в треке 2, а .music/.rules схлопывались в нулевой трек 1). */
+@media (min-width: 761px) and (max-width: 1024px) {
+  /* Служебная полоса сужается, но остаётся */
+  :root { --rail: clamp(40px, 6vw, 64px); }
+
+  /* В узкую полосу «01 — ФОРМАТЫ» уже не помещается: номер поднимается
+     над подписью в контентной зоне, полоса остаётся пустым полем слева. */
+  .eyebrow > .t-num,
+  .eyebrow > .t-label { grid-column: 2 / -1; }
+  .eyebrow > .t-label { margin-top: 6px; }
+
+  /* На планшете врезки занимают всю контентную зону (полосу не трогают) */
+  .grid > .col-1-5,
+  .grid > .col-1-6,
+  .grid > .col-1-7,
+  .grid > .col-7-e,
+  .grid > .col-8-e { grid-column: 2 / -1 !important; }
+  .segments,
+  .music,
+  .rules { grid-template-columns: 1fr; }
+
+  /* Процесс: липкая колонка уезжает наверх, шаги теряют медиа-колонку */
+  .proc__body { grid-template-columns: 1fr; gap: clamp(32px, 5vw, 56px); }
+  .proc__sticky { position: static; }
+  .proc__track { display: none; }
+  .proc__cta { margin-top: clamp(24px, 3vw, 36px); }
+  .step { grid-template-columns: clamp(100px, 16vw, 160px) minmax(0, 1fr); }
+  .step__media { display: none; }
+  .proc__title-2 > span { padding-left: clamp(0px, 14vw, 200px); }
+  .proc__note--a { grid-column: 1 / span 6; }
+  .proc__note--b { grid-column: 7 / -1; margin-top: 0; }
+  .proc__count { grid-column: 1 / -1; text-align: left; }
+  .figure-row__media,
+  .figure-row--flip .figure-row__media,
+  .figure-row--narrow .figure-row__media { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 10; }
+  .figure-row__text,
+  .figure-row--flip .figure-row__text,
+  .figure-row--narrow .figure-row__text { grid-column: 1 / -1; grid-row: auto; }
+  .case__lead, .case__facts { grid-column: 1 / -1; }
+  /* Диптих слишком узок в планшетной колонке — кадры идут стопкой */
+  .case__gallery { grid-template-columns: 1fr; }
+  .case__gallery > :first-child,
+  .case__gallery > :nth-child(2),
+  .case__gallery > :nth-child(3) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    aspect-ratio: 4 / 3;
+  }
+  /* Эти два — прямые дети .grid, им нужна контентная зона, а не полоса */
+  .contact__lead, .contact__form { grid-column: 2 / -1; }
+  .hero__meta { grid-column: 2 / span 7; }
+  .hero__meta-right { grid-column: 2 / -1; text-align: left; }
+  .footer__brand { grid-column: 2 / -1; }
+  .footer__brand ~ .footer__col              { grid-column: 2 / span 4; }
+  .footer__col ~ .footer__col                { grid-column: 6 / span 4; }
+  .footer__col ~ .footer__col ~ .footer__col { grid-column: 10 / span 4; }
+}
+
+@media (max-width: 760px) {
+  /* Служебной полосы нет: номера встают над подписями обычным потоком */
+  .grid, .hero__inner, .footer__grid { grid-template-columns: 1fr; }
+  .grid > *,
+  .hero__inner > *,
+  .footer__grid > * { grid-column: 1 / -1 !important; }
+  .eyebrow { display: block; }
+
+  /* Всё, что было в одну колонку на планшете, остаётся ею и на телефоне */
+  .segments,
+  .music { grid-template-columns: 1fr; }
+  .proc__body { grid-template-columns: 1fr; gap: clamp(32px, 5vw, 56px); }
+  .proc__sticky { position: static; }
+  .proc__track { display: none; }
+  .proc__cta { margin-top: clamp(24px, 3vw, 36px); }
+  .step__media { display: none; }
+  .figure-row__media,
+  .figure-row--flip .figure-row__media,
+  .figure-row--narrow .figure-row__media { aspect-ratio: 16 / 10; }
+  .eyebrow > .t-label { margin-top: 8px; }
+  /* Выходы за сетку схлопываются: полосы, из которой выходить, больше нет */
+  .proc__title { margin-left: 0; }
+  .case__hero { margin-inline: calc(var(--gutter) * -1); }
+  .case__grid, .figure-row { grid-template-columns: 1fr; }
+  .case__grid > *, .figure-row > * { grid-column: 1 / -1 !important; }
+  /* Диптих разбирается в одну колонку: все три кадра подряд в 4/3 */
+  .case__gallery { grid-template-columns: 1fr; }
+  .case__gallery > :first-child,
+  .case__gallery > :nth-child(2),
+  .case__gallery > :nth-child(3) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .rules { grid-template-columns: 1fr !important; }
+  .hero__meta-right { text-align: left; }
+
+  /* Текст номера уходит, остаётся компактная область 44×44 с иконкой трубки —
+     хедер не рвётся, номер по-прежнему кликабелен */
+  .header__phone {
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+  }
+  .header__phone-text { display: none; }
+  .header__phone-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: var(--text-on-void-strong);
+  }
+  .header__phone-icon svg { width: 100%; height: 100%; display: block; }
+
+  /* Хедер узкий: подпись и разделитель убираем, знак несёт бренд сам,
+     иначе «Частные балы» и подпись рвутся каждая на две строки. */
+  .header .logo {
+    --logo-mark: 64px;
+    grid-template-rows: auto;
+    background-image: none;
+  }
+  .header .logo__mark { grid-row: 1; }
+  .header .logo__sub { display: none; }
+  .header .logo__name { align-self: center; font-size: 13px; letter-spacing: .12em; }
+  .menu-panel { width: 100%; }
+  .menu-panel__foot { grid-template-columns: 1fr; gap: 18px; }
+  .nav-link__text { font-size: clamp(26px, 8vw, 40px); }
+  /* «ЧАСТНЫЕ БАЛЫ» — длинное слово, ужимаем чтобы не рвать сетку */
+  .hero__title { font-size: clamp(30px, 8.6vw, 44px); }
+  .hero__title .line-2 > span { font-size: clamp(22px, 6.4vw, 32px); padding-left: 0; }
+  .segment { min-height: 380px; }
+
+  /* Процесс на мобильном: всё в одну колонку, номер над заголовком */
+  .step { grid-template-columns: 1fr; gap: 14px; }
+  .step__rail { flex-direction: row; align-items: baseline; gap: 14px; }
+  .step__tag { max-width: none; }
+  .proc__scatter { grid-template-columns: 1fr; }
+  .proc__note--a,
+  .proc__note--b,
+  .proc__count { grid-column: 1 / -1 !important; }
+  .proc__title { font-size: clamp(32px, 11vw, 56px); letter-spacing: -.03em; }
+  .proc__title-2 > span { font-size: clamp(26px, 9vw, 44px); padding-left: 0; }
+  /* Строка факта не влезает в три части — значение над подписью,
+     разделитель на всю ширину строки */
+  .case__facts .fact { grid-template-columns: 1fr; column-gap: 0; row-gap: 8px; }
+  .case__facts .fact::after { display: none; }
+  .case__facts .fact .t-label { grid-column: 1; text-align: left; max-width: none; }
+  .scroll-hint { display: none; }
+  .hero__title .line-2 { padding-left: 0; }
+}
+
+/* ---------- 19. ДОСТУПНОСТЬ ---------- */
+@media (prefers-reduced-motion: reduce) {
+  /* Класс .no-lenis — селектор специфичнее голого html, поэтому перечисляем
+     его явно, иначе запасная плавность якорей пережила бы этот блок */
+  html, html.no-lenis { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+  [data-gradual] .char { opacity: 1; transform: none; }
+
+  /* Схемы показываем сразу прочерченными: ни пунктира, ни задержек */
+  .scheme [data-draw] {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    transition-delay: 0ms !important;
+  }
+  .scheme [data-dot],
+  .scheme--track [data-tick] { opacity: 1 !important; transition-delay: 0ms !important; }
+
+  /* Маска медиа: кадр сразу раскрыт, контр-движения картинки нет */
+  .is-masked { clip-path: none !important; will-change: auto; }
+  .is-masked > img,
+  .is-masked > .photo { transform: none !important; }
+  .media img, .media:hover img { transform: none !important; }
+
+  /* Прочерчивающиеся hairline: линия просто на месте */
+  [data-line]::after { transform: scaleX(1) !important; transition: none !important; }
+
+  /* Sticky-стопка «Людей»: обычный поток, полосы одна за другой */
+  .figure-stack .figure-row {
+    position: relative !important;
+    top: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    will-change: auto;
+  }
+  /* Плёнка «глубины» не нужна: ничего никуда не уходит */
+  .figure-stack .figure-row::after { opacity: 0 !important; }
+
+  /* Медленный zoom-out видео героя не применяется */
+  .hero__video { transform: none !important; }
+}

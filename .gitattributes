@@ -1,0 +1,18 @@
+# В репозитории — LF, в рабочей копии на Windows — CRLF.
+# Без этого Git предупреждает о конвертации при каждом коммите.
+* text=auto eol=lf
+
+# Бинарные — не трогать
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.webp binary
+*.pdf  binary
+*.docx binary
+*.xlsx binary
+*.ttf  binary
+*.otf  binary
+*.woff binary
+*.woff2 binary
+*.mp4  binary

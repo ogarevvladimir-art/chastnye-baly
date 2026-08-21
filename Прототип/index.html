@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Частные балы — Ваша история. Ваш вечер.</title>
+<meta name="description" content="Частные и корпоративные балы под ключ. Оркестр, танцмейстер, постановка, координация. Работаем с 2009 года — Санкт-Петербург и весь мир.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- Признак живого JS до первой отрисовки: иначе секция правил моргнёт
+     сразу обеими группами, прежде чем скрипт в конце body включит табы. -->
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a class="skip" href="#main">К основному содержанию</a>
+
+<!-- ================= БИБЛИОТЕКА СХЕМ =================
+     Единственный источник графики. Схемы разворачиваются по месту
+     (в меню и в карточках ленты) клонированием из <symbol> — а не через
+     <use>: содержимое <use> живёт в теневом дереве, откуда JS не достанет
+     ни .shape-element для меню, ни getTotalLength() для прочерчивания. -->
+<svg class="scheme-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <!-- 01 — паркетная сетка -->
+  <symbol id="scheme-1" viewBox="0 0 400 400" fill="none">
+    <path class="shape-element" data-draw d="M40 200 L120 120 L200 200 L120 280 Z" stroke="rgba(201,106,66,.30)" stroke-width="1.5" fill="none"/>
+    <path class="shape-element" data-draw d="M200 200 L280 120 L360 200 L280 280 Z" stroke="rgba(171,167,154,.22)" stroke-width="1.5" fill="none"/>
+    <path class="shape-element" data-draw d="M120 120 L200 40 L280 120 L200 200 Z" stroke="rgba(201,106,66,.18)" stroke-width="1.5" fill="none"/>
+    <path class="shape-element" data-draw d="M120 280 L200 200 L280 280 L200 360 Z" stroke="rgba(171,167,154,.16)" stroke-width="1.5" fill="none"/>
+  </symbol>
+
+  <!-- 02 — концентрические круги вальса -->
+  <symbol id="scheme-2" viewBox="0 0 400 400" fill="none">
+    <circle class="shape-element" data-draw cx="200" cy="200" r="48" stroke="rgba(201,106,66,.34)" stroke-width="1.5" fill="none"/>
+    <circle class="shape-element" data-draw cx="200" cy="200" r="96" stroke="rgba(171,167,154,.22)" stroke-width="1.5" fill="none"/>
+    <circle class="shape-element" data-draw cx="200" cy="200" r="146" stroke="rgba(171,167,154,.14)" stroke-width="1.5" fill="none"/>
+    <circle class="shape-element" data-dot cx="200" cy="200" r="10" fill="rgba(201,106,66,.5)"/>
+  </symbol>
+
+  <!-- 03 — люстра / лучи -->
+  <symbol id="scheme-3" viewBox="0 0 400 400" fill="none">
+    <line class="shape-element" data-draw x1="200" y1="30" x2="200" y2="370" stroke="rgba(171,167,154,.16)" stroke-width="1.5"/>
+    <line class="shape-element" data-draw x1="60" y1="90" x2="340" y2="310" stroke="rgba(201,106,66,.22)" stroke-width="1.5"/>
+    <line class="shape-element" data-draw x1="340" y1="90" x2="60" y2="310" stroke="rgba(201,106,66,.22)" stroke-width="1.5"/>
+    <circle class="shape-element" data-dot cx="200" cy="200" r="6" fill="rgba(201,106,66,.55)"/>
+    <circle class="shape-element" data-dot cx="60" cy="90" r="4" fill="rgba(171,167,154,.4)"/>
+    <circle class="shape-element" data-dot cx="340" cy="310" r="4" fill="rgba(171,167,154,.4)"/>
+  </symbol>
+
+  <!-- 04 — траектории пар -->
+  <symbol id="scheme-4" viewBox="0 0 400 400" fill="none">
+    <path class="shape-element" data-draw d="M40 260 Q120 120, 200 260 T 360 260" stroke="rgba(201,106,66,.26)" stroke-width="1.5" fill="none"/>
+    <path class="shape-element" data-draw d="M40 320 Q120 180, 200 320 T 360 320" stroke="rgba(171,167,154,.18)" stroke-width="1.5" fill="none"/>
+    <path class="shape-element" data-draw d="M40 200 Q120 60, 200 200 T 360 200" stroke="rgba(171,167,154,.12)" stroke-width="1.5" fill="none"/>
+  </symbol>
+
+  <!-- 05 — расстановка гостей -->
+  <symbol id="scheme-5" viewBox="0 0 400 400" fill="none">
+    <circle class="shape-element" data-dot cx="90"  cy="110" r="7" fill="rgba(201,106,66,.42)"/>
+    <circle class="shape-element" data-dot cx="200" cy="80"  r="5" fill="rgba(171,167,154,.34)"/>
+    <circle class="shape-element" data-dot cx="310" cy="110" r="7" fill="rgba(201,106,66,.42)"/>
+    <circle class="shape-element" data-dot cx="60"  cy="220" r="5" fill="rgba(171,167,154,.30)"/>
+    <circle class="shape-element" data-dot cx="200" cy="200" r="11" fill="rgba(201,106,66,.30)"/>
+    <circle class="shape-element" data-dot cx="340" cy="220" r="5" fill="rgba(171,167,154,.30)"/>
+    <circle class="shape-element" data-dot cx="90"  cy="320" r="7" fill="rgba(171,167,154,.26)"/>
+    <circle class="shape-element" data-dot cx="200" cy="345" r="5" fill="rgba(201,106,66,.34)"/>
+    <circle class="shape-element" data-dot cx="310" cy="320" r="7" fill="rgba(171,167,154,.26)"/>
+  </symbol>
+
+  <!-- 06 — шаги венского вальса: квадрат траектории пары,
+       точки-позиции стоп и стрелка направления вращения -->
+  <symbol id="scheme-6" viewBox="0 0 400 400" fill="none">
+    <path class="shape-element" data-draw d="M110 110 L290 110 L290 290 L110 290 Z" stroke="rgba(201,106,66,.30)" stroke-width="1.5" fill="none"/>
+    <path class="shape-element" data-draw d="M110 110 L290 290" stroke="rgba(171,167,154,.16)" stroke-width="1.5" fill="none"/>
+    <path class="shape-element" data-draw d="M290 110 L110 290" stroke="rgba(171,167,154,.16)" stroke-width="1.5" fill="none"/>
+    <!-- дуга вращения с наконечником-стрелкой -->
+    <path class="shape-element" data-draw d="M200 60 A140 140 0 0 1 340 200" stroke="rgba(201,106,66,.26)" stroke-width="1.5" fill="none"/>
+    <path class="shape-element" data-draw d="M326 168 L340 200 L308 206" stroke="rgba(201,106,66,.26)" stroke-width="1.5" fill="none"/>
+    <!-- позиции стоп: три шага на каждой стороне квадрата -->
+    <circle class="shape-element" data-dot cx="110" cy="110" r="6" fill="rgba(201,106,66,.42)"/>
+    <circle class="shape-element" data-dot cx="200" cy="110" r="4" fill="rgba(171,167,154,.34)"/>
+    <circle class="shape-element" data-dot cx="290" cy="110" r="6" fill="rgba(201,106,66,.42)"/>
+    <circle class="shape-element" data-dot cx="290" cy="200" r="4" fill="rgba(171,167,154,.34)"/>
+    <circle class="shape-element" data-dot cx="290" cy="290" r="6" fill="rgba(201,106,66,.42)"/>
+    <circle class="shape-element" data-dot cx="200" cy="290" r="4" fill="rgba(171,167,154,.34)"/>
+    <circle class="shape-element" data-dot cx="110" cy="290" r="6" fill="rgba(201,106,66,.42)"/>
+    <circle class="shape-element" data-dot cx="110" cy="200" r="4" fill="rgba(171,167,154,.34)"/>
+    <circle class="shape-element" data-dot cx="200" cy="200" r="9" fill="rgba(201,106,66,.30)"/>
+  </symbol>
+</svg>
+
+<!-- ================= ХЕДЕР ================= -->
+<header class="header" id="header">
+  <a class="logo" href="#top">
+    <img class="logo__mark" src="assets/plyaskin-events-logo.png"
+         alt="Plyaskin Events" width="1716" height="738" decoding="async">
+    <span class="logo__name">Частные балы</span>
+    <span class="logo__sub">Plyaskin Group · с 2009 года</span>
+  </a>
+
+  <div class="header__right">
+    <a class="header__phone t-num" href="tel:+78123090909">
+      <span class="header__phone-text">+7 812 309‑09‑09</span>
+      <span class="header__phone-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.5 2.5C3.5 2.5 4 2 5 2C5.5 3.5 6 4.5 6.5 5.5C6 6 5.5 6.5 5.5 6.5C6 8 8 10 9.5 10.5C9.5 10.5 10 10 10.5 9.5C11.5 10 12.5 10.5 14 11C14 12 13.5 12.5 13.5 12.5C12.5 13.5 10 12.5 7.5 10C5 7.5 2.5 3.5 3.5 2.5Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navOverlay">
+      <span class="menu-button__text">
+        <span>Меню</span>
+        <span>Закрыть</span>
+      </span>
+      <span class="menu-button__icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.33333 16L7.33333 0L8.66667 0L8.66667 16L7.33333 16Z" fill="currentColor"/>
+          <path d="M16 8.66667L0 8.66667L0 7.33333L16 7.33333L16 8.66667Z" fill="currentColor"/>
+          <path d="M6 7.33333L7.33333 7.33333L7.33333 6C7.33333 6.73637 6.73638 7.33333 6 7.33333Z" fill="currentColor"/>
+          <path d="M10 7.33333L8.66667 7.33333L8.66667 6C8.66667 6.73638 9.26362 7.33333 10 7.33333Z" fill="currentColor"/>
+          <path d="M6 8.66667L7.33333 8.66667L7.33333 10C7.33333 9.26362 6.73638 8.66667 6 8.66667Z" fill="currentColor"/>
+          <path d="M10 8.66667L8.66667 8.66667L8.66667 10C8.66667 9.26362 9.26362 8.66667 10 8.66667Z" fill="currentColor"/>
+        </svg>
+      </span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= ПОЛНОЭКРАННОЕ МЕНЮ ================= -->
+<div class="nav-overlay" id="navOverlay" data-nav="closed" aria-label="Основная навигация">
+  <div class="nav-overlay__scrim" data-menu-close></div>
+
+  <nav class="menu-panel">
+    <div class="menu-panel__bg">
+      <div class="backdrop-layer backdrop-layer--first"></div>
+      <div class="backdrop-layer backdrop-layer--second"></div>
+      <div class="backdrop-layer"></div>
+
+      <!-- Фоновая графика: реагирует на наведение по пунктам.
+           Содержимое подставляется из библиотеки схем по data-scheme. -->
+      <div class="ambient-shapes" aria-hidden="true">
+        <svg class="bg-shape bg-shape-1" data-scheme="1" viewBox="0 0 400 400" fill="none"></svg>
+        <svg class="bg-shape bg-shape-2" data-scheme="2" viewBox="0 0 400 400" fill="none"></svg>
+        <svg class="bg-shape bg-shape-3" data-scheme="3" viewBox="0 0 400 400" fill="none"></svg>
+        <svg class="bg-shape bg-shape-4" data-scheme="4" viewBox="0 0 400 400" fill="none"></svg>
+        <svg class="bg-shape bg-shape-5" data-scheme="5" viewBox="0 0 400 400" fill="none"></svg>
+      </div>
+    </div>
+
+    <div class="menu-panel__inner">
+      <p class="t-num menu-panel__eyebrow" data-menu-fade>00 — НАВИГАЦИЯ</p>
+
+      <ul class="menu-list">
+        <li class="menu-list-item" data-shape="1">
+          <a href="#process" class="nav-link" data-menu-close>
+            <span class="nav-link__num">01</span>
+            <span class="nav-link__text">Как это происходит</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+        <li class="menu-list-item" data-shape="2">
+          <a href="#evenings" class="nav-link" data-menu-close>
+            <span class="nav-link__num">02</span>
+            <span class="nav-link__text">Вечера</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+        <li class="menu-list-item" data-shape="3">
+          <a href="#segments" class="nav-link" data-menu-close>
+            <span class="nav-link__num">03</span>
+            <span class="nav-link__text">Форматы</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+        <li class="menu-list-item" data-shape="4">
+          <a href="#about" class="nav-link" data-menu-close>
+            <span class="nav-link__num">04</span>
+            <span class="nav-link__text">О нас</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+        <li class="menu-list-item" data-shape="5">
+          <a href="#contact" class="nav-link" data-menu-close>
+            <span class="nav-link__num">05</span>
+            <span class="nav-link__text">Связаться</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="menu-panel__foot">
+        <div class="menu-panel__foot-col" data-menu-fade>
+          <p class="t-label">Телефон</p>
+          <a class="menu-panel__contact" href="tel:+78123090909">+7 812 309‑09‑09</a>
+        </div>
+        <div class="menu-panel__foot-col" data-menu-fade>
+          <p class="t-label">Почта</p>
+          <a class="menu-panel__contact" href="mailto:hello@plyaskingroup.ru">hello@plyaskingroup.ru</a>
+        </div>
+        <div class="menu-panel__foot-col" data-menu-fade>
+          <p class="t-label">География</p>
+          <p class="menu-panel__geo">Санкт-Петербург · Москва · Дубай · Ницца · Пекин</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero__media">
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="assets/photos/ball-03.jpg"
+      disablepictureinpicture
+      aria-hidden="true"
+      tabindex="-1">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero__scrim"></div>
+
+  <div class="hero__inner">
+    <h1 class="t-h1 hero__title" data-gradual>
+      <span class="line"><span>Частные балы</span></span>
+      <span class="line line-2"><span>Ваша история. Ваш вечер.</span></span>
+    </h1>
+
+    <div class="hero__meta" data-reveal style="--d:700ms">
+      <p class="t-label">Санкт-Петербург · Москва · Дубай · Ницца · Пекин</p>
+    </div>
+
+    <div class="hero__meta-right" data-reveal style="--d:820ms">
+      <p class="t-label">Свадьбы · Юбилеи · Корпоративные вечера<br>Клиентские приёмы</p>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true"><span>Листайте</span><i></i></div>
+</section>
+
+<!-- ================= СЕГМЕНТАЦИЯ ================= -->
+<section class="section section--void" id="segments">
+  <div class="grid">
+    <div class="eyebrow" data-line data-reveal>
+      <p class="t-num">01 — ФОРМАТЫ</p>
+      <p class="t-label">Два повода собрать людей вместе</p>
+    </div>
+
+    <div class="segments">
+      <article class="segment" data-reveal style="--d:0ms">
+        <div class="segment__media">
+          <img class="photo" src="assets/photos/nk-08.jpg" alt="Гости танцуют в паре на паркете бального зала"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="segment__top">
+          <p class="t-num">A</p>
+          <p class="t-label">Для семьи и близких</p>
+        </div>
+        <div class="segment__title">
+          <h2 class="t-h3" data-gradual>Частный бал</h2>
+          <p class="t-italic segment__sub">Свадьба, юбилей, день рождения</p>
+          <p class="t-body segment__text">
+            Событие, за которым стоит целая история семьи. Бал становится той редкой
+            и бесценной возможностью собрать вместе несколько поколений близких людей
+            и подарить им вечер, который останется в памяти на годы.
+          </p>
+        </div>
+      </article>
+
+      <article class="segment" data-reveal style="--d:140ms">
+        <div class="segment__media">
+          <img class="photo" src="assets/photos/ball-08.jpg" alt="Общий план зала: корпоративный бал, гости в вечерних нарядах"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="segment__top">
+          <p class="t-num">B</p>
+          <p class="t-label">Для компании, партнёров и сотрудников</p>
+        </div>
+        <div class="segment__title">
+          <h2 class="t-h3" data-gradual>Корпоративный бал</h2>
+          <p class="t-italic segment__sub">Годовщина, приём, презентация</p>
+          <p class="t-body segment__text">
+            Новогодний приём, вечер в честь партнёров, чествование лучших сотрудников.
+            Балом венчают конференцию или форум, придают особый вес открытию новой
+            площадки и превращают деловое событие в подлинный праздник.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= КАК МЫ ГОТОВИМ ВЕЧЕР ================= -->
+<section class="section section--major section--deep proc" id="process">
+  <div class="grid">
+    <div class="eyebrow" data-line data-reveal>
+      <p class="t-num">02 — ПОДХОД</p>
+      <p class="t-label">От разговора до последнего танца</p>
+    </div>
+
+    <!-- Крупный заголовок-графика: две строки, вторая уходит вправо -->
+    <div class="proc__head">
+      <h2 class="proc__title" data-gradual>
+        <span class="line"><span>Как мы готовим</span></span>
+        <span class="line proc__title-2"><span>ваш вечер</span></span>
+      </h2>
+
+      <!-- Рассыпанная микротипографика, как в референсе -->
+      <div class="proc__scatter">
+        <p class="t-label proc__note proc__note--a" data-reveal style="--d:240ms">
+          Мы не начинаем с анкеты<br>и не заканчиваем договором.
+        </p>
+        <p class="t-label proc__note proc__note--b" data-reveal style="--d:380ms">
+          Пять шагов от первого звонка<br>до последнего вальса.
+        </p>
+        <p class="t-num proc__count" data-reveal style="--d:500ms">05 / ЭТАПОВ</p>
+      </div>
+    </div>
+
+    <div class="proc__body">
+      <!-- Липкая колонка: акцентная фраза + вертикальный индикатор прогресса -->
+      <aside class="proc__aside">
+        <div class="proc__sticky">
+          <p class="t-italic proc__lead" data-reveal>
+            Мы начинаем<br>с разговора.
+          </p>
+
+          <div class="proc__track" aria-hidden="true">
+            <!-- Тот же приём, что в карточках ленты: тонкая линия с засечками
+                 по числу шагов. Прочерчивается не своим observer'ом, а тем же
+                 прогрессом, что двигает #procProgress. -->
+            <svg class="scheme scheme--track" id="procScheme" viewBox="0 0 24 400" fill="none" preserveAspectRatio="none">
+              <line data-draw x1="12" y1="4" x2="12" y2="396" stroke="rgba(201,106,66,.30)" stroke-width="1.5"/>
+              <circle data-tick cx="12" cy="4" r="3.5" fill="rgba(201,106,66,.42)"/>
+              <circle data-tick cx="12" cy="102" r="3.5" fill="rgba(171,167,154,.34)"/>
+              <circle data-tick cx="12" cy="200" r="3.5" fill="rgba(171,167,154,.34)"/>
+              <circle data-tick cx="12" cy="298" r="3.5" fill="rgba(171,167,154,.34)"/>
+              <circle data-tick cx="12" cy="396" r="3.5" fill="rgba(201,106,66,.42)"/>
+            </svg>
+            <div class="proc__track-line"><i id="procProgress"></i></div>
+            <ol class="proc__dots" id="procDots">
+              <li data-step="01"><span>01</span> Разговор</li>
+              <li data-step="02"><span>02</span> Концепция</li>
+              <li data-step="03"><span>03</span> Репетиции</li>
+              <li data-step="04"><span>04</span> Вечер</li>
+              <li data-step="05"><span>05</span> Воспоминания</li>
+            </ol>
+          </div>
+
+          <a class="cta proc__cta" href="#contact" data-reveal style="--d:200ms">
+            Начать с разговора
+            <svg viewBox="0 0 26 8" aria-hidden="true"><path d="M0 4h24M20 1l4 3-4 3"/></svg>
+          </a>
+        </div>
+      </aside>
+
+      <ol class="steps" id="procSteps">
+        <li class="step" data-line data-reveal data-step="01">
+          <div class="step__rail">
+            <p class="t-num step__num">01</p>
+            <p class="t-label step__tag">Первая встреча</p>
+          </div>
+          <div class="step__body">
+            <h3 class="t-h3 step__title" data-gradual>Разговор</h3>
+            <p class="t-body">
+              Вы рассказываете о своём вечере — для кого он, почему именно бал, что для вас важно.
+              Мы слушаем и спрашиваем о том, что редко попадает в бриф: что вы хотите
+              почувствовать в тот вечер, когда всё закончится.
+            </p>
+          </div>
+          <div class="step__media">
+            <img class="photo" src="assets/photos/nk-06.jpg" alt="Гости общаются перед началом вечера"
+                 loading="lazy" decoding="async">
+          </div>
+        </li>
+
+        <li class="step" data-line data-reveal style="--d:80ms" data-step="02">
+          <div class="step__rail">
+            <p class="t-num step__num">02</p>
+            <p class="t-label step__tag">Замысел вечера</p>
+          </div>
+          <div class="step__body">
+            <h3 class="t-h3 step__title" data-gradual>Концепция</h3>
+            <p class="t-body">
+              Она вырастает из вашего рассказа: локация, музыка, программа, детали —
+              всё связано между собой и с вашей историей.
+            </p>
+          </div>
+          <div class="step__media">
+            <img class="photo" src="assets/photos/ball-03.jpg" alt="Зал бала с декорациями и сценой"
+                 loading="lazy" decoding="async">
+          </div>
+        </li>
+
+        <li class="step" data-line data-reveal style="--d:160ms" data-step="03">
+          <div class="step__rail">
+            <p class="t-num step__num">03</p>
+            <p class="t-label step__tag">До события</p>
+          </div>
+          <div class="step__body">
+            <h3 class="t-h3 step__title" data-gradual>Репетиции</h3>
+            <p class="t-body">
+              Если вы или ваши гости хотите подготовиться — мы проводим уроки.
+              Это первый шаг к тому, чтобы на балу все чувствовали себя уверенно.
+            </p>
+          </div>
+          <div class="step__media">
+            <img class="photo" src="assets/photos/nk-01.jpg" alt="Пары разучивают фигуры вальса"
+                 loading="lazy" decoding="async">
+          </div>
+        </li>
+
+        <li class="step" data-line data-reveal style="--d:240ms" data-step="04">
+          <div class="step__rail">
+            <p class="t-num step__num">04</p>
+            <p class="t-label step__tag">Тот самый день</p>
+          </div>
+          <div class="step__body">
+            <h3 class="t-h3 step__title" data-gradual>Вечер</h3>
+            <p class="t-body">
+              Мы рядом с первого момента до последнего танца. Вы не бегаете
+              с координацией и не считаете минуты. Вы просто наслаждаетесь.
+            </p>
+          </div>
+          <div class="step__media">
+            <img class="photo" src="assets/photos/ball-11.jpg" alt="Паркет во время вальса, пары в танце"
+                 loading="lazy" decoding="async">
+          </div>
+        </li>
+
+        <li class="step" data-line data-reveal style="--d:320ms" data-step="05">
+          <div class="step__rail">
+            <p class="t-num step__num">05</p>
+            <p class="t-label step__tag">После бала</p>
+          </div>
+          <div class="step__body">
+            <h3 class="t-h3 step__title" data-gradual>Воспоминания</h3>
+            <p class="t-body">
+              Фото и видео, к которым вы возвращаетесь. Не для соцсетей — для себя.
+            </p>
+          </div>
+          <div class="step__media">
+            <img class="photo" src="assets/photos/002051_resized.jpg" alt="Чёрно-белый кадр танцующего зала"
+                 loading="lazy" decoding="async">
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ПОЛНОЭКРАННОЕ МЕДИА ================= -->
+<section class="section section--void section--tight">
+  <div class="grid">
+    <div class="col-full" data-reveal>
+      <div class="media media--wide" data-parallax>
+        <img class="photo" src="assets/photos/ball-06.jpg" alt="Большой бальный зал: гости собираются под звуки оркестра"
+             loading="lazy" decoding="async">
+      </div>
+      <p class="t-label media__caption">Омега-бал · Санкт-Петербург · 180 гостей</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= КАК ПРОХОДИТ ВЕЧЕР ================= -->
+<section class="section section--void" id="evening">
+  <div class="grid">
+    <div class="eyebrow" data-line data-reveal>
+      <p class="t-num">03 — СТРУКТУРА</p>
+      <p class="t-label">Ориентир, а не готовая программа</p>
+    </div>
+
+    <div class="col-1-6" data-reveal>
+      <h2 class="t-h2" data-gradual>Как проходит вечер</h2>
+    </div>
+    <div class="col-8-e" style="--d:120ms" data-reveal="x">
+      <p class="t-body">
+        Сценарий каждого бала собирается заново — под вашу компанию, локацию и настроение.
+        Но чтобы дать общее представление, вот как может выглядеть структура вечера.
+      </p>
+      <p class="t-body">
+        <strong>Вечер складывается из частей, и каждая тянет за собой следующую.</strong>
+      </p>
+    </div>
+
+    <div class="col-full" style="margin-top:clamp(40px,5vw,80px)">
+      <div class="rail-wrap">
+        <!-- data-lenis-prevent: колесо внутри ленты крутит ленту, а не страницу -->
+        <div class="rail" id="rail" data-lenis-prevent>
+
+          <article class="rail__item">
+            <svg class="scheme" data-scheme="5" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
+            <p class="rail__num t-num">01</p>
+            <h3 class="t-h3" data-gradual>Сбор гостей<br>и приветствие</h3>
+            <p class="t-body">
+              Гости приходят, знакомятся, получают бейджики с именами.
+              Лёгкое общение за фуршетом — зал наполняется звуками оркестра.
+            </p>
+          </article>
+
+          <article class="rail__item">
+            <svg class="scheme" data-scheme="3" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
+            <p class="rail__num t-num">02</p>
+            <h3 class="t-h3" data-gradual>Церемония<br>открытия</h3>
+            <p class="t-body">
+              Вечер начинается не с первого танца. Он начинается с момента, когда зал замирает.
+              Хозяева бала и почётные гости выходят на торжественное шествие, следом —
+              оперные певцы, балет, танцоры. Гости с первого момента чувствуют: их ждали.
+            </p>
+          </article>
+
+          <article class="rail__item">
+            <svg class="scheme" data-scheme="6" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
+            <p class="rail__num t-num">03</p>
+            <h3 class="t-h3" data-gradual>Вальс-<br>открытие</h3>
+            <p class="t-body">
+              Хозяева бала или сотрудники компании танцуют первый вальс. Потом на паркет
+              приглашаются все. Лёд ломается, зал объединяется. Порядок выхода мы прописываем
+              заранее: кто, за кем, под какую музыку.
+            </p>
+          </article>
+
+          <article class="rail__item">
+            <svg class="scheme" data-scheme="4" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
+            <p class="rail__num t-num">04</p>
+            <h3 class="t-h3" data-gradual>Танцевальная<br>программа</h3>
+            <p class="t-body">
+              Вальсы, кадрили, свинг, фокстрот, латина. Танцмейстер ведёт зал:
+              чередует ритмы, вовлекает гостей, меняет энергию. Паузы для общения и фуршетов.
+            </p>
+          </article>
+
+          <article class="rail__item">
+            <svg class="scheme" data-scheme="2" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
+            <p class="rail__num t-num">05</p>
+            <h3 class="t-h3" data-gradual>Шоу-<br>номера</h3>
+            <p class="t-body">
+              Профессиональные танцоры, совместные выступления, хореография от гостей —
+              моменты, когда все забывают про еду и разговоры.
+            </p>
+          </article>
+
+          <article class="rail__item">
+            <svg class="scheme" data-scheme="1" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
+            <p class="rail__num t-num">06</p>
+            <h3 class="t-h3" data-gradual>Финальный<br>танец</h3>
+            <p class="t-body">
+              Общий финальный вальс. Момент, когда все оказываются на паркете.
+              Закрытие вечера.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-1-6" style="margin-top:clamp(40px,5vw,72px)" data-reveal>
+      <p class="t-body">
+        Мы адаптируем сценарий под ваш формат: от камерного вечера на тридцать человек
+        до масштабного бала на двести. Длительность, количество пауз, интенсивность
+        танцевальной части — всё подстраивается под ваших гостей.
+      </p>
+    </div>
+
+    <div class="col-8-e" style="margin-top:clamp(40px,5vw,72px)" data-reveal="x">
+      <div class="media media--wide" data-parallax>
+        <img class="photo" src="assets/photos/ball-09.jpg" alt="Финальное шествие: гости идут по паркету в паре"
+             loading="lazy" decoding="async">
+      </div>
+      <p class="t-label media__caption">Финальное шествие · общий выход на паркет</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= МУЗЫКА ================= -->
+<section class="section section--deep" id="music">
+  <div class="grid">
+    <div class="eyebrow" data-line data-reveal>
+      <p class="t-num">04 — ЗВУК</p>
+      <p class="t-label">Три состава в одном вечере</p>
+    </div>
+
+    <div class="col-1-5" data-reveal>
+      <h2 class="t-h2" data-gradual>Музыкальное сопровождение</h2>
+    </div>
+    <div class="col-7-e" style="align-self:end; --d:120ms" data-reveal>
+      <p class="t-italic">
+        Звук управляет вечером раньше,<br>чем это начинает делать программа.
+      </p>
+    </div>
+
+    <div class="music" style="margin-top:clamp(40px,5vw,80px)">
+      <div class="music__item" data-reveal>
+        <div class="music__media">
+          <img class="photo" src="assets/photos/venue-01.jpg" alt="Симфонический оркестр на сцене"
+               loading="lazy" decoding="async">
+        </div>
+        <p class="t-num">01</p>
+        <p class="t-body">
+          Придаёт происходящему вес. Разница между живыми музыкантами и колонками
+          слышна сразу. Под него идут венский вальс, кадриль и всё, что требует торжественности.
+        </p>
+        <h3 class="t-h3" data-gradual>Симфонический оркестр</h3>
+      </div>
+
+      <div class="music__item" data-reveal style="--d:110ms">
+        <div class="music__media">
+          <img class="photo" src="assets/photos/nk-03.jpg" alt="Духовой оркестр: валторнист во время выступления"
+               loading="lazy" decoding="async">
+        </div>
+        <p class="t-num">02</p>
+        <p class="t-body">
+          Официальность уходит. Свинг, фокстрот и латина звучат тепло —
+          под них легко знакомиться.
+        </p>
+        <h3 class="t-h3" data-gradual>Духовой оркестр<br>и джаз-бэнд</h3>
+      </div>
+
+      <div class="music__item" data-reveal style="--d:220ms">
+        <div class="music__media">
+          <img class="photo" src="assets/photos/nk-04.jpg" alt="Музыканты и дирижёр в зале во время бала"
+               loading="lazy" decoding="async">
+        </div>
+        <p class="t-num">03</p>
+        <p class="t-body">
+          Работает на энергию: знакомые хиты, когда нужно разогреть зал
+          и завершить вечер на высокой ноте.
+        </p>
+        <h3 class="t-h3" data-gradual>Музыкальная группа</h3>
+      </div>
+    </div>
+
+    <div class="col-1-6" style="margin-top:clamp(32px,4vw,56px)" data-reveal>
+      <p class="t-body">
+        В одном вечере составы чередуются. Репертуар и тайминг мы подбираем под сценарий.
+      </p>
+      <p class="t-italic" style="margin-top:20px">
+        Но музыка сама по себе не поднимает людей с мест.<br>Для этого в зале есть человек.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ЛЮДИ: ТАНЦМЕЙСТЕР / ШОУ / АССИСТЕНТ ================= -->
+<section class="section section--major section--void" id="people">
+  <div class="grid">
+    <div class="eyebrow" data-line data-reveal>
+      <p class="t-num">05 — ЛЮДИ</p>
+      <p class="t-label">Кто ведёт зал</p>
+    </div>
+
+    <!-- Три полосы складываются в стопку: каждая следующая наезжает на предыдущую.
+         Обёртка нужна только для sticky-контекста, раскладку она не меняет. -->
+    <div class="figure-stack" id="figureStack">
+
+    <!-- Танцмейстер -->
+    <div class="figure-row">
+      <div class="figure-row__media" data-reveal data-parallax>
+        <div class="media media--tall" style="height:100%">
+          <img class="photo" src="assets/photos/ball-05.jpg" alt="Танцмейстер с микрофоном ведёт зал"
+               loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="figure-row__text" data-reveal="x" style="--d:120ms">
+        <p class="t-num" style="margin-bottom:20px">A</p>
+        <h2 class="t-h2" data-gradual>Танцмейстер</h2>
+        <p class="t-body">
+          Не ставит номера и не учит движениям. Его работа — атмосфера: снять скованность,
+          вовлечь тех, кто пришёл постоять в стороне, дать залу общий ритм.
+        </p>
+        <p class="t-body">
+          Парные танцы, ротация партнёров, общие фигуры — гости знакомятся без вопросов
+          «а с кем мне танцевать». Никто никого не уговаривает: танцевать становится проще,
+          чем не танцевать.
+        </p>
+        <p class="t-body">
+          Чередуя спокойные вальсы с динамичными, он следит за настроением зала.
+          Вечер не провисает, гости не устают.
+        </p>
+        <p class="t-body">
+          <strong>А уносят гости не только фото. Не «мы были на балу», а «мы научились
+          танцевать вальс» — вот что обсуждают после.</strong>
+        </p>
+        <a class="cta" href="#contact">
+          Подробнее о танцмейстере
+          <svg viewBox="0 0 26 8" aria-hidden="true"><path d="M0 4h24M20 1l4 3-4 3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Шоу -->
+    <div class="figure-row figure-row--flip">
+      <div class="figure-row__media" data-reveal data-parallax>
+        <div class="media media--tall" style="height:100%">
+          <img class="photo" src="assets/photos/ball-07.jpg" alt="Шоу-номер: профессиональная пара исполняет танец"
+               loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="figure-row__text" data-reveal="x" style="--d:120ms">
+        <p class="t-num" style="margin-bottom:20px">B</p>
+        <h2 class="t-h2" data-gradual>Танцевальные шоу</h2>
+        <p class="t-body">
+          Разговоры за столами обрываются на полуслове: начинается шоу-номер.
+          Профессиональная пара исполняет вальс, танго или пасодобль — хореография,
+          костюмы, техника, отточенная годами.
+        </p>
+        <p class="t-body">
+          Но шоу может быть и не от профессионалов. Номер от сотрудников компании,
+          друзей именинника или свадебной пары: простая хореография выглядит иначе,
+          когда её танцуют люди, которых все знают.
+        </p>
+        <p class="t-body">
+          Есть и совместный формат — гости выходят в паре с танцорами. Даже базовые шаги
+          читаются эффектно, потому что рядом человек, который ведёт.
+        </p>
+        <p class="t-body">
+          <strong>Постановку, репетиции, музыку и интеграцию в сценарий мы берём на себя.</strong>
+          От гостей нужно только желание выйти на паркет.
+        </p>
+      </div>
+    </div>
+
+    <!-- Ассистент -->
+    <div class="figure-row figure-row--narrow">
+      <div class="figure-row__media" data-reveal data-parallax>
+        <div class="media media--tall" style="height:100%">
+          <img class="photo" src="assets/photos/nk-02.jpg" alt="Танцевальный ассистент ведёт гостью в вальсе"
+               loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="figure-row__text" data-reveal="x" style="--d:120ms">
+        <p class="t-num" style="margin-bottom:20px">C</p>
+        <h2 class="t-h2" data-gradual>Танцевальный ассистент</h2>
+        <p class="t-body">
+          Может быть рядом с вами весь вечер: от сбора гостей до финального вальса.
+        </p>
+        <p class="t-body">
+          Он работает с теми, кому нужна поддержка: кто стесняется, кто не умеет танцевать,
+          кто пришёл без пары. Не подходит с фразой «давайте танцевать» — подходит, когда
+          видит, что человек готов.
+        </p>
+        <p class="t-body">
+          Готовиться заранее не нужно. Вы учитесь в процессе, в своём темпе, под оркестр.
+          Ассистент подстраивается под вас — не вы под него.
+        </p>
+        <p class="t-body">
+          <strong>И самое главное: вы не будете стоять у стены.</strong>
+        </p>
+      </div>
+    </div>
+
+    </div><!-- /.figure-stack -->
+  </div>
+</section>
+
+<!-- ================= ПОДГОТОВКА ================= -->
+<section class="section section--clay" id="prep">
+  <div class="grid">
+    <div class="eyebrow" data-line data-reveal style="--d:0ms">
+      <p class="t-num" style="color:var(--greige-200)">06 — ДО ВЕЧЕРА</p>
+      <p class="t-label" style="color:var(--greige-200);opacity:.8">Бал начинается на первом уроке</p>
+    </div>
+
+    <div class="col-1-6" data-reveal>
+      <h2 class="t-h2" style="color:var(--greige-200)" data-gradual>Подготовка<br>к балу</h2>
+
+      <div class="media media--wide" style="margin-top:clamp(28px,3.5vw,48px)" data-parallax>
+        <img class="photo" src="assets/photos/nk-05.jpg" alt="Пары репетируют вальс в зале перед балом"
+             loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <div class="col-8-e" style="--d:140ms" data-reveal="x">
+      <p class="t-body" style="color:var(--greige-200);opacity:.85">
+        Бал начинается задолго до входа в зал — на первом уроке.
+        Гости, которые уже пробовали движения, приходят с азартом: они хотят ещё.
+      </p>
+      <p class="t-body" style="color:var(--greige-200);opacity:.85">
+        Но уроки — ещё и способ познакомить гостей друг с другом до события.
+        На самом балу уже нет чужих, только свои.
+      </p>
+      <p class="t-body" style="color:var(--greige-200);opacity:.85">
+        Лекций по этикету мы не читаем. Показываем: как пригласить, как принять
+        приглашение, как двигаться в паре. Легко, практично, с юмором.
+      </p>
+      <a class="cta" href="#contact" style="color:var(--greige-200)">
+        Как проходят уроки
+        <svg viewBox="0 0 26 8" aria-hidden="true"><path d="M0 4h24M20 1l4 3-4 3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ЭТИКЕТ И ДРЕСС-КОД (один экран, два таба) ================= -->
+<section class="section section--minor section--void" id="etiquette">
+  <div class="grid">
+    <div class="eyebrow" data-line data-reveal>
+      <p class="t-num">07 — ПРАВИЛА</p>
+      <p class="t-label is-active" data-tab="etiquette">Не «как правильно», а «как удобно»</p>
+      <p class="t-label" data-tab="dresscode">Работает на атмосферу</p>
+    </div>
+
+    <div class="col-1-5" data-reveal>
+      <h2 class="t-h2 rules-title is-active" data-tab="etiquette" data-gradual>Танцевальный этикет</h2>
+      <h2 class="t-h2 rules-title" data-tab="dresscode" data-gradual>Дресс-код</h2>
+    </div>
+    <div class="col-7-e" style="--d:120ms" data-reveal="x">
+      <p class="t-body is-active" data-tab="etiquette">
+        Несколько правил, которые делают вечер проще для всех. Учить ничего не придётся:
+        танцмейстер подсказывает прямо на паркете, в моменте, без давления.
+      </p>
+      <p class="t-body is-active" data-tab="etiquette">
+        Современный бал никто не сверяет с историческим оригиналом. Здесь ценят искренность
+        больше, чем идеальную технику, и большинство гостей впервые на балу —
+        <strong>вы не выделяетесь</strong>.
+      </p>
+      <p class="t-body" data-tab="dresscode">
+        Когда все одеты в одном ключе, зал смотрится цельно, и каждый чувствует себя
+        частью общего вечера.
+      </p>
+    </div>
+
+    <!-- Переключатель: без JS скрыт, обе группы правил видны подряд -->
+    <div class="tabs" id="rulesTabs" role="tablist" aria-label="Правила бала"
+         style="margin-top:clamp(40px,5vw,80px)">
+      <button class="tab" type="button" role="tab" id="tab-etiquette"
+              aria-controls="rules-etiquette" aria-selected="true">Этикет</button>
+      <button class="tab" type="button" role="tab" id="tab-dresscode"
+              aria-controls="rules-dresscode" aria-selected="false">Дресс-код</button>
+    </div>
+
+    <div class="rules is-active" data-tab="etiquette" id="rules-etiquette"
+         role="tabpanel" aria-labelledby="tab-etiquette"
+         style="margin-top:clamp(24px,3vw,40px)">
+      <div class="rules__col" data-line data-reveal>
+        <p class="t-num">Для кавалеров</p>
+        <ul class="rules__list">
+          <li>Инициировать приглашение на танец</li>
+          <li>Обеспечивать партнёрше комфорт на паркете</li>
+          <li>Следить за ритмом и пространством</li>
+          <li>Проявлять тактичность</li>
+        </ul>
+      </div>
+      <div class="rules__col" data-line data-reveal style="--d:110ms">
+        <p class="t-num">Для дам</p>
+        <ul class="rules__list">
+          <li>Принимать или корректно отклонять приглашения</li>
+          <li>Поддерживать темп и направление движения в паре</li>
+          <li>Соблюдать дресс-код</li>
+          <li>Проявлять доброжелательность</li>
+        </ul>
+      </div>
+      <div class="rules__col" data-line data-reveal style="--d:220ms">
+        <p class="t-num">Мы помогаем</p>
+        <ul class="rules__list">
+          <li>Танцмейстер подсказывает в моменте, с юмором</li>
+          <li>Уроки до события — по желанию</li>
+          <li>Никаких формальностей и давления</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Три равные колонки — намеренно: пункты дресс-кода равновелики -->
+    <div class="rules" data-tab="dresscode" id="rules-dresscode"
+         role="tabpanel" aria-labelledby="tab-dresscode"
+         style="grid-template-columns:1fr 1fr 1fr; margin-top:clamp(24px,3vw,40px)">
+      <div class="rules__col" data-line data-reveal>
+        <p class="t-num">Для кавалеров</p>
+        <ul class="rules__list">
+          <li>Смокинг или фрак чёрного цвета</li>
+          <li>Белая рубашка без узоров</li>
+          <li>Чёрная бабочка строгой формы</li>
+          <li>Чёрные классические туфли</li>
+        </ul>
+      </div>
+      <div class="rules__col" data-line data-reveal style="--d:110ms">
+        <p class="t-num">Для дам</p>
+        <ul class="rules__list">
+          <li>Платье в пол — любой цвет, кроме белого</li>
+          <li>Белый зарезервирован для хозяев бала и почётных гостей</li>
+          <li>Украшения по выбору</li>
+          <li>Вечерняя обувь на комфортной колодке</li>
+        </ul>
+      </div>
+      <div class="rules__col" data-line data-reveal style="--d:220ms">
+        <p class="t-num">Мы помогаем</p>
+        <ul class="rules__list">
+          <li>Рекомендации уходят гостям вместе с приглашением</li>
+          <li>По запросу — контакты партнёров: прокат, стилисты</li>
+          <li>На входе — деликатная координация</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ВЕЧЕРА / КЕЙС ================= -->
+<section class="section section--major section--void" id="evenings">
+  <div class="grid">
+    <div class="eyebrow" data-line data-reveal>
+      <p class="t-num">08 — ВЕЧЕРА</p>
+      <p class="t-label">Одна история</p>
+    </div>
+
+    <div class="case">
+      <div class="case__hero media" data-reveal data-parallax>
+        <img class="photo" src="assets/photos/ball-04.jpg" alt="Церемония открытия бала: торжественное шествие гостей"
+             loading="lazy" decoding="async" style="object-position:center 62%">
+      </div>
+
+      <div class="case__grid">
+        <div class="case__lead" data-reveal>
+          <p class="t-num" style="margin-bottom:20px">Кейс 01</p>
+          <h2 class="t-h2" data-gradual>Омега-бал</h2>
+          <p class="t-italic" style="margin-top:20px">20 лет компании</p>
+          <p class="t-body" style="margin-top:clamp(24px,3vw,40px)">
+            Компания отмечала двадцатилетие. Не «корпоратив с банкетом», а бал —
+            в формате, который соответствовал масштабу события.
+          </p>
+          <p class="t-body">
+            Мы разработали концепцию, которая связала историю бренда с эстетикой вечера.
+            Каждая деталь — от пригласительных до финального аккорда — работала на одно:
+            чтобы гости почувствовали, что это вечер, на котором хочется быть.
+          </p>
+          <a class="cta" href="#contact">
+            Все наши вечера
+            <svg viewBox="0 0 26 8" aria-hidden="true"><path d="M0 4h24M20 1l4 3-4 3"/></svg>
+          </a>
+        </div>
+
+        <div class="case__facts">
+          <div class="fact" data-line data-reveal>
+            <p class="fact__value" data-count>180</p>
+            <p class="t-label">гостей на вечере</p>
+          </div>
+          <div class="fact" data-line data-reveal style="--d:80ms">
+            <p class="fact__value" data-count>2</p>
+            <p class="t-label">музыкальных состава — оркестр и группа</p>
+          </div>
+          <div class="fact" data-line data-reveal style="--d:160ms">
+            <p class="fact__value" data-count>20</p>
+            <p class="t-label">лет компании — повод для бала</p>
+          </div>
+          <div class="fact" data-line data-reveal style="--d:240ms">
+            <p class="fact__value" data-count>01</p>
+            <p class="t-label">персональный номер топ-менеджмента</p>
+          </div>
+
+          <div class="case__facts-note" style="margin-top:clamp(16px,2vw,32px); --d:300ms" data-reveal>
+            <p class="t-body">
+              <strong>Открытие.</strong> Выход почётных гостей, выступление оперных артистов
+              и балетной труппы, первый венский вальс с вовлечением всех участников.
+            </p>
+            <p class="t-body">
+              <strong>Номер для топ-менеджмента.</strong> Индивидуальные репетиции с хореографом,
+              адаптация хореографии под уровень подготовки, интеграция в сценарий открытия
+              как ключевой акцент.
+            </p>
+            <p class="t-body">
+              <strong>Сотрудники в подготовке.</strong> Серия мастер-классов под руководством
+              Главного танцмейстера — базовые шаги венского вальса и кадрили, правила этикета
+              в практике, знакомство гостей до основного события.
+            </p>
+            <p class="t-body">
+              <strong>Творческий ролик.</strong> Сотрудники вместе с профессиональными танцорами.
+              Живой, эмоциональный контент, который компания использовала для внутренних
+              коммуникаций.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case__gallery">
+        <figure class="media media--square media--framed" data-reveal data-parallax>
+          <img class="photo" src="assets/photos/ball-01.jpg" alt="Солистка в костюме открывает бал"
+               loading="lazy" decoding="async">
+        </figure>
+        <figure class="media media--square" data-reveal style="--d:100ms" data-parallax>
+          <img class="photo" src="assets/photos/ball-02.jpg" alt="Балетная труппа в сцене открытия"
+               loading="lazy" decoding="async">
+        </figure>
+        <figure class="media media--square" data-reveal style="--d:200ms" data-parallax>
+          <img class="photo" src="assets/photos/ball-10.jpg" alt="Зал в танце, кадры с большого экрана"
+               loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= О НАС ================= -->
+<section class="section section--deep" id="about">
+  <div class="grid">
+    <div class="eyebrow" data-line data-reveal>
+      <p class="t-num">09 — О НАС</p>
+      <p class="t-label">Работаем с 2009 года</p>
+    </div>
+
+    <div class="col-1-7" data-reveal>
+      <h2 class="t-h2" data-gradual>Мы не делаем шаблоны</h2>
+    </div>
+
+    <div class="col-1-5" style="margin-top:clamp(32px,4vw,56px); --d:120ms" data-reveal>
+      <p class="t-body">
+        В команде — режиссёры, хореографы, стилисты, декораторы, звукорежиссёры,
+        координаторы. Люди, которые работают вместе годами и отвечают за каждую деталь.
+      </p>
+      <p class="t-body">
+        Каждое событие строим вокруг вашей истории — ценностей, эстетики, гостей.
+        От первой встречи до последнего танца.
+      </p>
+    </div>
+
+    <div class="col-7-e" style="margin-top:clamp(32px,4vw,56px)">
+      <div class="rules" style="grid-template-columns:1fr 1fr">
+        <div class="fact" data-reveal>
+          <p class="fact__value" data-count>2009</p>
+          <p class="t-label">год основания</p>
+        </div>
+        <div class="fact" data-reveal style="--d:80ms">
+          <p class="fact__value">СПб</p>
+          <p class="t-label">база — но работаем в любой точке мира</p>
+        </div>
+        <div class="fact" data-reveal style="--d:160ms">
+          <p class="fact__value" data-count>30–200</p>
+          <p class="t-label">гостей — от камерного вечера до большого бала</p>
+        </div>
+        <div class="fact" data-reveal style="--d:240ms">
+          <p class="fact__value" data-count>100%</p>
+          <p class="t-label">координации на нас — логистика, команда, декор</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= МАНИФЕСТ ================= -->
+<section class="section section--void manifesto">
+  <div class="grid">
+    <p class="t-italic manifesto__text" data-reveal>
+      Красивое событие начинается не с декора, а с понимания — ради чего оно собирается.
+    </p>
+  </div>
+</section>
+
+<!-- ================= СВЯЗАТЬСЯ ================= -->
+<section class="section section--paper on-paper" id="contact">
+  <div class="grid">
+    <h2 class="t-h1 contact__title" data-gradual style="opacity:1">Расскажите<br>о вашем вечере</h2>
+
+    <div class="contact__lead" data-reveal>
+      <p class="t-body">
+        Мы поможем понять, как его сделать. Первый разговор — не про бюджет и количество
+        гостей, а про то, что для вас важно.
+      </p>
+
+      <div style="margin-top:clamp(32px,4vw,56px); display:flex; flex-direction:column; gap:22px">
+        <div>
+          <p class="t-num" style="color:var(--greige-700)">Телефон</p>
+          <a href="tel:+78123090909" style="font-size:clamp(18px,1.6vw,24px); font-weight:600">+7 812 309‑09‑09</a>
+        </div>
+        <div>
+          <p class="t-num" style="color:var(--greige-700)">Почта</p>
+          <a href="mailto:hello@plyaskingroup.ru" style="font-size:clamp(18px,1.6vw,24px); font-weight:600">hello@plyaskingroup.ru</a>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact__form" data-reveal style="--d:140ms" id="contactForm" novalidate>
+      <div class="field">
+        <label for="f-name">Имя</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="f-contact">Телефон или почта</label>
+        <input id="f-contact" name="contact" type="text" autocomplete="tel" required>
+      </div>
+      <div class="field">
+        <label for="f-about">Расскажите о вечере</label>
+        <textarea id="f-about" name="about" rows="3"></textarea>
+      </div>
+      <button class="submit" type="submit">отправить</button>
+      <p class="t-label" id="formStatus" role="status" style="margin-top:24px; min-height:1.4em"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= ФУТЕР ================= -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a class="logo logo--footer" href="#top">
+        <img class="logo__mark" src="assets/plyaskin-events-logo.png"
+             alt="Plyaskin Events" width="1716" height="738" decoding="async">
+        <span class="logo__name">Частные балы</span>
+        <span class="logo__sub">Plyaskin Group · с 2009 года</span>
+      </a>
+      <p class="t-body" style="margin-top:24px; max-width:34ch">
+        Санкт-Петербург — база. Организуем мероприятия в любой точке мира.
+      </p>
+    </div>
+
+    <div class="footer__col">
+      <p class="t-num">Разделы</p>
+      <ul>
+        <li><a href="#process">Как это происходит</a></li>
+        <li><a href="#evening">Как проходит вечер</a></li>
+        <li><a href="#music">Музыка</a></li>
+        <li><a href="#people">Танцмейстер</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <p class="t-num">Гостям</p>
+      <ul>
+        <li><a href="#prep">Подготовка</a></li>
+        <li><a href="#etiquette">Этикет</a></li>
+        <!-- Дресс-код теперь второй таб той же секции — ведём туда и открываем его -->
+        <li><a href="#etiquette" data-tab-link="dresscode">Дресс-код</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <p class="t-num">Контакты</p>
+      <ul>
+        <li><a href="tel:+78123090909">+7 812 309‑09‑09</a></li>
+        <li><a href="mailto:hello@plyaskingroup.ru">hello@plyaskingroup.ru</a></li>
+        <li><a href="#contact">Форма обратной связи</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="t-label">© 2026 Plyaskin Group · Частные балы</p>
+      <p class="t-label">Прототип — макет главной страницы</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

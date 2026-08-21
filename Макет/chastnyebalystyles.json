@@ -1,0 +1,181 @@
+[
+  {
+    "id": "TkOCCXghr",
+    "name": "H1",
+    "descr": "",
+    "type": "typo",
+    "vars": {
+      "color": "#aba79a",
+      "fontfamily": "var(--t-headline-font,Arial)",
+      "fontsize": {
+        "320": "36px",
+        "480": "58px",
+        "640": "72px",
+        "960": "96px",
+        "1200": "130px"
+      },
+      "fontweight": "700",
+      "letterspacing": "0px",
+      "lineheight": "1",
+      "opacity": "90%",
+      "uppercase": "uppercase"
+    }
+  },
+  {
+    "id": "t6tWmFFMH",
+    "name": "micro text italic",
+    "descr": "",
+    "type": "typo",
+    "vars": {
+      "color": "#aba79a",
+      "fontfamily": "OldStandardTT-Italic",
+      "fontsize": "30px",
+      "fontweight": "400",
+      "letterspacing": "-2px",
+      "lineheight": "1",
+      "opacity": "100%"
+    },
+    "breakpoints": [
+      "320",
+      "480",
+      "640",
+      "960",
+      "1200"
+    ]
+  },
+  {
+    "id": "Mrikg",
+    "name": "H2",
+    "descr": "",
+    "type": "typo",
+    "vars": {
+      "color": "#aba79a",
+      "fontfamily": "OldStandardTT",
+      "fontsize": {
+        "320": "48px",
+        "480": "64px",
+        "640": "64px",
+        "1200": "96px"
+      },
+      "fontweight": "200",
+      "letterspacing": {
+        "320": "-2px",
+        "480": "-3px",
+        "640": "-4px",
+        "1200": "-6px"
+      },
+      "lineheight": {
+        "320": "0.8",
+        "480": "0.8",
+        "1200": "0.8"
+      },
+      "opacity": "90%"
+    }
+  },
+  {
+    "id": "BNv8evq",
+    "name": "text",
+    "descr": "",
+    "type": "typo",
+    "vars": {
+      "color": "#aba79a",
+      "fontfamily": "var(--t-text-font,Arial)",
+      "fontsize": {
+        "320": "12px",
+        "640": "12px",
+        "1200": "14px"
+      },
+      "fontweight": "600",
+      "letterspacing": {
+        "320": "-0.5px",
+        "1200": "0.5px"
+      },
+      "lineheight": "1",
+      "opacity": "50%",
+      "uppercase": "uppercase"
+    }
+  },
+  {
+    "id": "CN7S0GlCG",
+    "name": "H3",
+    "descr": "",
+    "type": "typo",
+    "vars": {
+      "color": "#aba79a",
+      "fontfamily": "var(--t-text-font,Arial)",
+      "fontsize": {
+        "320": "25px",
+        "1920": "48px"
+      },
+      "fontweight": "700",
+      "letterspacing": "0px",
+      "lineheight": "1",
+      "opacity": "80%",
+      "uppercase": "uppercase"
+    },
+    "breakpoints": [
+      "320",
+      "480",
+      "640",
+      "960",
+      "1200",
+      "1920"
+    ]
+  },
+  {
+    "id": "aAnMj",
+    "name": "small nomber",
+    "descr": "",
+    "type": "typo",
+    "vars": {
+      "color": "#c96a42",
+      "fontfamily": "var(--t-text-font,Arial)",
+      "fontsize": "13px",
+      "fontweight": "500",
+      "letterspacing": "2.34px",
+      "lineheight": "1.2",
+      "opacity": "100%"
+    },
+    "breakpoints": [
+      "320",
+      "480",
+      "640",
+      "960",
+      "1200",
+      "1920"
+    ]
+  },
+  {
+    "name": "Новый стиль",
+    "descr": "",
+    "id": "RiYJ5",
+    "type": "typo",
+    "vars": {
+      "fontsize": "32px",
+      "fontweight": "400"
+    },
+    "breakpoints": [
+      "320",
+      "480",
+      "640",
+      "960",
+      "1200",
+      "1920"
+    ]
+  },
+  {
+    "id": "yCB5xAPn",
+    "name": "microtext",
+    "descr": "",
+    "type": "typo",
+    "vars": {
+      "color": "#aba79a",
+      "fontfamily": "OldStandardTT-Italic",
+      "fontsize": "30px",
+      "fontweight": "400",
+      "lineheight": "1",
+      "opacity": "100%",
+      "letterspacing": "0.4px"
+    }
+  }
+]

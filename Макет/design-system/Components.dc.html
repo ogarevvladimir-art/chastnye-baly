@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Archivo:wght@400;500;600;700;800&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #c96a42; text-decoration: none; }
+    a:hover { color: #e08a5f; }
+  </style>
+</helmet>
+<div style="background: #060606; color: #aba79a; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; padding: 72px 64px; min-height: 1520px; box-sizing: border-box; display: flex; flex-direction: column; gap: 56px">
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(171,167,154,0.2); padding-bottom: 20px">
+    <div style="font-size: 13px; font-weight: 500; letter-spacing: 2.34px; color: #c96a42">03 — КОМПОНЕНТЫ</div>
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; opacity: 0.5">Высота интерактивных элементов ≥ 48px</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="font-size: 13px; font-weight: 500; letter-spacing: 2.34px; color: #c96a42">КНОПКИ</div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="border: 1px solid rgba(171,167,154,0.12); padding: 32px; display: flex; align-items: center; justify-content: center; min-height: 128px">
+          <div style="border: 1px solid #aba79a; padding: 17px 34px; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.9">Оставить заявку</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase">Основная · rest</div>
+          <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.3px; opacity: 0.4; line-height: 1.6">Обводка 1px greige, без заливки, без скруглений. Одна на экран.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="border: 1px solid rgba(171,167,154,0.12); padding: 32px; display: flex; align-items: center; justify-content: center; min-height: 128px">
+          <div style="border: 1px solid #aba79a; background: #aba79a; color: #060606; padding: 17px 34px; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase">Оставить заявку</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase">Основная · hover</div>
+          <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.3px; opacity: 0.4; line-height: 1.6">Инверсия: заливка greige, текст цветом фона. 240ms ease.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="border: 1px solid rgba(171,167,154,0.12); padding: 32px; display: flex; align-items: center; justify-content: center; min-height: 128px">
+          <div style="display: flex; align-items: center; gap: 12px; font-family: 'Old Standard TT', Georgia, serif; font-size: 34px; line-height: 1; letter-spacing: -1px; padding-bottom: 5px; border-bottom: 1px solid rgba(171,167,154,0.4)">
+            <svg width="26" height="14" viewBox="0 0 26 14" fill="none" stroke="#aba79a" stroke-width="1.2"><path d="M0 7h24M18 1l6 6-6 6"/></svg>
+            <span>связаться</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase">Текстовая ссылка</div>
+          <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.3px; opacity: 0.4; line-height: 1.6">Антиква строчными, стрелка слева, подчёркивание. Hover — линия до 100%.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="font-size: 13px; font-weight: 500; letter-spacing: 2.34px; color: #c96a42">ШАПКА</div>
+    <div style="border: 1px solid rgba(171,167,154,0.12)">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 26px 32px">
+        <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 24px; letter-spacing: -1px; opacity: 0.9">Частные&nbsp;балы</div>
+        <div style="display: flex; gap: 34px; font-size: 12px; font-weight: 600; letter-spacing: 0.9px; text-transform: uppercase; opacity: 0.5">
+          <span>Как это происходит</span>
+          <span>Вечера</span>
+          <span>О нас</span>
+          <span>Связаться</span>
+        </div>
+        <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.9px; text-transform: uppercase; opacity: 0.9">+7 495 000‑00‑00</div>
+      </div>
+    </div>
+    <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.5px; opacity: 0.35; line-height: 1.7">Прозрачная поверх hero-видео, при скролле — заливка Ink. Пункты в 50% непрозрачности, активный и hover — 90%.</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="font-size: 13px; font-weight: 500; letter-spacing: 2.34px; color: #c96a42">КАРТОЧКА СЕГМЕНТА</div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+
+      <div style="background: #222222; padding: 44px; display: flex; flex-direction: column; gap: 22px; min-height: 300px">
+        <div style="font-size: 13px; font-weight: 500; letter-spacing: 2.34px; color: #c96a42">01</div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div style="font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: 0; text-transform: uppercase; opacity: 0.8">Частный бал</div>
+          <div style="font-family: 'Old Standard TT', Georgia, serif; font-style: italic; font-size: 30px; line-height: 1; letter-spacing: -2px">для семьи и близких</div>
+        </div>
+        <div style="font-size: 14px; font-weight: 600; line-height: 1.7; letter-spacing: 0.5px; text-transform: uppercase; opacity: 0.5">Свадьба, юбилей, день рождения — событие, за которым стоит целая история семьи.</div>
+      </div>
+
+      <div style="background: #653624; padding: 44px; display: flex; flex-direction: column; gap: 22px; min-height: 300px">
+        <div style="font-size: 13px; font-weight: 500; letter-spacing: 2.34px; opacity: 0.75">02</div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div style="font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: 0; text-transform: uppercase; opacity: 0.9">Корпоративный бал</div>
+          <div style="font-family: 'Old Standard TT', Georgia, serif; font-style: italic; font-size: 30px; line-height: 1; letter-spacing: -2px">для компании и партнёров</div>
+        </div>
+        <div style="font-size: 14px; font-weight: 600; line-height: 1.7; letter-spacing: 0.5px; text-transform: uppercase; opacity: 0.65">Годовщина компании, новогодний приём, вечер в честь партнёров.</div>
+      </div>
+
+    </div>
+    <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.5px; opacity: 0.35; line-height: 1.7">Пара карточек на Slate и Terra. Порядок сверху вниз всегда один: номер → название → врезка курсивом → описание. На Terra прозрачность текста поднимается на один шаг — фон светлее.</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="font-size: 13px; font-weight: 500; letter-spacing: 2.34px; color: #c96a42">ПОЛЕ ФОРМЫ</div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: 0.4">Имя</div>
+        <div style="border-bottom: 1px solid rgba(171,167,154,0.3); padding: 14px 0; font-size: 15px; font-weight: 500; letter-spacing: 0.3px; opacity: 0.3">Как к вам обращаться</div>
+        <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.3px; opacity: 0.35">rest · плейсхолдер 30%</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: 0.4">Телефон</div>
+        <div style="border-bottom: 1px solid #aba79a; padding: 14px 0; font-size: 15px; font-weight: 500; letter-spacing: 0.3px; opacity: 0.9">+7 916 </div>
+        <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.3px; opacity: 0.35">focus · линия 100%</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #c96a42">E‑mail</div>
+        <div style="border-bottom: 1px solid #c96a42; padding: 14px 0; font-size: 15px; font-weight: 500; letter-spacing: 0.3px; opacity: 0.9">ivanov@</div>
+        <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.3px; color: #c96a42">error · терракота на линии и метке</div>
+      </div>
+    </div>
+    <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.5px; opacity: 0.35; line-height: 1.7">Только нижняя линия, без рамок и заливок. Метка сверху капителью, всегда видна — плейсхолдер её не заменяет.</div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1280,"height":1520}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
