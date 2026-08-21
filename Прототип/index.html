@@ -154,6 +154,9 @@
       <p class="t-num menu-panel__eyebrow" data-menu-fade>00 — НАВИГАЦИЯ</p>
 
       <ul class="menu-list">
+        <!-- Кегль у пунктов общий и посчитан в CSS (.menu-list → --menu-size)
+             по длине каждого из них. Меняете текст пункта — поправьте там
+             соответствующее число знаков, иначе слово перестанет влезать. -->
         <li class="menu-list-item" data-shape="1">
           <a href="#process" class="nav-link" data-menu-close>
             <span class="nav-link__num">01</span>
@@ -250,6 +253,9 @@
 
 <!-- ================= СЕГМЕНТАЦИЯ ================= -->
 <section class="section section--void" id="segments">
+  <!-- Координаты секции: номер главы и две ветки форматов -->
+  <p class="coords coords--l" aria-hidden="true" data-reveal>02</p>
+  <p class="coords coords--r" aria-hidden="true" data-reveal>A/B</p>
   <div class="grid">
     <div class="eyebrow" data-line data-reveal>
       <p class="t-num">01 — ФОРМАТЫ</p>
@@ -301,7 +307,10 @@
 </section>
 
 <!-- ================= КАК МЫ ГОТОВИМ ВЕЧЕР ================= -->
-<section class="section section--major section--deep proc" id="process">
+<section class="section section--major section--clay on-clay proc" id="process">
+  <!-- Пять этапов подготовки и год начала практики -->
+  <p class="coords coords--l" aria-hidden="true" data-reveal>05.00</p>
+  <p class="coords coords--r" aria-hidden="true" data-reveal>2009</p>
   <div class="grid">
     <div class="eyebrow" data-line data-reveal>
       <p class="t-num">02 — ПОДХОД</p>
@@ -315,15 +324,16 @@
         <span class="line proc__title-2"><span>ваш вечер</span></span>
       </h2>
 
-      <!-- Рассыпанная микротипографика, как в референсе -->
-      <div class="proc__scatter">
-        <p class="t-label proc__note proc__note--a" data-reveal style="--d:240ms">
+      <!-- Рассыпанная микротипографика: блоки идут по диагонали через экран,
+           проявляются по очереди сверху вниз -->
+      <div class="scatter">
+        <p class="t-label scatter__note scatter__note--1" data-reveal style="--d:0ms">
           Мы не начинаем с анкеты<br>и не заканчиваем договором.
         </p>
-        <p class="t-label proc__note proc__note--b" data-reveal style="--d:380ms">
+        <p class="t-label scatter__note scatter__note--2" data-reveal style="--d:140ms">
           Пять шагов от первого звонка<br>до последнего вальса.
         </p>
-        <p class="t-num proc__count" data-reveal style="--d:500ms">05 / ЭТАПОВ</p>
+        <p class="t-num scatter__note scatter__note--4" data-reveal style="--d:280ms">05 / ЭТАПОВ</p>
       </div>
     </div>
 
@@ -473,22 +483,30 @@
 </section>
 
 <!-- ================= КАК ПРОХОДИТ ВЕЧЕР ================= -->
-<section class="section section--void" id="evening">
+<section class="section section--deep" id="evening">
+  <!-- Время начала вечера и сезон -->
+  <p class="coords coords--l" aria-hidden="true" data-reveal>21.30</p>
+  <p class="coords coords--r" aria-hidden="true" data-reveal>06/24</p>
   <div class="grid">
     <div class="eyebrow" data-line data-reveal>
       <p class="t-num">03 — СТРУКТУРА</p>
       <p class="t-label">Ориентир, а не готовая программа</p>
     </div>
 
+    <!-- Надзаголовок во всю ширину вьюпорта. Кегль подбирает JS. -->
+    <p class="t-mega"><span>Вечер</span></p>
+
     <div class="col-1-6" data-reveal>
       <h2 class="t-h2" data-gradual>Как проходит вечер</h2>
     </div>
-    <div class="col-8-e" style="--d:120ms" data-reveal="x">
-      <p class="t-body">
+
+    <!-- Вводный текст рассыпан по диагонали, а не выстроен в колонку -->
+    <div class="scatter">
+      <p class="t-body scatter__note scatter__note--1" data-reveal style="--d:0ms">
         Сценарий каждого бала собирается заново — под вашу компанию, локацию и настроение.
         Но чтобы дать общее представление, вот как может выглядеть структура вечера.
       </p>
-      <p class="t-body">
+      <p class="t-body scatter__note scatter__note--3" data-reveal style="--d:140ms">
         <strong>Вечер складывается из частей, и каждая тянет за собой следующую.</strong>
       </p>
     </div>
@@ -583,12 +601,17 @@
 </section>
 
 <!-- ================= МУЗЫКА ================= -->
-<section class="section section--deep" id="music">
+<section class="section section--paper on-paper" id="music">
+  <!-- Длительность музыкальной части и число тактов в минуту -->
+  <p class="coords coords--l" aria-hidden="true" data-reveal>03.00</p>
+  <p class="coords coords--r" aria-hidden="true" data-reveal>180.00</p>
   <div class="grid">
     <div class="eyebrow" data-line data-reveal>
       <p class="t-num">04 — ЗВУК</p>
       <p class="t-label">Три состава в одном вечере</p>
     </div>
+
+    <p class="t-mega"><span>Музыка</span></p>
 
     <div class="col-1-5" data-reveal>
       <h2 class="t-h2" data-gradual>Музыкальное сопровождение</h2>
@@ -653,11 +676,24 @@
 
 <!-- ================= ЛЮДИ: ТАНЦМЕЙСТЕР / ШОУ / АССИСТЕНТ ================= -->
 <section class="section section--major section--void" id="people">
+  <!-- Состав команды и рабочий диапазон гостей -->
+  <p class="coords coords--l" aria-hidden="true" data-reveal>A.B.C</p>
+  <p class="coords coords--r" aria-hidden="true" data-reveal>30–200</p>
   <div class="grid">
     <div class="eyebrow" data-line data-reveal>
       <p class="t-num">05 — ЛЮДИ</p>
       <p class="t-label">Кто ведёт зал</p>
     </div>
+
+    <p class="t-mega"><span>Люди</span></p>
+
+    <!-- Медиа внутри строки текста: кадр набран как буква и участвует
+         в замере ширины наравне с ними. Приём применён ровно один раз.
+         Пока нет облегчённого лупа (hero.mp4 — 76 МБ, в строку не годится),
+         стоит статичный кадр; заменить на <video> с тем же классом. -->
+    <p class="t-mega t-mega--inline"><span>Танцмейстер<img class="inline-media"
+           src="assets/photos/ball-11.jpg" alt="" aria-hidden="true"
+           loading="lazy" decoding="async">ведёт зал</span></p>
 
     <!-- Три полосы складываются в стопку: каждая следующая наезжает на предыдущую.
          Обёртка нужна только для sticky-контекста, раскладку она не меняет. -->
@@ -764,36 +800,38 @@
 </section>
 
 <!-- ================= ПОДГОТОВКА ================= -->
-<section class="section section--clay" id="prep">
+<section class="section section--deep" id="prep">
   <div class="grid">
     <div class="eyebrow" data-line data-reveal style="--d:0ms">
-      <p class="t-num" style="color:var(--greige-200)">06 — ДО ВЕЧЕРА</p>
-      <p class="t-label" style="color:var(--greige-200);opacity:.8">Бал начинается на первом уроке</p>
+      <p class="t-num">06 — ДО ВЕЧЕРА</p>
+      <p class="t-label">Бал начинается на первом уроке</p>
     </div>
 
     <div class="col-1-6" data-reveal>
-      <h2 class="t-h2" style="color:var(--greige-200)" data-gradual>Подготовка<br>к балу</h2>
+      <h2 class="t-h2" data-gradual>Подготовка<br>к балу</h2>
 
-      <div class="media media--wide" style="margin-top:clamp(28px,3.5vw,48px)" data-parallax>
-        <img class="photo" src="assets/photos/nk-05.jpg" alt="Пары репетируют вальс в зале перед балом"
-             loading="lazy" decoding="async">
+      <div class="media-frame" style="margin-top:clamp(28px,3.5vw,48px)">
+        <div class="media media--wide" data-parallax>
+          <img class="photo" src="assets/photos/nk-05.jpg" alt="Пары репетируют вальс в зале перед балом"
+               loading="lazy" decoding="async">
+        </div>
       </div>
     </div>
 
     <div class="col-8-e" style="--d:140ms" data-reveal="x">
-      <p class="t-body" style="color:var(--greige-200);opacity:.85">
+      <p class="t-body">
         Бал начинается задолго до входа в зал — на первом уроке.
         Гости, которые уже пробовали движения, приходят с азартом: они хотят ещё.
       </p>
-      <p class="t-body" style="color:var(--greige-200);opacity:.85">
+      <p class="t-body">
         Но уроки — ещё и способ познакомить гостей друг с другом до события.
         На самом балу уже нет чужих, только свои.
       </p>
-      <p class="t-body" style="color:var(--greige-200);opacity:.85">
+      <p class="t-body">
         Лекций по этикету мы не читаем. Показываем: как пригласить, как принять
         приглашение, как двигаться в паре. Легко, практично, с юмором.
       </p>
-      <a class="cta" href="#contact" style="color:var(--greige-200)">
+      <a class="cta" href="#contact">
         Как проходят уроки
         <svg viewBox="0 0 26 8" aria-hidden="true"><path d="M0 4h24M20 1l4 3-4 3"/></svg>
       </a>
@@ -809,6 +847,8 @@
       <p class="t-label is-active" data-tab="etiquette">Не «как правильно», а «как удобно»</p>
       <p class="t-label" data-tab="dresscode">Работает на атмосферу</p>
     </div>
+
+    <p class="t-mega"><span>Правила</span></p>
 
     <div class="col-1-5" data-reveal>
       <h2 class="t-h2 rules-title is-active" data-tab="etiquette" data-gradual>Танцевальный этикет</h2>
@@ -905,17 +945,29 @@
 </section>
 
 <!-- ================= ВЕЧЕРА / КЕЙС ================= -->
-<section class="section section--major section--void" id="evenings">
+<!-- section--clip дублирует :has() ниже: в движках без него срезать
+     свисающий заголовок было бы нечем -->
+<section class="section section--major section--clay on-clay section--clip" id="evenings">
+  <!-- Гостей на балу и время начала -->
+  <p class="coords coords--l" aria-hidden="true" data-reveal>180.00</p>
+  <p class="coords coords--r" aria-hidden="true" data-reveal>20.00</p>
   <div class="grid">
+    <!-- Единственное на странице слово, срезанное верхним краем секции.
+         Стоит перед эйбрау: только так его есть чем срезать —
+         оно поднимается выше верхней границы .section, а overflow её режет. -->
+    <p class="t-mega t-mega--cropped"><span>Вечера</span></p>
+
     <div class="eyebrow" data-line data-reveal>
       <p class="t-num">08 — ВЕЧЕРА</p>
       <p class="t-label">Одна история</p>
     </div>
 
     <div class="case">
-      <div class="case__hero media" data-reveal data-parallax>
-        <img class="photo" src="assets/photos/ball-04.jpg" alt="Церемония открытия бала: торжественное шествие гостей"
-             loading="lazy" decoding="async" style="object-position:center 62%">
+      <div class="media-frame case__hero-frame" data-reveal>
+        <div class="case__hero media" data-parallax>
+          <img class="photo" src="assets/photos/ball-04.jpg" alt="Церемония открытия бала: торжественное шествие гостей"
+               loading="lazy" decoding="async" style="object-position:center 62%">
+        </div>
       </div>
 
       <div class="case__grid">
@@ -999,12 +1051,14 @@
 </section>
 
 <!-- ================= О НАС ================= -->
-<section class="section section--deep" id="about">
+<section class="section section--void" id="about">
   <div class="grid">
     <div class="eyebrow" data-line data-reveal>
       <p class="t-num">09 — О НАС</p>
       <p class="t-label">Работаем с 2009 года</p>
     </div>
+
+    <p class="t-mega"><span>С 2009</span></p>
 
     <div class="col-1-7" data-reveal>
       <h2 class="t-h2" data-gradual>Мы не делаем шаблоны</h2>
@@ -1046,7 +1100,7 @@
 </section>
 
 <!-- ================= МАНИФЕСТ ================= -->
-<section class="section section--void manifesto">
+<section class="section section--paper on-paper manifesto">
   <div class="grid">
     <p class="t-italic manifesto__text" data-reveal>
       Красивое событие начинается не с декора, а с понимания — ради чего оно собирается.
@@ -1059,13 +1113,15 @@
   <div class="grid">
     <h2 class="t-h1 contact__title" data-gradual style="opacity:1">Расскажите<br>о вашем вечере</h2>
 
-    <div class="contact__lead" data-reveal>
-      <p class="t-body">
+    <!-- Контактный экран подан рассыпанной типографикой (Screenshot_5):
+         вводный текст и координаты стоят на разных осях над формой -->
+    <div class="scatter contact__scatter">
+      <p class="t-body scatter__note scatter__note--2" data-reveal style="--d:0ms">
         Мы поможем понять, как его сделать. Первый разговор — не про бюджет и количество
         гостей, а про то, что для вас важно.
       </p>
 
-      <div style="margin-top:clamp(32px,4vw,56px); display:flex; flex-direction:column; gap:22px">
+      <div class="scatter__note scatter__note--3 contact__direct" data-reveal style="--d:140ms">
         <div>
           <p class="t-num" style="color:var(--greige-700)">Телефон</p>
           <a href="tel:+78123090909" style="font-size:clamp(18px,1.6vw,24px); font-weight:600">+7 812 309‑09‑09</a>
@@ -1077,7 +1133,7 @@
       </div>
     </div>
 
-    <form class="contact__form" data-reveal style="--d:140ms" id="contactForm" novalidate>
+    <form class="contact__form contact__form--wide" data-reveal style="--d:140ms" id="contactForm" novalidate>
       <div class="field">
         <label for="f-name">Имя</label>
         <input id="f-name" name="name" type="text" autocomplete="name" required>

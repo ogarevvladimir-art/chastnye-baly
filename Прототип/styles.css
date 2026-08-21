@@ -215,6 +215,130 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .on-paper .t-label,
 .on-paper .t-body   { color: var(--text-on-paper); }
 .on-paper .t-body strong { color: var(--text-on-paper); }
+/* Терракота на светло-греж даёт 1.55:1 — нумерация исчезает. Греж-700 (как в
+   форме контактов) поднимает до 4.14, но это мелкий моношрифт, ему нужен
+   полный порог AA — берём гри-900: 7.39:1. */
+.on-paper .t-num { color: var(--gray-900); }
+
+/* Коричневая сцена: --text-on-void (#ABA79A) на #653624 даёт всего ~3.4:1 —
+   поднимаем текст до греж-200, как раньше делали инлайнами в «Подготовке». */
+.on-clay .t-h1,
+.on-clay .t-h2,
+.on-clay .t-h3,
+.on-clay .t-italic,
+.on-clay .t-label,
+.on-clay .t-body   { color: var(--greige-200); }
+/* Прозрачность на коричневом стоит дороже, чем на чёрном: греж-200 под .85
+   даёт 4.38:1 — уже ниже порога. Корпус и заголовки ведём в полную силу,
+   иерархию держит кегль, а не приглушение. */
+.on-clay .t-body,
+.on-clay .t-h3     { opacity: 1; }
+/* Подписи: штатные .5 на коричневом дают 2.5:1 — держим .8, как это делали
+   инлайны в прежней «Подготовке», единственной clay-секции макета. */
+.on-clay .t-label  { opacity: .8; }
+.on-clay .t-body strong { color: var(--greige-200); }
+/* Терракота и коричневый — соседи по тону: на clay нумерация тонет.
+   Ведём её тем же греж-200, что и остальной текст сцены, но приглушённо,
+   чтобы номер не спорил с заголовком. */
+.on-clay .t-num { color: var(--greige-200); }
+.on-clay .cta      { color: var(--greige-200); }
+/* Hairline из --border-subtle на clay почти не читается — своё значение на сцену.
+   Переопределение на самой секции: его подхватывают и .eyebrow, и .rules__col,
+   и .fact, и любые границы, взятые из токена. */
+.on-clay {
+  --border-subtle: rgba(194, 191, 181, .24);
+  /* Подложка медиа до загрузки кадра — в тон сцене, а не чёрная */
+  --media-placeholder: var(--surface-clay);
+}
+.on-clay .eyebrow { border-bottom-color: var(--border-subtle); }
+
+/* ---------- 3b. МЕГА-ЗАГОЛОВОК ---------- */
+/* Главный приём референса: одно слово ровно во всю ширину вьюпорта,
+   буквы упираются в края экрана.
+
+   Две величины здесь считает JS, потому что в CSS их взять неоткуда:
+   · --mega-left / --mega-width — блок надо вывести к краям вьюпорта,
+     а отрицательных margin'ов из --rail/--gutter для этого мало:
+     .grid упирается в max-width: 1680px и центрируется, так что слева
+     блок не достаёт до края, а справа перелезает за него;
+   · font-size — кегль зависит от того, сколько места занимает конкретное
+     слово конкретной гарнитурой; см. script.js, «Мега-заголовки».
+   Значения по умолчанию в var() — фолбэк, если скрипт не отработал.
+
+   Приём точечный: шесть надзаголовков секций плюс одна строка с медиа.
+   Больше — и он перестаёт читаться как акцент. */
+.t-mega {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: .78;
+  letter-spacing: -.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-on-void-strong);
+
+  /* Прямой ребёнок .grid: занимает все треки, дальше его двигает JS.
+     Снизу нужен воздух: штатного зазора сетки (32px) под таким кеглем
+     не видно, и следующий заголовок читается как часть мега-строки. */
+  grid-column: 1 / -1;
+  margin: 0 0 clamp(24px, 3.5vw, 64px) var(--mega-left,
+    calc((var(--rail) + clamp(16px, 2.2vw, 32px) + var(--gutter)) * -1));
+  width: var(--mega-width, auto);
+
+  /* Маска появления: строка выезжает снизу */
+  overflow: hidden;
+
+  /* Фолбэк до замера: слово из шести знаков при ~15vw на знак примерно
+     заполняет экран — заголовок не «прыгает» с дефолтных 14px на 280px */
+  font-size: clamp(48px, 15vw, 320px);
+}
+/* Строка внутри — то, что едет из-под маски. Блок, а не inline: transform
+   на inline не действует. max-content — чтобы ширина строки была шириной
+   набранного текста, а не шириной блока: по ней JS и подбирает кегль. */
+.t-mega > span {
+  display: block;
+  width: max-content;
+  max-width: none;
+  transform: translateY(100%);
+  transition: transform 1.2s var(--ease-reveal);
+}
+.t-mega.is-in > span { transform: none; }
+
+/* Единственный на странице заголовок, срезанный верхним краем секции.
+   Поднимаем на всю верхнюю подушку секции плюс ещё .22em — верхняя треть
+   букв оказывается выше границы .section, и overflow: hidden её срезает.
+   Подушка взята той же формулой, что и padding-block у .section--major:
+   вычесть её иначе нечем, а без этого слово просто наехало бы на эйбрау. */
+.t-mega--cropped {
+  margin-top: calc(-1 * clamp(120px, 15vw, 240px) - .22em);
+  /* Эйбрау ниже отодвигаем от опустившейся строки */
+  margin-bottom: clamp(24px, 3vw, 48px);
+}
+.section--clip { overflow: hidden; }
+/* :has() — там, где он есть; .section--clip в разметке — запасной путь */
+.section:has(.t-mega--cropped) { overflow: hidden; }
+
+/* Эйбрау отбивает от себя следующий блок на clamp(40px,5vw,88px), и поверх
+   этого мега-строка добавляет собственный интерлиньяж — между подписью и
+   словом набегала бы пустая полоса высотой с абзац. Подтягиваем строку
+   к эйбрау: в референсе слово стоит вплотную к тому, что над ним.
+   Соседний селектор, а не общее правило: в «Вечерах» строка идёт первой
+   и её отступ считается иначе (см. --cropped выше). */
+.eyebrow + .t-mega { margin-top: calc(clamp(40px, 5vw, 88px) * -.55); }
+
+/* Соседняя строка того же кегля (ЛЮДИ + строка с медиа) идёт вплотную */
+.t-mega + .t-mega { margin-top: .04em; }
+
+/* Строка с медиа внутри текста (Screenshot_12): картинка/видео —
+   такой же inline-элемент строки, как буква, и участвует в замере ширины. */
+.inline-media {
+  display: inline-block;
+  height: .72em;
+  width: auto;
+  aspect-ratio: 16 / 9;
+  vertical-align: baseline;
+  object-fit: cover;
+  margin-inline: .12em;
+}
 
 /* ---------- 4. СЕТКА ---------- */
 .section {
@@ -275,7 +399,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* Номер держим в одну строку: узкая полоса рвала бы «01 — ФОРМАТЫ» пополам */
 .eyebrow > .t-num   { grid-column: 1; white-space: nowrap; }
 .eyebrow > .t-label { grid-column: 2 / -1; }
-.on-paper .eyebrow { border-bottom-color: rgba(6, 6, 6, .18); }
+/* На светлой сцене --border-subtle (светлый греж) сливается с фоном.
+   Переопределяем токен на секции — его подхватывают .fact, .step, .rail__item,
+   .media--framed и всё остальное, что берёт границу из него, а не из своего
+   локального rgba(6,6,6,…). */
+.on-paper {
+  --border-subtle: rgba(6, 6, 6, .18);
+  --media-placeholder: rgba(6, 6, 6, .12);
+  --card-surface: var(--surface-paper);
+}
+.on-paper .eyebrow { border-bottom-color: var(--border-subtle); }
 
 /* ---------- 5. ХЕДЕР ---------- */
 .header {
@@ -437,7 +570,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .menu-panel {
   position: relative;
   margin-left: auto;
-  width: min(760px, 100%);
+  /* Меню занимает весь экран: единый кегель задаётся самым длинным
+     пунктом, и чем шире панель, тем крупнее он получается. */
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -487,7 +622,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 560px;
+  max-width: 100%;
+  /* Точка отсчёта для cqw: кегль пунктов считается от ширины панели,
+     а не вьюпорта — панель уже его на десктопе. */
+  container-type: inline-size;
 }
 
 .menu-panel__eyebrow {
@@ -500,24 +638,70 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   list-style: none;
   margin: 0;
   padding: 0;
+
+  /* Кегль общий на все пункты и считается один раз здесь.
+     Ограничивает его тот пункт, которому теснее всех, — а это не просто
+     самый длинный: слово на нижней ступени каскада стартует правее и
+     места под него остаётся меньше. Поэтому min() перебирает все пять
+     пар «длина × ступень», а не только максимум длины.
+
+     Ширина под слово = ширина панели − паддинги − ступень − колонка
+     номера. Делённая на знаки с коэффициентом .58 (прописная Manrope
+     Extra-Bold при letter-spacing -.04em) — это и есть предельный кегль. */
+  --fit: calc((100cqw - 2 * var(--gutter) - 76px));
+  --menu-size: min(
+    128px,
+    (var(--fit) -  0cqw) / (18 * .58),   /* Как это происходит */
+    (var(--fit) -  6cqw) / ( 6 * .58),   /* Вечера    */
+    (var(--fit) - 14cqw) / ( 8 * .58),   /* Форматы   */
+    (var(--fit) - 22cqw) / ( 5 * .58),   /* О нас     */
+    (var(--fit) - 30cqw) / ( 9 * .58)    /* Связаться */
+  );
 }
-.menu-list-item { border-bottom: 1px solid var(--border-subtle); }
+/* Разделителей между пунктами нет: слова разведены самим кеглем,
+   линия на такой крупной типографике читалась бы как подчёркивание. */
+/* Маска въезда переехала сюда с .nav-link: анимируется сам .nav-link,
+   и обрезать его должен родитель, иначе на крупном кегле соседние слова
+   налезают друг на друга, пока идёт stagger. */
+.menu-list-item { border-bottom: 0; overflow: hidden; }
+
+/* Каскад: каждое следующее слово уходит правее предыдущего.
+   Сдвиг задан переменной, потому что его же нужно вычесть из ширины,
+   доступной слову: без этого нижние пункты вылезали бы за край панели. */
+.menu-list-item:nth-child(1) { --step: 0; }
+.menu-list-item:nth-child(2) { --step: 6; }
+.menu-list-item:nth-child(3) { --step: 14; }
+.menu-list-item:nth-child(4) { --step: 22; }
+.menu-list-item:nth-child(5) { --step: 30; }
+.nav-link { padding-left: calc(var(--step, 0) * 1cqw); }
+
+/* Тона — по одному из палитры на пункт, новых цветов не вводим */
+.menu-list-item:nth-child(1) .nav-link__text { color: var(--greige-200); }
+.menu-list-item:nth-child(2) .nav-link__text { color: var(--greige-100); }
+/* Тёмно-коричневый на почти чёрной панели уходит в фон — держим его
+   на полной непрозрачности, иначе пункт перестаёт быть ссылкой */
+.menu-list-item:nth-child(3) .nav-link__text { color: var(--greige-700); opacity: 1; }
+.menu-list-item:nth-child(4) .nav-link__text { color: var(--greige-200); }
+.menu-list-item:nth-child(5) .nav-link__text { color: var(--terracotta); }
 
 /* Ссылка: маска для въезда снизу, подложка-заливка при наведении */
 .nav-link {
   position: relative;
   display: flex;
-  align-items: baseline;
-  gap: clamp(14px, 2vw, 28px);
-  padding: clamp(12px, 1.6vh, 20px) clamp(12px, 2vw, 24px) clamp(12px, 1.6vh, 20px) 0;
-  overflow: hidden;
+  align-items: flex-start;
+  gap: clamp(10px, 1.4vw, 20px);
+  padding-block: clamp(2px, .4vh, 6px);
+  padding-right: clamp(12px, 2vw, 24px);
   will-change: transform;
 }
 .nav-link__num {
   position: relative;
   z-index: 1;
+  /* Цифры мелкие и стоят в стороне у верхней линии слова */
+  align-self: flex-start;
+  margin-top: .2em;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: .18em;
   color: var(--interactive);
@@ -525,15 +709,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transition: opacity 340ms var(--ease-reveal);
   flex: none;
 }
+/* Кегль единый для всех пунктов — берётся с .menu-list, где посчитан
+   по самому тесному из них. */
 .nav-link__text {
   position: relative;
   z-index: 1;
   font-family: var(--font-display);
-  font-size: clamp(28px, 4.4vw, 56px);
+  font-size: var(--menu-size);
   font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -.02em;
+  line-height: .84;
+  letter-spacing: -.04em;
   text-transform: uppercase;
+  /* Слово держим одной строкой: перенос сломал бы каскад */
+  white-space: nowrap;
   color: var(--text-on-void);
   opacity: .82;
   transition: opacity 340ms var(--ease-reveal),
@@ -551,9 +739,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transition: transform 480ms var(--ease-reveal);
 }
 .nav-link:hover .nav-link__bg { transform: scaleX(1); }
+/* Цвет при наведении не трогаем — тон пункта и есть его опознавательный знак.
+   Работают только непрозрачность и сдвиг. */
 .nav-link:hover .nav-link__text {
   opacity: 1;
-  color: var(--text-on-void-strong);
   transform: translateX(clamp(8px, 1.2vw, 18px));
 }
 .nav-link:hover .nav-link__num { opacity: 1; }
@@ -764,19 +953,64 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding-left: clamp(0px, 22vw, 420px);
 }
 
-/* Рассыпанные подписи — не в колонку, а по разным осям */
-.proc__scatter {
+/* Рассыпанная микротипографика (Screenshot_2, Screenshot_5).
+   Не сетка: блоки стоят по диагонали через весь экран на явных координатах.
+   Сеточная раскладка держала бы их в одном ряду — а приём именно в том,
+   что подписи идут слева-сверху вправо-вниз с разбросом на треть высоты.
+   Координаты заданы явно и повторяемо: никакого рандома, иначе макет
+   нельзя ни согласовать, ни воспроизвести. */
+.scatter {
   position: relative;
-  margin-top: clamp(28px, 3.4vw, 52px);
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--space-4) clamp(16px, 2.2vw, 32px);
-  align-items: start;
+  grid-column: 2 / -1;
+  min-height: clamp(280px, 34vh, 460px);
 }
-.proc__note { max-width: 34ch; }
-.proc__note--a { grid-column: 1 / span 4; }
-.proc__note--b { grid-column: 6 / span 4; margin-top: clamp(18px, 2.6vw, 44px); }
-.proc__count   { grid-column: 11 / -1; text-align: right; }
+/* Выключка вправо — ключевое отличие от прежней версии: правые края блоков
+   ведут взгляд по диагонали, левые «рваные» края её бы ломали.
+   Каждый блок задан парой left/right, а не одним left с max-width: при
+   одной левой границе соседние ступени диагонали налезают друг на друга,
+   как только текст длиннее шага (проверено на #contact — блоки --2 и --3
+   пересекались). Пара границ жёстко держит колонку внутри своей ступени. */
+.scatter__note {
+  position: absolute;
+  text-align: right;
+  max-width: 34ch;
+}
+.scatter__note--1 { left: 2%;  right: 62%; top: 0; }
+.scatter__note--2 { left: 24%; right: 38%; top: 26%; }
+.scatter__note--3 { left: 46%; right: 14%; top: 52%; }
+.scatter__note--4 { left: 66%; right: 0;   top: 76%; }
+/* Внутри .proc__head .scatter — не элемент сетки, а блок под заголовком:
+   grid-column выше игнорируется, нужен только воздух сверху. */
+.proc__head .scatter { margin-top: clamp(28px, 3.4vw, 52px); }
+
+/* Цифры-координаты по краям вьюпорта (Screenshot_9, Screenshot_8, Screenshot_6).
+   Приём не декоративный: в каждой паре стоят реальные величины секции —
+   время, тираж, диапазон гостей. Позиционируются от .section, у которой
+   уже есть position: relative (см. «4. СЕТКА»). */
+.coords {
+  position: absolute;
+  top: 50%;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .28em;
+  color: var(--text-on-void);
+  opacity: .35;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.coords--l { left: var(--gutter); }
+.coords--r { right: var(--gutter); }
+/* [data-reveal].is-in задаёт opacity: 1 — селектор из класса и атрибута
+   специфичнее одиночного .coords, и после появления цифры вспыхивали бы
+   в полную силу. Приглушение возвращаем правилом той же весовой категории. */
+.coords[data-reveal].is-in { opacity: .35; }
+/* Инверсия: на светлых сценах цвет берётся из текста сцены, а .35 на греж-300
+   даёт нечитаемый контраст — поднимаем до .45. На clay греж-200 при .35
+   читается, но приглушённее остального — держим ту же .45 ради единообразия. */
+.on-paper .coords,
+.on-paper .coords[data-reveal].is-in { color: var(--text-on-paper); opacity: .45; }
+.on-clay  .coords,
+.on-clay  .coords[data-reveal].is-in { color: var(--greige-200);   opacity: .45; }
 
 /* — 8.2 Каркас: липкая колонка + шаги — */
 .proc__body {
@@ -835,6 +1069,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .proc__dots li.is-active { opacity: 1; color: var(--interactive); }
 .proc__dots li.is-done   { opacity: .6; }
+/* На коричневой сцене неактивные пункты на .32 пропадают — поднимаем и цвет,
+   и порог видимости. Активный остаётся терракотовым: на clay он ещё читается. */
+.on-clay .proc__dots li { color: var(--greige-200); opacity: .62; }
+.on-clay .proc__dots li.is-done { opacity: .8; }
+.on-clay .proc__dots li.is-active { opacity: 1; color: var(--greige-200); }
 
 .proc__cta {
   margin-top: clamp(32px, 4vw, 56px);
@@ -892,7 +1131,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .step__media {
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--surface-void);
+  /* Подложка на время загрузки — своя у каждой сцены, иначе на коричневом
+     фоне до отрисовки кадра зияет чёрный прямоугольник */
+  background: var(--media-placeholder, var(--surface-void));
   opacity: .5;
   filter: saturate(.5);
   transform: scale(.97);
@@ -998,7 +1239,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* Средняя колонка уже: у духового оркестра и джаз-бэнда текст самый короткий */
 .music { grid-column: 2 / -1; display: grid; grid-template-columns: 4.4fr 3.2fr 4.4fr; gap: 1px; background: var(--border-subtle); }
 .music__item {
-  background: var(--surface-void);
+  /* Карточка держит фон своей сцены: 1px-зазоры сетки .music работают как
+     разделители, а не как окна в другую поверхность */
+  background: var(--card-surface, var(--surface-void));
   padding: clamp(28px, 3vw, 52px);
   display: flex; flex-direction: column; gap: 18px;
   min-height: clamp(300px, 26vw, 400px);
@@ -1024,6 +1267,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .music__item:hover .music__media { opacity: .44; transform: scale(1.04); }
 .music__item > *:not(.music__media) { position: relative; z-index: 1; }
+
+/* Светлая сцена: фото под текстом гасим сильнее — на .26 тёмный кадр съедал бы
+   контраст почти чёрной типографики, рассчитанной на ровную светлую подложку. */
+.on-paper .music__media { opacity: .14; }
+.on-paper .music__item:hover .music__media { opacity: .24; }
 
 /* ---------- 11. ЛЮДИ — танцмейстер / ассистент (крупные полосы) ---------- */
 .figure-row {
@@ -1054,7 +1302,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    против четырёх у соседей, поэтому она заметно уже. */
 .rules { grid-column: 2 / -1; display: grid; grid-template-columns: 1fr 1fr .72fr; gap: clamp(24px, 3vw, 56px); }
 .rules__col { border-top: 1px solid rgba(6, 6, 6, .2); padding-top: var(--space-4); }
-.section--void .rules__col, .section--deep .rules__col { border-top-color: var(--border-subtle); }
+.section--void .rules__col, .section--deep .rules__col,
+.section--clay .rules__col { border-top-color: var(--border-subtle); }
 .rules__list { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .rules__list li {
   font-size: clamp(14px, .95vw, 16px);
@@ -1103,12 +1352,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .case { grid-column: 2 / -1; }
 /* Намеренный выход за сетку №2: кадр 21/9 идёт от края до края вьюпорта,
    вырываясь и из служебной полосы, и из --gutter секции. */
-.case__hero {
-  position: relative;
-  aspect-ratio: 21 / 9;
+/* Выход за сетку живёт на обёртке: кроп-марки должны стоять по углам
+   вынесенного кадра, а не по краю колонки. Пропорция — на самом кадре. */
+.case__hero-frame {
   margin-bottom: clamp(32px, 4vw, 64px);
   margin-inline: calc((var(--rail) + clamp(16px, 2.2vw, 32px) + var(--gutter)) * -1)
                  calc(var(--gutter) * -1);
+}
+.case__hero {
+  position: relative;
+  aspect-ratio: 21 / 9;
 }
 .case__grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(24px, 3vw, 56px); }
 
@@ -1171,6 +1424,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-variant-numeric: tabular-nums;
   margin: 0 0 10px;
 }
+/* Цифра — самый крупный элемент сцены, греж-200 на светлом её стирает */
+.on-paper .fact__value { color: var(--text-on-paper); }
+.on-clay  .fact__value { color: var(--greige-200); }
 
 /* ---------- 13b. МАНИФЕСТ — один экран, только фраза ---------- */
 /* Ни эйбрау, ни номера, ни медиа: пауза между главами.
@@ -1183,6 +1439,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: grid;
   align-content: center;
 }
+/* Манифест и контакты — обе светлые сцены подряд: без разделителя они
+   сливаются в одно поле и «пауза между главами» перестаёт читаться.
+   Граница, а не смена фона: новых цветов сцена не вводит. */
+.manifesto + .section--paper { border-top: 1px solid var(--border-subtle); }
 .manifesto .grid { width: 100%; }
 .manifesto__text {
   grid-column: 2 / -1;
@@ -1211,8 +1471,20 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- 15. КОНТАКТЫ / ФУТЕР ---------- */
 .contact__title { grid-column: 2 / -1; margin-bottom: clamp(32px, 4vw, 64px); }
-.contact__lead { grid-column: 2 / span 4; }
 .contact__form { grid-column: 8 / -1; }
+/* Вводный текст и прямые контакты ушли в .scatter над формой — форме больше
+   не нужна половина ширины под соседа, но и на всю ширину поле растягивать
+   нечего: держим правую половину, как было. */
+.contact__form--wide { grid-column: 7 / -1; }
+/* Здесь диагональ несёт два блока из четырёх ступеней (--2 и --3), нижний
+   из них стоит на 52% — под ним должно остаться место на его собственную
+   высоту, иначе телефон и почта наползают на первое поле формы. */
+.contact__scatter { min-height: clamp(320px, 34vh, 440px); }
+/* Телефон и почта внутри рассыпанного блока — тот же столбик, что был
+   в .contact__lead, но по правому краю вместе со всей диагональю. */
+.contact__direct { display: flex; flex-direction: column; gap: 22px; }
+/* Ссылки в блоке кликабельны — .scatter лежит поверх пустого места,
+   pointer-events здесь не гасим (в отличие от .coords). */
 
 .field { border-bottom: 1px solid rgba(6, 6, 6, .28); padding-bottom: 10px; margin-bottom: clamp(24px, 2.6vw, 40px); }
 .field label {
@@ -1273,13 +1545,49 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 /* ---------- 16. МЕДИА-БЛОКИ ---------- */
-.media { position: relative; overflow: hidden; background: var(--surface-deep); }
+.media { position: relative; overflow: hidden; background: var(--media-placeholder, var(--surface-deep)); }
 .media--wide  { aspect-ratio: 16 / 9; }
 .media--tall  { aspect-ratio: 3 / 4; }
 .media--square{ aspect-ratio: 1 / 1; }
 .media img { transition: transform 1200ms var(--ease-reveal); }
 .media:hover img { transform: scale(1.04); }
 .media__caption { margin-top: 14px; }
+
+/* Кроп-марки (Screenshot_7): тонкие «плюсы» вынесены за углы кадра.
+   Вешать их прямо на .media нельзя — у неё overflow: hidden, без которого
+   ховер-зум картинки вылезет за рамку. Поэтому кадр оборачивается
+   в .media-frame: марки на обёртке, обрезка остаётся на .media внутри. */
+.media-frame {
+  /* Вынос марки за угол. Положительное значение — наружу, отрицательное —
+     внутрь кадра (для полос, прижатых к самому краю вьюпорта). */
+  --mark-out: 6px;
+  position: relative;
+  overflow: visible;
+}
+.media-frame::before,
+.media-frame::after {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat;
+  color: var(--text-on-void);
+  opacity: .4;
+  pointer-events: none;
+  /* .media внутри — position: relative, без слоя марка ушла бы под кадр */
+  z-index: 1;
+}
+.media-frame::before { top: calc(-1 * var(--mark-out));    left: calc(-1 * var(--mark-out)); }
+.media-frame::after  { bottom: calc(-1 * var(--mark-out)); right: calc(-1 * var(--mark-out)); }
+
+/* Кадр кейса вынесен за сетку вплотную к краю вьюпорта, а секция #evenings
+   режет всё, что за него выходит (overflow: hidden под .t-mega--cropped).
+   Отставленная наружу марка попала бы ровно под этот обрез — уводим внутрь.
+   Правило стоит после .media-frame: там объявлен тот же --mark-out,
+   и при равной специфичности решает порядок. */
+.case__hero-frame { --mark-out: -8px; }
 
 /* Контентная фотография: всегда заполняет свою рамку.
    Кадрирование задаём точечно через object-position в разметке. */
@@ -1404,7 +1712,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   /* Эйбрау — grid: псевдоэлемент иначе встал бы отдельной ячейкой */
   grid-column: 1 / -1;
 }
-.on-paper .eyebrow[data-line]::after { background: rgba(6, 6, 6, .18); }
+/* Цвет линии берётся из --border-subtle, а он переопределён на .on-paper
+   и .on-clay — отдельная ветка под каждую сцену больше не нужна. */
 
 /* Шаги процесса: верхняя граница каждого шага.
    ::before уже занят подсветкой активного шага — берём ::after. */
@@ -1480,6 +1789,24 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 /* ---------- 18. АДАПТИВ ---------- */
+/* Диагональ разбирается в обычный поток: начиная с планшетной ширины блоки
+   на абсолютных координатах неминуемо налезали бы друг на друга.
+   Запрос не замкнут снизу, в отличие от планшетного блока ниже: на 375px
+   рассыпать типографику тем более некуда, и правило нужно там так же. */
+@media (max-width: 1024px) {
+  /* Высоту теперь задаёт сам поток */
+  .scatter { min-height: 0; }
+  .scatter__note {
+    position: static;
+    text-align: left;
+    max-width: 46ch;
+  }
+  .scatter__note + .scatter__note { margin-top: clamp(18px, 2.6vw, 32px); }
+  /* Диагональ в контактах стояла над формой за счёт собственной высоты —
+     в потоке её заменяет обычный отступ. */
+  .contact__scatter { margin-bottom: clamp(32px, 4vw, 56px); }
+}
+
 /* Планшетный диапазон замкнут снизу: ниже 760px служебной полосы уже нет,
    и правила с !important ниже перебивали бы мобильную раскладку в одну колонку
    (колонки оставались в треке 2, а .music/.rules схлопывались в нулевой трек 1). */
@@ -1511,9 +1838,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .step { grid-template-columns: clamp(100px, 16vw, 160px) minmax(0, 1fr); }
   .step__media { display: none; }
   .proc__title-2 > span { padding-left: clamp(0px, 14vw, 200px); }
-  .proc__note--a { grid-column: 1 / span 6; }
-  .proc__note--b { grid-column: 7 / -1; margin-top: 0; }
-  .proc__count { grid-column: 1 / -1; text-align: left; }
+  /* .t-mega: --rail сузился выше в этом же блоке, и calc в его
+     margin-inline пересчитывается сам — своего правила не нужно.
+     Кегль подберёт JS по новой доступной ширине. */
   .figure-row__media,
   .figure-row--flip .figure-row__media,
   .figure-row--narrow .figure-row__media { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 10; }
@@ -1530,8 +1857,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     grid-row: auto;
     aspect-ratio: 4 / 3;
   }
-  /* Эти два — прямые дети .grid, им нужна контентная зона, а не полоса */
-  .contact__lead, .contact__form { grid-column: 2 / -1; }
+  /* Прямые дети .grid — им нужна контентная зона, а не полоса */
+  .contact__form, .contact__form--wide { grid-column: 2 / -1; }
   .hero__meta { grid-column: 2 / span 7; }
   .hero__meta-right { grid-column: 2 / -1; text-align: left; }
   .footer__brand { grid-column: 2 / -1; }
@@ -1562,7 +1889,30 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .eyebrow > .t-label { margin-top: 8px; }
   /* Выходы за сетку схлопываются: полосы, из которой выходить, больше нет */
   .proc__title { margin-left: 0; }
-  .case__hero { margin-inline: calc(var(--gutter) * -1); }
+  .case__hero-frame { margin-inline: calc(var(--gutter) * -1); }
+  /* Полосы, из которой выходить, нет — остаётся только внешний отступ.
+     JS всё равно перезапишет обе величины, это фолбэк. */
+  .t-mega { margin-left: calc(var(--gutter) * -1); }
+
+  /* Строка с медиа не влезает в телефонную ширину одной строкой:
+     текст переносится обычным образом, кадр уходит под него.
+     max-content снимаем вместе с nowrap — иначе строка не перенесётся,
+     а JS ужмёт её до нечитаемого кегля. */
+  .t-mega--inline {
+    white-space: normal;
+    /* Переносящейся строке кегль подбирать не по чему — задаём его здесь.
+       JS это видит по white-space и свой font-size с неё снимает. */
+    font-size: clamp(34px, 10.5vw, 62px);
+    line-height: .92;
+  }
+  .t-mega--inline > span { width: auto; }
+  .t-mega--inline .inline-media {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-inline: 0;
+    margin-top: .12em;
+  }
   .case__grid, .figure-row { grid-template-columns: 1fr; }
   .case__grid > *, .figure-row > * { grid-column: 1 / -1 !important; }
   /* Диптих разбирается в одну колонку: все три кадра подряд в 4/3 */
@@ -1605,7 +1955,26 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .header .logo__name { align-self: center; font-size: 13px; letter-spacing: .12em; }
   .menu-panel { width: 100%; }
   .menu-panel__foot { grid-template-columns: 1fr; gap: 18px; }
-  .nav-link__text { font-size: clamp(26px, 8vw, 40px); }
+  /* Ступень каскада втрое мельче: на телефонной ширине прежние 30%
+     съедали бы у нижних пунктов треть строки. Кегль формула пересчитает
+     сама — она уже учитывает --step. Потолок опускаем: 128px здесь
+     не достижим, но и 40px для «О НАС» на узком экране довольно. */
+  .menu-list-item:nth-child(2) { --step: 2; }
+  .menu-list-item:nth-child(3) { --step: 5; }
+  .menu-list-item:nth-child(4) { --step: 8; }
+  .menu-list-item:nth-child(5) { --step: 11; }
+  /* Колонка номера уже, потолок ниже — пересчитываем те же пять пар */
+  .menu-list {
+    --fit: calc((100cqw - 2 * var(--gutter) - 52px));
+    --menu-size: min(
+      40px,
+      (var(--fit) -  0cqw) / (18 * .58),
+      (var(--fit) -  2cqw) / ( 6 * .58),
+      (var(--fit) -  5cqw) / ( 8 * .58),
+      (var(--fit) -  8cqw) / ( 5 * .58),
+      (var(--fit) - 11cqw) / ( 9 * .58)
+    );
+  }
   /* «ЧАСТНЫЕ БАЛЫ» — длинное слово, ужимаем чтобы не рвать сетку */
   .hero__title { font-size: clamp(30px, 8.6vw, 44px); }
   .hero__title .line-2 > span { font-size: clamp(22px, 6.4vw, 32px); padding-left: 0; }
@@ -1615,10 +1984,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .step { grid-template-columns: 1fr; gap: 14px; }
   .step__rail { flex-direction: row; align-items: baseline; gap: 14px; }
   .step__tag { max-width: none; }
-  .proc__scatter { grid-template-columns: 1fr; }
-  .proc__note--a,
-  .proc__note--b,
-  .proc__count { grid-column: 1 / -1 !important; }
+  /* Координаты стоят у самых краёв вьюпорта — на узком экране они налезают
+     на контент, а сдвигать их внутрь значит убить сам приём. Убираем. */
+  .coords { display: none; }
   .proc__title { font-size: clamp(32px, 11vw, 56px); letter-spacing: -.03em; }
   .proc__title-2 > span { font-size: clamp(26px, 9vw, 44px); padding-left: 0; }
   /* Строка факта не влезает в три части — значение над подписью,
@@ -1642,6 +2010,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   }
   [data-reveal] { opacity: 1; transform: none; }
   [data-gradual] .char { opacity: 1; transform: none; }
+
+  /* Мега-заголовок стоит на месте — без выезда из-под маски */
+  .t-mega > span { transform: none !important; transition: none !important; }
 
   /* Схемы показываем сразу прочерченными: ни пунктира, ни задержек */
   .scheme [data-draw] {

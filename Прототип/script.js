@@ -212,7 +212,9 @@
         .fromTo(btnIcon, { rotate: 0 }, { rotate: 315 }, '<')
         .fromTo(scrim, { autoAlpha: 0 }, { autoAlpha: 1 }, '<')
         .fromTo(backdrops, { xPercent: 101 }, { xPercent: 0, stagger: 0.12, duration: DUR * 0.82 }, '<')
-        .fromTo(navLinks, { yPercent: 140, rotate: 6 }, { yPercent: 0, rotate: 0, stagger: 0.05 }, '<+=0.35')
+        // Амплитуду сняли под крупный кегель: на 128px прежние 140%/6°
+        // выносили слово далеко за маску и разворачивали его слишком заметно
+        .fromTo(navLinks, { yPercent: 105, rotate: 3 }, { yPercent: 0, rotate: 0, stagger: 0.05 }, '<+=0.35')
         .fromTo(fadeTargets, { autoAlpha: 0, yPercent: 50 },
                 { autoAlpha: 1, yPercent: 0, stagger: 0.04, clearProps: 'all' }, '<+=0.2');
     }
@@ -322,6 +324,124 @@
     split(title);
   });
 
+  /* ---------- 3a-bis. Мега-заголовки во всю ширину ---------- */
+  /* Главный приём референса: слово ровно по ширине вьюпорта, буквы упираются
+     в края. Ни положение блока, ни кегль в CSS не выразить — оба зависят от
+     фактической раскладки и от того, сколько места занимает конкретное слово
+     конкретной гарнитурой. Оба шага ниже. */
+  var megaTitles = Array.prototype.slice.call(document.querySelectorAll('.t-mega'));
+
+  if (megaTitles.length) {
+    var MEGA_BASE = 100;
+
+    /* Шаг 1 — вывести блок к краям экрана.
+       Ширина берётся у documentElement, а не у window.innerWidth: последний
+       включает полосу прокрутки, и слово вылезло бы под неё.
+
+       Отправная точка — левый край .grid, а не самого заголовка: заголовок
+       занимает все треки (grid-column: 1 / -1), то есть в потоке начинается
+       ровно от края сетки, зато сам растягивает трек своим max-content —
+       его собственный left зависел бы от уже выставленного кегля, и замер
+       гонялся бы за своим хвостом. У .grid положение стабильно, и в нём
+       уже учтены и --gutter секции, и центрирование по max-width. */
+    function placeMega(el) {
+      var vw = document.documentElement.clientWidth;
+      var grid = el.parentElement;
+      if (!grid) return vw;
+
+      var gridLeft = grid.getBoundingClientRect().left;
+      el.style.setProperty('--mega-left', (-gridLeft).toFixed(2) + 'px');
+      el.style.setProperty('--mega-width', vw + 'px');
+
+      return vw;
+    }
+
+    /* Шаг 2 — подобрать кегль. Ставим базовые 100px, читаем фактическую
+       ширину набранной строки и умножаем базу на отношение доступной
+       ширины к измеренной. Замер идёт по внутреннему <span> с width:
+       max-content — у самого .t-mega ширина уже равна ширине экрана
+       и о содержимом ничего не сообщает. */
+    function fitMega(el) {
+      var line = el.firstElementChild;
+      if (!line) return;
+
+      var avail = placeMega(el);
+      if (!avail) return;
+
+      /* Строка, которой на узком экране разрешено переноситься
+         (.t-mega--inline ниже 760px), под приём не подпадает: её ширина
+         всегда равна ширине блока, отношение выродилось бы в единицу
+         и кегль остался бы базовым. Кегль ей задаёт CSS. */
+      if (getComputedStyle(el).whiteSpace !== 'nowrap') {
+        el.style.removeProperty('font-size');
+        return;
+      }
+
+      /* Замер идёт в один синхронный проход, а при prefers-reduced-motion
+         глобальное правило доступности вешает на всё transition-duration
+         в .01ms. Даже такой transition делает font-size анимируемым:
+         сразу после записи getComputedStyle и раскладка отдают ещё старое
+         значение, и коэффициент считался бы от чужого кегля.
+         Гасим переходы на время замера и возвращаем после. */
+      var prevTransition = el.style.transition;
+      el.style.transition = 'none';
+
+      el.style.fontSize = MEGA_BASE + 'px';
+      var measured = line.getBoundingClientRect().width;
+
+      if (measured) {
+        el.style.fontSize = (MEGA_BASE * (avail / measured)).toFixed(2) + 'px';
+      } else {
+        el.style.removeProperty('font-size');
+      }
+
+      // Возврат в следующем кадре: сними мы transition в том же, браузер
+      // склеил бы оба изменения и кегль всё-таки поехал бы переходом
+      window.requestAnimationFrame(function () {
+        if (prevTransition) el.style.transition = prevTransition;
+        else el.style.removeProperty('transition');
+      });
+    }
+
+    function fitAllMega() { megaTitles.forEach(fitMega); }
+
+    fitAllMega();
+
+    /* До готовности шрифтов метрики считаются по системному фолбэку —
+       у Manrope другая ширина знака, и слово встало бы не по краям.
+       Пересчитываем, когда гарнитура действительно применена. */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fitAllMega).catch(function () { /* фолбэк уже стоит */ });
+    }
+
+    /* Кадр с медиа внутри строки участвует в замере наравне с буквами,
+       но до загрузки его ширина неизвестна. aspect-ratio в CSS задаёт её
+       заранее, так что первый замер уже верен; слушатель — страховка
+       на случай, если движок посчитает иначе. */
+    megaTitles.forEach(function (el) {
+      var media = el.querySelector('.inline-media');
+      if (!media) return;
+      var recheck = function () { fitMega(el); };
+      if (media.tagName === 'VIDEO') {
+        media.addEventListener('loadedmetadata', recheck, { once: true });
+      } else if (!media.complete) {
+        media.addEventListener('load', recheck, { once: true });
+      }
+    });
+
+    // Ресайз через rAF: без троттлинга пересчёт шёл бы на каждое событие
+    // окна, а он читает геометрию и заставляет браузер считать раскладку
+    var megaTicking = false;
+    window.addEventListener('resize', function () {
+      if (megaTicking) return;
+      megaTicking = true;
+      window.requestAnimationFrame(function () {
+        megaTicking = false;
+        fitAllMega();
+      });
+    }, { passive: true });
+  }
+
   /* ---------- 3b. Reveal on scroll ---------- */
   /* Схемы в карточках делят observer с остальными появлениями: класс .is-in
      у них запускает прочерчивание. Схема служебной полосы исключена —
@@ -329,8 +449,11 @@
   /* [data-line] тоже здесь: прочерчивание линии запускает тот же класс .is-in.
      Почти все такие элементы и так помечены [data-reveal], но связывать
      приём с чужим атрибутом не стоит — перечисляем явно. */
+  /* .t-mega тоже здесь: маска снизу вверх (вместо посимвольного появления,
+     которое на таком кегле выглядит рвано) запускается тем же классом .is-in.
+     Второй observer заводить не за чем. */
   var revealTargets = document.querySelectorAll(
-    '[data-reveal], [data-gradual], [data-line], .scheme:not(.scheme--track)'
+    '[data-reveal], [data-gradual], [data-line], .scheme:not(.scheme--track), .t-mega'
   );
 
   if (reduceMotion || !('IntersectionObserver' in window)) {
