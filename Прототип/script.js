@@ -111,8 +111,11 @@
   }
 
   /* Схемы в контенте: раздаём --len и порядковый --i для каскада.
-     Схема служебной полосы (#procScheme) идёт своим путём — её ведёт скролл. */
-  document.querySelectorAll('.scheme').forEach(function (scheme) {
+     Схема служебной полосы (.scheme--track) исключена — её ведёт скролл:
+     --len она получает своим кодом, а --i задавал бы засечкам каскадную
+     transition-delay, из-за которой они зажигались бы не в такт шагам.
+     Тот же :not() стоит и в списке целей observer'а (см. «3b. Reveal»). */
+  document.querySelectorAll('.scheme:not(.scheme--track)').forEach(function (scheme) {
     var i = 0;
     scheme.querySelectorAll('[data-draw], [data-dot], [data-tick]').forEach(function (el) {
       if (el.hasAttribute('data-draw')) {
@@ -442,6 +445,145 @@
     }, { passive: true });
   }
 
+  /* ---------- 3b-2. Заголовки форматов ---------- */
+  /* Тот же приём, что у мега-строк, но мерка другая: не ширина экрана,
+     а ширина слайда за вычетом полей. Свой подбор нужен потому, что фразы
+     сильно разной длины — «Для семьи и близких» 19 знаков против «Для
+     компании, партнёров и сотрудников» 37. Общий clamp либо ломает длинную
+     на строки (а двухстрочные заголовки здесь смотрятся плохо), либо мельчит
+     короткую. Подбор уравнивает их по занимаемой ширине, а не по кеглю:
+     обе строки тянутся во всю доступную ширину, как в референсе.
+
+     Результат пишем в --format-size, а не в font-size напрямую: у CSS
+     остаётся фолбэк в var() на случай, если скрипт не отработал. */
+  var formatTitles = Array.prototype.slice.call(document.querySelectorAll('.t-format'));
+
+  if (formatTitles.length) {
+    var FORMAT_BASE = 100;
+    /* Потолок кегля. Заголовок теперь в две строки и лежит поверх кадра:
+       без ограничения короткое «Частный бал» раздувалось до 200px и
+       накрывало фотографию целиком. Считаем от высоты экрана, а не от
+       ширины: ограничение здесь именно вертикальное — две строки должны
+       занять примерно нижнюю треть кадра, а не весь кадр. */
+    function formatMax() {
+      return Math.max(48, window.innerHeight * 0.17);
+    }
+
+    function fitFormat(el) {
+      var line = el.firstElementChild;
+      if (!line) return;
+
+      var slide = el.closest('.segment');
+      if (!slide) return;
+
+      /* Доступная ширина — внутренняя ширина слайда: его собственные
+         padding-inline и есть поля вьюпорта. Читаем у слайда, а не
+         у заголовка: заголовок сам растягивается содержимым (max-content),
+         и его ширина зависела бы от уже выставленного кегля. */
+      var cs = getComputedStyle(slide);
+      var avail = slide.getBoundingClientRect().width
+        - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (!(avail > 0)) return;
+
+      // Гасим переходы на время замера — иначе font-size анимируется
+      // и getComputedStyle сразу после записи вернёт ещё старое значение
+      var prevTransition = el.style.transition;
+      el.style.transition = 'none';
+
+      el.style.setProperty('--format-size', FORMAT_BASE + 'px');
+      var measured = line.getBoundingClientRect().width;
+
+      if (measured) {
+        var size = Math.min(FORMAT_BASE * (avail / measured), formatMax());
+        el.style.setProperty('--format-size', size.toFixed(2) + 'px');
+      } else {
+        el.style.removeProperty('--format-size');
+      }
+
+      window.requestAnimationFrame(function () {
+        if (prevTransition) el.style.transition = prevTransition;
+        else el.style.removeProperty('transition');
+      });
+    }
+
+    function fitAllFormats() { formatTitles.forEach(fitFormat); }
+
+    fitAllFormats();
+
+    // До готовности шрифтов метрики считаются по фолбэку — пересчитываем
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fitAllFormats).catch(function () { /* фолбэк уже стоит */ });
+    }
+
+    var formatTicking = false;
+    window.addEventListener('resize', function () {
+      if (formatTicking) return;
+      formatTicking = true;
+      window.requestAnimationFrame(function () {
+        formatTicking = false;
+        fitAllFormats();
+      });
+    }, { passive: true });
+  }
+
+  /* ---------- 3b-3. Лента форматов: боковой ход от скролла страницы ---------- */
+  /* Пользователь крутит страницу вниз — лента едет вбок. Пока секция
+     проходит мимо экрана, .segments-stage залипает (sticky в CSS), а мы
+     считаем прогресс этого прохода и пишем его в --seg-progress: 0 — виден
+     первый формат, 1 — второй.
+
+     Считаем сами, а не через ScrollTrigger.pin: страницу двигает Lenis
+     трансформом собственной обёртки, и pin без scrollerProxy разъезжается
+     с фактическим положением. getBoundingClientRect читает реальную
+     геометрию после трансформа — этот путь верен при любом скроллере. */
+  var segScroll = document.getElementById('segments-scroll');
+
+  if (segScroll) {
+    var segDots = Array.prototype.slice.call(
+      document.querySelectorAll('.segments__dots i')
+    );
+    var segTicking = false;
+
+    function updateSegments() {
+      var rect = segScroll.getBoundingClientRect();
+
+      /* Путь прокрутки = высота контейнера минус экран (лишний экран и есть
+         дорога ленты). Прогресс — сколько этого пути уже пройдено. */
+      var travel = rect.height - window.innerHeight;
+      if (travel <= 0) return;
+
+      var p = -rect.top / travel;
+      p = Math.max(0, Math.min(1, p));
+
+      segScroll.style.setProperty('--seg-progress', p.toFixed(4));
+
+      // Засечка переключается на середине пути
+      if (segDots.length) {
+        var idx = p < .5 ? 0 : 1;
+        segDots.forEach(function (dot, i) {
+          dot.classList.toggle('is-on', i === idx);
+        });
+      }
+    }
+
+    function requestSegments() {
+      if (segTicking) return;
+      segTicking = true;
+      window.requestAnimationFrame(function () {
+        segTicking = false;
+        updateSegments();
+      });
+    }
+
+    window.addEventListener('scroll', requestSegments, { passive: true });
+    window.addEventListener('resize', requestSegments, { passive: true });
+    // Lenis двигает страницу трансформом — нативный scroll при этом
+    // не всегда стреляет, поэтому подписываемся и на его событие
+    if (lenis) lenis.on('scroll', requestSegments);
+
+    updateSegments();
+  }
+
   /* ---------- 3b. Reveal on scroll ---------- */
   /* Схемы в карточках делят observer с остальными появлениями: класс .is-in
      у них запускает прочерчивание. Схема служебной полосы исключена —
@@ -451,9 +593,12 @@
      приём с чужим атрибутом не стоит — перечисляем явно. */
   /* .t-mega тоже здесь: маска снизу вверх (вместо посимвольного появления,
      которое на таком кегле выглядит рвано) запускается тем же классом .is-in.
-     Второй observer заводить не за чем. */
+     Второй observer заводить не за чем.
+     .t-format — та же маска и по той же причине; отдельной целью, а не
+     через .is-in родителя: заголовок формата стоит в низу своей статьи,
+     и по классу .segment он бы отыграл задолго до появления на экране. */
   var revealTargets = document.querySelectorAll(
-    '[data-reveal], [data-gradual], [data-line], .scheme:not(.scheme--track), .t-mega'
+    '[data-reveal], [data-gradual], [data-line], .scheme:not(.scheme--track), .t-mega, .t-format'
   );
 
   if (reduceMotion || !('IntersectionObserver' in window)) {
@@ -658,11 +803,11 @@
   var procDots = Array.prototype.slice.call(
     document.querySelectorAll('#procDots li')
   );
-  var procProgress = document.getElementById('procProgress');
 
   /* Схема служебной полосы: та же линия с засечками, что и в карточках,
-     но прочерчивается не по появлению, а по прогрессу шагов — от того же
-     значения, что двигает #procProgress. */
+     но прочерчивается не по появлению, а по прогрессу шагов.
+     Единственный индикатор прогресса в блоке — прежняя вторая линия
+     (.proc__track-line / #procProgress) удалена как дублирующая. */
   var procScheme = document.getElementById('procScheme');
   var procSchemeLine = procScheme && procScheme.querySelector('[data-draw]');
   var procSchemeTicks = procScheme
@@ -672,6 +817,54 @@
 
   if (procSchemeLine && procSchemeLen > 0) {
     procSchemeLine.style.setProperty('--len', procSchemeLen.toFixed(1) + 'px');
+  }
+
+  /* Засечки к пунктам списка.
+     У схемы preserveAspectRatio="none" и viewBox 0 0 24 400, так что
+     вертикаль тянется на всю высоту .proc__track: доля высоты трека
+     переводится в единицы viewBox умножением на 400. Позиции пунктов
+     зависят от кегля и gap, а те — от вьюпорта, поэтому константы cy
+     (4/102/200/298/396) с подписями неизбежно расходились. */
+  function layoutProcTicks() {
+    if (!procScheme || !procSchemeTicks.length || !procDots.length) return;
+
+    var trackEl = procScheme.parentNode;
+    if (!trackEl) return;
+
+    var track = trackEl.getBoundingClientRect();
+    // Трек скрыт (мобильная раскладка) — считать не от чего
+    if (track.height <= 0) return;
+
+    var first = null;
+    var last = null;
+
+    procSchemeTicks.forEach(function (tick, i) {
+      var dot = procDots[i];
+      if (!dot) return;
+      var r = dot.getBoundingClientRect();
+      // Центр пункта относительно верха трека, в единицах viewBox.
+      // Радиус засечки — 3.5, держим её целиком внутри viewBox.
+      var cy = Math.max(4, Math.min(396,
+        ((r.top + r.height / 2) - track.top) / track.height * 400
+      ));
+      tick.setAttribute('cy', cy.toFixed(1));
+      if (first === null) first = cy;
+      last = cy;
+    });
+
+    // Линия идёт ровно от первой засечки до последней, а не от края до края:
+    // иначе прогресс (доля пройденных шагов) не совпадал бы с точками,
+    // к которым он визуально привязан.
+    if (procSchemeLine && first !== null && last > first) {
+      procSchemeLine.setAttribute('y1', first.toFixed(1));
+      procSchemeLine.setAttribute('y2', last.toFixed(1));
+      procSchemeLen = lineLength(procSchemeLine);
+      if (procSchemeLen > 0) {
+        procSchemeLine.style.setProperty('--len', procSchemeLen.toFixed(1) + 'px');
+      }
+      // Пересчитанная длина меняет и текущий dashoffset
+      updateProcess();
+    }
   }
 
   function updateProcess() {
@@ -692,8 +885,11 @@
       if (first.top < window.innerHeight && first.bottom > 0) active = 0;
     }
 
+    // Пройденные шаги помечаются так же, как пункты индикатора: рядом
+    // висит шкала «3 из 5», а сами шаги жили в бинарной логике.
     procSteps.forEach(function (el, i) {
       el.classList.toggle('is-active', i === active);
+      el.classList.toggle('is-done', active > -1 && i < active);
     });
 
     procDots.forEach(function (el, i) {
@@ -701,11 +897,14 @@
       el.classList.toggle('is-done', active > -1 && i < active);
     });
 
-    var ratio = active < 0 ? 0 : (active + 1) / procSteps.length;
-
-    if (procProgress) {
-      procProgress.style.height = (ratio * 100).toFixed(1) + '%';
-    }
+    // Линия идёт от первой засечки до последней, поэтому доля считается
+    // по промежуткам между шагами, а не по их числу: на первом шаге линия
+    // ещё не прочерчена, на последнем доходит ровно до нижней засечки.
+    // (active + 1) / length давало бы на первом шаге 20% пути до точки,
+    // которая уже стоит в его начале.
+    var ratio = active < 0 || procSteps.length < 2
+      ? 0
+      : active / (procSteps.length - 1);
 
     // Линия схемы прочерчивается сверху вниз на ту же долю,
     // засечки зажигаются по мере прохождения шагов
@@ -729,11 +928,41 @@
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
+  // Позиции засечек читают раскладку — пересчитываем их только на ресайзе,
+  // а не в каждом кадре прокрутки. Через rAF, как и остальные пересчёты.
+  var procTicking = false;
+  function scheduleProcTicks() {
+    if (procTicking) return;
+    procTicking = true;
+    window.requestAnimationFrame(function () {
+      procTicking = false;
+      layoutProcTicks();
+    });
+  }
+  window.addEventListener('resize', function () {
+    onScroll();
+    scheduleProcTicks();
+  }, { passive: true });
   // Lenis скроллит реальное окно, так что нативное событие приходит и без этого,
   // но подписка гарантирует кадр в кадр с его собственным rAF
   if (lenis) lenis.on('scroll', onScroll);
   onScroll();
+  layoutProcTicks();
+  // Кегль пунктов зависит от гарнитуры: до её загрузки высоты строк другие
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(layoutProcTicks).catch(function () { /* фолбэк — стартовые cy */ });
+  }
+  // Кадры шагов крупные и грузятся лениво: до их отрисовки строка ниже
+  // собственной высоты, и тики встают по устаревшей геометрии. Пересчёт по
+  // факту загрузки каждого — с дедупликацией через тот же rAF, что и resize,
+  // иначе пять картинок дадут пять пересчётов в одном кадре.
+  procSteps.forEach(function (step) {
+    var img = step.querySelector('.step__media img');
+    if (!img || img.complete) return;
+    img.addEventListener('load', scheduleProcTicks, { once: true, passive: true });
+    // Битый путь тоже меняет высоту строки — плейсхолдер остаётся, но кадра нет
+    img.addEventListener('error', scheduleProcTicks, { once: true, passive: true });
+  });
   if (!reduceMotion) applyParallax();
 
   /* ---------- 5b. Sticky-стопка полос в «Людях» ---------- */

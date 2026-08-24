@@ -328,6 +328,60 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* Соседняя строка того же кегля (ЛЮДИ + строка с медиа) идёт вплотную */
 .t-mega + .t-mega { margin-top: .04em; }
 
+/* ---------- 3c. ЗАГОЛОВОК ФОРМАТА ---------- */
+/* Не .t-mega и намеренно: «Корпоративный бал» — 17 знаков, растянутое
+   во всю ширину слово дало бы кегль вдвое мельче соседних ВЕЧЕР и ЛЮДИ,
+   и строка выпала бы из ряда мега-строк вместо того, чтобы его продолжить.
+   Поэтому кегль фиксированный: крупнее .t-h3, заметно мельче .t-mega.
+   Замер шириной здесь не нужен — JS этот компонент не трогает. */
+.t-format {
+  font-family: var(--font-display);
+  /* 6.05vw, а не 6.4: кегль общий для обоих форматов, и предел ставит
+     длинный «Корпоративный бал» — на 6.4vw его строка не влезала в свою
+     полосу на 1280–1680px. Потолок 96px по той же причине (на 1680px
+     строка занимает 1096px — ровно всё доступное место). */
+  /* Кегль подбирает JS под ширину слайда (см. script.js, «Заголовки
+     форматов»): фразы разной длины — 19 и 37 знаков — и общий clamp
+     либо рвёт длинную на строки, либо мельчит короткую. Значение в var()
+     — фолбэк на случай, если скрипт не отработал; своего минимума у него
+     нет намеренно: на узком экране длинную фразу нужно доужать до той
+     величины, при которой она ещё влезает в строку. */
+  font-size: var(--format-size, clamp(22px, 5.4vw, 88px));
+  font-weight: 800;
+  /* .84 обрезал бы точки над Ё: они выходят за строчный бокс, а маска
+     появления стоит на overflow: hidden и срезала бы их вместе с ним.
+     .9 даёт буквам вертикальный воздух, не разваливая плотную строку —
+     на двухстрочном заголовке интерлиньяж виден, поэтому держим его тесным. */
+  line-height: .9;
+  letter-spacing: -.04em;
+  text-transform: uppercase;
+  color: var(--text-on-void-strong);
+  margin: 0;
+
+  /* Маска появления — та же механика, что у .t-mega: строка едет снизу.
+     Посимвольного data-gradual здесь нет намеренно: на таком кегле
+     побуквенное появление читается рвано (см. .t-mega). */
+  overflow: hidden;
+}
+.t-format > span {
+  display: block;
+  /* max-content: ширина блока равна ширине самой длинной строки — по ней
+     JS и подбирает кегль (тот же механизм, что у .t-mega). Строки ломаются
+     по <br> в разметке, автоперенос запрещён: иначе на разной ширине
+     разрыв вставал бы в новом месте и деление по смыслу разъезжалось. */
+  width: max-content;
+  max-width: none;
+  white-space: nowrap;
+  /* Верхний воздух для точек над Ё: маска режет по краю блока, а буква Ё
+     на .96 всё ещё подходит к нему вплотную. Отступ компенсируем
+     отрицательным margin, чтобы строка не съехала вниз. */
+  padding-top: .12em;
+  margin-top: -.12em;
+  transform: translateY(100%);
+  transition: transform 1.1s var(--ease-reveal);
+}
+.t-format.is-in > span { transform: none; }
+
 /* Строка с медиа внутри текста (Screenshot_12): картинка/видео —
    такой же inline-элемент строки, как буква, и участвует в замере ширины. */
 .inline-media {
@@ -885,40 +939,213 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transform-origin: left;
 }
 
-/* ---------- 7. СЕГМЕНТАЦИЯ — две карточки ---------- */
-/* Пропорция продиктована текстом: у «Корпоративного бала» абзац длиннее,
-   ему отдаём больше ширины — колонки не равны и не должны быть. */
-.segments { grid-column: 2 / -1; display: grid; grid-template-columns: 5.4fr 6.6fr; gap: 1px; background: var(--border-subtle); }
-.segment {
+/* ---------- 7. СЕГМЕНТАЦИЯ — лента форматов на два экрана ---------- */
+/* Два формата листаются вбок, каждый занимает экран целиком. Вертикальный
+   каскад отсюда ушёл: он растягивал секцию на два с лишним экрана, а формата
+   всего два — их естественнее показать как выбор из двух, а не как список.
+   Боковое движение здесь и работает разделителем: рамок по-прежнему нет. */
+
+/* Секция целиком отдана ленте: вертикальные подушки .section убраны,
+   высоту задаёт .segments-scroll ниже.
+   overflow здесь не ставим: любое значение кроме visible обрезало бы
+   контекст залипания, и .segments-stage перестала бы липнуть.
+   Горизонтальный вылет ленты гасит overflow на самой .segments-stage. */
+.section--screen {
+  padding-block: 0;
+  /* Боковые поля тоже снимаем: липкий экран должен быть шириной во весь
+     вьюпорт, иначе слайды уезжают за левый край на величину --gutter.
+     Свои поля эйбрау и слайды задают сами. */
+  padding-inline: 0;
+}
+/* Эйбрау и лента — в потоке колонки, а не в 12-колоночной сетке секции:
+   лента должна дотягиваться до краёв вьюпорта, сетка её бы вернула в поля. */
+.section--screen > .grid {
+  display: block;
+  width: 100%;
+}
+.section--screen .eyebrow {
+  display: flex;
+  gap: clamp(16px, 2vw, 32px);
+  align-items: baseline;
+  padding-inline: var(--gutter);
+  padding-block: clamp(24px, 4vh, 56px) clamp(12px, 2vh, 24px);
+}
+
+/* Боковая прокрутка ведётся скроллом страницы.
+   Высота контейнера = экран + путь ленты: лишний экран прокрутки и есть
+   то расстояние, за которое лента проезжает от первого формата ко второму.
+   Приём на sticky, а не на ScrollTrigger.pin: страницу двигает Lenis
+   трансформом собственной обёртки, и pin без scrollerProxy разъезжается
+   с реальным положением. Sticky ведёт браузер — рассинхрону неоткуда взяться. */
+.segments-scroll {
   position: relative;
-  background: var(--surface-void);
-  padding: clamp(28px, 3.4vw, 56px);
+  /* 100svh — сам экран, ещё 100svh — путь до второго формата */
+  height: 200svh;
+}
+.segments-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
   display: flex;
   flex-direction: column;
-  min-height: clamp(420px, 46vw, 620px);
+  justify-content: center;
   overflow: hidden;
-  transition: background 500ms var(--ease-reveal);
 }
+
+.segments {
+  display: flex;
+  /* Единица отсчёта для ширины слайда: 100cqw ниже меряется от этой ленты,
+     а не от её содержимого (см. .segment). inline-size, а не size —
+     высоту лента берёт у контента, ограничивать её незачем. */
+  container-type: inline-size;
+  /* Сдвиг ленты пишет JS в --seg-progress (0 → 1); без скрипта лента
+     стоит на первом формате и второй остаётся недоступен — поэтому
+     на ≤760px горизонтальная раскладка отключается вовсе (см. адаптив). */
+  transform: translate3d(calc(var(--seg-progress, 0) * -100cqw), 0, 0);
+  will-change: transform;
+}
+
+/* Слайд — ровно ширина ленты. 100% здесь ненадёжен: у flex-элемента
+   процент считается от контента, и слайд с длинным заголовком раздувал
+   бы себя сам (замер давал 523px вместо 375px на телефоне). 100cqw
+   привязывает ширину к самой ленте — отсюда container-type у .segments. */
+.segment {
+  position: relative;
+  flex: 0 0 100cqw;
+  width: 100cqw;
+  min-width: 0;
+  display: grid;
+  /* Кадр слева, текст справа. minmax(0, …) обязателен: у fr-трека
+     автоматический минимум min-content, и длинный заголовок распирал бы
+     свою колонку, съедая колонку кадра. */
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: clamp(24px, 3vw, 56px);
+  row-gap: 0;
+  align-content: center;
+  padding-inline: var(--gutter);
+}
+/* Чередование: у второго формата кадр уходит вправо */
+.segment:nth-child(2) { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+
+/* Кадр в полную силу и во всю доступную высоту. Не aspect-ratio: пропорция
+   жёстко задаёт высоту от ширины, и на широком экране кадр вылезал бы за
+   пределы экрана. Высоту диктует экран, ширину — колонка. */
 .segment__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: .34;
-  transition: opacity 600ms var(--ease-reveal), transform 900ms var(--ease-reveal);
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  position: relative;
+  overflow: hidden;
+  height: clamp(280px, 68vh, 820px);
+  background: var(--media-placeholder, var(--surface-deep));
 }
-.segment:hover .segment__media { opacity: .5; transform: scale(1.04); }
-.segment > * { position: relative; z-index: 1; }
-.segment__top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.segment__title { margin-top: auto; }
-.segment__title .t-h3 { max-width: 12ch; }
-.segment__sub { margin-top: 14px; }
-.segment__text { margin-top: clamp(18px, 2vw, 28px); max-width: 44ch; }
+.segment__media img { transition: transform 1200ms var(--ease-reveal); }
+.segment__media:hover img { transform: scale(1.04); }
+.segment:nth-child(2) .segment__media { grid-column: 2; }
+
+/* Заголовок наезжает на нижний край кадра (Screenshot_9): занимает обе
+   колонки и поднят отрицательным отступом так, что верх букв ложится
+   на нижнюю треть фотографии. z-index — чтобы лечь поверх кадра. */
+.segment__title {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  position: relative;
+  z-index: 2;
+  align-self: end;
+}
+/* Подъём задан в долях кегля, а не в px: кегль подбирает JS под ширину
+   слайда, и фиксированный отступ на разных экранах давал бы то едва
+   заметный заезд, то наплыв на середину кадра.
+   Строк теперь две, и поднимать надо весь блок: 1.05em — это примерно
+   нижняя строка плюс небольшой заход верхней на кадр. */
+.segment .t-format { margin-top: -1.05em; }
+/* Тень под буквами: кадр в нижней трети бывает светлым, и без неё строка
+   на нём теряется. Тень, а не плашка: плашка на почти чёрном фоне сама
+   читается как серое пятно, тень видна только там, где под буквой светло. */
+.segment .t-format > span {
+  text-shadow: 0 2px 24px rgba(6, 6, 6, .85), 0 0 8px rgba(6, 6, 6, .7);
+}
+
+/* Метка формата: координата плюс ярлык — «A · ЧАСТНЫЙ БАЛ».
+   Ярлык называет категорию, заголовком же стоит ответ «для кого». */
+.segment__mark {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  /* row-gap нулевой — отбивку от кадра метка держит сама */
+  margin: 0 0 clamp(10px, 1.4vh, 20px);
+  display: flex;
+  align-items: baseline;
+  gap: .9em;
+  font-family: var(--font-mono);
+  font-size: clamp(11px, .82vw, 13px);
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--interactive);
+}
+/* Буква держит вес приёма, ярлык рядом приглушён: иначе две моношироких
+   строки одного тона спорят за внимание. */
+.segment__letter { opacity: .85; }
+.segment__kind { color: var(--text-on-void-muted); letter-spacing: .18em; }
+.segment__mark + .segment__media { grid-row: 2 / span 2; }
+.segment:nth-child(2) .segment__mark { grid-column: 2; justify-content: flex-end; }
+
+.segment__body {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+  /* Отбивка больше подъёма заголовка: заголовок идёт во всю ширину и,
+     поднимаясь на кадр, проходит над колонкой текста — иначе лёг бы
+     на последнюю строку абзаца. Наезжать он должен на фото, не на текст. */
+  padding-bottom: clamp(28px, 5.5vh, 104px);
+  text-align: right;
+  justify-self: end;
+  max-width: 42ch;
+}
+.segment:nth-child(2) .segment__body { grid-column: 1; text-align: left; justify-self: start; }
+.segment__text { margin-top: clamp(12px, 1.8vh, 28px); }
+
+/* Индикатор ленты: две засечки и подсказка направления */
+.segments__nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-inline: var(--gutter);
+  margin-top: clamp(12px, 2vh, 28px);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--text-on-void-muted);
+}
+.segments__dots { display: flex; gap: 6px; }
+.segments__dots i {
+  width: 26px;
+  height: 2px;
+  background: currentColor;
+  opacity: .28;
+  transition: opacity 400ms var(--ease-reveal), background 400ms var(--ease-reveal);
+}
+.segments__dots i.is-on { opacity: 1; background: var(--interactive); }
 
 /* ---------- 8. ПРОЦЕСС «Как мы готовим ваш вечер» ---------- */
 /* Крупный заголовок-графика + рассыпанная микротипографика (язык ORE),
    ниже — липкий индикатор этапов и полосы шагов с медиа. */
 
-.proc { overflow: hidden; }
+/* Обрезка нужна только по горизонтали — заголовок намеренно выходит за левый
+   край сетки. Именно clip, и именно по одной оси: overflow: hidden делает
+   секцию контейнером прокрутки, и липкая колонка внутри (.proc__sticky)
+   залипала бы относительно неё, то есть не залипала бы вовсе.
+   overflow-x: clip такого контекста не создаёт. */
+.proc {
+  overflow-x: clip;
+  /* Фолбэк для движков без clip: по вертикали резать нечего, а без пары
+     значений ось X не обрежется вовсе. */
+  overflow-y: visible;
+}
+@supports not (overflow: clip) {
+  /* Здесь обрезка важнее залипания: без неё заголовок растянет страницу вбок */
+  .proc { overflow: hidden; }
+}
 
 /* — 8.1 Заголовок — */
 .proc__head {
@@ -928,9 +1155,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 /* Намеренный выход за сетку №1: заголовок начинается от левого края экрана,
    игнорируя и служебную полосу, и внешний --gutter секции.
-   Сдвиг на самом заголовке, а не на .proc__head — подписи ниже остаются в сетке. */
+   Сдвиг на самом заголовке, а не на .proc__head — подписи ниже остаются в сетке.
+
+   Сдвига «полоса + gap + gutter» хватает не всегда: у .grid стоит
+   max-width: 1680px и margin-inline: auto, поэтому на широком экране сетка
+   центрируется и слева от неё появляется ещё одно поле. Ровно та же причина,
+   по которой .t-mega считает свой вылет в JS (см. «3b. МЕГА-ЗАГОЛОВОК»).
+   Здесь величина известна в CSS: половина того, на сколько вьюпорт за вычетом
+   гуттеров шире 1680px. --grid-slack и есть это поле, не отрицательное. */
 .proc__title {
-  margin: 0 0 0 calc((var(--rail) + clamp(16px, 2.2vw, 32px) + var(--gutter)) * -1);
+  --proc-pull: calc(var(--rail) + clamp(16px, 2.2vw, 32px) + var(--gutter));
+  --grid-slack: max(0px, (100vw - var(--gutter) * 2 - 1680px) / 2);
+  margin: 0 0 0 calc((var(--proc-pull) + var(--grid-slack)) * -1);
   font-family: var(--font-display);
   font-size: clamp(40px, 9.4vw, 156px);
   font-weight: 800;
@@ -952,6 +1188,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   opacity: .8;
   padding-left: clamp(0px, 22vw, 420px);
 }
+/* На clay-сцене заголовок шёл единственным без своей ветки — в отличие от
+   .t-num, .cta, .coords и .proc__dots (см. «3. ТИПОГРАФИКА» и 8.2).
+   Греж-200 по коричневому даёт ~5.4:1, а вторая строка после своей .8
+   опускалась до ~4.2:1: для крупного кегля формально проходит, но заметно
+   бледнее первой. Выравниваем обе по одной, читаемой плотности. */
+.on-clay .proc__title { opacity: 1; }
+.on-clay .proc__title-2 > span { opacity: .88; }
 
 /* Рассыпанная микротипографика (Screenshot_2, Screenshot_5).
    Не сетка: блоки стоят по диагонали через весь экран на явных координатах.
@@ -1018,27 +1261,56 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: grid;
   grid-template-columns: minmax(220px, 3.2fr) 8.8fr;
   gap: clamp(32px, 5vw, 96px);
-  align-items: start;
+  /* stretch, а не start: липкой колонке нужен ход. Её контейнер (.proc__aside)
+     должен быть высотой во всю строку — по высоте колонки шагов, иначе
+     залипать не в чем: короткий бокс уходит вверх, и sticky отлипает
+     сразу же. Сам .proc__sticky высоту не тянет — он ограничен max-height. */
+  align-items: stretch;
 }
-.proc__sticky { position: sticky; top: 128px; display: flex; flex-direction: column; }
+/* Контейнер липкой колонки: высота от строки грида, содержимое прижато к верху */
+.proc__aside { position: relative; height: 100%; }
+/* Липкая колонка держится у верха экрана всю прокрутку блока: лид, индикатор
+   этапов и кнопка стоят на месте, пока справа идут шаги.
+
+   overflow здесь задавать нельзя. Любое значение кроме visible делает элемент
+   собственным контейнером прокрутки, и sticky перестаёт залипать — колонка
+   уезжает вверх вместе со страницей. По той же причине не подходит и
+   overflow: hidden ради обрезки: высоту ограничиваем, но содержимое
+   не прокручиваем, а поджимаем (см. @media по высоте ниже).
+
+   Прижим содержимого к верху: если колонка ниже своей max-height, лишнее
+   место уходит вниз, а не растягивает промежутки. */
+.proc__sticky {
+  position: sticky;
+  top: var(--proc-sticky-top, 128px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: calc(100vh - var(--proc-sticky-top, 128px) - var(--space-6));
+}
 .proc__lead { margin-bottom: clamp(32px, 4vw, 56px); }
 
-/* Вертикальный индикатор прогресса */
-.proc__track { position: relative; display: flex; gap: clamp(16px, 1.6vw, 24px); }
-.proc__track-line {
-  position: relative;
-  width: 1px;
-  flex: 0 0 1px;
-  background: var(--border-subtle);
+/* Невысокий экран: поднимаем колонку и поджимаем внутренние отступы —
+   именно они, а не прокрутка, спасают кнопку от ухода за нижнюю кромку. */
+@media (max-height: 820px) {
+  .proc__body { --proc-sticky-top: 88px; }
+  .proc__lead { margin-bottom: clamp(16px, 2vw, 26px); }
+  .proc__dots { gap: clamp(10px, 1.1vw, 15px); }
 }
-.proc__track-line i {
-  position: absolute;
-  inset: 0 0 auto 0;
-  display: block;
-  width: 1px;
-  height: 0;
-  background: var(--interactive);
-  transition: height 420ms var(--ease-reveal);
+@media (max-height: 680px) {
+  .proc__body { --proc-sticky-top: 72px; }
+  .proc__lead { margin-bottom: 12px; font-size: clamp(18px, 2vw, 24px); }
+  .proc__dots { gap: 8px; }
+}
+
+/* Вертикальный индикатор прогресса.
+   Линия одна — прочерченная SVG-схема (.scheme--track). Прежде рядом с ней
+   стояла вторая, .proc__track-line, заполнявшаяся от того же значения:
+   две параллельные полосы в 22px друг от друга читались как дефект вёрстки.
+   Отступ слева — место под схему, вынесенную из потока. */
+.proc__track {
+  position: relative;
+  padding-left: clamp(16px, 1.6vw, 24px);
 }
 .proc__dots {
   list-style: none;
@@ -1078,8 +1350,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .proc__cta {
   margin-top: clamp(32px, 4vw, 56px);
   align-self: flex-start;
+  /* Колонка — flex со своей max-height: без этого кнопка сжималась бы
+     первой, вместо того чтобы удержать высоту и отдать место прокрутке. */
+  flex: 0 0 auto;
   --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
   transition: color 300ms var(--ease-reveal), gap 300ms var(--ease-spring);
+}
+@media (max-height: 820px) {
+  .proc__cta { margin-top: clamp(20px, 2.4vw, 32px); }
 }
 .proc__cta svg path { transition: transform 300ms var(--ease-spring); }
 
@@ -1090,11 +1368,24 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding: clamp(28px, 3.4vw, 56px) 0;
   border-top: 1px solid var(--border-subtle);
   display: grid;
-  grid-template-columns: clamp(110px, 12vw, 180px) minmax(0, 1fr) clamp(120px, 15vw, 240px);
-  gap: clamp(20px, 2.6vw, 48px);
-  align-items: start;
+  /* Кадр — самый широкий трек строки, а не подпись справа: на сайте о балах
+     фотография несёт столько же смысла, сколько абзац. Служебная колонка
+     ужата до номера с тегом, текст — до комфортной меры чтения (см. .t-body).
+     Медиа и текст заданы долями (fr), а не vw: полоса шагов — это ~780–1080px
+     внутри сетки, и любой clamp от вьюпорта мерил бы не ту ширину (34vw
+     съедали текст до 139px на 1280). minmax снизу держит текст читаемым,
+     когда строка узкая. */
+  grid-template-columns:
+    clamp(96px, 10vw, 150px)
+    minmax(240px, 0.85fr)
+    minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 56px);
+  /* center, а не start: у высокого кадра короткий текст иначе прижат к верху
+     и строка выглядит полупустой снизу. */
+  align-items: center;
   transition: border-color 500ms var(--ease-reveal);
 }
+
 .step:last-child { border-bottom: 1px solid var(--border-subtle); }
 
 /* Тонкая линия-подсветка активного шага */
@@ -1106,9 +1397,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: var(--interactive);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 700ms var(--ease-reveal);
+  transition: transform 700ms var(--ease-reveal),
+              opacity 500ms var(--ease-reveal);
 }
 .step.is-active::before { transform: scaleX(1); }
+/* Пройденный шаг: линия остаётся прочерченной, но приглушённой — рядом
+   индикатор честно показывает «3 из 5», а сами шаги были бинарными.
+   Приём тот же, что у .proc__dots li.is-done. */
+.step.is-done::before { transform: scaleX(1); opacity: .4; }
 
 .step__rail { display: flex; flex-direction: column; gap: 10px; }
 .step__num {
@@ -1117,6 +1413,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transition: opacity 400ms var(--ease-reveal);
 }
 .step.is-active .step__num { opacity: 1; }
+.step.is-done .step__num { opacity: .75; }
 .step__tag { max-width: 16ch; }
 
 .step__title {
@@ -1125,18 +1422,23 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transition: opacity 400ms var(--ease-reveal);
 }
 .step.is-active .step__title { opacity: 1; }
-.step__body .t-body { max-width: 52ch; }
+/* Мера сузилась вслед за колонкой: на 52ch текст в новой сетке рвался бы
+   по-разному от шага к шагу, 42ch держит ровный правый край абзаца. */
+.step__body .t-body { max-width: 42ch; }
 
 /* Медиа шага — появляется на ховере/активном шаге, не перегружая полосу */
 .step__media {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   /* Подложка на время загрузки — своя у каждой сцены, иначе на коричневом
      фоне до отрисовки кадра зияет чёрный прямоугольник */
   background: var(--media-placeholder, var(--surface-void));
-  opacity: .5;
-  filter: saturate(.5);
-  transform: scale(.97);
+  /* Покой приглушён слабее, чем на мелком кадре: на 560px .5/saturate(.5)
+     читается как брак печати, а не как «шаг ещё не активен». Разница
+     активного и неактивного остаётся, но кадр в покое уже смотрибелен. */
+  opacity: .78;
+  filter: saturate(.8);
+  transform: scale(.985);
   transition: opacity 600ms var(--ease-reveal),
               filter 600ms var(--ease-reveal),
               transform 900ms var(--ease-reveal);
@@ -1216,8 +1518,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .scheme--track {
   position: absolute;
   top: 0;
-  left: -22px;
-  width: 20px;
+  /* Схема живёт в собственном отступе .proc__track, а не левее его границы:
+     раньше она висела на left: -22px рядом со второй, уже удалённой линией. */
+  left: 0;
+  width: clamp(16px, 1.6vw, 24px);
   height: 100%;
   aspect-ratio: auto;
   transform: none;
@@ -1805,6 +2109,32 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   /* Диагональ в контактах стояла над формой за счёт собственной высоты —
      в потоке её заменяет обычный отступ. */
   .contact__scatter { margin-bottom: clamp(32px, 4vw, 56px); }
+
+  /* Процесс: липкая колонка уезжает наверх, индикатор прогресса не нужен —
+     шаги и так идут подряд. Правила общие для планшета и телефона и стоят
+     в незамкнутом снизу запросе: дублировать их в блоке 760px не надо. */
+  .proc__body { grid-template-columns: 1fr; gap: clamp(32px, 5vw, 56px); }
+  /* Одна колонка — залипать не в чем: снимаем и высоту-распорку, и лимит */
+  .proc__aside { height: auto; }
+  .proc__sticky {
+    position: static;
+    max-height: none;
+  }
+  .proc__track { display: none; }
+  .proc__cta { margin-top: clamp(24px, 3vw, 36px); }
+
+  /* Кадры не прячем: для сайта о балах фотография — это и есть предмет
+     разговора, а пять текстовых абзацев подряд его не заменяют.
+     Медиа уходит под текст на всю ширину шага и всегда показано целиком —
+     ховера, который его проявлял, на тач-устройствах нет. */
+  .step__media {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 10;
+    margin-top: clamp(4px, 1.4vw, 16px);
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
 }
 
 /* Планшетный диапазон замкнут снизу: ниже 760px служебной полосы уже нет,
@@ -1826,17 +2156,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .grid > .col-1-7,
   .grid > .col-7-e,
   .grid > .col-8-e { grid-column: 2 / -1 !important; }
-  .segments,
   .music,
   .rules { grid-template-columns: 1fr; }
+  /* Форматы остаются двухколоночными — схлопывается только сдвиг каскада:
+     на планшетной ширине прежние 14vw увели бы второй блок за край. */
+  .segment:nth-child(2) { margin-left: clamp(0px, 6vw, 80px); }
 
-  /* Процесс: липкая колонка уезжает наверх, шаги теряют медиа-колонку */
-  .proc__body { grid-template-columns: 1fr; gap: clamp(32px, 5vw, 56px); }
-  .proc__sticky { position: static; }
-  .proc__track { display: none; }
-  .proc__cta { margin-top: clamp(24px, 3vw, 36px); }
+  /* Процесс: раскладка липкой колонки и медиа — в незамкнутом запросе
+     max-width: 1024px выше, здесь только сама сетка шага.
+     Медиа-колонка схлопывается: кадр встаёт под текст строкой ниже. */
   .step { grid-template-columns: clamp(100px, 16vw, 160px) minmax(0, 1fr); }
-  .step__media { display: none; }
   .proc__title-2 > span { padding-left: clamp(0px, 14vw, 200px); }
   /* .t-mega: --rail сузился выше в этом же блоке, и calc в его
      margin-inline пересчитывается сам — своего правила не нужно.
@@ -1876,13 +2205,50 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .eyebrow { display: block; }
 
   /* Всё, что было в одну колонку на планшете, остаётся ею и на телефоне */
-  .segments,
   .music { grid-template-columns: 1fr; }
-  .proc__body { grid-template-columns: 1fr; gap: clamp(32px, 5vw, 56px); }
-  .proc__sticky { position: static; }
-  .proc__track { display: none; }
-  .proc__cta { margin-top: clamp(24px, 3vw, 36px); }
-  .step__media { display: none; }
+
+  /* Лента остаётся: два экрана по-прежнему листаются вбок. Меняется
+     раскладка внутри слайда — колонок нет, всё идёт стопкой.
+     :nth-child(2) перечислен явно: его зеркальная пропорция колонок
+     специфичнее голого .segment и пережила бы переход в одну колонку. */
+  .segment,
+  .segment:nth-child(2) {
+    grid-template-columns: 1fr;
+    align-content: center;
+  }
+  /* Метка идёт первой по разметке — в одноколоночной сетке она и так
+     оказывается над кадром; выключку вправо у второго формата снимаем. */
+  .segment__mark,
+  .segment:nth-child(2) .segment__mark {
+    grid-column: 1;
+    grid-row: auto;
+    justify-content: flex-start;
+  }
+  .segment__media,
+  .segment:nth-child(2) .segment__media {
+    grid-column: 1;
+    grid-row: auto;
+    /* Кадр отдаёт часть высоты тексту, который встал под него */
+    height: clamp(200px, 38vh, 420px);
+  }
+  .segment__title,
+  .segment:nth-child(2) .segment__title,
+  .segment__body,
+  .segment:nth-child(2) .segment__body { grid-column: 1; grid-row: auto; }
+  /* Выключка вправо на узкой колонке не читается — оба блока по левому краю.
+     Прижим к низу кадра снимаем вместе с двухколоночной раскладкой:
+     текст идёт под заголовком обычным потоком. */
+  .segment__body,
+  .segment:nth-child(2) .segment__body {
+    text-align: left;
+    justify-self: start;
+    align-self: auto;
+    padding-bottom: 0;
+    margin-top: clamp(14px, 2.4vh, 24px);
+    max-width: none;
+  }
+  /* Раскладка процесса задана в max-width: 1024px — запрос не замкнут снизу
+     и действует здесь тоже; дублировать её было незачем. */
   .figure-row__media,
   .figure-row--flip .figure-row__media,
   .figure-row--narrow .figure-row__media { aspect-ratio: 16 / 10; }
@@ -1978,7 +2344,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   /* «ЧАСТНЫЕ БАЛЫ» — длинное слово, ужимаем чтобы не рвать сетку */
   .hero__title { font-size: clamp(30px, 8.6vw, 44px); }
   .hero__title .line-2 > span { font-size: clamp(22px, 6.4vw, 32px); padding-left: 0; }
-  .segment { min-height: 380px; }
 
   /* Процесс на мобильном: всё в одну колонку, номер над заголовком */
   .step { grid-template-columns: 1fr; gap: 14px; }
@@ -2011,8 +2376,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   [data-reveal] { opacity: 1; transform: none; }
   [data-gradual] .char { opacity: 1; transform: none; }
 
-  /* Мега-заголовок стоит на месте — без выезда из-под маски */
-  .t-mega > span { transform: none !important; transition: none !important; }
+  /* Мега-заголовок и заголовок формата стоят на месте — без выезда из-под маски */
+  .t-mega > span,
+  .t-format > span { transform: none !important; transition: none !important; }
 
   /* Схемы показываем сразу прочерченными: ни пунктира, ни задержек */
   .scheme [data-draw] {
@@ -2028,6 +2394,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .is-masked > img,
   .is-masked > .photo { transform: none !important; }
   .media img, .media:hover img { transform: none !important; }
+  .segment__media img, .segment__media:hover img { transform: none !important; }
 
   /* Прочерчивающиеся hairline: линия просто на месте */
   [data-line]::after { transform: scaleX(1) !important; transition: none !important; }

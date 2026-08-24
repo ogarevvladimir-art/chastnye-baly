@@ -252,29 +252,45 @@
 </section>
 
 <!-- ================= СЕГМЕНТАЦИЯ ================= -->
-<section class="section section--void" id="segments">
-  <!-- Координаты секции: номер главы и две ветки форматов -->
-  <p class="coords coords--l" aria-hidden="true" data-reveal>02</p>
-  <p class="coords coords--r" aria-hidden="true" data-reveal>A/B</p>
+<section class="section section--void section--screen" id="segments">
+  <!-- Координат здесь нет намеренно: они стоят по вертикали посередине,
+       то есть ровно поверх абзаца, а ветки A/B теперь названы метками
+       у самих кадров — цифра у края экрана их только дублировала бы. -->
   <div class="grid">
     <div class="eyebrow" data-line data-reveal>
       <p class="t-num">01 — ФОРМАТЫ</p>
       <p class="t-label">Два повода собрать людей вместе</p>
     </div>
+  </div>
 
-    <div class="segments">
-      <article class="segment" data-reveal style="--d:0ms">
+  <!-- Боковая прокрутка ведётся вертикальным скроллом страницы:
+       .segments-scroll — высокий контейнер, .segments-stage липнет к экрану,
+       а лента внутри едет по горизонтали на transform. Отдельного скролла
+       у ленты нет — пользователь просто крутит страницу вниз.
+
+       Контейнер вынесен из .grid намеренно: сетка держит поля и служебную
+       полосу, из-за чего липкий экран был уже вьюпорта (1325 против 1440)
+       и второй слайд уезжал за левый край. Свои поля слайд задаёт сам. -->
+  <div class="segments-scroll" id="segments-scroll">
+      <div class="segments-stage">
+        <div class="segments" id="segments-track"
+             role="group" aria-label="Форматы балов">
+      <article class="segment">
+        <!-- Метка: буква-координата плюс адресат формата. Название формата
+             в метку не идёт — оно стоит заголовком, и метка его дублировала бы. -->
+        <p class="segment__mark">
+          <span class="segment__letter" aria-hidden="true">A</span>
+          <span class="segment__kind">Для семьи и близких</span>
+        </p>
         <div class="segment__media">
           <img class="photo" src="assets/photos/nk-08.jpg" alt="Гости танцуют в паре на паркете бального зала"
                loading="lazy" decoding="async">
         </div>
-        <div class="segment__top">
-          <p class="t-num">A</p>
-          <p class="t-label">Для семьи и близких</p>
-        </div>
         <div class="segment__title">
-          <h2 class="t-h3" data-gradual>Частный бал</h2>
-          <p class="t-italic segment__sub">Свадьба, юбилей, день рождения</p>
+          <h2 class="t-format"><span>Частный<br>бал</span></h2>
+        </div>
+        <div class="segment__body">
+          <p class="t-italic">Свадьба, юбилей, день рождения</p>
           <p class="t-body segment__text">
             Событие, за которым стоит целая история семьи. Бал становится той редкой
             и бесценной возможностью собрать вместе несколько поколений близких людей
@@ -283,18 +299,20 @@
         </div>
       </article>
 
-      <article class="segment" data-reveal style="--d:140ms">
+      <article class="segment">
+        <p class="segment__mark">
+          <span class="segment__letter" aria-hidden="true">B</span>
+          <span class="segment__kind">Для компании, партнёров и сотрудников</span>
+        </p>
         <div class="segment__media">
           <img class="photo" src="assets/photos/ball-08.jpg" alt="Общий план зала: корпоративный бал, гости в вечерних нарядах"
                loading="lazy" decoding="async">
         </div>
-        <div class="segment__top">
-          <p class="t-num">B</p>
-          <p class="t-label">Для компании, партнёров и сотрудников</p>
-        </div>
         <div class="segment__title">
-          <h2 class="t-h3" data-gradual>Корпоративный бал</h2>
-          <p class="t-italic segment__sub">Годовщина, приём, презентация</p>
+          <h2 class="t-format"><span>Корпоративный<br>бал</span></h2>
+        </div>
+        <div class="segment__body">
+          <p class="t-italic">Годовщина, приём, презентация</p>
           <p class="t-body segment__text">
             Новогодний приём, вечер в честь партнёров, чествование лучших сотрудников.
             Балом венчают конференцию или форум, придают особый вес открытию новой
@@ -302,6 +320,13 @@
           </p>
         </div>
       </article>
+      </div>
+
+      <!-- Индикатор: две засечки, активная переключается по ходу прокрутки -->
+      <div class="segments__nav" aria-hidden="true">
+        <span class="segments__dots"><i class="is-on"></i><i></i></span>
+        <span class="segments__hint">Листайте вниз</span>
+      </div>
     </div>
   </div>
 </section>
@@ -333,7 +358,10 @@
         <p class="t-label scatter__note scatter__note--2" data-reveal style="--d:140ms">
           Пять шагов от первого звонка<br>до последнего вальса.
         </p>
-        <p class="t-num scatter__note scatter__note--4" data-reveal style="--d:280ms">05 / ЭТАПОВ</p>
+        <p class="t-label scatter__note scatter__note--3" data-reveal style="--d:280ms">
+          На каждом шаге вы знаете,<br>что происходит и почему.
+        </p>
+        <p class="t-num scatter__note scatter__note--4" data-reveal style="--d:420ms">05 / ЭТАПОВ</p>
       </div>
     </div>
 
@@ -347,8 +375,11 @@
 
           <div class="proc__track" aria-hidden="true">
             <!-- Тот же приём, что в карточках ленты: тонкая линия с засечками
-                 по числу шагов. Прочерчивается не своим observer'ом, а тем же
-                 прогрессом, что двигает #procProgress. -->
+                 по числу шагов. Прочерчивается не своим observer'ом, а
+                 прогрессом прокрутки шагов.
+                 Засечки стоят на равных долях viewBox, а JS подгоняет их cy
+                 под реальные позиции пунктов списка — кегль и gap меняются
+                 от вьюпорта, константы бы разъехались с подписями. -->
             <svg class="scheme scheme--track" id="procScheme" viewBox="0 0 24 400" fill="none" preserveAspectRatio="none">
               <line data-draw x1="12" y1="4" x2="12" y2="396" stroke="rgba(201,106,66,.30)" stroke-width="1.5"/>
               <circle data-tick cx="12" cy="4" r="3.5" fill="rgba(201,106,66,.42)"/>
@@ -357,7 +388,6 @@
               <circle data-tick cx="12" cy="298" r="3.5" fill="rgba(171,167,154,.34)"/>
               <circle data-tick cx="12" cy="396" r="3.5" fill="rgba(201,106,66,.42)"/>
             </svg>
-            <div class="proc__track-line"><i id="procProgress"></i></div>
             <ol class="proc__dots" id="procDots">
               <li data-step="01"><span>01</span> Разговор</li>
               <li data-step="02"><span>02</span> Концепция</li>
