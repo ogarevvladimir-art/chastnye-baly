@@ -420,7 +420,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .t-format.is-in > span { transform: none; }
 
 /* Строка с медиа внутри текста (Screenshot_12): картинка/видео —
-   такой же inline-элемент строки, как буква, и участвует в замере ширины. */
+   такой же inline-элемент строки, как буква, и участвует в замере ширины.
+
+   Пропорция задана здесь, а не берётся из файла: у <video> до прихода
+   метаданных своих пропорций нет (у <img> — до загрузки), и без
+   aspect-ratio строка встала бы по нулевой ширине кадра, а потом
+   прыгнула. С ней первый же замер fitMega верен.
+
+   object-fit покрывает и постер, и кадры петли: у обоих 3:2 против
+   16/9 коробки, без него постер лёг бы с полями. */
 .inline-media {
   display: inline-block;
   height: .72em;
@@ -429,6 +437,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   vertical-align: baseline;
   object-fit: cover;
   margin-inline: .12em;
+  /* Ни постера, ни кадров ещё нет — в строке не должно зиять просветом */
+  background: #14110f;
 }
 
 /* ---------- 4. СЕТКА ---------- */
@@ -749,22 +759,45 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding: 0;
 
   /* Кегль общий на все пункты и считается один раз здесь.
-     Ограничивает его тот пункт, которому теснее всех, — а это не просто
-     самый длинный: слово на нижней ступени каскада стартует правее и
-     места под него остаётся меньше. Поэтому min() перебирает все пять
-     пар «длина × ступень», а не только максимум длины.
+     Ограничивают его два независимых обстоятельства — ширина и высота, —
+     поэтому min() перебирает обе группы и берёт меньшее.
 
+     ШИРИНА. Теснее всех не просто самый длинный пункт: слово на нижней
+     ступени каскада стартует правее и места под него остаётся меньше.
+     Поэтому перебираются все девять пар «длина × ступень».
      Ширина под слово = ширина панели − паддинги − ступень − колонка
      номера. Делённая на знаки с коэффициентом .58 (прописная Manrope
-     Extra-Bold при letter-spacing -.04em) — это и есть предельный кегль. */
+     Extra-Bold при letter-spacing -.04em) — это и есть предельный кегль.
+
+     ВЫСОТА. Пунктов стало девять, и прежним кеглем они вместе с контактами
+     уходили под нижнюю кромку. Из высоты экрана вычитаем всё, что стоит
+     помимо списка, а остаток делим на девять строк. Подушки считаем в тех
+     же vh, в каких они и заданы clamp'ами, — фиксированной величиной в
+     пикселях они на невысоком ноутбуке съели бы у списка больше, чем
+     занимают на самом деле:
+       паддинги панели   10vh + 6vh          = 16vh
+       эйбрау            4vh + 32px (строка и padding)
+       строка CTA        4vh + 40px
+       подвал панели     6vh + 3vh + 56px    = 9vh + 56px
+       padding-block строк   9 × .8vh        = 7.2vh
+     Итого 40.2vh + 128px. Высота слова = кегль × .84 (line-height),
+     отсюда 9 × кегль × .84 ≤ 100vh − 40.2vh − 128px.
+     Пиксельная часть поднята со 128 до 160: на невысоком ноутбуке нижние
+     границы тех же clamp'ов упираются в свои пиксели и подушки перестают
+     ужиматься вместе с экраном — 32px и есть цена этого упора. */
   --fit: calc((100cqw - 2 * var(--gutter) - 76px));
   --menu-size: min(
     128px,
-    (var(--fit) -  0cqw) / (18 * .58),   /* Как это происходит */
-    (var(--fit) -  6cqw) / ( 6 * .58),   /* Вечера    */
-    (var(--fit) - 14cqw) / ( 8 * .58),   /* Форматы   */
-    (var(--fit) - 22cqw) / ( 5 * .58),   /* О нас     */
-    (var(--fit) - 30cqw) / ( 9 * .58)    /* Связаться */
+    (59.8vh - 160px) / 7.56,             /* девять строк по высоте */
+    (var(--fit) -  0cqw) / ( 7 * .58),   /* Форматы   */
+    (var(--fit) -  4cqw) / ( 6 * .58),   /* Подход    */
+    (var(--fit) -  8cqw) / ( 9 * .58),   /* Структура */
+    (var(--fit) - 12cqw) / ( 4 * .58),   /* Звук      */
+    (var(--fit) - 15cqw) / ( 4 * .58),   /* Люди      */
+    (var(--fit) - 18cqw) / ( 9 * .58),   /* До вечера */
+    (var(--fit) - 22cqw) / ( 7 * .58),   /* Правила   */
+    (var(--fit) - 26cqw) / ( 6 * .58),   /* Вечера    */
+    (var(--fit) - 30cqw) / ( 5 * .58)    /* О нас     */
   );
 }
 /* Разделителей между пунктами нет: слова разведены самим кеглем,
@@ -776,22 +809,32 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* Каскад: каждое следующее слово уходит правее предыдущего.
    Сдвиг задан переменной, потому что его же нужно вычесть из ширины,
-   доступной слову: без этого нижние пункты вылезали бы за край панели. */
+   доступной слову: без этого нижние пункты вылезали бы за край панели.
+
+   Шаг взят так, чтобы вылет последнего пункта остался прежним (~30cqw):
+   ступень — свойство композиции, а не числа пунктов, и от роста списка
+   с пяти до девяти правый край каскада съезжать не должен. */
 .menu-list-item:nth-child(1) { --step: 0; }
-.menu-list-item:nth-child(2) { --step: 6; }
-.menu-list-item:nth-child(3) { --step: 14; }
-.menu-list-item:nth-child(4) { --step: 22; }
-.menu-list-item:nth-child(5) { --step: 30; }
+.menu-list-item:nth-child(2) { --step: 4; }
+.menu-list-item:nth-child(3) { --step: 8; }
+.menu-list-item:nth-child(4) { --step: 12; }
+.menu-list-item:nth-child(5) { --step: 15; }
+.menu-list-item:nth-child(6) { --step: 18; }
+.menu-list-item:nth-child(7) { --step: 22; }
+.menu-list-item:nth-child(8) { --step: 26; }
+.menu-list-item:nth-child(9) { --step: 30; }
 .nav-link { padding-left: calc(var(--step, 0) * 1cqw); }
 
-/* Тона — по одному из палитры на пункт, новых цветов не вводим */
-.menu-list-item:nth-child(1) .nav-link__text { color: var(--greige-200); }
-.menu-list-item:nth-child(2) .nav-link__text { color: var(--greige-100); }
+/* Тона: девяти оттенков в палитре нет, поэтому идёт цикл из четырёх.
+   Цикл читается как система, а разрозненные повторы — как сбой набора.
+   Терракота в цикл не входит: она закреплена за интерактивом (номера,
+   CTA), и пункт в ней прочитался бы как активный или выбранный. */
+.menu-list-item:nth-child(4n + 1) .nav-link__text { color: var(--greige-200); }
+.menu-list-item:nth-child(4n + 2) .nav-link__text { color: var(--greige-100); }
 /* Тёмно-коричневый на почти чёрной панели уходит в фон — держим его
    на полной непрозрачности, иначе пункт перестаёт быть ссылкой */
-.menu-list-item:nth-child(3) .nav-link__text { color: var(--greige-700); opacity: 1; }
-.menu-list-item:nth-child(4) .nav-link__text { color: var(--greige-200); }
-.menu-list-item:nth-child(5) .nav-link__text { color: var(--terracotta); }
+.menu-list-item:nth-child(4n + 3) .nav-link__text { color: var(--greige-700); opacity: 1; }
+.menu-list-item:nth-child(4n)     .nav-link__text { color: var(--greige-300); }
 
 /* Ссылка: маска для въезда снизу, подложка-заливка при наведении */
 .nav-link {
@@ -855,6 +898,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transform: translateX(clamp(8px, 1.2vw, 18px));
 }
 .nav-link:hover .nav-link__num { opacity: 1; }
+
+/* Контакты под списком. Язык — .cta со страницы (текст со стрелкой),
+   но кегль выше корпусного: строка стоит одна против девяти крупных слов
+   и на дежурных 12px просто пропала бы. Ступень каскада продолжает ряд
+   на шаг за последний пункт — CTA дочитывается как его продолжение,
+   не будучи при этом десятым номером. */
+.menu-panel__cta {
+  --step: 34;
+  margin-left: calc(var(--step) * 1cqw);
+  margin-top: clamp(24px, 4vh, 44px);
+  font-size: clamp(15px, 1.5cqw, 20px);
+  letter-spacing: .12em;
+  color: var(--interactive);
+}
+.menu-panel__cta svg { width: 34px; }
+.menu-panel__cta:hover { color: var(--text-on-void-strong); }
 
 .menu-panel__foot {
   display: grid;
@@ -1034,8 +1093,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    с реальным положением. Sticky ведёт браузер — рассинхрону неоткуда взяться. */
 .segments-scroll {
   position: relative;
-  /* 100svh — сам экран, ещё 100svh — путь до второго формата */
-  height: 200svh;
+  /* 100svh — сам экран, остальные 220svh — путь прокрутки. Он длиннее
+     самого перехода намеренно: по краям пути слайд стоит неподвижно
+     (паузы режет updateSegments), и на них уходит бóльшая часть запаса.
+     На 200svh переход занимал весь путь целиком — второй формат трогался
+     сразу, ещё до того как прочитан заголовок первого. */
+  height: 320svh;
 }
 .segments-stage {
   position: sticky;
@@ -1093,8 +1156,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   height: clamp(280px, 68vh, 820px);
   background: var(--media-placeholder, var(--surface-deep));
 }
-.segment__media img { transition: transform 1200ms var(--ease-reveal); }
-.segment__media:hover img { transform: scale(1.04); }
+/* Без зума по наведению: кадр здесь едет по скроллу, и на трекпаде курсор
+   часто стоит над ним во время прокрутки — приём срабатывал бы посреди
+   перехода, от движения, которого пользователь не делал. */
 .segment:nth-child(2) .segment__media { grid-column: 2; }
 
 /* Заголовок наезжает на нижний край кадра (Screenshot_9): занимает обе
@@ -1159,7 +1223,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .segment:nth-child(2) .segment__body { grid-column: 1; text-align: left; justify-self: start; }
 .segment__text { margin-top: clamp(12px, 1.8vh, 28px); }
 
-/* Индикатор ленты: две засечки и подсказка направления */
+/* Индикатор ленты: номер формата, две дорожки прогресса и общее число.
+   Дорожки не переключаются, а наливаются: подсказку «листайте вниз» они
+   заменили собой — направление объясняет само движение с первого поворота
+   колеса, а вот положение внутри перехода иначе не показать. */
 .segments__nav {
   display: flex;
   align-items: center;
@@ -1172,15 +1239,50 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   text-transform: uppercase;
   color: var(--text-on-void-muted);
 }
-.segments__dots { display: flex; gap: 6px; }
-.segments__dots i {
+
+/* Пара номеров читается как «01 из 02»: текущий в полную силу, общее
+   приглушено. Предлог не нужен — разницы тона хватает.
+   tabular-nums, чтобы смена 01 → 02 не дёргала дорожки по горизонтали. */
+.segments__num {
+  font-variant-numeric: tabular-nums;
+  color: var(--interactive);
+  transition: color 400ms var(--ease-reveal);
+}
+.segments__num--total { color: currentColor; opacity: .55; }
+
+.segments__track { display: flex; gap: 6px; }
+/* Приглушена сама канавка, а не элемент: opacity на элементе умножилась бы
+   и на заливку внутри, и терракота горела бы в четверть силы — слабее
+   номеров, которые она подписывает. */
+.segments__track i {
+  position: relative;
+  overflow: hidden;
   width: 26px;
   height: 2px;
-  background: currentColor;
-  opacity: .28;
-  transition: opacity 400ms var(--ease-reveal), background 400ms var(--ease-reveal);
+  background: color-mix(in srgb, currentColor 28%, transparent);
 }
-.segments__dots i.is-on { opacity: 1; background: var(--interactive); }
+/* Заливка идёт transform'ом и без transition: --seg-progress пишется на
+   каждом кадре скролла, и любое сглаживание отставило бы дорожку от ленты,
+   которую тот же прогресс двигает мгновенно.
+   Переменную берём наследованием от .segments-scroll — скрипту дорожки
+   знать не нужно, он ведёт только номер. */
+.segments__track i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--interactive);
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left;
+}
+/* Первая дорожка отрабатывает первую половину пути, вторая — вторую:
+   0 → .5 даёт первой 0 → 1, на второй половине она стоит полной.
+   clamp() без min/max-функций — в calc() они поддержаны хуже. */
+.segments__track i:first-child::after {
+  --fill: clamp(0, calc(var(--seg-progress, 0) * 2), 1);
+}
+.segments__track i:last-child::after {
+  --fill: clamp(0, calc(var(--seg-progress, 0) * 2 - 1), 1);
+}
 
 /* ---------- 8. ПРОЦЕСС «Как мы готовим ваш вечер» ---------- */
 /* Крупный заголовок-графика + рассыпанная микротипографика (язык ORE),
@@ -2171,7 +2273,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .media-frame::before { top: calc(-1 * var(--mark-out));    left: calc(-1 * var(--mark-out)); }
 .media-frame::after  { bottom: calc(-1 * var(--mark-out)); right: calc(-1 * var(--mark-out)); }
 
-/* Кадр кейса вынесен за сетку вплотную к краю вьюпорта, а секция #evenings
+/* Кадр кейса вынесен за сетку вплотную к краю вьюпорта, а секция #cases
    режет всё, что за него выходит (overflow: hidden под .t-mega--cropped).
    Отставленная наружу марка попала бы ровно под этот обрез — уводим внутрь.
    Правило стоит после .media-frame: там объявлен тот же --mark-out,
@@ -2704,23 +2806,44 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .menu-panel { width: 100%; }
   .menu-panel__foot { grid-template-columns: 1fr; gap: 18px; }
   /* Ступень каскада втрое мельче: на телефонной ширине прежние 30%
-     съедали бы у нижних пунктов треть строки. Кегль формула пересчитает
-     сама — она уже учитывает --step. Потолок опускаем: 128px здесь
-     не достижим, но и 40px для «О НАС» на узком экране довольно. */
-  .menu-list-item:nth-child(2) { --step: 2; }
-  .menu-list-item:nth-child(3) { --step: 5; }
-  .menu-list-item:nth-child(4) { --step: 8; }
-  .menu-list-item:nth-child(5) { --step: 11; }
-  /* Колонка номера уже, потолок ниже — пересчитываем те же пять пар */
+     съедали бы у нижних пунктов треть строки. Итоговый вылет держим
+     на прежних ~11cqw — он от числа пунктов не зависит. Кегль формула
+     пересчитает сама, она уже учитывает --step. Потолок опускаем:
+     128px здесь не достижим, но и 40px на узком экране довольно. */
+  .menu-list-item:nth-child(2) { --step: 1.5; }
+  .menu-list-item:nth-child(3) { --step: 3; }
+  .menu-list-item:nth-child(4) { --step: 4.5; }
+  .menu-list-item:nth-child(5) { --step: 6; }
+  .menu-list-item:nth-child(6) { --step: 7; }
+  .menu-list-item:nth-child(7) { --step: 8; }
+  .menu-list-item:nth-child(8) { --step: 9.5; }
+  .menu-list-item:nth-child(9) { --step: 11; }
+  .menu-panel__cta { --step: 12.5; }
+  /* Колонка номера уже, потолок ниже — пересчитываем те же девять пар.
+     Подушки по высоте другие: нижний паддинг панели упёрся в свои 40px,
+     а подвал встал в одну колонку и вырос втрое по высоте:
+       паддинги панели   10vh + 40px
+       эйбрау            4vh + 32px
+       строка CTA        4vh + 34px
+       подвал панели     6vh + 3vh + 110px (три блока друг под другом)
+       padding-block строк   7.2vh
+     Итого 34.2vh + 216px, и та же девятка строк. Пиксельная часть поднята
+     до 256 по той же причине, что и на десктопе: на коротком экране
+     подушки упираются в нижние границы своих clamp'ов. */
   .menu-list {
     --fit: calc((100cqw - 2 * var(--gutter) - 52px));
     --menu-size: min(
       40px,
-      (var(--fit) -  0cqw) / (18 * .58),
-      (var(--fit) -  2cqw) / ( 6 * .58),
-      (var(--fit) -  5cqw) / ( 8 * .58),
-      (var(--fit) -  8cqw) / ( 5 * .58),
-      (var(--fit) - 11cqw) / ( 9 * .58)
+      (65.8vh - 256px) / 7.56,
+      (var(--fit) -    0cqw) / ( 7 * .58),   /* Форматы   */
+      (var(--fit) -  1.5cqw) / ( 6 * .58),   /* Подход    */
+      (var(--fit) -    3cqw) / ( 9 * .58),   /* Структура */
+      (var(--fit) -  4.5cqw) / ( 4 * .58),   /* Звук      */
+      (var(--fit) -    6cqw) / ( 4 * .58),   /* Люди      */
+      (var(--fit) -    7cqw) / ( 9 * .58),   /* До вечера */
+      (var(--fit) -    8cqw) / ( 7 * .58),   /* Правила   */
+      (var(--fit) -  9.5cqw) / ( 6 * .58),   /* Вечера    */
+      (var(--fit) -   11cqw) / ( 5 * .58)    /* О нас     */
     );
   }
   /* «ЧАСТНЫЕ БАЛЫ» — длинное слово, ужимаем чтобы не рвать сетку */
@@ -2780,7 +2903,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .is-masked > img,
   .is-masked > .photo { transform: none !important; }
   .media img, .media:hover img { transform: none !important; }
-  .segment__media img, .segment__media:hover img { transform: none !important; }
 
   /* Прочерчивающиеся hairline: линия просто на месте */
   [data-line]::after { transform: scaleX(1) !important; transition: none !important; }

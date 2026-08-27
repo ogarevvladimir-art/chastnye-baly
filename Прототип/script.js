@@ -56,6 +56,44 @@
     document.documentElement.classList.add('no-lenis');
   }
 
+  /* ---------- 0b. Шина скролла ---------- */
+  /* Всё, что ведётся прокруткой (шапка, лента форматов, «Подход», шкала
+     вечера, параллакс), читает геометрию через getBoundingClientRect.
+     Каждая своя подписка = своя точка чтения в кадре, а чтение после чужой
+     записи в стили заставляет браузер пересобирать раскладку заново.
+     Поэтому подписка одна, а задачи выстроены в очередь: за кадр раскладка
+     считается один раз, и порядок вызовов предсказуем.
+
+     ScrollTrigger сюда не заводим — GSAP ждёт свой ScrollTrigger.update
+     прямо на событии Lenis (см. выше), и задержка на кадр рассинхронила бы
+     его с позицией страницы. */
+  var scrollTasks = [];
+  var scrollTicking = false;
+
+  function runScrollTasks() {
+    scrollTicking = false;
+    for (var i = 0; i < scrollTasks.length; i++) scrollTasks[i]();
+  }
+
+  function requestScrollFrame() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(runScrollTasks);
+  }
+
+  /* immediate прогоняет задачу сразу: стартовое состояние (класс шапки,
+     позиция ленты, заливка индикаторов) должно быть верным до первого
+     движения мыши, а не появляться от него. */
+  function onScrollTask(fn, immediate) {
+    scrollTasks.push(fn);
+    if (immediate) fn();
+  }
+
+  window.addEventListener('scroll', requestScrollFrame, { passive: true });
+  // Lenis двигает страницу сам — нативный scroll при этом не всегда стреляет,
+  // а его собственное событие приходит кадр в кадр с его rAF
+  if (lenis) lenis.on('scroll', requestScrollFrame);
+
   /* Якорные ссылки: нативный переход обошёл бы Lenis и дёрнул бы страницу.
      Делегируем на документ — ссылки есть и в меню, и в футере, и в контенте. */
   document.addEventListener('click', function (e) {
@@ -78,6 +116,82 @@
       // Адрес обновляем сами: preventDefault снял штатное поведение
       if (window.history && history.pushState) history.pushState(null, '', hash);
     }
+  });
+
+  /* ---------- 0c. Источники видео ---------- */
+  /* Каждое video[data-sources] перечисляет варианты одной и той же петли
+     от лёгкого к тяжёлому. Перебор ведём сами, потому что штатный <source>
+     эту задачу не решает: браузер выбирает вариант по MIME-типу и наличие
+     файла не проверяет — на 404 считает источник рабочим, останавливается
+     на нём и остаётся с пустым кадром, дальше по списку не идёт.
+     Поэтому спрашиваем HEAD и берём первый существующий.
+
+     Если не нашлось ничего (сейчас это норма — облегчённых версий ещё нет),
+     src не ставим вовсе: у обоих видео постером стоит тот самый кадр,
+     который показывает петля, и элемент остаётся с ним. Отдельного
+     фолбэка на разметке для этого не нужно.
+
+     Флаг data-loop-ready снимает с элемента ожидание: обработчики петли
+     (герой) ждут его, чтобы не дёргать play() по пустому src. */
+  function resolveVideoSources(video) {
+    var list = (video.getAttribute('data-sources') || '')
+      .split(',')
+      .map(function (s) { return s.trim(); })
+      .filter(Boolean);
+
+    if (!list.length) return Promise.resolve(false);
+
+    /* fetch есть не везде, где работает остальная страница; без него
+       перебирать нечем — берём первый вариант и полагаемся на постер,
+       если файла не окажется. */
+    if (typeof window.fetch !== 'function') {
+      video.src = list[0];
+      return Promise.resolve(true);
+    }
+
+    var next = function (i) {
+      if (i >= list.length) return Promise.resolve(false);
+      return fetch(list[i], { method: 'HEAD' })
+        .then(function (res) {
+          if (!res.ok) return next(i + 1);
+          video.src = list[i];
+          // preload="metadata" сам по себе новый src не подхватывает
+          video.load();
+          return true;
+        })
+        .catch(function () { return next(i + 1); });
+    };
+
+    return next(0);
+  }
+
+  /* Обещание кладём на сам элемент: перебор идёт для всех video[data-sources]
+     разом (ниже), а раздел 8 ждёт исхода конкретно для героя. Без кэша
+     он запустил бы вторую серию HEAD-запросов по тому же списку.
+     data-loop-ready — тот же исход в разметке, для отладки и стилей. */
+  function initVideoSources(video) {
+    if (!video._sourcesReady) {
+      video._sourcesReady = resolveVideoSources(video).then(function (found) {
+        video.setAttribute('data-loop-ready', found ? 'src' : 'poster');
+        return found;
+      });
+    }
+    return video._sourcesReady;
+  }
+
+  document.querySelectorAll('video[data-sources]').forEach(function (video) {
+    /* Петля в строке текста при prefers-reduced-motion не нужна совсем:
+       постер уже в кадре, качать файл ради статичной картинки незачем.
+       Герой — исключение, он глушит петлю сам (см. раздел 8): там видео
+       нужно и неподвижным, ради глубины кадра под заголовком. */
+    if (reduceMotion && !video.classList.contains('hero__video')) {
+      video.removeAttribute('autoplay');
+      video.removeAttribute('loop');
+      video.setAttribute('data-loop-ready', 'poster');
+      video._sourcesReady = Promise.resolve(false);
+      return;
+    }
+    initVideoSources(video);
   });
 
   /* ---------- 0. Библиотека схем ---------- */
@@ -539,10 +653,27 @@
   var segScroll = document.getElementById('segments-scroll');
 
   if (segScroll) {
-    var segDots = Array.prototype.slice.call(
-      document.querySelectorAll('.segments__dots i')
-    );
-    var segTicking = false;
+    /* Дорожки индикатора наливаются на CSS: --seg-progress наследуется от
+       .segments-scroll, и заливка идёт кадр в кадр со скроллом сама.
+       Скрипту остаётся номер формата — он меняется дважды за весь путь,
+       и трогать DOM на каждом кадре ради него незачем. */
+    var segNum = document.getElementById('segments-num');
+    var segIdx = -1;
+
+    /* Доля пути с каждого края, на которой лента стоит. Переход должен
+       читаться сменой кадра: слайд выходит, останавливается и даёт себя
+       прочитать, и только потом уезжает. Без остановок то же расстояние
+       превращается в непрерывное сползание — глазу не за что зацепиться. */
+    var SEG_HOLD = .22;
+
+    /* Разгон и торможение на стыках с паузами. Линейный прогресс на границе
+       паузы трогает ленту рывком с полной скоростью — движение начинается
+       не оттуда, где оно на самом деле началось. */
+    function segEase(t) {
+      return t < .5
+        ? 2 * t * t
+        : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    }
 
     function updateSegments() {
       var rect = segScroll.getBoundingClientRect();
@@ -552,36 +683,35 @@
       var travel = rect.height - window.innerHeight;
       if (travel <= 0) return;
 
-      var p = -rect.top / travel;
-      p = Math.max(0, Math.min(1, p));
+      var raw = -rect.top / travel;
+      raw = Math.max(0, Math.min(1, raw));
+
+      /* Сырой прогресс — доля прокрутки, рабочий — доля самого перехода.
+         Края пути уходят в паузы, движение живёт только в середине;
+         зажим и даёт неподвижность на обоих краях. */
+      var p = (raw - SEG_HOLD) / (1 - SEG_HOLD * 2);
+      p = segEase(Math.max(0, Math.min(1, p)));
 
       segScroll.style.setProperty('--seg-progress', p.toFixed(4));
 
-      // Засечка переключается на середине пути
-      if (segDots.length) {
+      /* Номер переключается на середине хода ленты, а не прокрутки:
+         середина прокрутки теперь приходится на движение, но считать её
+         серединой перехода нельзя — паузы по краям не равны сами себе.
+         Та же половина, на которой заполняется первая дорожка, — номер
+         и заливка меняются одним и тем же порогом. */
+      if (segNum) {
         var idx = p < .5 ? 0 : 1;
-        segDots.forEach(function (dot, i) {
-          dot.classList.toggle('is-on', i === idx);
-        });
+        if (idx !== segIdx) {
+          segIdx = idx;
+          segNum.textContent = idx === 0 ? '01' : '02';
+        }
       }
     }
 
-    function requestSegments() {
-      if (segTicking) return;
-      segTicking = true;
-      window.requestAnimationFrame(function () {
-        segTicking = false;
-        updateSegments();
-      });
-    }
-
-    window.addEventListener('scroll', requestSegments, { passive: true });
-    window.addEventListener('resize', requestSegments, { passive: true });
-    // Lenis двигает страницу трансформом — нативный scroll при этом
-    // не всегда стреляет, поэтому подписываемся и на его событие
-    if (lenis) lenis.on('scroll', requestSegments);
-
-    updateSegments();
+    onScrollTask(updateSegments, true);
+    // Ресайз редок и приходит вне потока прокрутки — гонять его
+    // через кадровый тикер незачем
+    window.addEventListener('resize', updateSegments, { passive: true });
   }
 
   /* ---------- 3b. Reveal on scroll ---------- */
@@ -775,8 +905,10 @@
   /* Кадры шагов сюда не попадают: в мозаике они стоят неподвижно.
      Раскладка там и без того держится на сдвигах (см. .step в 8.3),
      и едущая внутри картинка спорила бы с ними. */
+  /* Собственного rAF здесь нет: шина скролла и так даёт ровно один вызов
+     на кадр, а свой тикер поверх неё добавил бы кадр задержки — картинка
+     ехала бы позади страницы. */
   var parallaxItems = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
-  var ticking = false;
 
   /* Параллакс не должен спорить с раскрытием маски: пока кадр открывается,
      transform картинки ведёт GSAP. Ищем ближайший кадрирующий бокс и ждём,
@@ -812,7 +944,6 @@
           (progress * shift).toFixed(2) + 'px,0)';
       }
     });
-    ticking = false;
   }
 
   /* ---------- 5. Процесс: активный шаг и индикатор прогресса ---------- */
@@ -940,13 +1071,9 @@
   function onScroll() {
     onScrollHeader();
     updateProcess();
-    if (!reduceMotion && !ticking) {
-      ticking = true;
-      window.requestAnimationFrame(applyParallax);
-    }
+    if (!reduceMotion) applyParallax();
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
   // Позиции засечек читают раскладку — пересчитываем их только на ресайзе,
   // а не в каждом кадре прокрутки. Через rAF, как и остальные пересчёты.
   var procTicking = false;
@@ -962,10 +1089,7 @@
     onScroll();
     scheduleProcTicks();
   }, { passive: true });
-  // Lenis скроллит реальное окно, так что нативное событие приходит и без этого,
-  // но подписка гарантирует кадр в кадр с его собственным rAF
-  if (lenis) lenis.on('scroll', onScroll);
-  onScroll();
+  onScrollTask(onScroll, true);
   layoutProcTicks();
   // Кегль пунктов зависит от гарнитуры: до её загрузки высоты строк другие
   if (document.fonts && document.fonts.ready) {
@@ -982,7 +1106,6 @@
     // Битый путь тоже меняет высоту строки — плейсхолдер остаётся, но кадра нет
     img.addEventListener('error', scheduleProcTicks, { once: true, passive: true });
   });
-  if (!reduceMotion) applyParallax();
 
   /* ---------- 5b. Sticky-стопка полос в «Людях» ---------- */
   /* Полосы липнут к верху экрана и складываются в стопку: следующая наезжает
@@ -1278,11 +1401,9 @@
   if (timeline) {
     layoutTimelineGaps();
     layoutEveningTicks();
-    updateTimeline();
 
-    window.addEventListener('scroll', updateTimeline, { passive: true });
+    onScrollTask(updateTimeline, true);
     window.addEventListener('resize', scheduleTimeline, { passive: true });
-    if (lenis) lenis.on('scroll', updateTimeline);
 
     // Кегль пунктов зависит от гарнитуры: до её загрузки высоты строк другие
     if (document.fonts && document.fonts.ready) {
@@ -1320,7 +1441,10 @@
   var heroVideo = document.querySelector('.hero__video');
 
   if (heroVideo) {
-    // Показываем видео только когда есть первый кадр — иначе в кадре подложка
+    /* Показываем элемент, когда в нём есть что показывать: первый кадр
+       петли — или постер, если ни один источник не нашёлся. Без этого
+       .hero__video так и остался бы на opacity: 0, и в кадре стояла бы
+       голая подложка вместо кадра бала. */
     var showVideo = function () { heroVideo.setAttribute('data-ready', ''); };
 
     if (heroVideo.readyState >= 2) {
@@ -1338,11 +1462,22 @@
         { scale: 1, duration: 20, ease: 'none', repeat: -1, yoyo: true });
     }
 
-    if (reduceMotion) {
-      // Статичный кадр вместо цикла
-      heroVideo.removeAttribute('loop');
-      heroVideo.pause();
-    } else {
+    /* Ждём перебора источников (раздел 0c): до него src пуст, и play()
+       ушёл бы вхолостую. Исход «постер» — тоже исход: показываем кадр
+       и петлёй больше не занимаемся. */
+    initVideoSources(heroVideo).then(function (found) {
+      if (!found) {
+        showVideo();
+        return;
+      }
+
+      if (reduceMotion) {
+        // Статичный кадр вместо цикла: видео нужно ради глубины, не движения
+        heroVideo.removeAttribute('loop');
+        heroVideo.pause();
+        return;
+      }
+
       // Safari/iOS могут отклонить autoplay — пробуем ещё раз явно
       var play = heroVideo.play();
       if (play && typeof play.catch === 'function') {
@@ -1367,7 +1502,7 @@
           });
         }, { threshold: 0.1 }).observe(heroVideo);
       }
-    }
+    });
   }
 
 })();

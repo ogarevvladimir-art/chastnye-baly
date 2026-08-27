@@ -140,59 +140,111 @@
       <div class="backdrop-layer"></div>
 
       <!-- Фоновая графика: реагирует на наведение по пунктам.
-           Содержимое подставляется из библиотеки схем по data-scheme. -->
+           Содержимое подставляется из библиотеки схем по data-scheme.
+           Слот здесь нужен под каждый data-shape меню — пункт без своего
+           .bg-shape-N просто не зажигает ничего, и наведение выглядит
+           сломанным. Схем в библиотеке шесть на девять пунктов, поэтому
+           часть повторяется; повтор выбран по смыслу секции, а не по счёту. -->
       <div class="ambient-shapes" aria-hidden="true">
         <svg class="bg-shape bg-shape-1" data-scheme="1" viewBox="0 0 400 400" fill="none"></svg>
         <svg class="bg-shape bg-shape-2" data-scheme="2" viewBox="0 0 400 400" fill="none"></svg>
         <svg class="bg-shape bg-shape-3" data-scheme="3" viewBox="0 0 400 400" fill="none"></svg>
         <svg class="bg-shape bg-shape-4" data-scheme="4" viewBox="0 0 400 400" fill="none"></svg>
         <svg class="bg-shape bg-shape-5" data-scheme="5" viewBox="0 0 400 400" fill="none"></svg>
+        <!-- 06 «До вечера» — траектории пар: репетиции и есть подготовка -->
+        <svg class="bg-shape bg-shape-6" data-scheme="4" viewBox="0 0 400 400" fill="none"></svg>
+        <!-- 07 «Правила» — шаги венского вальса: схема, которая до сих пор
+             лежала в библиотеке неподключённой -->
+        <svg class="bg-shape bg-shape-7" data-scheme="6" viewBox="0 0 400 400" fill="none"></svg>
+        <!-- 08 «Вечера» — паркетная сетка: кейсы состоявшихся балов -->
+        <svg class="bg-shape bg-shape-8" data-scheme="1" viewBox="0 0 400 400" fill="none"></svg>
+        <!-- 09 «О нас» — концентрические круги: команда вокруг центра -->
+        <svg class="bg-shape bg-shape-9" data-scheme="2" viewBox="0 0 400 400" fill="none"></svg>
       </div>
     </div>
 
     <div class="menu-panel__inner">
       <p class="t-num menu-panel__eyebrow" data-menu-fade>00 — НАВИГАЦИЯ</p>
 
+      <!-- Номер и слово пункта — те же, что стоят в эйбрау секции, и порядок
+           тот же, что на странице: иначе на экране оказываются две нумерации
+           сразу и пользователь, выбравший «03», приезжает на «01».
+           Кегль у пунктов общий и посчитан в CSS (.menu-list → --menu-size)
+           по длине каждого из них. Меняете текст пункта — поправьте там
+           соответствующее число знаков, иначе слово перестанет влезать. -->
       <ul class="menu-list">
-        <!-- Кегль у пунктов общий и посчитан в CSS (.menu-list → --menu-size)
-             по длине каждого из них. Меняете текст пункта — поправьте там
-             соответствующее число знаков, иначе слово перестанет влезать. -->
         <li class="menu-list-item" data-shape="1">
-          <a href="#process" class="nav-link" data-menu-close>
-            <span class="nav-link__num">01</span>
-            <span class="nav-link__text">Как это происходит</span>
-            <span class="nav-link__bg"></span>
-          </a>
-        </li>
-        <li class="menu-list-item" data-shape="2">
-          <a href="#evenings" class="nav-link" data-menu-close>
-            <span class="nav-link__num">02</span>
-            <span class="nav-link__text">Вечера</span>
-            <span class="nav-link__bg"></span>
-          </a>
-        </li>
-        <li class="menu-list-item" data-shape="3">
           <a href="#segments" class="nav-link" data-menu-close>
-            <span class="nav-link__num">03</span>
+            <span class="nav-link__num">01</span>
             <span class="nav-link__text">Форматы</span>
             <span class="nav-link__bg"></span>
           </a>
         </li>
+        <li class="menu-list-item" data-shape="2">
+          <a href="#process" class="nav-link" data-menu-close>
+            <span class="nav-link__num">02</span>
+            <span class="nav-link__text">Подход</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+        <li class="menu-list-item" data-shape="3">
+          <a href="#evening-structure" class="nav-link" data-menu-close>
+            <span class="nav-link__num">03</span>
+            <span class="nav-link__text">Структура</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
         <li class="menu-list-item" data-shape="4">
-          <a href="#about" class="nav-link" data-menu-close>
+          <a href="#music" class="nav-link" data-menu-close>
             <span class="nav-link__num">04</span>
-            <span class="nav-link__text">О нас</span>
+            <span class="nav-link__text">Звук</span>
             <span class="nav-link__bg"></span>
           </a>
         </li>
         <li class="menu-list-item" data-shape="5">
-          <a href="#contact" class="nav-link" data-menu-close>
+          <a href="#people" class="nav-link" data-menu-close>
             <span class="nav-link__num">05</span>
-            <span class="nav-link__text">Связаться</span>
+            <span class="nav-link__text">Люди</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+        <li class="menu-list-item" data-shape="6">
+          <a href="#prep" class="nav-link" data-menu-close>
+            <span class="nav-link__num">06</span>
+            <span class="nav-link__text">До вечера</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+        <li class="menu-list-item" data-shape="7">
+          <a href="#etiquette" class="nav-link" data-menu-close>
+            <span class="nav-link__num">07</span>
+            <span class="nav-link__text">Правила</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+        <li class="menu-list-item" data-shape="8">
+          <a href="#cases" class="nav-link" data-menu-close>
+            <span class="nav-link__num">08</span>
+            <span class="nav-link__text">Вечера</span>
+            <span class="nav-link__bg"></span>
+          </a>
+        </li>
+        <li class="menu-list-item" data-shape="9">
+          <a href="#about" class="nav-link" data-menu-close>
+            <span class="nav-link__num">09</span>
+            <span class="nav-link__text">О нас</span>
             <span class="nav-link__bg"></span>
           </a>
         </li>
       </ul>
+
+      <!-- Контакты стоят вне списка: своего номера в эйбрау у них нет,
+           и десятым пунктом им вставать не с чем. Язык — .cta, единственный
+           призыв на сайте; ступень каскада продолжает ряд на один шаг. -->
+      <a class="cta menu-panel__cta" href="#contact" data-menu-close data-menu-fade>
+        Связаться
+        <svg viewBox="0 0 26 8" aria-hidden="true"><path d="M0 4h24M20 1l4 3-4 3"/></svg>
+      </a>
 
       <div class="menu-panel__foot">
         <div class="menu-panel__foot-col" data-menu-fade>
@@ -217,19 +269,25 @@
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
   <div class="hero__media">
+    <!-- Источники перечислены от лёгкого к тяжёлому, перебор ведёт скрипт
+         (см. «0c. Источники видео»). Штатный <source> здесь не годится:
+         браузер отсеивает варианты по MIME-типу, а существование файла
+         не проверяет — на 404 считает источник рабочим и останавливается
+         на нём с пустым кадром. Пока облегчённых версий нет, разрешается
+         hero.mp4; poster — кадр из самой петли, так что до её прихода
+         (и если ни один файл не найден) экран выглядит цельно. -->
     <video
       class="hero__video"
       autoplay
       muted
       loop
       playsinline
-      preload="auto"
+      preload="metadata"
       poster="assets/photos/ball-03.jpg"
+      data-sources="assets/hero-720.webm,assets/hero-720.mp4,assets/hero.mp4"
       disablepictureinpicture
       aria-hidden="true"
-      tabindex="-1">
-      <source src="assets/hero.mp4" type="video/mp4">
-    </video>
+      tabindex="-1"></video>
   </div>
   <div class="hero__scrim"></div>
 
@@ -322,10 +380,15 @@
       </article>
       </div>
 
-      <!-- Индикатор: две засечки, активная переключается по ходу прокрутки -->
+      <!-- Индикатор: номер текущего формата, две дорожки и общее число.
+           Дорожки заполняются тем же --seg-progress, что двигает ленту, —
+           видно не только какой формат открыт, но и где внутри перехода
+           мы находимся. Номера по краям держат пару «01 из 02» и
+           перекликаются с буквами-координатами A/B на самих слайдах. -->
       <div class="segments__nav" aria-hidden="true">
-        <span class="segments__dots"><i class="is-on"></i><i></i></span>
-        <span class="segments__hint">Листайте вниз</span>
+        <span class="segments__num" id="segments-num">01</span>
+        <span class="segments__track"><i></i><i></i></span>
+        <span class="segments__num segments__num--total">02</span>
       </div>
     </div>
   </div>
@@ -521,7 +584,10 @@
 
      Пара координат по краям — начало и конец вечера, а не время и сезон:
      вместе с «05.00 ЧАСОВ» в эйбрау три числа читаются одной системой. -->
-<section class="section section--deep" id="evening">
+<!-- id развёрнут в evening-structure: рядом живёт секция кейсов, и пара
+     evening/evenings отличалась одной буквой — при правке ссылки промахнуться
+     было проще, чем попасть. -->
+<section class="section section--deep" id="evening-structure">
   <p class="coords coords--l" aria-hidden="true" data-reveal>21.30</p>
   <p class="coords coords--r" aria-hidden="true" data-reveal>02.30</p>
   <div class="grid">
@@ -783,11 +849,17 @@
 
     <!-- Медиа внутри строки текста: кадр набран как буква и участвует
          в замере ширины наравне с ними. Приём применён ровно один раз.
-         Пока нет облегчённого лупа (hero.mp4 — 76 МБ, в строку не годится),
-         стоит статичный кадр; заменить на <video> с тем же классом. -->
-    <p class="t-mega t-mega--inline"><span>Танцмейстер<img class="inline-media"
-           src="assets/photos/ball-11.jpg" alt="" aria-hidden="true"
-           loading="lazy" decoding="async">ведёт зал</span></p>
+         Смысл в движении внутри неподвижной строки, поэтому здесь <video>,
+         а не фотография: со статичным кадром приём читается как случайная
+         картинка между слов. Постер — тот же кадр, который показывает петля,
+         так что до её появления строка выглядит законченной.
+         data-sources перебирает скрипт; тяжёлый hero.mp4 в этот список
+         не входит — в строку высотой .72em он не годится. -->
+    <p class="t-mega t-mega--inline"><span>Танцмейстер<video class="inline-media"
+           autoplay muted loop playsinline preload="metadata"
+           poster="assets/photos/ball-11.jpg"
+           data-sources="assets/inline-dance-720.webm,assets/inline-dance-720.mp4"
+           disablepictureinpicture aria-hidden="true" tabindex="-1"></video>ведёт зал</span></p>
 
     <!-- Три полосы складываются в стопку: каждая следующая наезжает на предыдущую.
          Обёртка нужна только для sticky-контекста, раскладку она не меняет. -->
@@ -1041,7 +1113,8 @@
 <!-- ================= ВЕЧЕРА / КЕЙС ================= -->
 <!-- section--clip дублирует :has() ниже: в движках без него срезать
      свисающий заголовок было бы нечем -->
-<section class="section section--major section--clay on-clay section--clip" id="evenings">
+<!-- id cases вместо evenings — см. комментарий у #evening-structure -->
+<section class="section section--major section--clay on-clay section--clip" id="cases">
   <!-- Гостей на балу и время начала -->
   <p class="coords coords--l" aria-hidden="true" data-reveal>180.00</p>
   <p class="coords coords--r" aria-hidden="true" data-reveal>20.00</p>
@@ -1263,22 +1336,29 @@
       </p>
     </div>
 
+    <!-- Названия здесь те же, что в эйбрау секций и в меню: раньше футер
+         звал «Структуру» «Как проходит вечер», и совпадение приходилось
+         угадывать по адресу ссылки. -->
     <div class="footer__col">
       <p class="t-num">Разделы</p>
       <ul>
-        <li><a href="#process">Как это происходит</a></li>
-        <li><a href="#evening">Как проходит вечер</a></li>
-        <li><a href="#music">Музыка</a></li>
-        <li><a href="#people">Танцмейстер</a></li>
+        <li><a href="#segments">Форматы</a></li>
+        <li><a href="#process">Подход</a></li>
+        <li><a href="#evening-structure">Структура</a></li>
+        <li><a href="#music">Звук</a></li>
+        <li><a href="#people">Люди</a></li>
+        <li><a href="#cases">Вечера</a></li>
+        <li><a href="#about">О нас</a></li>
       </ul>
     </div>
 
     <div class="footer__col">
       <p class="t-num">Гостям</p>
       <ul>
-        <li><a href="#prep">Подготовка</a></li>
-        <li><a href="#etiquette">Этикет</a></li>
-        <!-- Дресс-код теперь второй таб той же секции — ведём туда и открываем его -->
+        <li><a href="#prep">До вечера</a></li>
+        <li><a href="#etiquette">Правила</a></li>
+        <!-- Дресс-код — второй таб «Правил»: ведём в ту же секцию и открываем
+             нужный таб. Своего номера у него нет, поэтому идёт подпунктом. -->
         <li><a href="#etiquette" data-tab-link="dresscode">Дресс-код</a></li>
       </ul>
     </div>
