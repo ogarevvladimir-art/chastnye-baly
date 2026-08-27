@@ -405,13 +405,13 @@
       </aside>
 
       <ol class="steps" id="procSteps">
-        <li class="step" data-line data-reveal data-step="01">
+        <li class="step" data-reveal data-step="01">
           <div class="step__rail">
             <p class="t-num step__num">01</p>
             <p class="t-label step__tag">Первая встреча</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual>Разговор</h3>
+            <h3 class="t-h3 step__title" data-gradual="quick">Разговор</h3>
             <p class="t-body">
               Вы рассказываете о своём вечере — для кого он, почему именно бал, что для вас важно.
               Мы слушаем и спрашиваем о том, что редко попадает в бриф: что вы хотите
@@ -424,13 +424,13 @@
           </div>
         </li>
 
-        <li class="step" data-line data-reveal style="--d:80ms" data-step="02">
+        <li class="step" data-reveal style="--d:80ms" data-step="02">
           <div class="step__rail">
             <p class="t-num step__num">02</p>
             <p class="t-label step__tag">Замысел вечера</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual>Концепция</h3>
+            <h3 class="t-h3 step__title" data-gradual="quick">Концепция</h3>
             <p class="t-body">
               Она вырастает из вашего рассказа: локация, музыка, программа, детали —
               всё связано между собой и с вашей историей.
@@ -442,13 +442,13 @@
           </div>
         </li>
 
-        <li class="step" data-line data-reveal style="--d:160ms" data-step="03">
+        <li class="step" data-reveal style="--d:160ms" data-step="03">
           <div class="step__rail">
             <p class="t-num step__num">03</p>
             <p class="t-label step__tag">До события</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual>Репетиции</h3>
+            <h3 class="t-h3 step__title" data-gradual="quick">Репетиции</h3>
             <p class="t-body">
               Если вы или ваши гости хотите подготовиться — мы проводим уроки.
               Это первый шаг к тому, чтобы на балу все чувствовали себя уверенно.
@@ -460,13 +460,13 @@
           </div>
         </li>
 
-        <li class="step" data-line data-reveal style="--d:240ms" data-step="04">
+        <li class="step" data-reveal style="--d:240ms" data-step="04">
           <div class="step__rail">
             <p class="t-num step__num">04</p>
             <p class="t-label step__tag">Тот самый день</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual>Вечер</h3>
+            <h3 class="t-h3 step__title" data-gradual="quick">Вечер</h3>
             <p class="t-body">
               Мы рядом с первого момента до последнего танца. Вы не бегаете
               с координацией и не считаете минуты. Вы просто наслаждаетесь.
@@ -478,13 +478,13 @@
           </div>
         </li>
 
-        <li class="step" data-line data-reveal style="--d:320ms" data-step="05">
+        <li class="step" data-reveal style="--d:320ms" data-step="05">
           <div class="step__rail">
             <p class="t-num step__num">05</p>
             <p class="t-label step__tag">После бала</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual>Воспоминания</h3>
+            <h3 class="t-h3 step__title" data-gradual="quick">Воспоминания</h3>
             <p class="t-body">
               Фото и видео, к которым вы возвращаетесь. Не для соцсетей — для себя.
             </p>
@@ -512,120 +512,184 @@
   </div>
 </section>
 
-<!-- ================= КАК ПРОХОДИТ ВЕЧЕР ================= -->
+<!-- ================= КАК ПРОХОДИТ ВЕЧЕР =================
+     Единственная секция страницы с временно́й шкалой. Приём выбран под
+     содержание: шесть частей вечера — это хронология, и лента (как в
+     «Форматах») её ломала: на 1440px было видно 3 карточки из 6, финал
+     вечера пользователь физически не доходил. Плюс одинаковая min-height
+     карточек уравнивала пятиминутный выход и трёхчасовую программу.
+
+     Пара координат по краям — начало и конец вечера, а не время и сезон:
+     вместе с «05.00 ЧАСОВ» в эйбрау три числа читаются одной системой. -->
 <section class="section section--deep" id="evening">
-  <!-- Время начала вечера и сезон -->
   <p class="coords coords--l" aria-hidden="true" data-reveal>21.30</p>
-  <p class="coords coords--r" aria-hidden="true" data-reveal>06/24</p>
+  <p class="coords coords--r" aria-hidden="true" data-reveal>02.30</p>
   <div class="grid">
-    <div class="eyebrow" data-line data-reveal>
+    <div class="eyebrow eyebrow--span" data-line data-reveal>
       <p class="t-num">03 — СТРУКТУРА</p>
       <p class="t-label">Ориентир, а не готовая программа</p>
+      <p class="t-num eyebrow__span">05.00 ЧАСОВ</p>
     </div>
 
     <!-- Надзаголовок во всю ширину вьюпорта. Кегль подбирает JS. -->
     <p class="t-mega"><span>Вечер</span></p>
 
+    <!-- Вводный текст сидит в оптическом поле мега-слова, а не рассыпан
+         по пустому экрану: .scatter уже занят блоком «Подход» через один
+         экран отсюда, и повторённый дословно приём читался бы как сбой.
+         Набор капсом двумя узкими колонками — ход из референса
+         (Screenshot_6, Screenshot_12): под тяжёлым словом идёт полоса
+         мелкого капса, прижатая к правому краю. -->
+    <div class="mega-note" data-reveal>
+      <p class="t-label mega-note__col">
+        Сценарий каждого бала собирается заново — под вашу компанию,
+        локацию и настроение. Но чтобы дать общее представление, вот
+        как может выглядеть структура вечера.
+      </p>
+      <p class="t-label mega-note__col mega-note__col--lead" style="--d:120ms">
+        Вечер складывается из частей,<br>и каждая тянет за собой следующую.
+      </p>
+    </div>
+
     <div class="col-1-6" data-reveal>
       <h2 class="t-h2" data-gradual>Как проходит вечер</h2>
     </div>
 
-    <!-- Вводный текст рассыпан по диагонали, а не выстроен в колонку -->
-    <div class="scatter">
-      <p class="t-body scatter__note scatter__note--1" data-reveal style="--d:0ms">
-        Сценарий каждого бала собирается заново — под вашу компанию, локацию и настроение.
-        Но чтобы дать общее представление, вот как может выглядеть структура вечера.
-      </p>
-      <p class="t-body scatter__note scatter__note--3" data-reveal style="--d:140ms">
-        <strong>Вечер складывается из частей, и каждая тянет за собой следующую.</strong>
-      </p>
-    </div>
+    <!-- ——— Временна́я шкала ———
+         Расстояние между засечками пропорционально длительности этапа:
+         --span в минутах, из него JS считает высоту пункта. Из-за этого
+         график несёт информацию, а не только порядок: танцевальная
+         программа физически втрое длиннее выхода на первый вальс.
 
-    <div class="col-full" style="margin-top:clamp(40px,5vw,80px)">
-      <div class="rail-wrap">
-        <!-- data-lenis-prevent: колесо внутри ленты крутит ленту, а не страницу -->
-        <div class="rail" id="rail" data-lenis-prevent>
+         Линия — та же .scheme--track, что в «Подходе», и прочерчивается
+         так же прогрессом скролла. Повтор намеренный и системный: один
+         язык «шага» на два блока, разницу задаёт контекст (там подготовка,
+         здесь ход вечера). -->
+    <div class="timeline" id="timeline" style="margin-top:clamp(40px,5vw,80px)">
+      <div class="timeline__track" aria-hidden="true">
+        <svg class="scheme scheme--track" id="eveningScheme" viewBox="0 0 24 400"
+             fill="none" preserveAspectRatio="none">
+          <line data-draw x1="12" y1="4" x2="12" y2="396" stroke="rgba(201,106,66,.30)" stroke-width="1.5"/>
+          <circle data-tick cx="12" cy="4"   r="3.5" fill="rgba(201,106,66,.42)"/>
+          <circle data-tick cx="12" cy="82"  r="3.5" fill="rgba(171,167,154,.34)"/>
+          <circle data-tick cx="12" cy="160" r="3.5" fill="rgba(171,167,154,.34)"/>
+          <circle data-tick cx="12" cy="238" r="3.5" fill="rgba(171,167,154,.34)"/>
+          <circle data-tick cx="12" cy="316" r="3.5" fill="rgba(171,167,154,.34)"/>
+          <circle data-tick cx="12" cy="396" r="3.5" fill="rgba(201,106,66,.42)"/>
+        </svg>
+      </div>
 
-          <article class="rail__item">
-            <svg class="scheme" data-scheme="5" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
-            <p class="rail__num t-num">01</p>
-            <h3 class="t-h3" data-gradual>Сбор гостей<br>и приветствие</h3>
+      <ol class="timeline__list" id="timelineList">
+        <li class="timeline__item" data-reveal data-span="30">
+          <p class="t-num timeline__time"><span>21.30</span></p>
+          <div class="timeline__body">
+            <p class="t-num timeline__num">01</p>
+            <h3 class="t-h3" data-gradual="quick">Сбор гостей и приветствие</h3>
             <p class="t-body">
               Гости приходят, знакомятся, получают бейджики с именами.
               Лёгкое общение за фуршетом — зал наполняется звуками оркестра.
             </p>
-          </article>
+          </div>
+        </li>
 
-          <article class="rail__item">
-            <svg class="scheme" data-scheme="3" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
-            <p class="rail__num t-num">02</p>
-            <h3 class="t-h3" data-gradual>Церемония<br>открытия</h3>
+        <li class="timeline__item" data-reveal style="--d:80ms" data-span="25">
+          <p class="t-num timeline__time"><span>22.00</span></p>
+          <div class="timeline__body">
+            <p class="t-num timeline__num">02</p>
+            <h3 class="t-h3" data-gradual="quick">Церемония открытия</h3>
             <p class="t-body">
               Вечер начинается не с первого танца. Он начинается с момента, когда зал замирает.
               Хозяева бала и почётные гости выходят на торжественное шествие, следом —
               оперные певцы, балет, танцоры. Гости с первого момента чувствуют: их ждали.
             </p>
-          </article>
+          </div>
+        </li>
 
-          <article class="rail__item">
-            <svg class="scheme" data-scheme="6" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
-            <p class="rail__num t-num">03</p>
-            <h3 class="t-h3" data-gradual>Вальс-<br>открытие</h3>
+        <!-- Кадр-врезка на уровне вальса-открытия: подтверждает конкретный
+             момент шкалы, а не иллюстрирует секцию вообще. Формат --tall
+             в этой секции больше нигде не встречается. -->
+        <li class="timeline__item timeline__item--framed" data-reveal style="--d:160ms" data-span="20">
+          <p class="t-num timeline__time"><span>22.25</span></p>
+          <div class="timeline__body">
+            <p class="t-num timeline__num">03</p>
+            <h3 class="t-h3" data-gradual="quick">Вальс-открытие</h3>
             <p class="t-body">
               Хозяева бала или сотрудники компании танцуют первый вальс. Потом на паркет
               приглашаются все. Лёд ломается, зал объединяется. Порядок выхода мы прописываем
               заранее: кто, за кем, под какую музыку.
             </p>
-          </article>
+          </div>
+          <figure class="timeline__media" data-reveal="x" style="--d:240ms">
+            <div class="media media--tall" data-parallax>
+              <img class="photo" src="assets/photos/ball-11.jpg" alt="Первый вальс: пара на паркете под оркестр"
+                   loading="lazy" decoding="async">
+            </div>
+            <figcaption class="t-label media__caption">Вальс-открытие · выход хозяев бала</figcaption>
+          </figure>
+        </li>
 
-          <article class="rail__item">
-            <svg class="scheme" data-scheme="4" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
-            <p class="rail__num t-num">04</p>
-            <h3 class="t-h3" data-gradual>Танцевальная<br>программа</h3>
+        <li class="timeline__item" data-reveal style="--d:240ms" data-span="120">
+          <p class="t-num timeline__time"><span>22.45</span></p>
+          <div class="timeline__body">
+            <p class="t-num timeline__num">04</p>
+            <h3 class="t-h3" data-gradual="quick">Танцевальная программа</h3>
             <p class="t-body">
               Вальсы, кадрили, свинг, фокстрот, латина. Танцмейстер ведёт зал:
               чередует ритмы, вовлекает гостей, меняет энергию. Паузы для общения и фуршетов.
             </p>
-          </article>
+            <p class="t-body">
+              Самая длинная часть вечера — и единственная, где ритм задаёте вы:
+              зал сам решает, когда танцевать, а когда сесть за стол и поговорить.
+            </p>
+          </div>
+        </li>
 
-          <article class="rail__item">
-            <svg class="scheme" data-scheme="2" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
-            <p class="rail__num t-num">05</p>
-            <h3 class="t-h3" data-gradual>Шоу-<br>номера</h3>
+        <li class="timeline__item timeline__item--framed" data-reveal style="--d:320ms" data-span="45">
+          <p class="t-num timeline__time"><span>00.45</span></p>
+          <div class="timeline__body">
+            <p class="t-num timeline__num">05</p>
+            <h3 class="t-h3" data-gradual="quick">Шоу-номера</h3>
             <p class="t-body">
               Профессиональные танцоры, совместные выступления, хореография от гостей —
               моменты, когда все забывают про еду и разговоры.
             </p>
-          </article>
+          </div>
+          <figure class="timeline__media" data-reveal="x" style="--d:400ms">
+            <div class="media media--tall" data-parallax>
+              <img class="photo" src="assets/photos/ball-07.jpg" alt="Шоу-номер: профессиональная пара на паркете"
+                   loading="lazy" decoding="async">
+            </div>
+            <figcaption class="t-label media__caption">Шоу-номер · пауза в танцевальной части</figcaption>
+          </figure>
+        </li>
 
-          <article class="rail__item">
-            <svg class="scheme" data-scheme="1" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false"></svg>
-            <p class="rail__num t-num">06</p>
-            <h3 class="t-h3" data-gradual>Финальный<br>танец</h3>
+        <li class="timeline__item" data-reveal style="--d:400ms" data-span="20">
+          <p class="t-num timeline__time"><span>02.00</span></p>
+          <div class="timeline__body">
+            <p class="t-num timeline__num">06</p>
+            <h3 class="t-h3" data-gradual="quick">Финальный танец</h3>
             <p class="t-body">
               Общий финальный вальс. Момент, когда все оказываются на паркете.
               Закрытие вечера.
             </p>
-          </article>
+          </div>
+        </li>
+      </ol>
 
+      <!-- Замыкающая реплика стоит под последней засечкой, с обрывающейся
+           линией: текст про адаптацию логически завершает шкалу, и висеть
+           отдельной колонкой ему незачем. Ход из референса (Screenshot_12:
+           под тяжёлой строкой идёт полоса мелкого набора). -->
+      <div class="timeline__end" data-reveal>
+        <p class="t-num timeline__time timeline__time--end"><span>ПОСЛЕ</span></p>
+        <div class="timeline__body">
+          <p class="t-body">
+            Мы адаптируем сценарий под ваш формат: от камерного вечера на тридцать человек
+            до масштабного бала на двести. Длительность, количество пауз, интенсивность
+            танцевальной части — всё подстраивается под ваших гостей.
+          </p>
         </div>
       </div>
-    </div>
-
-    <div class="col-1-6" style="margin-top:clamp(40px,5vw,72px)" data-reveal>
-      <p class="t-body">
-        Мы адаптируем сценарий под ваш формат: от камерного вечера на тридцать человек
-        до масштабного бала на двести. Длительность, количество пауз, интенсивность
-        танцевальной части — всё подстраивается под ваших гостей.
-      </p>
-    </div>
-
-    <div class="col-8-e" style="margin-top:clamp(40px,5vw,72px)" data-reveal="x">
-      <div class="media media--wide" data-parallax>
-        <img class="photo" src="assets/photos/ball-09.jpg" alt="Финальное шествие: гости идут по паркету в паре"
-             loading="lazy" decoding="async">
-      </div>
-      <p class="t-label media__caption">Финальное шествие · общий выход на паркет</p>
     </div>
   </div>
 </section>

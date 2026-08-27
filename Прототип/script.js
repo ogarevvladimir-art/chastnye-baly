@@ -706,8 +706,10 @@
 
   if (canAnimate && hasST) {
     /* Кадрирующая коробка — та, у которой overflow: hidden и своё
-       соотношение сторон. У .figure-row__media и .step__media обёрткой
-       служит вложенный .media, поэтому берём именно его. */
+       соотношение сторон. У .figure-row__media обёрткой служит вложенный
+       .media, поэтому берём именно его.
+       Кадров шага (.step__media) в списке намеренно нет: в мозаике они
+       появляются без раскрытия маской. */
     var maskSelectors = [
       '.media',
       '.segment__media',
@@ -770,6 +772,9 @@
   }
 
   /* ---------- 4. Параллакс медиа ---------- */
+  /* Кадры шагов сюда не попадают: в мозаике они стоят неподвижно.
+     Раскладка там и без того держится на сдвигах (см. .step в 8.3),
+     и едущая внутри картинка спорила бы с ними. */
   var parallaxItems = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
   var ticking = false;
 
@@ -781,6 +786,16 @@
     return !box || !box.classList.contains('is-masked');
   }
 
+  /* Зум и амплитуда связаны жёстко: при сдвиге ±S на кадре высотой H картинка
+     обнажит край, если масштаб меньше 1 + 2S/H. Поэтому фиксируем зум, а ход
+     считаем от него — S = H * (scale - 1) / 2, с запасом.
+
+     Прежние 22px были константой, и на кадре ниже ~550px этого условия
+     не выполняли: под картинкой проглядывала подложка. От высоты — не даёт
+     промахнуться ни на узком кадре, ни на полноэкранном. */
+  var PARALLAX_SCALE = 1.08;
+  var PARALLAX_SAFETY = 0.86;
+
   function applyParallax() {
     var vh = window.innerHeight;
     parallaxItems.forEach(function (el) {
@@ -790,7 +805,11 @@
       var progress = (vh / 2 - (rect.top + rect.height / 2)) / (vh / 2);
       var inner = el.querySelector('img');
       if (inner && parallaxReady(inner)) {
-        inner.style.transform = 'scale(1.08) translate3d(0,' + (progress * 22).toFixed(2) + 'px,0)';
+        // Высоту берём из того же rect — она уже измерена в этом кадре
+        var shift = rect.height * (PARALLAX_SCALE - 1) / 2 * PARALLAX_SAFETY;
+        inner.style.transform =
+          'scale(' + PARALLAX_SCALE + ') translate3d(0,' +
+          (progress * shift).toFixed(2) + 'px,0)';
       }
     });
     ticking = false;
@@ -1081,42 +1100,199 @@
     });
   }
 
-  /* ---------- 6. Горизонтальная лента: колесо и перетаскивание ---------- */
-  var rail = document.getElementById('rail');
+  /* ---------- 6. Шкала вечера: пропорции, засечки, активный этап ----------
+     Пришло на смену обработчикам горизонтальной ленты (колесо +
+     перетаскивание): ленты в «Как проходит вечер» больше нет, шкала
+     листается обычным скроллом страницы и своего ввода не требует.
 
-  if (rail) {
-    // Вертикальное колесо прокручивает ленту, пока она не дошла до края
-    rail.addEventListener('wheel', function (e) {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      var atStart = rail.scrollLeft <= 0;
-      var atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 1;
-      if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return;
-      e.preventDefault();
-      rail.scrollLeft += e.deltaY;
-    }, { passive: false });
+     Здесь три задачи:
+       а) высота пункта пропорциональна длительности этапа (--data-span);
+       б) засечки схемы встают напротив своих пунктов;
+       в) активный пункт подсвечивается, линия прочерчивается по скроллу.
+     Механика (б) и (в) — та же, что у «Подхода» (см. блок 5): один язык
+     «шага» на два блока. */
+  var timeline = document.getElementById('timeline');
+  var timelineItems = timeline
+    ? Array.prototype.slice.call(timeline.querySelectorAll('.timeline__item'))
+    : [];
 
-    // Перетаскивание мышью
-    var isDown = false, startX = 0, startScroll = 0;
+  var evScheme = document.getElementById('eveningScheme');
+  var evLine = evScheme && evScheme.querySelector('[data-draw]');
+  var evTicks = evScheme
+    ? Array.prototype.slice.call(evScheme.querySelectorAll('[data-tick]'))
+    : [];
+  var evLen = evLine ? lineLength(evLine) : 0;
 
-    rail.addEventListener('pointerdown', function (e) {
-      if (e.pointerType === 'touch') return;
-      isDown = true;
-      startX = e.clientX;
-      startScroll = rail.scrollLeft;
-      rail.setPointerCapture(e.pointerId);
-      rail.style.cursor = 'grabbing';
+  if (evLine && evLen > 0) {
+    evLine.style.setProperty('--len', evLen.toFixed(1) + 'px');
+  }
+
+  /* Пропорции: минуты этапа переводятся в нижний отступ пункта.
+     Линейно от длительности отступ брать нельзя — 120-минутная
+     танцевальная программа дала бы шестикратный разрыв, и половина
+     шкалы стала бы пустотой. Берём корень: разница остаётся читаемой
+     (программа заметно длиннее выхода на вальс), но не разрывает блок.
+
+     База и размах — в px от вьюпорта, чтобы шкала дышала вместе
+     с остальной страницей. */
+  function layoutTimelineGaps() {
+    if (!timelineItems.length) return;
+
+    var vw = window.innerWidth;
+
+    // Ниже 1025px шкала идёт одной колонкой без линии (см. styles.css,
+    // @media max-width: 1024px): объяснить разнобой пустот там нечем,
+    // поэтому инлайновый --gap снимаем и шаг задаёт CSS.
+    if (vw <= 1024) {
+      timelineItems.forEach(function (el) { el.style.removeProperty('--gap'); });
+      return;
+    }
+
+    var base = Math.max(48, Math.min(88, vw * 0.045));
+    var range = Math.max(40, Math.min(150, vw * 0.075));
+
+    var spans = timelineItems.map(function (el) {
+      return Math.max(1, parseFloat(el.getAttribute('data-span')) || 1);
+    });
+    var maxSpan = Math.max.apply(null, spans);
+
+    timelineItems.forEach(function (el, i) {
+      // sqrt(доля от самого длинного этапа) — 0 у самого короткого пункта
+      // не даёт: минимальная доля всё равно положительна, и слипания нет.
+      var k = Math.sqrt(spans[i] / maxSpan);
+      var gap = base + range * k;
+
+      /* У пунктов с врезкой высоту строки задаёт кадр, а не текст: он
+         вдвое выше абзаца, и рассчитанный отступ ложился бы поверх уже
+         пустой строки — под вальсом-открытием получалась дыра в экран.
+         Вычитаем перевес кадра над текстом, но не уходим ниже базы. */
+      var media = el.querySelector('.timeline__media');
+      if (media) {
+        var body = el.querySelector('.timeline__body');
+        var over = media.getBoundingClientRect().height -
+                   (body ? body.getBoundingClientRect().height : 0);
+        if (over > 0) gap = Math.max(base * 0.5, gap - over);
+      }
+
+      el.style.setProperty('--gap', gap.toFixed(1) + 'px');
+    });
+  }
+
+  /* Засечки к пунктам — тот же расчёт, что layoutProcTicks:
+     preserveAspectRatio="none" и viewBox 0 0 24 400, доля высоты трека
+     переводится в единицы viewBox умножением на 400. Позиции пунктов
+     зависят от кегля, gap и загруженных кадров — константы cy в разметке
+     держатся только как стартовое приближение. */
+  function layoutEveningTicks() {
+    if (!evScheme || !evTicks.length || !timelineItems.length) return;
+
+    var trackEl = evScheme.parentNode;
+    if (!trackEl) return;
+
+    var track = trackEl.getBoundingClientRect();
+    if (track.height <= 0) return; // трек скрыт (мобильная раскладка)
+
+    var first = null;
+    var last = null;
+
+    evTicks.forEach(function (tick, i) {
+      var item = timelineItems[i];
+      if (!item) return;
+      // Засечка встаёт напротив заголовка пункта, а не по центру его бокса:
+      // у пунктов разная высота (в этом весь смысл шкалы), и центр уводил бы
+      // точку от строки, к которой она относится.
+      var anchor = item.querySelector('.timeline__num') || item;
+      var r = anchor.getBoundingClientRect();
+      var cy = Math.max(4, Math.min(396,
+        ((r.top + r.height / 2) - track.top) / track.height * 400
+      ));
+      tick.setAttribute('cy', cy.toFixed(1));
+      if (first === null) first = cy;
+      last = cy;
     });
 
-    rail.addEventListener('pointermove', function (e) {
-      if (!isDown) return;
-      rail.scrollLeft = startScroll - (e.clientX - startX);
+    if (evLine && first !== null && last > first) {
+      evLine.setAttribute('y1', first.toFixed(1));
+      evLine.setAttribute('y2', last.toFixed(1));
+      evLen = lineLength(evLine);
+      if (evLen > 0) {
+        evLine.style.setProperty('--len', evLen.toFixed(1) + 'px');
+      }
+      updateTimeline();
+    }
+  }
+
+  function updateTimeline() {
+    if (!timelineItems.length) return;
+
+    // Та же «линия чтения» на 42% высоты экрана, что и у шагов «Подхода»
+    var line = window.innerHeight * 0.42;
+    var active = -1;
+
+    timelineItems.forEach(function (el, i) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top <= line && rect.bottom > line * 0.4) active = i;
     });
 
-    ['pointerup', 'pointercancel'].forEach(function (evt) {
-      rail.addEventListener(evt, function () {
-        isDown = false;
-        rail.style.cursor = '';
-      });
+    if (active === -1) {
+      var firstRect = timelineItems[0].getBoundingClientRect();
+      if (firstRect.top < window.innerHeight && firstRect.bottom > 0) active = 0;
+    }
+
+    timelineItems.forEach(function (el, i) {
+      el.classList.toggle('is-active', i === active);
+      el.classList.toggle('is-done', active > -1 && i < active);
+    });
+
+    // Доля по промежуткам между засечками, а не по их числу: линия идёт
+    // от первой точки до последней, и на первом этапе прочерчивать нечего.
+    var ratio = active < 0 || timelineItems.length < 2
+      ? 0
+      : active / (timelineItems.length - 1);
+
+    if (evLine && evLen > 0) {
+      evLine.style.setProperty(
+        '--off', (evLen * (1 - (reduceMotion ? 1 : ratio))).toFixed(1) + 'px'
+      );
+    }
+    evTicks.forEach(function (tick, i) {
+      tick.classList.toggle('is-lit', reduceMotion || i <= active);
+    });
+  }
+
+  /* Пересчёт раскладки шкалы — с дедупликацией через rAF, как у засечек
+     «Подхода»: ресайз, загрузка гарнитуры и двух врезок иначе дали бы
+     несколько пересчётов в одном кадре. Пропорции считаются раньше
+     засечек: те читают уже разложенную геометрию. */
+  var evTicking = false;
+  function scheduleTimeline() {
+    if (evTicking) return;
+    evTicking = true;
+    window.requestAnimationFrame(function () {
+      evTicking = false;
+      layoutTimelineGaps();
+      layoutEveningTicks();
+    });
+  }
+
+  if (timeline) {
+    layoutTimelineGaps();
+    layoutEveningTicks();
+    updateTimeline();
+
+    window.addEventListener('scroll', updateTimeline, { passive: true });
+    window.addEventListener('resize', scheduleTimeline, { passive: true });
+    if (lenis) lenis.on('scroll', updateTimeline);
+
+    // Кегль пунктов зависит от гарнитуры: до её загрузки высоты строк другие
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(scheduleTimeline).catch(function () { /* стартовые cy */ });
+    }
+    // Врезки грузятся лениво и меняют высоту своего пункта
+    timeline.querySelectorAll('.timeline__media img').forEach(function (img) {
+      if (img.complete) return;
+      img.addEventListener('load', scheduleTimeline, { once: true, passive: true });
+      img.addEventListener('error', scheduleTimeline, { once: true, passive: true });
     });
   }
 
