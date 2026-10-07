@@ -1,0 +1,20 @@
+/* Стартовые состояния анимаций входа (motion.js). Только при включённом JS (html.js) и без prefers-reduced-motion:
+   без JS, при reduced-motion и если motion.js не загрузился (html.no-motion) страница стоит в покое.
+   Элемент получает data-in, когда вход запущен; стартовый кадр дальше держит сама анимация (fill: backwards). */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js:not(.no-motion) [data-reveal]:not([data-in]),
+  .js:not(.no-motion) [data-giant]:not([data-in]) {
+    opacity: 0;
+  }
+
+  .js:not(.no-motion) [data-photo]:not([data-in]) img {
+    transform: scale(1.1);
+  }
+}
+
+/* Буквы гиганта: растяжение от левого края буквы */
+.g-l {
+  display: inline-block;
+  transform-origin: 0 50%;
+}

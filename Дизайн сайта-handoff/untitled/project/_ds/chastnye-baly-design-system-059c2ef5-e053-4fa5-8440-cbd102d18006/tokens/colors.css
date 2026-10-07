@@ -1,0 +1,50 @@
+:root {
+  /* --- Базовые цвета --------------------------------------------------- */
+  --color-ink: #060606;      /* базовый фон */
+  --color-terra: #653624;    /* брендовая поверхность */
+  --color-slate: #222222;    /* карточки и панели */
+  --color-ash: #3e3e3e;      /* нейтральная секция-передышка */
+  --color-greige: #aba79a;   /* единственный цвет текста */
+  --color-accent: #c96a42;   /* терракота: нумерация, метки, hover */
+  --color-accent-hover: #e08a5f;
+
+  /* --- Шкала прозрачности greige --------------------------------------- */
+  --greige-90: rgba(171, 167, 154, 0.9);
+  --greige-80: rgba(171, 167, 154, 0.8);
+  --greige-65: rgba(171, 167, 154, 0.65);
+  --greige-50: rgba(171, 167, 154, 0.5);
+  --greige-40: rgba(171, 167, 154, 0.4);
+  --greige-35: rgba(171, 167, 154, 0.35);
+  --greige-30: rgba(171, 167, 154, 0.3);
+  --greige-22: rgba(171, 167, 154, 0.22);
+  --greige-20: rgba(171, 167, 154, 0.2);
+  --greige-12: rgba(171, 167, 154, 0.12);
+
+  /* --- Поверхности ----------------------------------------------------- */
+  --surface-page: var(--color-ink);
+  --surface-brand: var(--color-terra);
+  --surface-card: var(--color-slate);
+  --surface-rest: var(--color-ash);
+
+  /* --- Текст ------------------------------------------------------------ */
+  --text-title: var(--greige-90);      /* H1 / H2 */
+  --text-subtitle: var(--greige-80);   /* H3 */
+  --text-body: var(--greige-50);       /* основной текст */
+  --text-muted: var(--greige-35);      /* служебное, подписи */
+  --text-accent: var(--color-accent);  /* нумерация и метки секций */
+  --text-on-brand: var(--greige-90);   /* поверх Terra шаг прозрачности выше */
+  --text-on-brand-body: var(--greige-65);
+  --text-inverse: var(--color-ink);    /* по greige-заливке */
+
+  /* --- Линии и обводки -------------------------------------------------- */
+  --line-section: var(--greige-20);  /* разделитель секции */
+  --line-row: var(--greige-12);      /* строка списка, рамка демо-блока */
+  --border-strong: var(--color-greige);
+  --border-accent: var(--color-accent);
+
+  /* --- Поля ввода ------------------------------------------------------- */
+  --field-line-rest: var(--greige-30);
+  --field-line-focus: var(--color-greige);
+  --field-line-error: var(--color-accent);
+  --field-placeholder: var(--greige-30);
+}

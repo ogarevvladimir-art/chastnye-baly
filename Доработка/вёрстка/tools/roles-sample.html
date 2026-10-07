@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Роли — образец</title>
+  <link rel="stylesheet" href="../../../site/css/tokens.css">
+  <link rel="stylesheet" href="../../../site/css/base.css">
+  <link rel="stylesheet" href="../../../site/css/layout.css">
+  <script>
+    (() => {
+      const r = document.documentElement;
+      const set = () => r.style.setProperty("--vw", r.clientWidth / 100 + "px");
+      set();
+      new ResizeObserver(set).observe(r);
+    })();
+  </script>
+  <style>
+    /* Служебное оформление страницы ролей (не сайт): подписи как на доске Figma — 9 px капс #6b685f */
+    body { padding-block: 24px 64px; }
+    .note { font: 400 9px/1.4 var(--ff-sans); letter-spacing: .04em; text-transform: uppercase; color: #6b685f; margin-bottom: 15px; }
+    [data-surface="terra"] .note, [data-surface="ash"] .note, [data-surface="slate"] .note { color: rgb(171 167 154 / .55); }
+    .row { margin-top: 61px; }
+    .row:first-child { margin-top: 0; }
+    .labels { display: flex; justify-content: space-between; }
+    .labels + .t-label { margin-top: 13px; }
+    .giant { color: var(--c-greige-light); }
+    .giant + .giant { margin-top: 30px; }
+    .stat + .note { margin-top: 30px; }
+    /* Лесенка: телефон — вторая строка к правому краю; планшет — от оси, если ширина строки ≤ 385, иначе к краю */
+    .ladder { display: block; text-align: right; }
+    @media (min-width: 600px) {
+      .ladder--axis { text-align: left; padding-left: calc(var(--axis) - var(--margin)); }
+    }
+    @media (min-width: 1024px) {
+      .ladder { text-align: left; padding-left: calc(var(--axis) - var(--margin)); }
+      .ladder--x400 { padding-left: calc(336 * var(--u)); }
+    }
+    /* Капс 12 на планшете — колонка ≤ 400 от оси */
+    @media (min-width: 600px) {
+      .col-axis { margin-left: calc(var(--axis) - var(--margin)); max-width: 400px; }
+    }
+    .surfaces { display: grid; gap: 1px; }
+    .surface { padding: 24px var(--margin); }
+    .surface .t-text { margin-top: 8px; max-width: 400px; }
+    .field { display: block; width: 100%; max-width: 400px; border: 0; border-bottom: 1px solid var(--c-text-ink); background: none; padding: 8px 0; }
+    .terracotta { color: var(--c-terracotta-deep); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="row">
+      <div class="labels"><span class="t-label">01 — Подготовка</span><span class="t-label">0 1 / 0 3</span></div>
+      <p class="t-label">06 — Ассистент</p>
+    </div>
+
+    <div class="row">
+      <p class="note" data-note=".t-h2">H2</p>
+      <h2 class="t-h2">Музыкальное <span class="ladder ladder--x400">сопровождение</span></h2>
+    </div>
+
+    <div class="row">
+      <p class="note" data-note=".t-h2">H2 + курсив &lt;em&gt;</p>
+      <h2 class="t-h2"><em>Как</em> мы готовим <span class="ladder"><em>ваш</em> вечер</span></h2>
+    </div>
+
+    <div class="row">
+      <p class="note" data-note=".t-giant-xl, .t-giant">Giant XL · Giant</p>
+      <p class="t-giant-xl giant">Балы</p>
+      <p class="t-giant giant">Участники</p>
+      <p class="t-giant giant">Репетиции</p>
+    </div>
+
+    <div class="row">
+      <p class="note" data-note=".t-stat, .t-display-l">Stat · Display L</p>
+      <p class="t-stat stat">18:00</p>
+      <p class="t-display-l" style="margin-top: 30px">Белый</p>
+    </div>
+
+    <div class="row">
+      <p class="note" data-note=".t-lead">Lead</p>
+      <p class="t-lead">Мы начинаем не с анкеты и не с договора, а с разговора.</p>
+    </div>
+
+    <div class="row col-axis">
+      <p class="note" data-note=".t-text, .t-label">Body/Text капс · Label</p>
+      <p class="t-text">Вы рассказываете о своём вечере: для кого он, почему именно бал, что для вас важно. Мы также спрашиваем о вещах, которые обычно не попадают в бриф, — каким вы хотите увидеть результат вечера.</p>
+    </div>
+
+    <div class="row">
+      <p class="note" data-note=".t-menu">Пункты меню</p>
+      <p class="t-menu giant">Подготовка</p>
+      <p class="t-menu terracotta">Ассистент</p>
+    </div>
+
+    <div class="row">
+      <p class="note" data-note=".t-h2s, .t-link">H2 S (hero) · ссылка-стрелка</p>
+      <p class="t-h2s"><em>Ваша</em> история.</p>
+      <p class="t-h2s"><span class="ladder"><em>Ваш</em> вечер.</span></p>
+      <p class="t-link" style="margin-top: 24px">→&nbsp;&nbsp;обсудить вечер</p>
+    </div>
+
+    <div class="row">
+      <p class="note" data-note=".t-h3">H3 (десктоп)</p>
+      <p class="t-h3 giant">Зрители</p>
+    </div>
+  </div>
+
+  <div class="row surfaces">
+    <div class="surface" data-surface="terra">
+      <p class="note">Terra — мелкий текст Greige Light</p>
+      <p class="t-label">04 — Танцы</p>
+      <p class="t-text">Он организует парные танцы, ротацию партнёров и общие фигуры. Гости знакомятся без неловких пауз и вопроса «с кем мне танцевать».</p>
+    </div>
+    <div class="surface" data-surface="slate">
+      <p class="note">Slate — мелкий текст Greige Light</p>
+      <p class="t-label">02 — программа Вечера</p>
+      <p class="t-text">Гости приходят, знакомятся, общаются за фуршетом.</p>
+    </div>
+    <div class="surface" data-surface="ash">
+      <p class="note">Ash — мелкий текст Greige Light</p>
+      <p class="t-label">05 — Шоу</p>
+      <p class="t-text">Во время шоу-номера весь зал смотрит на танцпол.</p>
+    </div>
+    <div class="surface" data-surface="panel">
+      <p class="note" data-note=".t-field, .t-submit">Panel — форма: подпись 12, поле 16, «отправить»</p>
+      <p class="t-text">Как вас зовут</p>
+      <input class="field t-field" value="Анна" aria-label="Как вас зовут">
+      <p class="t-submit terracotta" style="margin-top: 24px; text-align: right">→&nbsp;&nbsp;отправить</p>
+    </div>
+  </div>
+
+  <script>
+    // Подписи: имя роли и фактический кегль на этой ширине
+    const px = (el) => Math.round(parseFloat(getComputedStyle(el).fontSize) * 10) / 10;
+    document.fonts.ready.then(() => {
+      for (const note of document.querySelectorAll("[data-note]")) {
+        const parts = note.dataset.note.split(",").map((sel) => {
+          const el = note.parentElement.querySelector(sel.trim());
+          return el ? `${sel.trim().slice(1)} ${px(el)}` : "";
+        });
+        note.textContent += ` · ${innerWidth} px · ` + parts.filter(Boolean).join(" · ");
+      }
+    });
+  </script>
+</body>
+</html>

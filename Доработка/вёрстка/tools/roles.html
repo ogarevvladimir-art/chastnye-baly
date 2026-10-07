@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Роли на ширинах</title>
+  <style>
+    /* Служебная страница этапа 0: роли сайта на 7 ширинах рядом с доской системы Figma.
+       Открывать через сервер (python tools/serve.py), не через file://. */
+    :root { color-scheme: dark; }
+    body { margin: 0; padding: 24px; background: #1a1a1a; color: #aba79a; font: 13px/1.4 system-ui, sans-serif; }
+    h1 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+    p { margin: 0 0 24px; color: #8a877d; }
+    .grid { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
+    .card { flex: none; }
+    .card h2 { font-size: 12px; font-weight: 600; margin: 0 0 8px; color: #ffc800; }
+    .card .box { overflow: hidden; outline: 1px solid #333; }
+    .card iframe, .card img { display: block; border: 0; transform-origin: 0 0; }
+    .card--figma h2 { color: #8ec5ff; }
+  </style>
+</head>
+<body>
+  <h1>Роли типографики — сайт против доски системы Figma</h1>
+  <p>Жёлтые подписи — сайт (кегль считается в браузере). Голубые — доска Figma `229:878` 360, `229:852` 390, `229:901` 390 Terra, `229:855` 834.
+     1024 и шире показаны в масштабе 50 %.</p>
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const SAMPLE = "roles-sample.html";
+    const plan = [
+      ["figma", "Figma 360 · 229:878", "roles-figma/v0_board_360.png", 360],
+      ["site", 360],
+      ["figma", "Figma 390 · 229:852", "roles-figma/v0_board_390.png", 390],
+      ["site", 390],
+      ["figma", "Figma 390 Terra · 229:901", "roles-figma/v0_board_390_terra.png", 390],
+      ["site", 600],
+      ["figma", "Figma 834 · 229:855", "roles-figma/v0_board_834.png", 834],
+      ["site", 834],
+      ["site", 1024, 0.5],
+      ["site", 1440, 0.5],
+      ["site", 1920, 0.5],
+    ];
+    const grid = document.getElementById("grid");
+
+    for (const item of plan) {
+      const card = document.createElement("div");
+      const h = document.createElement("h2");
+      const box = document.createElement("div");
+      box.className = "box";
+      card.append(h, box);
+      grid.append(card);
+
+      if (item[0] === "figma") {
+        const [, title, src, w] = item;
+        card.className = "card card--figma";
+        h.textContent = title;
+        const img = new Image();
+        img.src = src;
+        img.width = w;
+        box.append(img);
+        continue;
+      }
+
+      const [, w, scale = 1] = item;
+      card.className = "card";
+      h.textContent = `Сайт ${w}` + (scale !== 1 ? ` · ×${scale}` : "");
+      const frame = document.createElement("iframe");
+      frame.src = SAMPLE;
+      frame.width = w;
+      frame.style.transform = `scale(${scale})`;
+      box.style.width = w * scale + "px";
+      box.append(frame);
+      frame.addEventListener("load", () => {
+        const doc = frame.contentDocument;
+        doc.fonts.ready.then(() => {
+          const ht = doc.documentElement.scrollHeight;
+          frame.height = ht;
+          box.style.height = ht * scale + "px";
+        });
+      });
+    }
+  </script>
+</body>
+</html>

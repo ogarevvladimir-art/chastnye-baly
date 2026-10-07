@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Форматы — диптих (прототип A)</title>
+
+<!-- Гарнитуры по дизайн-системе: только Old Standard TT с Google Fonts
+     (её fonts.css подключает ровно этот набор — 400/700/italic).
+     Гротеск системный, веб-шрифта не требует. Manrope убран: системой
+     он не утверждён. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap">
+
+<style>
+/* ─────────────────────────────────────────────────────────────────────────
+   ПРОТОТИП A — ДИПТИХ
+
+   Отдельный файл: index.html не тронут. Открывается сам по себе, чтобы
+   сравнить с текущей секцией вживую.
+
+   Типографика — по дизайн-системе проекта
+   (Chastnye Baly Design System-handoff / tokens/): роли H1, Micro,
+   Text и Number взяты оттуда токенами. Палитра и метрика — из
+   styles.css прототипа, они с системой совпадают.
+
+   Что делает вариант A:
+   · два формата стоят в одном кадре — выбор виден сразу, а не по доскроллу;
+   · ширина половины = внимание: покой 50/50, активная 62/38;
+   · различие A/B несёт СЦЕНА (Terra против Slate), а не зеркальная сетка;
+   · секция занимает один экран вместо 220svh — скролл-джек снят целиком;
+   · на touch та же механика, а не отключённая: тап вместо наведения.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root{
+  /* ── палитра: из styles.css без изменений ── */
+  --gray-1000:#060606;         /* Ink   — сцена по умолчанию */
+  --gray-800:#222222;          /* Slate — панель с содержанием */
+  --white:#FFFFFF;
+  --greige-700:#653624;        /* Terra — акцентная сцена */
+  --greige-300:#ABA79A;
+  --greige-200:#C2BFB5;
+  --greige-100:#ABA385;
+  --terracotta:#C96A42;
+
+  --greige-20:rgba(171,167,154,.2);
+  --greige-12:rgba(171,167,154,.12);
+
+  --surface-void:var(--gray-1000);
+  --surface-clay:var(--greige-700);
+  --surface-slate:var(--gray-800);
+
+  /* ── роли текста: из colors.css системы ──
+     Система ведёт текст шкалой прозрачности greige, а не отдельными
+     тонами: greige — «единственный цвет текста». */
+  --greige-90:rgba(171,167,154,.9);
+  --greige-80:rgba(171,167,154,.8);
+  --greige-65:rgba(171,167,154,.65);
+  --greige-50:rgba(171,167,154,.5);
+  --greige-35:rgba(171,167,154,.35);
+
+  --text-title:var(--greige-90);       /* H1 / H2 */
+  --text-subtitle:var(--greige-80);    /* H3 */
+  --text-body:var(--greige-50);        /* основной текст */
+  --text-accent:var(--terracotta);     /* нумерация, метки, врезка */
+  --text-on-brand:var(--greige-90);    /* поверх Terra — ступень выше */
+  --text-on-brand-body:var(--greige-65);
+
+  /* Старые имена прототипа — оставлены для эйбрау и метки. */
+  --text-on-void:var(--greige-300);
+  --text-on-void-strong:var(--white);
+  --text-muted:.78;
+
+  /* ── метрика ── */
+  --gutter:clamp(20px,4vw,72px);
+  --space-16:16px;
+  --space-24:24px;
+  --space-44:44px;
+  --nav-size:12px;
+
+  /* ── гарнитуры: строго по дизайн-системе ──
+     Chastnye Baly Design System-handoff / tokens/typography.css.
+
+     --font-sans — именно то, что записано в системе. Её fonts.css
+     прямо говорит: брендовый гротеск не определён (Archivo убран
+     по требованию заказчика), до получения файлов слой берётся
+     системным, и это плейсхолдер, а не выбор бренда. Manrope,
+     стоявший здесь раньше, системой не утверждён — убран.
+
+     --font-display — Old Standard TT, точное совпадение с макетом. */
+  --font-sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-display:"Old Standard TT",Georgia,"Times New Roman",serif;
+
+  /* Роли из tokens/typography.css — ставим токенами, а не числами
+     по месту, чтобы прототип правился вместе с системой.
+
+     H1 · гротеск 700, капитель, leading 1, tracking 0 — заголовок
+     формата (правка «сделай как мегатекст»: взят H1 системы, а не
+     .t-mega из index.html, который системе не принадлежит). */
+  --h1-family:var(--font-sans);
+  --h1-weight:700;
+  --h1-leading:1;
+  --h1-tracking:0;
+
+  /* Micro · Old Standard TT Italic — врезка «Свадьба, юбилей…».
+     Система даёт кегль 30px и tracking -2px. Трекинг держим в em,
+     а не в px: -2px при 30px — это -.067em, но на уменьшенных
+     ступенях (24px планшет, 20px телефон) те же -2px давали уже
+     -.10em, и знаки слипались (детектор: extreme-negative-tracking).
+     -.067em — ровно системная пропорция, масштабируется с кеглем. */
+  --micro-family:var(--font-display);
+  --micro-size:30px;
+  --micro-tracking:-.067em;
+  --micro-leading:1;
+
+  /* Text · гротеск 600, 14px, tracking .5px; для абзаца в 2+ строки
+     система даёт отдельный интерлиньяж 1.6 — описания именно такие. */
+  --text-family:var(--font-sans);
+  --text-weight:600;
+  --text-size:14px;
+  --text-tracking:.5px;
+  --text-leading-paragraph:1.6;
+
+  /* Высота ряда описания. Фиксируется, чтобы заголовки двух половин
+     стояли на одной линии независимо от длины текста (см. .half).
+     6 строк Text (14px × 1.6 = 22.4px) + врезка Micro 30px + отступы. */
+  --body-row:calc(6 * (var(--text-size) * var(--text-leading-paragraph))
+                  + var(--micro-size) + 42px);
+
+  /* Number · гротеск 500, 13px, tracking 2.34px — метка A/B. */
+  --number-weight:500;
+  --number-size:13px;
+  --number-tracking:2.34px;
+
+  /* Пропорция диптиха. Одна переменная правит всю механику:
+     покой 1fr/1fr, активная половина забирает --seg-open.
+     1.65 — замер: при 1.8 узкая половина теряет заголовок в две строки,
+     при 1.5 перевес не читается как выбор.
+
+     Единица — в самом токене, а не в месте подстановки: grid-template
+     не принимает безразмерное число, и «1 1» отбрасывало бы всё
+     объявление целиком, роняя диптих в одну колонку. */
+  --seg-open:1.65fr;
+  --seg-shut:1fr;
+
+  /* Единая длительность и ease. Экспоненциальный ease-out: движение
+     начинается быстро и доезжает мягко — перевес читается сразу,
+     а остановка не выглядит рывком. */
+  --seg-dur:.62s;
+  --seg-ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box}
+
+html{
+  /* Тонкая настройка браузерных поверхностей — из craft-floor:
+     выделение и скроллбар тоже принадлежат дизайну. */
+  scrollbar-color:var(--greige-20) var(--surface-void);
+}
+::selection{background:var(--terracotta);color:var(--white)}
+
+body{
+  margin:0;
+  background:var(--surface-void);
+  color:var(--text-on-void);
+  font-family:var(--font-sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ══ служебная шапка прототипа (в проде её нет) ══════════════════════ */
+.proto-bar{
+  padding:14px var(--gutter);
+  border-bottom:1px solid var(--greige-12);
+  display:flex;flex-wrap:wrap;gap:10px 22px;align-items:baseline;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--greige-100);
+}
+.proto-bar strong{color:var(--text-on-void-strong);font-weight:600}
+.proto-bar span{color:var(--greige-300);opacity:.7;text-transform:none;letter-spacing:.02em;font-size:12px}
+
+/* ══ СЕКЦИЯ ═════════════════════════════════════════════════════════ */
+.section{
+  /* Один экран вместо 220svh. min-height, а не height: содержание
+     на узком экране может потребовать больше — обрезать его нельзя. */
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  background:var(--surface-void);
+}
+
+/* Эйбрау — часть закреплённой системы страницы (01 — ФОРМАТЫ повторяется
+   во всех секциях), поэтому сохранён как есть. */
+.eyebrow{
+  display:flex;gap:var(--space-24);align-items:baseline;flex-wrap:wrap;
+  padding:var(--space-44) var(--gutter) var(--space-24);
+}
+.t-num{
+  margin:0;
+  font-size:var(--nav-size);font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-on-void);opacity:var(--text-muted);
+  font-variant-numeric:tabular-nums;
+}
+.t-label{
+  margin:0;
+  font-size:clamp(11px,.85vw,14px);font-weight:600;
+  line-height:1.5;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text-on-void);opacity:var(--text-muted);
+}
+
+/* ── диптих ───────────────────────────────────────────────────────── */
+.diptych{
+  flex:1;
+  display:grid;
+  /* Перевес живёт здесь. fr-треки, а не flex-basis: текст внутри
+     не пересчитывает перенос дважды за кадр, движение остаётся плавным. */
+  grid-template-columns:var(--seg-shut) var(--seg-shut);
+  /* Ряд один и его высоту даёт flex:1 от секции. Явный
+     grid-template-rows здесь не нужен: с одним объявленным треком
+     вторая половина ушла бы в неявный ряд под первой. */
+  grid-auto-rows:minmax(0,1fr);
+  gap:0;
+  transition:grid-template-columns var(--seg-dur) var(--seg-ease);
+}
+
+/* Половина. Кнопка, а не div: выбор формата — действие, и он должен
+   доставаться с клавиатуры. Сброс браузерных стилей кнопки — здесь же. */
+.half{
+  position:relative;
+  appearance:none;-webkit-appearance:none;
+  border:0;margin:0;padding:0;
+  font:inherit;color:inherit;text-align:left;
+  background:var(--surface-void);
+  overflow:hidden;
+  cursor:pointer;
+  display:grid;
+  /* Ряды: метка · растяжка с заголовком у низа · описание.
+     Третий ряд — фиксированной высоты, а не auto: описания у двух
+     форматов разной длины (4 и 6 строк на планшете), и на auto низ
+     заголовка ехал за содержимым — половины разъезжались на 45px.
+     Высота считается от роли Text системы: 6 строк × 14px × 1.6
+     плюс запас на врезку Micro и отступы. */
+  grid-template-rows:auto 1fr var(--body-row);
+  /* Колонка объявлена явно: без неё единственный неявный трек берёт
+     ширину по min-content содержимого, и длинное описание распирало
+     его за пределы половины. minmax(0,…) снимает автоминимум. */
+  grid-template-columns:minmax(0,1fr);
+  /* Половина — контейнер запросов: кегль заголовка ниже меряется в cqi,
+     то есть от ширины САМОЙ половины. Так узкая половина (38%) мельчит
+     заголовок сама, без JS-подбора, который в ленте делал script.js. */
+  container-type:inline-size;
+  min-width:0;                 /* иначе содержимое задаёт минимум треку */
+  isolation:isolate;           /* свой контекст наложения под слои ниже */
+}
+.half:focus-visible{
+  outline:2px solid var(--terracotta);
+  outline-offset:-4px;         /* внутрь: половина прижата к краю вьюпорта */
+}
+
+/* Разделитель. Одна линия на стыке — граница диптиха, а не рамка каждой
+   половины (craft-floor: elevation объявляется один раз). */
+.half + .half{box-shadow:-1px 0 0 var(--greige-20)}
+
+/* ── сцена: чем половины отличаются ───────────────────────────────── */
+/* Различие несёт заливка, а не сетка. Terra — тёплая, семейная;
+   Slate — сдержанная, деловая. Обе из системы. */
+.half--private .half__scene{background:var(--surface-clay)}
+.half--corporate .half__scene{background:var(--surface-slate)}
+
+.half__scene{
+  /* Слой кладём в грид на все три ряда, а не absolute+inset:0: у грид-
+     контейнера абсолютный ребёнок считается от padding-box, и слой
+     оказывался на 15px шире половины (замер: right 397.8 при 390). */
+  grid-column:1;grid-row:1 / -1;
+  z-index:0;
+  /* В покое сцена приглушена: диптих читается как одна пара, а не как
+     два плаката. Под курсором выходит в полную силу. */
+  opacity:.34;
+  transition:opacity var(--seg-dur) var(--seg-ease);
+}
+
+/* ── кадр ─────────────────────────────────────────────────────────── */
+.half__media{
+  /* Тот же приём, что у сцены: кадр — слой грида на всю половину. */
+  grid-column:1;grid-row:1 / -1;
+  z-index:1;
+  position:relative;
+  overflow:hidden;
+  min-width:0;
+}
+.half__media img{
+  width:100%;height:100%;
+  object-fit:cover;
+  max-width:100%;
+  display:block;
+  /* Кадр в покое уведён в тень и слегка обесцвечен: активная половина
+     должна выигрывать не только шириной. */
+  opacity:.42;
+  filter:grayscale(.45);
+  /* Лёгкий наезд, чтобы у кадра был запас на движение без пустых полей.
+     Обрезает его overflow:hidden родителя — вылет за половину
+     намеренный и на раскладку не влияет. */
+  transform:scale(1.04);
+  transition:
+    opacity var(--seg-dur) var(--seg-ease),
+    filter var(--seg-dur) var(--seg-ease),
+    transform var(--seg-dur) var(--seg-ease);
+}
+/* Шторка снизу: набор лежит на кадре, и без неё он терялся бы на светлых
+   участках фотографии. Градиент к сцене, а не к чёрному, — чтобы низ
+   половины совпадал с её собственной заливкой. */
+.half__media::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(to top,
+    rgba(6,6,6,.92) 0%,
+    rgba(6,6,6,.72) 32%,
+    rgba(6,6,6,.28) 62%,
+    rgba(6,6,6,.05) 100%);
+}
+
+/* ── содержание ───────────────────────────────────────────────────── */
+/* Набор лежит в тех же трёх рядах, что и слои, но в первой колонке
+   поверх них — отсюда явные grid-row у каждого блока. */
+.half__mark,
+.half__title,
+.half__body{
+  grid-column:1;
+  position:relative;z-index:2;
+  padding-inline:clamp(18px,2.6vw,44px);
+  min-width:0;
+}
+.half__mark{grid-row:1}
+.half__title{grid-row:2}
+.half__body{grid-row:3}
+.half__mark{
+  display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;
+  padding-top:clamp(20px,2.4vw,34px);
+  margin:0;
+}
+/* Метка A/B — роль Number системы: гротеск 500, 13px, tracking 2.34px,
+   терракота. Кегль фиксированный, как у роли. */
+.half__letter{
+  font-family:var(--font-sans);
+  font-size:var(--number-size);
+  font-weight:var(--number-weight);
+  letter-spacing:var(--number-tracking);
+  color:var(--text-accent);
+  font-variant-numeric:tabular-nums;
+}
+/* Адресат формата — служебная подпись: --label-size системы. */
+.half__kind{
+  font-family:var(--font-sans);
+  font-size:11px;                /* --label-size */
+  font-weight:600;
+  letter-spacing:1px;            /* --label-tracking */
+  text-transform:uppercase;
+  color:var(--text-subtitle);
+  transition:color var(--seg-dur) var(--seg-ease);
+}
+
+.half__title{
+  align-self:end;
+  margin:0;
+}
+/* Заголовок формата — H1 системы: гротеск 700, капитель, leading 1,
+   tracking 0. Правка «сделай как мегатекст»: плотность мегатекста берём
+   из системного H1, а не из .t-mega прототипа (тот несёт Manrope 800,
+   leading .78 и tracking -.06em — гарнитуру системы это ломает, и сам
+   .t-mega в системе не описан). */
+.t-format{
+  margin:0;
+  font-family:var(--h1-family);
+  font-weight:var(--h1-weight);
+  /* Капитель — H1 системы набирается капсом. */
+  text-transform:uppercase;
+  /* Кегль в cqi — от ширины своей половины (см. container-type у .half).
+     7.4cqi: «КОРПОРАТИВНЫЙ» капсом шире строчного набора, и прежние
+     8.6cqi выносили его за край суженной половины. Шкала системы
+     (H1 130px на 1200px) здесь не берётся буквально: заголовок живёт
+     в половине экрана, а не во всю его ширину. */
+  font-size:clamp(20px,7.4cqi,58px);
+  line-height:var(--h1-leading);
+  letter-spacing:var(--h1-tracking);
+  color:var(--text-title);
+  /* Слово не рвём: «КОРПОРАТИВНЫ/Й БАЛ» посреди заголовка читается
+     как сбой вёрстки. */
+  hyphens:manual;
+  overflow-wrap:normal;
+  /* Выравнивание по высоте (вторая часть правки): оба заголовка
+     занимают одинаковую высоту в две строки независимо от того,
+     сколько строк набралось реально, — иначе «ЧАСТНЫЙ БАЛ» в одну
+     строку поднимался бы выше двухстрочного «КОРПОРАТИВНОГО».
+     2 строки × leading + запас на выносные — минимум, а не высота:
+     на узкой половине строк может стать три. */
+  min-height:calc(2em * var(--h1-leading));
+  display:flex;
+  align-items:flex-end;        /* прижим к низу: базовая линия общая */
+}
+
+.half__body{
+  padding-bottom:clamp(20px,2.6vw,40px);
+  padding-top:var(--space-16);
+  /* Ряд фиксирован — содержимое в него укладывается, а не распирает.
+     min-height:0 обязателен: у грид-элемента автоминимум content,
+     и без него фиксированная высота ряда игнорировалась бы. */
+  min-height:0;
+  overflow:hidden;
+  /* Мера: набор не должен растягиваться на всю активную половину. */
+  /* Мера при фиксированных 14px: 60ch ≈ 62 знака — попадает
+     в 65–75ch craft-floor с поправкой на капс-подписи рядом. */
+  max-width:60ch;
+}
+/* Внутри <button> вся вложенность — span'ы (кнопка принимает только
+   инлайн-содержание), поэтому блочность задаём стилем. Без этого
+   курсив и описание встают одной строкой, а не двумя абзацами. */
+.half__title,
+.half__body,
+.t-format,
+.t-italic,
+.t-body{display:block}
+/* Врезка — роль Micro системы: Old Standard TT Italic, кегль
+   фиксированный на всех брейкпоинтах, tracking -2px, leading 1.
+   Прежний clamp(13px…17px) системе противоречил: она задаёт Micro
+   именно фиксированным, и плавающий кегль ломал единство врезок
+   между секциями. 30px на узкой половине крупноват — берём 24px
+   как нижнюю ступень той же роли (см. адаптив ниже). */
+.t-italic{
+  margin:0 0 12px;
+  font-family:var(--micro-family);
+  font-style:italic;
+  font-weight:400;
+  font-size:var(--micro-size);
+  letter-spacing:var(--micro-tracking);
+  line-height:var(--micro-leading);
+  color:var(--text-accent);
+}
+.t-body{
+  margin:0;
+  /* Ширину держим здесь, а не на .half__body: у half__body есть
+     padding-inline, и 100% на самом тексте вылезал за него. */
+  max-width:100%;
+  /* Роль Text системы: гротеск 600, 14px, tracking .5px. Кегль
+     фиксированный — система не даёт ему плавать, прежний
+     clamp(13px…15.5px) был отсебятиной. Интерлиньяж берём
+     --text-leading-paragraph: у системы для абзаца в 2+ строки
+     своё значение (1.6), а базовый leading 1 — только для строки. */
+  font-family:var(--text-family);
+  font-weight:var(--text-weight);
+  font-size:var(--text-size);
+  letter-spacing:var(--text-tracking);
+  line-height:var(--text-leading-paragraph);
+  color:var(--text-body);
+  /* Описание — награда за интерес: в покое его нет, под курсором
+     проявляется. Не display:none — переход должен быть плавным,
+     и текст должен оставаться в доступе для скринридера. */
+  opacity:0;
+  transform:translateY(8px);
+  transition:
+    opacity var(--seg-dur) var(--seg-ease),
+    transform var(--seg-dur) var(--seg-ease);
+}
+
+/* ══ СОСТОЯНИЯ ══════════════════════════════════════════════════════
+   Наведение — только там, где курсор существует. На touch то же
+   состояние даёт класс .is-open от тапа (см. скрипт): механика одна,
+   а не отключённая половина функциональности. */
+
+/* Перевес треков. Оба направления объявлены явно — иначе вторая
+   половина при наведении на первую осталась бы на 1fr. */
+@media (hover:hover) and (pointer:fine){
+  .diptych:has(.half--private:hover){
+    grid-template-columns:var(--seg-open) var(--seg-shut);
+  }
+  .diptych:has(.half--corporate:hover){
+    grid-template-columns:var(--seg-shut) var(--seg-open);
+  }
+}
+/* Клавиатура получает тот же перевес, что и курсор. */
+.diptych:has(.half--private:focus-visible){
+  grid-template-columns:var(--seg-open) var(--seg-shut);
+}
+.diptych:has(.half--corporate:focus-visible){
+  grid-template-columns:var(--seg-shut) var(--seg-open);
+}
+/* Тап на touch. */
+.diptych:has(.half--private.is-open){
+  grid-template-columns:var(--seg-open) var(--seg-shut);
+}
+.diptych:has(.half--corporate.is-open){
+  grid-template-columns:var(--seg-shut) var(--seg-open);
+}
+
+/* Раскрытая половина: сцена в полную силу, кадр оживает, текст приходит. */
+.half.is-open .half__scene{opacity:.62}
+.half.is-open .half__media img{opacity:.72;filter:grayscale(0);transform:scale(1)}
+.half.is-open .half__kind{color:var(--text-title)}
+.half.is-open .t-body{opacity:1;transform:none}
+
+@media (hover:hover) and (pointer:fine){
+  .half:hover .half__scene{opacity:.62}
+  .half:hover .half__media img{opacity:.72;filter:grayscale(0);transform:scale(1)}
+  .half:hover .half__kind{color:var(--text-title)}
+  .half:hover .t-body{opacity:1;transform:none}
+}
+.half:focus-visible .half__scene{opacity:.62}
+.half:focus-visible .half__media img{opacity:.72;filter:grayscale(0);transform:scale(1)}
+.half:focus-visible .t-body{opacity:1;transform:none}
+
+/* ══ АДАПТИВ ════════════════════════════════════════════════════════ */
+
+/* Планшет: перевес мягче — на 900px активная половина при 1.65
+   оставляла узкой меньше 300px, и заголовок в ней ломался. */
+@media (max-width:1024px){
+  :root{--seg-open:1.45fr}
+  /* На планшете половина уже — потолок cqi ниже, чтобы длинное слово
+     не упиралось в края. */
+  .t-format{font-size:clamp(20px,7cqi,40px)}
+  /* Врезка: система держит Micro фиксированным, но 30px в половине
+     шириной ~418px забирают три строки. 24px — та же роль ступенью
+     ниже, пропорция tracking/leading сохранена. */
+  :root{--micro-size:24px}
+}
+
+/* Телефон. Здесь и главный выигрыш варианта A: механика та же —
+   две половины и перевес, — только ось вертикальная. Текущая секция
+   на этой ширине оставляет горизонтальный ход, которого пальцем
+   почти не видно. */
+@media (max-width:760px){
+  .diptych{
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:var(--seg-shut) var(--seg-shut);
+    transition:grid-template-rows var(--seg-dur) var(--seg-ease);
+    /* Минимум на половину: две сцены по 44svh дают полный экран
+       и обе читаются без прокрутки. */
+    min-height:88svh;
+  }
+  .half + .half{box-shadow:0 -1px 0 var(--greige-20)}
+
+  /* Перевес по вертикали. */
+  .diptych:has(.half--private.is-open),
+  .diptych:has(.half--private:focus-visible){
+    grid-template-rows:var(--seg-open) var(--seg-shut);
+  }
+  .diptych:has(.half--corporate.is-open),
+  .diptych:has(.half--corporate:focus-visible){
+    grid-template-rows:var(--seg-shut) var(--seg-open);
+  }
+
+  /* На телефоне половина = вся ширина экрана, cqi здесь равен vw.
+     7.4cqi на 390px даёт 29px — «Корпоративный» стоит одной строкой. */
+  .t-format{font-size:clamp(20px,7.2cqi,34px)}
+  /* Врезка на телефоне: 20px. Ниже система не спускается, и меньше
+     уже спорит с описанием в 14px — разница ролей перестала бы читаться. */
+  :root{--micro-size:20px}
+  .half__body{max-width:none}
+  /* На телефоне описание видно всегда: тап — это выбор, а не наведение,
+     и прятать за него содержание значит требовать лишнего действия. */
+  .t-body{opacity:1;transform:none}
+  .half__scene{opacity:.5}
+  .half__media img{opacity:.6;filter:grayscale(.2)}
+}
+
+/* Совсем узкий экран: описание уходит, остаётся заголовок и подзаголовок —
+   иначе две половины не укладываются в экран без прокрутки. */
+@media (max-width:400px){
+  .t-body{display:none}
+}
+
+/* ── доступность движения ─────────────────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    transition-duration:.01ms !important;
+    animation-duration:.01ms !important;
+  }
+  /* Перевес остаётся: reduce просит убрать движение, а не отнять
+     функциональность. Убираем именно переход — половина меняет ширину
+     мгновенно, без разъезда. Прежняя редакция гасила перевес совсем
+     (grid-template-columns:1fr 1fr !important) — это лишало смысла
+     всю механику выбора у тех, кто просил меньше анимации. */
+  .diptych{transition:none !important}
+  /* Кадр не наезжает и не обесцвечивается — статичная картинка. */
+  .half__media img{transform:none !important}
+  /* Описание видно всегда: его проявление было анимацией. */
+  .t-body{opacity:1 !important;transform:none !important}
+}
+</style>
+</head>
+<body>
+
+<div class="proto-bar">
+  <strong>Прототип A · диптих</strong>
+  <span>index.html не изменён. Наведите курсор на половину — на телефоне коснитесь.</span>
+</div>
+
+<section class="section" id="segments">
+
+  <div class="eyebrow">
+    <p class="t-num">01 — ФОРМАТЫ</p>
+    <p class="t-label">Два повода собрать людей вместе</p>
+  </div>
+
+  <!-- Диптих. role/aria-label сохранены с текущей секции: для скринридера
+       это по-прежнему группа из двух форматов. -->
+  <div class="diptych" id="diptych" role="group" aria-label="Форматы балов">
+
+    <!-- ── A · частный ── -->
+    <button class="half half--private" type="button" aria-expanded="false">
+      <span class="half__scene" aria-hidden="true"></span>
+      <span class="half__media">
+        <img src="assets/photos/nk-08.jpg"
+             alt="Гости танцуют в паре на паркете бального зала"
+             width="1250" height="833" loading="lazy" decoding="async">
+      </span>
+      <span class="half__mark">
+        <span class="half__letter" aria-hidden="true">A</span>
+        <span class="half__kind">Для семьи и близких</span>
+      </span>
+      <span class="half__title">
+        <span class="t-format">Частный бал</span>
+      </span>
+      <span class="half__body">
+        <span class="t-italic">Свадьба, юбилей, день рождения</span>
+        <span class="t-body">
+          Событие, за которым стоит целая история семьи. Бал становится той редкой
+          и бесценной возможностью собрать вместе несколько поколений близких людей
+          и подарить им вечер, который останется в памяти на годы.
+        </span>
+      </span>
+    </button>
+
+    <!-- ── B · корпоративный ── -->
+    <button class="half half--corporate" type="button" aria-expanded="false">
+      <span class="half__scene" aria-hidden="true"></span>
+      <span class="half__media">
+        <img src="assets/photos/guests-corridor.jpg"
+             alt="Гости в вечерних нарядах идут по галерее к бальному залу"
+             width="2500" height="1667" loading="lazy" decoding="async">
+      </span>
+      <span class="half__mark">
+        <span class="half__letter" aria-hidden="true">B</span>
+        <span class="half__kind">Для компании, партнёров и сотрудников</span>
+      </span>
+      <span class="half__title">
+        <span class="t-format">Корпоративный бал</span>
+      </span>
+      <span class="half__body">
+        <span class="t-italic">Годовщина, приём, презентация</span>
+        <span class="t-body">
+          Новогодний приём, вечер в честь партнёров, чествование лучших сотрудников.
+          Балом венчают конференцию или форум, придают особый вес открытию новой
+          площадки и превращают деловое событие в подлинный праздник.
+        </span>
+      </span>
+    </button>
+
+  </div>
+</section>
+
+<script>
+/* ─────────────────────────────────────────────────────────────────────────
+   Скрипта здесь ровно столько, сколько CSS не умеет.
+
+   Перевес, проявление текста и оживание кадра — на :hover и :focus-visible,
+   без JS. Скрипту остаётся touch: на тач-устройствах :hover либо не
+   существует, либо залипает после тапа, и раскрытие нужно вести классом.
+
+   Того подбора кегля, что стоит в script.js для .t-format, здесь нет
+   намеренно: в диптихе заголовок живёт в своей половине и укладывается
+   обычным clamp. Одна колонка на формат — одна мерка, подбирать нечего.
+   ───────────────────────────────────────────────────────────────────────── */
+(function () {
+  var dip = document.getElementById('diptych');
+  if (!dip) return;
+
+  var halves = Array.prototype.slice.call(dip.querySelectorAll('.half'));
+
+  /* Тач определяем по возможности наведения, а не по ширине экрана:
+     тачскрин бывает и на большом мониторе, и мышь — на планшете. */
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  function open(half) {
+    halves.forEach(function (h) {
+      var on = h === half;
+      h.classList.toggle('is-open', on);
+      h.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+  }
+
+  function closeAll() {
+    halves.forEach(function (h) {
+      h.classList.remove('is-open');
+      h.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  halves.forEach(function (half) {
+    half.addEventListener('click', function () {
+      /* На устройстве с курсором клик по половине — это уже выбор
+         формата, и в проде отсюда пойдёт переход к форме или к секции
+         подготовки. Пока прототип: раскрытие и есть весь ответ. */
+      if (half.classList.contains('is-open') && !canHover) closeAll();
+      else open(half);
+    });
+  });
+
+  /* Клик мимо диптиха закрывает раскрытую половину — на touch иначе
+     она остаётся раскрытой навсегда, и выбор перестаёт читаться как выбор. */
+  if (!canHover) {
+    document.addEventListener('click', function (e) {
+      if (!dip.contains(e.target)) closeAll();
+    });
+  }
+
+  /* Esc — тот же выход с клавиатуры. */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+  });
+}());
+</script>
+
+<!-- ================= РЕЖИМ ПРАВОК (служебное) =================
+     Тот же оверлей, что в index.html. Спит, пока в адресе нет
+     ?review=1: без флага review.js выходит первой же строкой.
+     Открывать так:
+
+         formats-diptych.html?review=1
+
+     Метки копятся в localStorage, «Скачать» кладёт review-comments.json
+     в загрузки. Внимание: поле "page" в этом файле пишется от текущей
+     страницы, так что правки к прототипу и к index.html не спутаются.
+
+     Перед сдачей — удалить эти две строки. ============================ -->
+<link rel="stylesheet" href="review.css">
+<script src="review.js"></script>
+
+</body>
+</html>

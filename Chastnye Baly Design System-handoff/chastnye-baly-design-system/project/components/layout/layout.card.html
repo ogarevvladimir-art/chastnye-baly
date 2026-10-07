@@ -1,0 +1,60 @@
+<!-- @dsCard group="Components" viewport="700x1080" name="Блоки страницы" subtitle="Знак, шапка, карточки сегментов, шаги, полосы Ash и Terra" -->
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>html,body{margin:0}body{background:var(--surface-page);color:var(--greige-90);font-family:var(--font-sans);width:700px;box-sizing:border-box;padding:20px}
+.cap{font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--text-muted)}
+.demo{border:1px solid var(--line-row);padding:18px;display:flex;align-items:center;justify-content:center;min-height:84px}
+a{color:var(--color-accent);text-decoration:none}a:hover{color:var(--color-accent-hover)}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Logo, Wordmark, SiteHeader, SegmentCard, StepItem, QuoteBand, CTABand } = window.ChastnyeBalyDesignSystem_059c2e;
+function App() {
+  const [nav, setNav] = React.useState('Вечера');
+  return (
+    <div style={{display:'flex',flexDirection:'column',gap:26}}>
+      <div style={{display:'flex',flexDirection:'column',gap:8}}>
+        <div style={{border:'1px solid var(--line-row)',padding:'14px 18px',display:'flex',alignItems:'center',gap:28}}><Logo height={48} /><Wordmark size={40} /></div>
+        <div className="cap">Logo · Wordmark</div>
+      </div>
+      <div style={{display:'flex',flexDirection:'column',gap:8}}>
+        <div style={{border:'1px solid var(--line-row)'}}>
+          <SiteHeader items={['Как это происходит','Вечера','О нас','Связаться']} active={nav} phone="+7 495 000-00-00" onNavigate={setNav} />
+        </div>
+        <SiteHeader items={['Как это происходит','Вечера','О нас','Связаться']} active={nav} phone="+7 495 000-00-00" surface="brand" onNavigate={setNav} />
+        <div className="cap">SiteHeader · transparent / brand · активный пункт «{nav}»</div>
+      </div>
+      <div style={{display:'flex',flexDirection:'column',gap:8}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+          <SegmentCard number="01" title="Частный бал" subtitle="для семьи и близких">Свадьба, юбилей, день рождения — событие, за которым стоит целая история семьи.</SegmentCard>
+          <SegmentCard number="02" title="Корпоративный бал" subtitle="для компании и партнёров" surface="brand">Годовщина компании, новогодний приём, вечер в честь партнёров.</SegmentCard>
+        </div>
+        <div className="cap">SegmentCard · Slate / Terra</div>
+      </div>
+      <div style={{display:'flex',flexDirection:'column',gap:8}}>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}}>
+          <StepItem number="01" title="Разговор">Вы рассказываете о своём вечере — для кого он, почему именно бал.</StepItem>
+          <StepItem number="02" title="Сценарий">Мы собираем вечер из того, что услышали: музыка, танцы, порядок, паузы.</StepItem>
+          <StepItem number="03" title="Репетиции">Танцмейстер и ассистент готовят вас и гостей — в вашем темпе.</StepItem>
+        </div>
+        <div className="cap">StepItem · раскладка 4+4+4</div>
+      </div>
+      <div style={{display:'flex',flexDirection:'column',gap:8}}>
+        <QuoteBand eyebrow="мы научились танцевать вальс" style={{padding:'44px 24px',fontSize:0}}>
+          <span style={{fontSize:44,letterSpacing:'-2px',lineHeight:.9,display:'block'}}>чтобы вечер стал тем,<br />что вспоминают годами</span>
+        </QuoteBand>
+        <div className="cap">QuoteBand · Ash</div>
+      </div>
+      <div style={{display:'flex',flexDirection:'column',gap:8}}>
+        <CTABand number="05" label="СВЯЗАТЬСЯ" title={<span style={{fontSize:52,display:'block'}}>Расскажите<br />о вечере</span>} style={{padding:'44px 24px'}} />
+        <div className="cap">CTABand · Terra</div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script></body></html>

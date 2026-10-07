@@ -1,0 +1,310 @@
+/* =====================================================================
+   РЕЖИМ ПРАВОК — оформление оверлея
+   =====================================================================
+
+   Служебный слой поверх макета. Отдельный файл, потому что удаляется
+   вместе с review.js перед сдачей.
+
+   Два правила по всему файлу:
+
+   1. Никаких переменных проекта. Оверлей нарочно нейтрально-серый и
+      системным шрифтом: он не должен притворяться частью макета, иначе
+      при просмотре не отличить интерфейс правок от самого сайта.
+
+   2. Все классы с префиксом rv-, все z-index — заведомо выше сайта.
+      В styles.css потолок около 1000 (шапка, меню), поэтому берём
+      2147483000-й диапазон: перекрывает и полноэкранное меню.
+   ===================================================================== */
+
+#review-ui {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  /* Контейнер сквозной для мыши — иначе он накрыл бы весь сайт и
+     подсветка под курсором не работала бы. Кликабельность
+     возвращаем точечно, каждому дочернему блоку. */
+  pointer-events: none;
+  font: 13px/1.45 -apple-system, "Segoe UI", system-ui, sans-serif;
+  color: #f2f2f2;
+}
+
+#review-ui * { box-sizing: border-box; }
+
+/* ---------- рамка под курсором ---------- */
+.rv-hl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: 1px solid #4a9eff;
+  background: rgba(74, 158, 255, .1);
+  border-radius: 2px;
+  pointer-events: none;
+  /* Без анимации трансформации: рамка должна прилипать к элементу
+     мгновенно, плавное движение здесь читается как подтормаживание. */
+  will-change: transform, width, height;
+}
+
+.rv-hl--flash {
+  animation: rv-flash .9s ease-out;
+}
+
+@keyframes rv-flash {
+  0%, 100% { border-color: #4a9eff; background: rgba(74, 158, 255, .1); }
+  30%      { border-color: #ffd44a; background: rgba(255, 212, 74, .22); }
+}
+
+/* ---------- боковая панель со списком ---------- */
+.rv-panel {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 300px;
+  max-height: calc(100vh - 24px);
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  background: rgba(22, 22, 24, .96);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+  backdrop-filter: blur(8px);
+}
+
+.rv-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.rv-panel__title {
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+.rv-count {
+  min-width: 22px;
+  padding: 1px 7px;
+  text-align: center;
+  font-size: 11px;
+  border-radius: 20px;
+  background: #4a9eff;
+  color: #08121f;
+  font-weight: 700;
+}
+
+.rv-hint {
+  padding: 8px 12px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, .5);
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+
+.rv-hint b {
+  color: rgba(255, 255, 255, .8);
+  font-weight: 600;
+}
+
+.rv-list {
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  overflow-y: auto;
+  /* Минимум задан, чтобы при пустом списке панель не схлопывалась
+     в узкую полоску и оставалась узнаваемой мишенью. */
+  min-height: 40px;
+  flex: 1;
+}
+
+.rv-item {
+  padding: 8px 9px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.rv-item:hover {
+  background: rgba(255, 255, 255, .09);
+  border-color: rgba(74, 158, 255, .4);
+}
+
+.rv-item__head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 4px;
+}
+
+.rv-item__n {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .4);
+}
+
+.rv-item__sec {
+  flex: 1;
+  font-size: 11px;
+  color: #4a9eff;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rv-item__del {
+  border: 0;
+  background: none;
+  color: rgba(255, 255, 255, .35);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.rv-item__del:hover { color: #ff6b6b; }
+
+.rv-item__note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, .88);
+  /* Правки бывают длинными — переносим по словам, но и длинную
+     ссылку без пробелов не даём разорвать панель. */
+  overflow-wrap: anywhere;
+}
+
+.rv-panel__foot {
+  display: flex;
+  gap: 6px;
+  padding: 9px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+/* ---------- кнопки ---------- */
+.rv-btn {
+  flex: 1;
+  padding: 7px 9px;
+  font: inherit;
+  font-size: 11px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  background: rgba(255, 255, 255, .07);
+  color: #eee;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.rv-btn:hover { background: rgba(255, 255, 255, .14); }
+
+.rv-btn--main {
+  background: #4a9eff;
+  border-color: #4a9eff;
+  color: #08121f;
+  font-weight: 600;
+}
+
+.rv-btn--main:hover { background: #6bb0ff; }
+
+.rv-btn--ghost {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, .5);
+}
+
+.rv-btn--ghost:hover { color: #ff6b6b; }
+
+/* ---------- окно ввода правки ---------- */
+.rv-pop {
+  position: absolute;
+  width: 300px;
+  padding: 10px;
+  pointer-events: auto;
+  background: rgba(22, 22, 24, .98);
+  border: 1px solid rgba(74, 158, 255, .5);
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .6);
+}
+
+.rv-pop__target {
+  font-size: 11px;
+  color: rgba(255, 255, 255, .55);
+  margin-bottom: 7px;
+  /* Подпись — служебная: даём ей максимум две строки, дальше
+     обрезаем, иначе длинный заголовок вытеснит само поле ввода. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rv-pop__input {
+  width: 100%;
+  padding: 8px;
+  font: inherit;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0, 0, 0, .35);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.rv-pop__input:focus {
+  outline: none;
+  border-color: #4a9eff;
+}
+
+.rv-pop__foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.rv-pop__hint {
+  flex: 1;
+  font-size: 10px;
+  color: rgba(255, 255, 255, .35);
+}
+
+.rv-pop__foot .rv-btn { flex: 0 0 auto; }
+
+/* ---------- переключатель режима выбора ---------- */
+.rv-toggle {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 6px 11px;
+  pointer-events: auto;
+  font-size: 11px;
+  border-radius: 20px;
+  background: rgba(22, 22, 24, .95);
+  border: 1px solid rgba(74, 158, 255, .5);
+  cursor: pointer;
+  user-select: none;
+}
+
+.rv-toggle b { color: #4a9eff; }
+
+.rv-toggle--off {
+  border-color: rgba(255, 255, 255, .2);
+}
+
+.rv-toggle--off b { color: rgba(255, 255, 255, .45); }
+
+/* Узкие экраны: панель во всю ширину снизу — сбоку она съедала бы
+   половину макета и смотреть было бы не на что. */
+@media (max-width: 700px) {
+  .rv-panel {
+    top: auto;
+    right: 8px;
+    left: 8px;
+    bottom: 8px;
+    width: auto;
+    max-height: 45vh;
+  }
+
+  .rv-pop { width: calc(100vw - 24px); }
+
+  .rv-toggle { bottom: auto; top: 8px; }
+}

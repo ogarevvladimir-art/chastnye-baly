@@ -1,0 +1,6 @@
+:root {
+  --duration-hover: 240ms; /* @kind other */
+  --duration-line: 240ms; /* @kind other */   /* рост подчёркивания текстовой ссылки до 100% */
+  --easing: ease; /* @kind other */
+  --transition-hover: all var(--duration-hover) var(--easing);
+}

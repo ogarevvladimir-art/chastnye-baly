@@ -1,0 +1,54 @@
+{
+  "page": "formats-diptych.html",
+  "date": "2026-09-11T15:04:57.136Z",
+  "comments": [
+    {
+      "id": 1788535654881,
+      "section": "#music",
+      "selector": "#music > div",
+      "tag": "div",
+      "text": "04 — ЗВУК Три состава в одном вечере Музыка Музыкальное сопровождение Звук управ…",
+      "note": "Мне не нравится дизайн этой части блока \nнужно переделать его ближе к референсу ore"
+    },
+    {
+      "id": 1789040946299,
+      "section": "#diptych",
+      "selector": "#diptych > button.half--private > span:nth-of-type(4) > span",
+      "tag": "span",
+      "text": "Частный бал",
+      "note": "Сделай как мегатекст и выровняй по высоте с корпоративный бал"
+    },
+    {
+      "id": 1789040988111,
+      "section": "#diptych",
+      "selector": "#diptych > button.half--private > span:nth-of-type(5) > span:nth-of-type(1)",
+      "tag": "span",
+      "text": "Свадьба, юбилей, день рождения",
+      "note": "замени шрифт"
+    },
+    {
+      "id": 1789041002768,
+      "section": "#diptych",
+      "selector": "#diptych > button.half--corporate > span:nth-of-type(5) > span:nth-of-type(1)",
+      "tag": "span",
+      "text": "Годовщина, приём, презентация",
+      "note": "замени шрифт"
+    },
+    {
+      "id": 1789041114814,
+      "section": "#diptych",
+      "selector": "#diptych > button.half--private > span:nth-of-type(5) > span:nth-of-type(2)",
+      "tag": "span",
+      "text": "Событие, за которым стоит целая история семьи. Бал становится той редкой и бесце…",
+      "note": "замени шрифт в соответствии с дизайн системой Частные балы сайт\\Chastnye Baly Design System-handoff"
+    },
+    {
+      "id": 1789041128726,
+      "section": "#diptych",
+      "selector": "#diptych > button.half--corporate > span:nth-of-type(5) > span:nth-of-type(2)",
+      "tag": "span",
+      "text": "Новогодний приём, вечер в честь партнёров, чествование лучших сотрудников. Балом…",
+      "note": "замени шрифт в соответствии с дизайн системой Частные балы сайт\\Chastnye Baly Design System-handoff"
+    }
+  ]
+}

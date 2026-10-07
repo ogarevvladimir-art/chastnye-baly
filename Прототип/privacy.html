@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Политика конфиденциальности — Частные балы</title>
+<!-- Страница из поиска не нужна: она служебная и ведёт с формы -->
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Страница набрана на токенах сайта — своих цветов и гарнитур не вводит.
+     Раскладка простая: одна колонка с читаемой мерой строки. */
+  .legal {
+    background: var(--surface-paper);
+    color: var(--text-on-paper);
+    min-height: 100vh;
+    padding: clamp(48px, 6vw, 96px) var(--gutter);
+  }
+  .legal__wrap { max-width: 68ch; margin: 0 auto; }
+  .legal h1 {
+    font-family: var(--font-display, var(--font-serif));
+    font-size: clamp(28px, 4vw, 52px);
+    line-height: 1.05; letter-spacing: -.03em; margin: 0 0 8px;
+  }
+  .legal h2 {
+    font-size: clamp(17px, 1.6vw, 22px);
+    margin: clamp(32px, 3vw, 48px) 0 12px; line-height: 1.2;
+  }
+  .legal p, .legal li {
+    font-family: var(--font-text);
+    font-size: clamp(15px, 1.1vw, 17px);
+    line-height: 1.65; opacity: .84;
+  }
+  .legal ul { padding-left: 1.2em; margin: 12px 0; }
+  .legal li { margin-bottom: 8px; }
+  /* Пометка о незаполненности — намеренно заметная: страницу нельзя
+     выпускать в этом виде, и это должно быть видно с первого взгляда. */
+  .legal__todo {
+    border: 1px solid var(--greige-700);
+    padding: clamp(16px, 2vw, 24px);
+    margin: clamp(24px, 3vw, 36px) 0;
+  }
+  .legal__todo p { opacity: 1; }
+  .legal__todo strong { font-weight: 700; }
+  .legal__back {
+    display: inline-block; margin-top: clamp(32px, 4vw, 56px);
+    font-size: 14px; text-decoration: underline; text-underline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+<main class="legal">
+  <div class="legal__wrap">
+    <h1>Политика конфиденциальности</h1>
+    <p>Обработка персональных данных на сайте «Частные балы».</p>
+
+    <div class="legal__todo">
+      <p><strong>Страница-заготовка.</strong> Правового текста у проекта
+      нет. Политику конфиденциальности готовит юрист владельца — она
+      зависит от того, кто выступает оператором данных, где физически
+      хранятся заявки и какая CRM их принимает. Пока текст не подставлен,
+      сайт нельзя выпускать в бой: форма собирает имя и контакт, то есть
+      персональные данные по 152-ФЗ, и ссылка под галочкой согласия
+      обязана вести на действующий документ.</p>
+      <p>Ниже — перечень того, что закон требует раскрыть. Это ориентир
+      для юриста, а не текст политики.</p>
+    </div>
+
+    <h2>Что должно быть в документе</h2>
+    <ul>
+      <li>Оператор данных: наименование, ИНН, адрес, контакт
+        ответственного за обработку.</li>
+      <li>Какие данные собираются: имя, телефон или почта, текст
+        обращения, адрес страницы и время отправки.</li>
+      <li>Цель обработки: ответ на заявку и связь по организации вечера.</li>
+      <li>Правовое основание — согласие субъекта, данное отметкой
+        в форме.</li>
+      <li>Кому передаются данные: оператор CRM и хостинг, с указанием
+        стран размещения.</li>
+      <li>Срок хранения и порядок уничтожения.</li>
+      <li>Права субъекта: доступ, исправление, отзыв согласия, и адрес,
+        по которому это делается.</li>
+      <li>Использование cookie и систем аналитики, если они появятся.</li>
+    </ul>
+
+    <a class="legal__back" href="index.html">← Вернуться на сайт</a>
+  </div>
+</main>
+</body>
+</html>

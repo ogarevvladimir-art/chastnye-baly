@@ -1,0 +1,438 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "components/layout/**",
+              "ui_kits/site/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Old Standard TT))/i]",
+        "message": "Font not provided by the design system. Available: Old Standard TT."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|size|as|href|disabled|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, size, as, href, disabled, onClick, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:md|lg)$/]",
+        "message": "<Button> size must be one of 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CTABand'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|number|title|action|onAction|style|key|ref|className|style|children)$/]",
+        "message": "<CTABand> doesn't accept that prop. Declared props: label, number, title, action, onAction, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FormField'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|placeholder|value|onChange|state|hint|type|name|style|key|ref|className|style|children)$/]",
+        "message": "<FormField> doesn't accept that prop. Declared props: label, placeholder, value, onChange, state, hint, type, name, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FormField'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:rest|focus|error)$/]",
+        "message": "<FormField> state must be one of 'rest' | 'focus' | 'error'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Logo'] > JSXAttribute > JSXIdentifier[name!=/^(?:height|src|alt|style|key|ref|className|style|children)$/]",
+        "message": "<Logo> doesn't accept that prop. Declared props: height, src, alt, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='QuoteBand'] > JSXAttribute > JSXIdentifier[name!=/^(?:eyebrow|children|surface|style|key|ref|className|style|children)$/]",
+        "message": "<QuoteBand> doesn't accept that prop. Declared props: eyebrow, children, surface, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='QuoteBand'] > JSXAttribute[name.name='surface'] > Literal[value!=/^(?:rest|ink|brand)$/]",
+        "message": "<QuoteBand> surface must be one of 'rest' | 'ink' | 'brand'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionLabel'] > JSXAttribute > JSXIdentifier[name!=/^(?:number|children|tone|style|key|ref|className|style|children)$/]",
+        "message": "<SectionLabel> doesn't accept that prop. Declared props: number, children, tone, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionLabel'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:accent|on-brand)$/]",
+        "message": "<SectionLabel> tone must be one of 'accent' | 'on-brand'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SegmentCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:number|title|subtitle|children|surface|style|key|ref|className|style|children)$/]",
+        "message": "<SegmentCard> doesn't accept that prop. Declared props: number, title, subtitle, children, surface, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SegmentCard'] > JSXAttribute[name.name='surface'] > Literal[value!=/^(?:card|brand)$/]",
+        "message": "<SegmentCard> surface must be one of 'card' | 'brand'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SiteHeader'] > JSXAttribute > JSXIdentifier[name!=/^(?:items|active|phone|surface|onNavigate|style|key|ref|className|style|children)$/]",
+        "message": "<SiteHeader> doesn't accept that prop. Declared props: items, active, phone, surface, onNavigate, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SiteHeader'] > JSXAttribute[name.name='surface'] > Literal[value!=/^(?:transparent|ink|brand)$/]",
+        "message": "<SiteHeader> surface must be one of 'transparent' | 'ink' | 'brand'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StepItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:number|title|children|style|key|ref|className|style|children)$/]",
+        "message": "<StepItem> doesn't accept that prop. Declared props: number, title, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TextLink'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|href|onClick|size|showArrow|tone|style|key|ref|className|style|children)$/]",
+        "message": "<TextLink> doesn't accept that prop. Declared props: children, href, onClick, size, showArrow, tone, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TextLink'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:default|on-brand)$/]",
+        "message": "<TextLink> tone must be one of 'default' | 'on-brand'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Wordmark'] > JSXAttribute > JSXIdentifier[name!=/^(?:size|tone|style|key|ref|className|style|children)$/]",
+        "message": "<Wordmark> doesn't accept that prop. Declared props: size, tone, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Wordmark'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:default|on-brand)$/]",
+        "message": "<Wordmark> tone must be one of 'default' | 'on-brand'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "CTABand": {
+        "replaces": []
+      },
+      "FormField": {
+        "replaces": []
+      },
+      "Logo": {
+        "replaces": []
+      },
+      "QuoteBand": {
+        "replaces": []
+      },
+      "SectionLabel": {
+        "replaces": []
+      },
+      "SegmentCard": {
+        "replaces": []
+      },
+      "SiteHeader": {
+        "replaces": []
+      },
+      "StepItem": {
+        "replaces": []
+      },
+      "TextLink": {
+        "replaces": []
+      },
+      "Wordmark": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--border-accent",
+      "--border-strong",
+      "--border-width",
+      "--bp-1200",
+      "--bp-320",
+      "--bp-480",
+      "--bp-640",
+      "--bp-960",
+      "--button-tracking",
+      "--color-accent",
+      "--color-accent-hover",
+      "--color-ash",
+      "--color-greige",
+      "--color-ink",
+      "--color-slate",
+      "--color-terra",
+      "--duration-hover",
+      "--duration-line",
+      "--easing",
+      "--field-line-error",
+      "--field-line-focus",
+      "--field-line-rest",
+      "--field-placeholder",
+      "--font-display",
+      "--font-sans",
+      "--greige-12",
+      "--greige-20",
+      "--greige-22",
+      "--greige-30",
+      "--greige-35",
+      "--greige-40",
+      "--greige-50",
+      "--greige-65",
+      "--greige-80",
+      "--greige-90",
+      "--grid-columns",
+      "--grid-columns-320",
+      "--grid-columns-640",
+      "--grid-gap",
+      "--h1-family",
+      "--h1-leading",
+      "--h1-size",
+      "--h1-size-320",
+      "--h1-size-480",
+      "--h1-size-640",
+      "--h1-size-960",
+      "--h1-tracking",
+      "--h1-weight",
+      "--h2-family",
+      "--h2-leading",
+      "--h2-size",
+      "--h2-size-320",
+      "--h2-size-480",
+      "--h2-size-640",
+      "--h2-tracking",
+      "--h2-tracking-320",
+      "--h2-tracking-480",
+      "--h2-tracking-640",
+      "--h2-weight",
+      "--h3-family",
+      "--h3-leading",
+      "--h3-size",
+      "--h3-size-320",
+      "--h3-tracking",
+      "--h3-weight",
+      "--hit-min",
+      "--label-size",
+      "--label-tracking",
+      "--line-row",
+      "--line-section",
+      "--link-size",
+      "--link-tracking",
+      "--measure-body",
+      "--measure-lead",
+      "--measure-quote",
+      "--micro-family",
+      "--micro-leading",
+      "--micro-size",
+      "--micro-style",
+      "--micro-tracking",
+      "--micro-weight",
+      "--nav-size",
+      "--nav-tracking",
+      "--number-family",
+      "--number-leading",
+      "--number-size",
+      "--number-tracking",
+      "--number-weight",
+      "--pad-band-v",
+      "--pad-button",
+      "--pad-button-lg",
+      "--pad-card",
+      "--pad-field",
+      "--pad-header",
+      "--pad-section-v",
+      "--page-pad-1200",
+      "--page-pad-320",
+      "--page-pad-480",
+      "--page-pad-640",
+      "--page-pad-960",
+      "--radius",
+      "--space-16",
+      "--space-160",
+      "--space-160-mobile",
+      "--space-24",
+      "--space-44",
+      "--space-8",
+      "--space-80",
+      "--space-80-mobile",
+      "--surface-brand",
+      "--surface-card",
+      "--surface-page",
+      "--surface-rest",
+      "--text-accent",
+      "--text-body",
+      "--text-family",
+      "--text-inverse",
+      "--text-leading",
+      "--text-leading-paragraph",
+      "--text-muted",
+      "--text-on-brand",
+      "--text-on-brand-body",
+      "--text-size",
+      "--text-size-320",
+      "--text-size-640",
+      "--text-subtitle",
+      "--text-title",
+      "--text-tracking",
+      "--text-tracking-320",
+      "--text-tracking-640",
+      "--text-weight",
+      "--transition-hover"
+    ],
+    "tokenKinds": {
+      "--color-ink": "color",
+      "--color-terra": "color",
+      "--color-slate": "color",
+      "--color-ash": "color",
+      "--color-greige": "color",
+      "--color-accent": "color",
+      "--color-accent-hover": "color",
+      "--greige-90": "color",
+      "--greige-80": "color",
+      "--greige-65": "color",
+      "--greige-50": "color",
+      "--greige-40": "color",
+      "--greige-35": "color",
+      "--greige-30": "color",
+      "--greige-22": "color",
+      "--greige-20": "color",
+      "--greige-12": "color",
+      "--surface-page": "color",
+      "--surface-brand": "color",
+      "--surface-card": "color",
+      "--surface-rest": "color",
+      "--text-title": "font",
+      "--text-subtitle": "font",
+      "--text-body": "font",
+      "--text-muted": "font",
+      "--text-accent": "font",
+      "--text-on-brand": "font",
+      "--text-on-brand-body": "font",
+      "--text-inverse": "font",
+      "--line-section": "color",
+      "--line-row": "color",
+      "--border-strong": "color",
+      "--border-accent": "color",
+      "--field-line-rest": "color",
+      "--field-line-focus": "color",
+      "--field-line-error": "color",
+      "--field-placeholder": "color",
+      "--font-display": "font",
+      "--font-sans": "font",
+      "--h1-family": "color",
+      "--h1-weight": "font",
+      "--h1-size": "spacing",
+      "--h1-tracking": "font",
+      "--h1-leading": "font",
+      "--h1-size-320": "spacing",
+      "--h1-size-480": "spacing",
+      "--h1-size-640": "spacing",
+      "--h1-size-960": "spacing",
+      "--h2-family": "color",
+      "--h2-weight": "font",
+      "--h2-size": "spacing",
+      "--h2-tracking": "font",
+      "--h2-leading": "font",
+      "--h2-size-320": "spacing",
+      "--h2-tracking-320": "font",
+      "--h2-size-480": "spacing",
+      "--h2-tracking-480": "font",
+      "--h2-size-640": "spacing",
+      "--h2-tracking-640": "font",
+      "--h3-family": "color",
+      "--h3-weight": "font",
+      "--h3-size": "spacing",
+      "--h3-tracking": "font",
+      "--h3-leading": "font",
+      "--h3-size-320": "spacing",
+      "--text-family": "font",
+      "--text-weight": "font",
+      "--text-size": "font",
+      "--text-tracking": "font",
+      "--text-leading": "font",
+      "--text-leading-paragraph": "font",
+      "--text-size-320": "font",
+      "--text-tracking-320": "font",
+      "--text-size-640": "font",
+      "--text-tracking-640": "font",
+      "--micro-family": "color",
+      "--micro-style": "font",
+      "--micro-weight": "font",
+      "--micro-size": "spacing",
+      "--micro-tracking": "font",
+      "--micro-leading": "font",
+      "--number-family": "color",
+      "--number-weight": "font",
+      "--number-size": "spacing",
+      "--number-tracking": "font",
+      "--number-leading": "font",
+      "--label-size": "spacing",
+      "--label-tracking": "font",
+      "--nav-size": "spacing",
+      "--nav-tracking": "font",
+      "--button-tracking": "font",
+      "--link-size": "spacing",
+      "--link-tracking": "font",
+      "--space-8": "spacing",
+      "--space-16": "spacing",
+      "--space-24": "spacing",
+      "--space-44": "spacing",
+      "--space-80": "spacing",
+      "--space-160": "spacing",
+      "--space-160-mobile": "spacing",
+      "--space-80-mobile": "spacing",
+      "--pad-card": "spacing",
+      "--pad-button": "spacing",
+      "--pad-button-lg": "spacing",
+      "--pad-header": "spacing",
+      "--pad-field": "spacing",
+      "--pad-section-v": "spacing",
+      "--pad-band-v": "spacing",
+      "--hit-min": "spacing",
+      "--bp-320": "spacing",
+      "--bp-480": "spacing",
+      "--bp-640": "spacing",
+      "--bp-960": "spacing",
+      "--bp-1200": "spacing",
+      "--page-pad-320": "spacing",
+      "--page-pad-480": "spacing",
+      "--page-pad-640": "spacing",
+      "--page-pad-960": "spacing",
+      "--page-pad-1200": "spacing",
+      "--grid-columns": "other",
+      "--grid-columns-640": "other",
+      "--grid-columns-320": "other",
+      "--grid-gap": "spacing",
+      "--measure-body": "spacing",
+      "--measure-lead": "spacing",
+      "--measure-quote": "spacing",
+      "--radius": "radius",
+      "--border-width": "spacing",
+      "--duration-hover": "other",
+      "--duration-line": "other",
+      "--easing": "other",
+      "--transition-hover": "color"
+    },
+    "fontFamilies": [
+      "Old Standard TT"
+    ]
+  }
+}

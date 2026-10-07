@@ -1,0 +1,17 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Поверхности" subtitle="Четыре фона страницы: Ink, Terra, Slate, Ash" -->
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>html,body{margin:0}body{background:var(--surface-page);color:var(--greige-90);font-family:var(--font-sans);width:700px;height:190px;box-sizing:border-box;padding:18px 20px;overflow:hidden}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--greige-90)}
+.val{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--greige-50)}
+.note{font-size:10px;font-weight:500;letter-spacing:.3px;color:var(--text-muted);line-height:1.5}
+.sw{display:flex;flex-direction:column;gap:6px}
+.chip{height:76px;border-radius:var(--radius)}
+.row{display:grid;gap:14px}
+a{color:var(--color-accent);text-decoration:none}a:hover{color:var(--color-accent-hover)}
+</style></head><body><div class="row" style="grid-template-columns:repeat(4,1fr)">
+<div class="sw"><div class="chip" style="background:var(--color-ink);border:1px solid var(--greige-22)"></div><div class="lbl">Ink</div><div class="val">#060606 · --color-ink</div><div class="note">Базовый фон, контент, футер</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-terra);"></div><div class="lbl">Terra</div><div class="val">#653624 · --color-terra</div><div class="note">Hero и финальная полоса</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-slate);"></div><div class="lbl">Slate</div><div class="val">#222222 · --color-slate</div><div class="note">Карточки и панели поверх Ink</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-ash);"></div><div class="lbl">Ash</div><div class="val">#3e3e3e · --color-ash</div><div class="note">Секция-передышка</div></div>
+</div></body></html>

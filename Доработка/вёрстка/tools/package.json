@@ -1,0 +1,15 @@
+{
+  "name": "chastnye-baly-tools",
+  "private": true,
+  "type": "module",
+  "description": "Инструменты вёрстки «Частных балов». Не входят в site/.",
+  "scripts": {
+    "images": "node images.mjs"
+  },
+  "dependencies": {
+    "sharp": "^0.34.0"
+  },
+  "devDependencies": {
+    "axe-core": "^4.13.0"
+  }
+}

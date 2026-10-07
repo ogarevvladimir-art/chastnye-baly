@@ -1,0 +1,14 @@
+<!-- @dsCard group="Spacing" viewport="700x200" name="Вертикальный ритм" subtitle="Шесть рабочих интервалов, шаг сетки 8px" -->
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>html,body{margin:0}body{background:var(--surface-page);color:var(--greige-90);font-family:var(--font-sans);width:700px;height:200px;box-sizing:border-box;padding:18px 20px;overflow:hidden}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--greige-90)}
+.val{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--greige-50)}
+.note{font-size:10px;font-weight:500;letter-spacing:.3px;color:var(--text-muted);line-height:1.5}
+.sw{display:flex;flex-direction:column;gap:6px}
+.chip{height:76px;border-radius:var(--radius)}
+.row{display:grid;gap:14px}
+a{color:var(--color-accent);text-decoration:none}a:hover{color:var(--color-accent-hover)}
+</style></head><body><div class="row" style="grid-template-columns:repeat(6,1fr);align-items:end">
+<div class="sw"><div style="height:8px;background:var(--greige-50)"></div><div class="lbl">8</div><div class="note">Метка → значение</div></div><div class="sw"><div style="height:16px;background:var(--greige-50)"></div><div class="lbl">16</div><div class="note">Внутри группы</div></div><div class="sw"><div style="height:24px;background:var(--greige-50)"></div><div class="lbl">24</div><div class="note">Gap сетки</div></div><div class="sw"><div style="height:44px;background:var(--greige-50)"></div><div class="lbl">44</div><div class="note">Заголовок → текст</div></div><div class="sw"><div style="height:80px;background:var(--greige-50)"></div><div class="lbl">80</div><div class="note">Блок → блок</div></div><div class="sw"><div style="height:110px;background:var(--greige-50)"></div><div class="lbl">160</div><div class="note">Секция → секция</div></div>
+</div></body></html>

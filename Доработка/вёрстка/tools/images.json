@@ -1,0 +1,1365 @@
+{
+ "images": [
+  {
+   "block": "evening",
+   "name": "step-05",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-05-d.png",
+   "frame": [
+    800,
+    960
+   ],
+   "widths": [
+    800,
+    1200,
+    1600
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-05",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-05-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    716,
+    1074
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-05",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-05-t.png",
+   "frame": [
+    385,
+    481
+   ],
+   "widths": [
+    385,
+    770
+   ]
+  },
+  {
+   "block": "formats",
+   "name": "corporate",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/formats-corporate-d.png",
+   "frame": [
+    971,
+    959
+   ],
+   "widths": [
+    971,
+    1456,
+    1942
+   ]
+  },
+  {
+   "block": "formats",
+   "name": "corporate",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/formats-corporate-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    716,
+    1074
+   ]
+  },
+  {
+   "block": "formats",
+   "name": "corporate",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/formats-corporate-t.png",
+   "frame": [
+    770,
+    520
+   ],
+   "widths": [
+    770,
+    1540
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "hall",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-hall-d.png",
+   "frame": [
+    1440,
+    720
+   ],
+   "widths": [
+    1440,
+    2160,
+    2880
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "hall",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-hall-m.png",
+   "frame": [
+    390,
+    640
+   ],
+   "widths": [
+    390,
+    780,
+    1170
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "hall",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-hall-t.png",
+   "frame": [
+    834,
+    900
+   ],
+   "widths": [
+    834,
+    1668
+   ]
+  },
+  {
+   "block": "dancemaster",
+   "name": "participants",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dancemaster-participants-d.png",
+   "frame": [
+    1031,
+    680
+   ],
+   "widths": [
+    1031,
+    1546,
+    2062
+   ]
+  },
+  {
+   "block": "dancemaster",
+   "name": "participants",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dancemaster-participants-m.png",
+   "frame": [
+    304,
+    448
+   ],
+   "widths": [
+    304,
+    608,
+    912
+   ]
+  },
+  {
+   "block": "dancemaster",
+   "name": "participants",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dancemaster-participants-t.png",
+   "frame": [
+    770,
+    560
+   ],
+   "widths": [
+    770,
+    1540
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-a",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-a-d.png",
+   "frame": [
+    288,
+    360
+   ],
+   "widths": [
+    288,
+    432,
+    576
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-a",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-a-m.png",
+   "frame": [
+    171,
+    214
+   ],
+   "widths": [
+    171,
+    342,
+    513
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-a",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-a-t.png",
+   "frame": [
+    169,
+    211
+   ],
+   "widths": [
+    169,
+    338
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-02",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-02-d.png",
+   "frame": [
+    800,
+    960
+   ],
+   "widths": [
+    800,
+    1200,
+    1600
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-02",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-02-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    716,
+    1074
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-02",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-02-t.png",
+   "frame": [
+    385,
+    481
+   ],
+   "widths": [
+    385,
+    770
+   ]
+  },
+  {
+   "block": "assistant",
+   "name": "shy",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/assistant-shy-d.png",
+   "frame": [
+    448,
+    560
+   ],
+   "widths": [
+    448,
+    672,
+    896
+   ]
+  },
+  {
+   "block": "assistant",
+   "name": "shy",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/assistant-shy-m.png",
+   "frame": [
+    266,
+    448
+   ],
+   "widths": [
+    266,
+    532,
+    798
+   ]
+  },
+  {
+   "block": "assistant",
+   "name": "shy",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/assistant-shy-t.png",
+   "frame": [
+    353,
+    481
+   ],
+   "widths": [
+    353,
+    706
+   ]
+  },
+  {
+   "block": "hero",
+   "name": "arch",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/hero-arch-d.png",
+   "frame": [
+    1440,
+    932
+   ],
+   "widths": [
+    1440,
+    2160,
+    2667
+   ]
+  },
+  {
+   "block": "hero",
+   "name": "arch",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/hero-arch-m.png",
+   "frame": [
+    390,
+    780
+   ],
+   "widths": [
+    390,
+    780,
+    1170
+   ]
+  },
+  {
+   "block": "hero",
+   "name": "arch",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/hero-arch-t.png",
+   "frame": [
+    834,
+    1130
+   ],
+   "widths": [
+    834,
+    1668
+   ]
+  },
+  {
+   "block": "assistant",
+   "name": "no-partner",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/assistant-no-partner-d.png",
+   "frame": [
+    448,
+    560
+   ],
+   "widths": [
+    448,
+    672,
+    896
+   ]
+  },
+  {
+   "block": "assistant",
+   "name": "no-partner",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/assistant-no-partner-m.png",
+   "frame": [
+    266,
+    448
+   ],
+   "widths": [
+    266,
+    532,
+    798
+   ]
+  },
+  {
+   "block": "assistant",
+   "name": "no-partner",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/assistant-no-partner-t.png",
+   "frame": [
+    353,
+    481
+   ],
+   "widths": [
+    353,
+    706
+   ]
+  },
+  {
+   "block": "music",
+   "name": "brass",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/music-brass-d.png",
+   "frame": [
+    1440,
+    560
+   ],
+   "widths": [
+    1440,
+    2160,
+    2880
+   ]
+  },
+  {
+   "block": "music",
+   "name": "brass",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/music-brass-m.png",
+   "frame": [
+    310,
+    388
+   ],
+   "widths": [
+    310,
+    620,
+    930
+   ]
+  },
+  {
+   "block": "music",
+   "name": "brass",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/music-brass-t.png",
+   "frame": [
+    360,
+    450
+   ],
+   "widths": [
+    360,
+    720
+   ]
+  },
+  {
+   "block": "dresscode",
+   "name": "cavalier",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dresscode-cavalier-d.png",
+   "frame": [
+    400,
+    629
+   ],
+   "widths": [
+    400,
+    600,
+    800
+   ]
+  },
+  {
+   "block": "dresscode",
+   "name": "cavalier",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dresscode-cavalier-m.png",
+   "frame": [
+    300,
+    472
+   ],
+   "widths": [
+    300,
+    600,
+    900
+   ]
+  },
+  {
+   "block": "dresscode",
+   "name": "cavalier",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dresscode-cavalier-t.png",
+   "frame": [
+    385,
+    606
+   ],
+   "widths": [
+    385,
+    770
+   ]
+  },
+  {
+   "block": "music",
+   "name": "band",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/music-band-d.png",
+   "frame": [
+    1440,
+    560
+   ],
+   "widths": [
+    1440,
+    2160,
+    2560
+   ]
+  },
+  {
+   "block": "music",
+   "name": "band",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/music-band-m.png",
+   "frame": [
+    310,
+    388
+   ],
+   "widths": [
+    310,
+    620,
+    930
+   ]
+  },
+  {
+   "block": "music",
+   "name": "band",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/music-band-t.png",
+   "frame": [
+    360,
+    450
+   ],
+   "widths": [
+    360,
+    720
+   ]
+  },
+  {
+   "block": "show",
+   "name": "professionals",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/show-professionals-d.png",
+   "frame": [
+    1440,
+    900
+   ],
+   "widths": [
+    1440,
+    2160,
+    2880
+   ]
+  },
+  {
+   "block": "show",
+   "name": "professionals",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/show-professionals-m.png",
+   "frame": [
+    355,
+    600
+   ],
+   "widths": [
+    355,
+    710,
+    1065
+   ]
+  },
+  {
+   "block": "show",
+   "name": "professionals",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/show-professionals-t.png",
+   "frame": [
+    834,
+    560
+   ],
+   "widths": [
+    834,
+    1668
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-a",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-a-d.png",
+   "frame": [
+    288,
+    360
+   ],
+   "widths": [
+    288,
+    432,
+    576
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-a",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-a-m.png",
+   "frame": [
+    171,
+    214
+   ],
+   "widths": [
+    171,
+    342,
+    513
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-a",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-a-t.png",
+   "frame": [
+    169,
+    211
+   ],
+   "widths": [
+    169,
+    338
+   ]
+  },
+  {
+   "block": "music",
+   "name": "symphonic",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/music-symphonic-d.png",
+   "frame": [
+    1440,
+    560
+   ],
+   "widths": [
+    1440,
+    2160,
+    2880
+   ]
+  },
+  {
+   "block": "music",
+   "name": "symphonic",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/music-symphonic-m.png",
+   "frame": [
+    310,
+    388
+   ],
+   "widths": [
+    310,
+    620,
+    930
+   ]
+  },
+  {
+   "block": "music",
+   "name": "symphonic",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/music-symphonic-t.png",
+   "frame": [
+    360,
+    450
+   ],
+   "widths": [
+    360,
+    720
+   ]
+  },
+  {
+   "block": "dresscode",
+   "name": "lady",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dresscode-lady-d.png",
+   "frame": [
+    400,
+    628
+   ],
+   "widths": [
+    400,
+    600,
+    800
+   ]
+  },
+  {
+   "block": "dresscode",
+   "name": "lady",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dresscode-lady-m.png",
+   "frame": [
+    300,
+    472
+   ],
+   "widths": [
+    300,
+    600,
+    900
+   ]
+  },
+  {
+   "block": "dresscode",
+   "name": "lady",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dresscode-lady-t.png",
+   "frame": [
+    385,
+    606
+   ],
+   "widths": [
+    385,
+    770
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-d",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-d-d.png",
+   "frame": [
+    160,
+    200
+   ],
+   "widths": [
+    160,
+    240,
+    320
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-d",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-d-t.png",
+   "frame": [
+    94,
+    117
+   ],
+   "widths": [
+    94,
+    188
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-01",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-01-d.png",
+   "frame": [
+    800,
+    960
+   ],
+   "widths": [
+    800,
+    1200,
+    1600
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-01",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-01-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    716,
+    1074
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-01",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-01-t.png",
+   "frame": [
+    385,
+    481
+   ],
+   "widths": [
+    385,
+    770
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-d",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-d-d.png",
+   "frame": [
+    160,
+    200
+   ],
+   "widths": [
+    160,
+    240,
+    320
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-d",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-d-t.png",
+   "frame": [
+    94,
+    117
+   ],
+   "widths": [
+    94,
+    188
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-b",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-b-d.png",
+   "frame": [
+    480,
+    600
+   ],
+   "widths": [
+    480,
+    640
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-b",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-b-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    639
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-b",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-b-t.png",
+   "frame": [
+    282,
+    352
+   ],
+   "widths": [
+    282,
+    564
+   ]
+  },
+  {
+   "block": "show",
+   "name": "joint",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/show-joint-d.png",
+   "frame": [
+    1440,
+    900
+   ],
+   "widths": [
+    1440,
+    2160,
+    2500
+   ]
+  },
+  {
+   "block": "show",
+   "name": "joint",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/show-joint-m.png",
+   "frame": [
+    355,
+    600
+   ],
+   "widths": [
+    355,
+    710,
+    986
+   ]
+  },
+  {
+   "block": "show",
+   "name": "joint",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/show-joint-t.png",
+   "frame": [
+    834,
+    560
+   ],
+   "widths": [
+    834,
+    1668
+   ]
+  },
+  {
+   "block": "assistant",
+   "name": "cant-dance",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/assistant-cant-dance-d.png",
+   "frame": [
+    448,
+    560
+   ],
+   "widths": [
+    448,
+    672,
+    896
+   ]
+  },
+  {
+   "block": "assistant",
+   "name": "cant-dance",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/assistant-cant-dance-m.png",
+   "frame": [
+    266,
+    448
+   ],
+   "widths": [
+    266,
+    532,
+    798
+   ]
+  },
+  {
+   "block": "assistant",
+   "name": "cant-dance",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/assistant-cant-dance-t.png",
+   "frame": [
+    353,
+    481
+   ],
+   "widths": [
+    353,
+    706
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-c",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-c-d.png",
+   "frame": [
+    288,
+    360
+   ],
+   "widths": [
+    288,
+    432,
+    576
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-c",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-c-m.png",
+   "frame": [
+    171,
+    214
+   ],
+   "widths": [
+    171,
+    342,
+    513
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "omega-c",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-omega-c-t.png",
+   "frame": [
+    169,
+    211
+   ],
+   "widths": [
+    169,
+    338
+   ]
+  },
+  {
+   "block": "dancemaster",
+   "name": "spectators",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dancemaster-spectators-d.png",
+   "frame": [
+    1032,
+    680
+   ],
+   "widths": [
+    1032,
+    1548,
+    2064
+   ]
+  },
+  {
+   "block": "dancemaster",
+   "name": "spectators",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dancemaster-spectators-m.png",
+   "frame": [
+    304,
+    448
+   ],
+   "widths": [
+    304,
+    608,
+    912
+   ]
+  },
+  {
+   "block": "dancemaster",
+   "name": "spectators",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/dancemaster-spectators-t.png",
+   "frame": [
+    770,
+    560
+   ],
+   "widths": [
+    770,
+    1540
+   ]
+  },
+  {
+   "block": "show",
+   "name": "own",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/show-own-d.png",
+   "frame": [
+    1440,
+    900
+   ],
+   "widths": [
+    1440,
+    2160,
+    2560
+   ]
+  },
+  {
+   "block": "show",
+   "name": "own",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/show-own-m.png",
+   "frame": [
+    355,
+    600
+   ],
+   "widths": [
+    355,
+    710,
+    1010
+   ]
+  },
+  {
+   "block": "show",
+   "name": "own",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/show-own-t.png",
+   "frame": [
+    834,
+    560
+   ],
+   "widths": [
+    834,
+    1668
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-c",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-c-d.png",
+   "frame": [
+    288,
+    360
+   ],
+   "widths": [
+    288,
+    432,
+    576
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-c",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-c-m.png",
+   "frame": [
+    171,
+    214
+   ],
+   "widths": [
+    171,
+    342,
+    513
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-c",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-c-t.png",
+   "frame": [
+    169,
+    211
+   ],
+   "widths": [
+    169,
+    338
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-03",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-03-d.png",
+   "frame": [
+    800,
+    960
+   ],
+   "widths": [
+    800,
+    1200,
+    1600
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-03",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-03-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    716,
+    1074
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-03",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-03-t.png",
+   "frame": [
+    385,
+    481
+   ],
+   "widths": [
+    385,
+    770
+   ]
+  },
+  {
+   "block": "formats",
+   "name": "private",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/formats-private-d.png",
+   "frame": [
+    1005,
+    660
+   ],
+   "widths": [
+    1005,
+    1508,
+    2010
+   ]
+  },
+  {
+   "block": "formats",
+   "name": "private",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/formats-private-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    716,
+    1074
+   ]
+  },
+  {
+   "block": "formats",
+   "name": "private",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/formats-private-t.png",
+   "frame": [
+    770,
+    520
+   ],
+   "widths": [
+    770,
+    1540
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-04",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-04-d.png",
+   "frame": [
+    800,
+    960
+   ],
+   "widths": [
+    800,
+    1200,
+    1600
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-04",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-04-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    716,
+    1074
+   ]
+  },
+  {
+   "block": "evening",
+   "name": "step-04",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-04-t.png",
+   "frame": [
+    385,
+    481
+   ],
+   "widths": [
+    385,
+    770
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-b",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-b-d.png",
+   "frame": [
+    480,
+    600
+   ],
+   "widths": [
+    480,
+    640
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-b",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-b-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    639
+   ]
+  },
+  {
+   "block": "evenings",
+   "name": "kashemir-b",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/evenings-kashemir-b-t.png",
+   "frame": [
+    282,
+    352
+   ],
+   "widths": [
+    282,
+    564
+   ]
+  },
+  {
+   "block": "lessons",
+   "name": "ball",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/lessons-ball-d.png",
+   "frame": [
+    1440,
+    480
+   ],
+   "widths": [
+    1440,
+    2160,
+    2880
+   ]
+  },
+  {
+   "block": "lessons",
+   "name": "ball",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/lessons-ball-m.png",
+   "frame": [
+    390,
+    488
+   ],
+   "widths": [
+    390,
+    780,
+    1170
+   ]
+  },
+  {
+   "block": "lessons",
+   "name": "ball",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/lessons-ball-t.png",
+   "frame": [
+    834,
+    556
+   ],
+   "widths": [
+    834,
+    1668
+   ]
+  },
+  {
+   "block": "prep",
+   "name": "hall",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/prep-hall-d.png",
+   "frame": [
+    1440,
+    720
+   ],
+   "widths": [
+    1440,
+    2160,
+    2880
+   ]
+  },
+  {
+   "block": "etiquette",
+   "name": "hall",
+   "media": "d",
+   "src": "Доработка/вёрстка/tools/.cache/masters/etiquette-hall-d.png",
+   "frame": [
+    656,
+    496
+   ],
+   "widths": [
+    656,
+    984,
+    1312,
+    1792
+   ]
+  }
+ ]
+}

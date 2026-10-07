@@ -1,0 +1,18 @@
+{
+ "_": "Д4 (П-05, П-06): замены снимков по выбору пользователя 2026-10-05 (контактный лист сверка/d4/contact_*.png, «все по рекомендации»). Ключ — блок/имя; src — от корня проекта; rect — область исходника (необязательно); focus — точка кадра [x, y] от 0 до 1 при cover кадра раскладки, «*» — для всех раскладок, m / t / d — частные; gain — множитель яркости после тона (hero: под яркость прежнего bg-1, чтобы читался текст). Кадр, тон (кривая слота) и ширины — как в каталоге.",
+ "hero/arch": {"src": "assets/photos/farkovets1289.jpg", "focus": {"*": [0.5, 0.7], "d": [0.5, 0.8]}, "gain": 0.56},
+ "formats/corporate": {"src": "assets/photos/KOR_0906_1.jpg", "focus": {"*": [0.5, 0.5]}},
+ "evening/step-01": {"src": "../Правки по сайту бал/2024/1W1A2194.jpg", "focus": {"*": [0.5, 0]}},
+ "evening/step-02": {"src": "assets/photos/13.09.25 Бал. Гимназия №2 (102).jpg", "focus": {"*": [0.55, 0.5]}},
+ "evening/step-03": {"src": "assets/photos/422A2400.jpg", "focus": {"*": [0.4, 0.5]}},
+ "evening/step-04": {"src": "assets/photos/venue-03.jpg", "focus": {"*": [0.5, 0.6]}},
+ "evening/step-05": {"src": "assets/photos/0533.jpg", "focus": {"*": [0.5, 0.6]}},
+ "music/brass": {"src": "assets/photos/nk-03.jpg", "rect": [0, 0, 2950, 2667], "focus": {"*": [0.55, 0.45]}},
+ "music/band": {"src": "assets/photos/NesterovaMaria_0057_resized.jpg", "focus": {"*": [0.5, 0.45]}},
+ "dancemaster/spectators": {"src": "assets/photos/KOR_0895_1.jpg", "focus": {"*": [0.4, 0.5]}},
+ "dancemaster/participants": {"src": "assets/photos/13.09.25 Бал. Гимназия №2 (101).jpg", "focus": {"*": [0.5, 0.5]}},
+ "show/professionals": {"src": "assets/photos/nk-01.jpg", "focus": {"*": [0.4, 0.5]}},
+ "show/joint": {"src": "assets/photos/KOR_0445_1.jpg", "focus": {"*": [0.5, 0.5]}},
+ "show/own": {"src": "assets/photos/NesterovaMaria_0297_resized.jpg", "focus": {"*": [0.5, 1]}},
+ "lessons/ball": {"src": "assets/photos/nk-02.jpg", "focus": {"*": [0.5, 0.6]}}
+}

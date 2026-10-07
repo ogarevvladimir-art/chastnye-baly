@@ -1,0 +1,5581 @@
+/* Блоки страницы. Координаты — из кадров Figma (телефон 390, планшет 834, десктоп 1440), умноженные на --u.
+   Десктоп: точка макета x → calc(var(--x0) + (x − 64) * var(--u)), y → y * var(--u). */
+
+/* =====================================================================================================
+   Hero → Форматы. Одно слово «БАЛЫ» на шве (.hf__track): телефон и планшет — статично, верх слова на 0,48em выше шва;
+   десктоп — sticky через шов: слово стоит у низа первого экрана и уходит вместе с Форматами, когда его верх
+   на 45 px (0,13em) выше шва. Кадры: 229:966 / 254:2294 / 223:2150 + 223:2169, заметки 229:1127, 254:2478, 223:2260.
+   ===================================================================================================== */
+
+.hf {
+  position: relative;
+  --hero-h: calc(100vh - 64px);
+  --hero-h: max(calc(100svh - 64px), 560px);
+  --rise: 0.48em;                                   /* насколько верх слова выше шва */
+}
+
+/* ---------- Hero ---------- */
+
+.s-hero {
+  position: relative;
+  height: var(--hero-h);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.s-hero__photo,
+.s-hero__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.s-hero__photo img {
+  object-fit: cover;
+}
+
+/* Затемнение кадра. Среднее затемнение уже в файле (кривая тона этапа 1), здесь — разница с рендером Figma:
+   низ кадра темнее (замер tools/overlay_profile.py) + полоса под шапкой ≥ 40 % Ink (ПЕРЕДАЧА 4) */
+.s-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgb(6 6 6 / 0.4) 0, rgb(6 6 6 / 0.2) 72px, rgb(6 6 6 / 0) 160px),
+    linear-gradient(to bottom, rgb(6 6 6 / 0) 40%, rgb(6 6 6 / 0.14) 60%, rgb(6 6 6 / 0.26) 80%, rgb(6 6 6 / 0.31) 100%);
+}
+
+.s-hero > :not(picture) {
+  position: absolute;
+  z-index: 1;
+}
+
+/* Подпись: «Ваша история.» от поля, «Ваш вечер.» к правому краю (лесенка) */
+.s-hero__caption {
+  top: calc(112 * var(--u));
+  left: var(--margin);
+  right: var(--margin);
+}
+
+.s-hero__line {
+  display: block;
+}
+
+.s-hero__line--2 {
+  text-align: right;
+}
+
+/* «→ обсудить вечер» у правого края, под подписью; линия 1 px Link 40; зона нажатия ≥ 44 */
+.s-hero__link {
+  top: calc(224 * var(--u));
+  right: var(--margin);
+}
+
+.s-hero__down {
+  display: none;
+}
+
+.link-u {
+  display: inline-block;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--c-line-link);
+  white-space: nowrap;
+}
+
+.link-u::before {
+  content: "";
+  position: absolute;
+  inset: -6px calc(-1 * var(--margin)) -4px;
+}
+
+/* ---------- Слово на шве ---------- */
+
+.hf__track {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: calc(var(--hero-h) + 0.85em - var(--rise));
+  padding-inline: var(--margin);
+  overflow-x: clip;
+  pointer-events: none;
+  /* кегль дорожки = кегль гиганта: --rise и высота считаются в его em */
+  font-family: var(--ff-sans);
+  font-weight: 700;
+  line-height: 0.85;
+  --fs-m: 91;
+  --fs-t: 180;
+  --fs-d: 344;
+  --fs: var(--fs-m);
+  font-size: max(calc(var(--fs-m) * 328px / 358), calc(var(--fs) * var(--u)));
+}
+
+@supports not (overflow: clip) {
+  .hf__track { overflow: hidden; }
+}
+
+.hf__word {
+  font: inherit;
+  color: var(--c-greige-light);
+}
+
+/* «ЧАСТНЫЕ» — метка 11 на 12 px выше слова */
+.hf__kicker {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--c-greige-light);
+}
+
+.hf__giant {
+  display: block;
+}
+
+.hf__giant-in {
+  display: block;
+  font-size: 1em;
+  white-space: nowrap;
+}
+
+/* ---------- Форматы: телефон — половины стопкой, всё раскрыто ---------- */
+
+.s-formats {
+  position: relative;
+}
+
+.fmt {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: calc(64 * var(--u)) var(--margin);
+  --c-small: var(--c-greige-light);
+}
+
+.fmt > * {
+  grid-column: 1 / -1;
+}
+
+.fmt__meta {
+  display: flex;
+  align-items: baseline;
+}
+
+/* Номер — метка 11, «для кого» — капс 12 с x 56 / 72 (колонка номера 40) */
+.fmt__num {
+  flex: 0 0 calc(40 * var(--u));
+}
+
+.fmt__whom {
+  flex: 1;
+}
+
+.fmt__title {
+  margin-top: calc(16 * var(--u));
+  color: var(--c-greige-light);
+  /* антиква lh 80 %: курсив выходит за строку, воздух сверху держит метка */
+}
+
+.fmt__desc {
+  margin-top: calc(32 * var(--u));
+}
+
+.fmt__plus {
+  margin-top: calc(26 * var(--u));
+  justify-self: end;
+  line-height: 15px;
+}
+
+.fmt__photo {
+  position: relative;
+  margin-top: calc(8 * var(--u));
+  aspect-ratio: 358 / 448;
+  overflow: hidden;
+  background: var(--c-placeholder);
+}
+
+.fmt__photo picture,
+.fmt__photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.fmt__photo img {
+  object-fit: cover;
+}
+
+/* «Тон»: фото всплывает из поля половины и уходит в него — градиент в цвет поверхности (Slate / Terra).
+   Профиль снят с рендеров 229:966 и 254:2294 (tools/tone_fit в ЖУРНАЛ): сверху 0,58, к 30 % почти 0, к низу 0,95 */
+.fmt__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    rgb(var(--surf-rgb) / 0.58) 0%, rgb(var(--surf-rgb) / 0.37) 10%, rgb(var(--surf-rgb) / 0.12) 20%,
+    rgb(var(--surf-rgb) / 0.02) 30%, rgb(var(--surf-rgb) / 0.09) 40%, rgb(var(--surf-rgb) / 0.36) 50%,
+    rgb(var(--surf-rgb) / 0.63) 60%, rgb(var(--surf-rgb) / 0.7) 70%, rgb(var(--surf-rgb) / 0.78) 80%,
+    rgb(var(--surf-rgb) / 0.86) 90%, rgb(var(--surf-rgb) / 0.95) 100%);
+}
+
+/* Ссылка — строка во всю колонку: вся строка и есть зона нажатия (≥ 44) */
+.fmt__link {
+  display: block;
+  margin-top: calc(20 * var(--u) - 8px);
+  margin-bottom: -8px;
+  padding-block: 8px;
+  color: var(--c-greige-light);
+  white-space: nowrap;
+}
+
+/* Уже 380: «Обсудить корпоративный бал →» (24, одна строка) шире колонки на 6 px (360) — трекинг плотнее, кегль прежний */
+@media (max-width: 379px) {
+  .fmt__link {
+    letter-spacing: -0.035em;
+  }
+}
+
+/* ---------- Планшет 834 ---------- */
+
+@media (min-width: 600px) {
+  .hf {
+    --hero-h: calc(100vh - 64px);
+    --hero-h: max(calc(100svh - 64px), 760px);
+  }
+
+  .hf__track {
+    --fs: var(--fs-t);
+    font-size: calc(var(--fs) * var(--u));
+  }
+
+  .s-hero__caption {
+    top: calc(160 * var(--u));
+  }
+
+  .s-hero__link {
+    top: calc(354 * var(--u));
+  }
+
+  /* Порядок: название → номер · для кого · «+» → описание от оси → фото 770 × 520 → ссылка к правому полю */
+  .fmt {
+    grid-template-columns: calc(385 * var(--u)) 1fr;
+    padding: calc(100 * var(--u)) var(--margin) calc(66 * var(--u));
+    --gap-photo: 44;
+  }
+
+  .fmt[data-half="private"] {
+    padding-top: calc(130 * var(--u));
+    --gap-photo: 32;
+  }
+
+  .fmt__title {
+    order: -1;
+    margin-top: 0;
+  }
+
+  .fmt__meta {
+    grid-row: 2;
+    margin-top: calc(43 * var(--u));
+  }
+
+  .fmt__plus {
+    grid-row: 2;
+    align-self: end;
+    margin-top: 0;
+  }
+
+  .fmt__desc {
+    grid-row: 3;
+    grid-column: 2;
+    margin-top: calc(23 * var(--u));
+  }
+
+  .fmt__photo {
+    grid-row: 4;
+    margin-top: calc(var(--gap-photo) * var(--u));
+    aspect-ratio: 770 / 520;
+  }
+
+  .fmt__link {
+    grid-row: 5;
+    margin-top: calc(40 * var(--u) - 8px);
+    text-align: right;
+  }
+}
+
+/* ---------- Десктоп 1440 ---------- */
+
+/* Система «в экран» (Д2, кадры 302:1492, заметка 302:2175): hero и Форматы — ровно в окно. Вертикаль, гигант и антиква 64 —
+   × --s (min(u, высота / 900)); x и колонки — × --u; мелкий текст, верхняя линия 104 и отступы от краёв частей (64, 72) — в px */
+@media (min-width: 1024px) {
+  .hf {
+    --hero-h: 100vh;
+    --hero-h: 100svh;
+    --rise: 0.1308em;                               /* 45 / 344 */
+    --split0: calc(var(--x0) + 656 * var(--u));     /* граница половин в покое */
+    --right: calc(var(--x0) + 1312 * var(--u) + 64px);   /* правый край страницы */
+    --col: min(392px, 100 * var(--vw) * 392 / 1440);     /* колонка описания */
+    /* «БАЛЫ» в наведении — от верха Форматов; hf.js опускает ниже, если описание длиннее */
+    --drop: calc(313 * var(--s));
+  }
+
+  .hf .t-h2s {
+    font-size: calc(var(--fs) * var(--s));
+  }
+
+  .s-hero__caption {
+    top: calc(152 * var(--s));
+    left: var(--x0);
+    right: auto;
+  }
+
+  .s-hero__line--2 {
+    padding-left: calc(656 * var(--u));
+    text-align: left;
+  }
+
+  .s-hero__link {
+    top: calc(300 * var(--s));
+    left: calc(var(--x0) + 656 * var(--u));
+    right: auto;
+  }
+
+  .s-hero__down {
+    display: block;
+    right: calc(var(--edge) + 72px);
+    bottom: 46px;
+    color: var(--c-greige-light);
+    line-height: 1;
+    transition: opacity 0.3s var(--ease-state);
+  }
+
+  /* Слово: стоит в hero (низ на 112s выше низа экрана), sticky до шва, дальше уходит с Форматами */
+  .hf__track {
+    display: block;
+    --fs: var(--fs-d);
+    font-size: calc(var(--fs) * var(--s));
+    padding-inline: var(--x0) 0;
+    padding-top: calc(var(--hero-h) - 1.1744em - 28px);   /* 404 / 344 = 1,1744em; метка 17 + 11 */
+  }
+
+  .hf__word {
+    position: sticky;
+    top: calc(100vh - 1.1744em - 28px);
+    top: calc(100svh - 1.1744em - 28px);
+  }
+
+  .hf__kicker {
+    margin-bottom: 11px;
+    font-size: 12px;
+    line-height: 17px;
+    transition: opacity 0.3s var(--ease-state);
+  }
+
+  /* «ЧАСТНЫЕ» и «↓» гаснут на подходе к шву (их место занимают названия в Форматах) */
+  .hf[data-seam] .hf__kicker,
+  .hf[data-seam] .s-hero__down {
+    opacity: 0;
+  }
+
+  /* ---------- Форматы десктопа: две половины 50 / 50 → 75 / 25 по наведению, блок = окно ----------
+     Половины — слои во всю ширину секции с clip-path (анимируется только clip-path, transform, opacity). */
+
+  .s-formats {
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .fmt {
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0;
+    --split-p: var(--split0);                         /* правая граница «частных» */
+    --whom-w: calc(592 * var(--u) - 96px);            /* «для кого» в покое: до «+» части (−72) с зазором 24 */
+    --title-y: calc(var(--drop) - 383 * var(--s));    /* название в наведении — на 73s выше «БАЛЫ» (покой 310s) */
+    transition: clip-path 0.35s var(--ease-state);
+  }
+
+  .fmt[data-half="private"] {
+    padding: 0;
+    clip-path: inset(0 calc(100% - var(--split-p)) 0 0);
+    --lw: var(--lw-p, 312px);                         /* ширина «Обсудить … →» (замер — hf.js) */
+  }
+
+  .fmt[data-half="corporate"] {
+    clip-path: inset(0 0 0 var(--split-p));
+    --lw: var(--lw-c, 401px);
+  }
+
+  .s-formats[data-state="private"] .fmt { --split-p: calc(var(--x0) + 1016 * var(--u)); }
+  .s-formats[data-state="corporate"] .fmt { --split-p: calc(var(--x0) + 296 * var(--u)); }
+
+  .fmt > * {
+    position: absolute;
+    z-index: 1;                       /* текст над фото: на 1024 название в наведении заходит на окно фото */
+    margin: 0;
+    transition: transform 0.35s var(--ease-state), opacity 0.35s var(--ease-state);
+  }
+
+  /* Номер и «для кого» — строкой. В покое низ строки на 48s выше фото: длинное «для кого» (1024) переносится вверх,
+     номер — у первой строки. В наведении строка на линии 104 */
+  .fmt__meta {
+    display: flex;
+    align-items: flex-start;
+    top: 104px;
+    transform: translate(0, calc(432 * var(--s) + 18px - 104px - 100%));
+  }
+
+  /* Ширина — width, а не flex-basis: WebKit не учитывает flex-basis в ширине строки по содержимому и сжимает «для кого» */
+  .fmt__num {
+    flex: none;
+    width: calc(64 * var(--u));
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  .fmt__whom {
+    flex: none;
+    max-width: var(--whom-w);
+    line-height: 18px;
+    transition: transform 0.35s var(--ease-state), opacity 0.35s var(--ease-state);
+  }
+
+  .fmt__plus {
+    top: calc(432 * var(--s));
+    line-height: 17px;
+  }
+
+  .fmt__title {
+    top: calc(310 * var(--s));
+  }
+
+  /* Описание — на линии 104, колонкой --col; ссылка — на 80s от низа, с тем же левым краем */
+  .fmt__desc {
+    top: 104px;
+    width: var(--col);
+    line-height: 1.5;
+    opacity: 0;
+  }
+
+  .fmt__link {
+    top: calc(100% - 80 * var(--s) - 8px);
+    opacity: 0;
+  }
+
+  /* Окно фото — от 480s до низа половины; файл шире окна (запас под наведение), стоит со сдвигом (photos_site.json) */
+  .fmt__photo {
+    z-index: 0;                       /* «Тон» остаётся внутри окна, текст половины — над ним */
+    inset: calc(480 * var(--s)) 0 0;
+    aspect-ratio: auto;
+    background: none;
+    transition: none;
+  }
+
+  /* «Тон» десктопа неподвижен: узел 960s от y 300s половины */
+  .fmt__photo::after {
+    inset: calc(-180 * var(--s)) 0 auto;
+    height: calc(960 * var(--s));
+    z-index: 1;
+  }
+
+  .fmt__photo picture {
+    position: absolute;
+    transform-origin: 50% 0;
+    transition: transform 0.35s var(--ease-state);
+  }
+
+  /* «Частные»: файл 1005 × 660 от y 300s, окно покоя — x 143…863 файла */
+  .fmt[data-half="private"] .fmt__photo picture {
+    left: calc(var(--x0) - 207 * var(--u));
+    top: calc(-180 * var(--s));
+    width: calc(1005 * var(--u));
+    height: calc(660 * var(--u));
+  }
+
+  /* «Корпоративные»: файл 971 × 959 от y 300s половины (кроп этапа 1 ниже чужого логотипа; положение найдено
+     поиском окна Figma в файле, совпадение 0,94), окно покоя — x 146…866 файла.
+     Наведение — scale 1,111 вокруг y 540 половины (= y 240 файла) */
+  .fmt[data-half="corporate"] .fmt__photo picture {
+    left: calc(var(--x0) + 510 * var(--u));
+    top: calc(-180 * var(--s));
+    width: calc(971 * var(--u));
+    height: calc(959 * var(--u));
+    transform-origin: 50% 25%;
+  }
+
+  /* Покой: названия на одной высоте 310s, строка «01 / 02» на 64s ниже (П-02). x «корпоративных» — граница + 64,
+     «+» — 72 от правого края части (Р-15: отступы от краёв частей не растут с окном) */
+  .fmt[data-half="private"] :is(.fmt__title, .fmt__meta) { left: var(--x0); }
+  .fmt[data-half="private"] .fmt__plus { left: calc(var(--split0) - 72px); }
+  .fmt[data-half="private"] :is(.fmt__desc, .fmt__link) {
+    left: calc(var(--x0) + 1016 * var(--u) - 64px - max(var(--col), var(--lw)));
+  }
+
+  .fmt[data-half="corporate"] :is(.fmt__title, .fmt__meta) { left: calc(var(--split0) + 64px); }
+  .fmt[data-half="corporate"] .fmt__plus { left: calc(var(--right) - 72px); }
+  .fmt[data-half="corporate"] :is(.fmt__desc, .fmt__link) {
+    left: calc(var(--right) - max(88px + var(--col), 64px + var(--lw)));
+  }
+
+  /* Наведение «Частные» */
+  .s-formats[data-state="private"] [data-half="private"] { --whom-w: calc(952 * var(--u) - 96px - max(var(--col), var(--lw))); }
+  .s-formats[data-state="private"] [data-half="private"] .fmt__title { transform: translateY(var(--title-y)); }
+  .s-formats[data-state="private"] [data-half="private"] .fmt__meta { transform: translate(0, 0); }
+  .s-formats[data-state="private"] [data-half="private"] .fmt__plus { transform: translateX(calc(360 * var(--u))); opacity: 0; }
+  .s-formats[data-state="private"] [data-half="private"] :is(.fmt__desc, .fmt__link) { opacity: 1; }
+  .s-formats[data-state="private"] [data-half="private"] .fmt__photo picture {
+    transform: translate(calc(180 * var(--u)), calc(-36 * var(--s))) scale(1.075);
+  }
+
+  .s-formats[data-state="private"] [data-half="corporate"] .fmt__title { transform: translateX(calc(360 * var(--u))); opacity: 0; }
+  .s-formats[data-state="private"] [data-half="corporate"] .fmt__meta { transform: translate(calc(360 * var(--u) - 32px), 0); }
+  .s-formats[data-state="private"] [data-half="corporate"] .fmt__whom { transform: translate(calc(-64 * var(--u)), -8px); opacity: 0; }
+  .s-formats[data-state="private"] [data-half="corporate"] .fmt__plus { opacity: 0; }
+  .s-formats[data-state="private"] [data-half="corporate"] .fmt__photo picture { transform: translateX(calc(200 * var(--u))); }
+
+  /* Наведение «Корпоративные» */
+  .s-formats[data-state="corporate"] [data-half="private"] .fmt__title { opacity: 0; }
+  .s-formats[data-state="corporate"] [data-half="private"] .fmt__meta { transform: translate(0, 0); }
+  .s-formats[data-state="corporate"] [data-half="private"] .fmt__whom { transform: translate(calc(-64 * var(--u)), -8px); opacity: 0; }
+  .s-formats[data-state="corporate"] [data-half="private"] .fmt__plus { transform: translateX(calc(-360 * var(--u))); opacity: 0; }
+  .s-formats[data-state="corporate"] [data-half="private"] .fmt__photo picture { transform: translateX(calc(-240 * var(--u))); }
+
+  .s-formats[data-state="corporate"] [data-half="corporate"] { --whom-w: calc(952 * var(--u) - 32px - max(88px + var(--col), 64px + var(--lw))); }
+  .s-formats[data-state="corporate"] [data-half="corporate"] .fmt__title { transform: translate(calc(-360 * var(--u)), var(--title-y)); }
+  .s-formats[data-state="corporate"] [data-half="corporate"] .fmt__meta { transform: translate(calc(-360 * var(--u)), 0); }
+  .s-formats[data-state="corporate"] [data-half="corporate"] .fmt__plus { opacity: 0; }
+  .s-formats[data-state="corporate"] [data-half="corporate"] :is(.fmt__desc, .fmt__link) { opacity: 1; }
+  .s-formats[data-state="corporate"] [data-half="corporate"] .fmt__photo picture {
+    transform: translateX(calc(-160 * var(--u))) scale(1.111);
+  }
+
+  /* БАЛЫ опускаются целиком на --drop (верх слова был на 45s выше Форматов) — только когда слово уже у шва */
+  .hf__giant-in {
+    transition: transform 0.35s var(--ease-state);
+  }
+
+  .hf[data-docked][data-formats] .hf__giant-in {
+    transform: translateY(calc(var(--drop) + var(--rise)));
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .fmt,
+  .fmt > *,
+  .fmt__whom,
+  .fmt__photo picture,
+  .hf__giant-in {
+    transition-duration: 0.15s;
+  }
+}
+
+/* =====================================================================================================
+   Шапка раздела (01–04 и дальше): метка, H2 лесенкой, лид от оси. Кадры 240:1412 / 254:2246 / 219:1907.
+   Телефон: вторая строка H2 к правому краю. Планшет: от оси (.sh--l2-axis) или к правому полю (.sh--l2-right,
+   строка шире 385). Десктоп: от оси 720 или от --l2x (точка макета − 64). Лид десктопа — Greige 80 (--lead-d), на Terra / Ash / Slate — Greige Light (--c-small).
+   ===================================================================================================== */
+
+.sh {
+  padding: calc(104 * var(--u)) var(--margin) 0;
+}
+
+.sh__label {
+  display: block;
+}
+
+.sh__title {
+  margin-top: calc(21 * var(--u));
+}
+
+.sh__l1,
+.sh__l2 {
+  display: block;
+}
+
+.sh__l2 {
+  text-align: right;
+}
+
+.sh__lead {
+  width: calc(216 * var(--u));
+  margin: calc(40 * var(--u)) 0 0 auto;
+  color: var(--c-greige-light);
+}
+
+@media (min-width: 600px) {
+  .sh--l2-axis .sh__l2 {
+    padding-left: calc(385 * var(--u));
+    text-align: left;
+  }
+
+  .sh__lead {
+    width: calc(385 * var(--u));
+    margin-top: calc(56 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) {
+  .sh {
+    padding: calc(120 * var(--u)) var(--margin) 0 var(--x0);
+  }
+
+  .sh__title {
+    margin-top: calc(41 * var(--u));
+  }
+
+  .sh .sh__l2 {
+    padding-left: calc(var(--l2x, 656) * var(--u));
+    text-align: left;
+  }
+
+  .sh__lead {
+    width: var(--lead-w, 416px);
+    margin: calc(80 * var(--u)) 0 0 calc(656 * var(--u));
+    line-height: 1.5;
+    color: var(--c-small, var(--lead-d, var(--c-greige-80)));   /* на Terra / Ash / Slate — Greige Light (Р-4) */
+  }
+}
+
+/* =====================================================================================================
+   01 Подготовка. Ступень: линия → 24 → слово и колонка → 40. Кадры 240:1412 / 254:2246 / 219:1907,
+   наведения 219:1939…2075, заметки 241:1582, 254:2909, 219:1904.
+   Телефон: слово вертикально (writing-mode + rotate 180°: читается снизу вверх, высота ступени = длина слова).
+   Растянутые при входе буквы уходят за верх ступени — у ступени overflow: clip.
+   ===================================================================================================== */
+
+.prep__photo {
+  display: none;                               /* фото экрана-шапки — только десктоп (Д3а) */
+}
+
+.prep__list {
+  margin: calc(64 * var(--u)) var(--margin) 0;
+  padding-bottom: calc(97 * var(--u));
+}
+
+.prep__step {
+  display: grid;
+  grid-template-columns: calc(38 * var(--u)) 1fr;
+  grid-template-rows: auto 1fr;               /* высоту ступени задаёт слово — остаток уходит под описание */
+  column-gap: calc(24 * var(--u));
+  align-items: start;
+  padding: calc(24 * var(--u)) 0 calc(40 * var(--u));
+  border-top: 1px solid var(--c-line-divider);
+  overflow: clip;
+}
+
+.prep__step:last-child {
+  border-bottom: 1px solid var(--c-line-divider);
+}
+
+@supports not (overflow: clip) {
+  .prep__step { overflow: hidden; }
+}
+
+.prep__word {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  color: var(--c-greige-light);
+  --fs-t: 68;
+  --fs-d: 112;
+}
+
+.prep__num {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.prep__more {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: calc(12 * var(--u));
+}
+
+.prep__desc {
+  color: var(--c-greige-light);
+}
+
+@media (min-width: 600px) {
+  .prep__list {
+    padding-bottom: calc(119 * var(--u));
+  }
+
+  .prep__step {
+    grid-template-columns: calc(385 * var(--u)) 1fr;
+    column-gap: 0;
+  }
+
+  .prep__word {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+
+  .prep__num {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: calc(24 * var(--u));
+  }
+
+  .prep__more {
+    grid-row: 3;
+  }
+}
+
+/* Десктоп: строки 144, слово Ash, номер справа от слова. Наведение (data-on) раскрывает описание под словом
+   (Smart Animate 0,5 ease-in-out), прочие слова гаснут до Slate. Без JS описания открыты. */
+@media (min-width: 1024px) {
+  .prep__list {
+    width: calc(1312 * var(--u));
+    margin: calc(108 * var(--u)) 0 0 var(--x0);
+    padding-bottom: calc(159 * var(--u));
+  }
+
+  .prep__step {
+    grid-template-columns: max-content 1fr;
+    column-gap: calc(16 * var(--u));
+    padding: calc(25 * var(--u)) 0 calc(23.8 * var(--u));
+    transition: border-color 0.5s ease-in-out;
+  }
+
+  .prep__word {
+    grid-column: 1;
+    color: var(--c-ash);
+    transition: color 0.5s ease-in-out;
+  }
+
+  .prep__num {
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: calc(6 * var(--u));
+    color: var(--c-greige-35);
+    transition: color 0.5s ease-in-out;
+  }
+
+  .prep__more {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 0;
+    transition: grid-template-rows 0.5s ease-in-out;
+  }
+
+  .prep__more-in {
+    min-height: 0;
+    overflow: hidden;
+    padding-left: calc(672 * var(--u));
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .prep__desc {
+    width: 416px;
+    padding: calc(24 * var(--u)) 0 calc(16.2 * var(--u));
+    line-height: 1.5;
+    color: var(--c-greige-80);
+  }
+
+  .js .prep__more { grid-template-rows: 0fr; }
+  .js .prep__more-in { opacity: 0; }
+
+  .s-prep:not([data-state="rest"]) .prep__word { color: var(--c-slate); }
+  .prep__step[data-on] { border-top-color: var(--c-terracotta); }
+  .s-prep .prep__step[data-on] .prep__word { color: var(--c-greige-light); }
+  .prep__step[data-on] .prep__num { color: var(--c-terracotta); }
+  .js .prep__step[data-on] .prep__more { grid-template-rows: 1fr; }
+  .js .prep__step[data-on] .prep__more-in { opacity: 1; }
+}
+
+/* =====================================================================================================
+   02 Вечер. Кадры 241:1585 / 254:2511 / 223:2466 + шаги 223:2492…2570, заметки 242:1852, 254:2912, 223:2463.
+   Телефон и планшет: пять пунктов стопкой, всё видно. Партитура пункта — база Divider 20 на всю колонку (300 мин)
+   и отрезок 3 px Terracotta: left = старт / 300, width = длительность / 300.
+   Десктоп (только с JS, Д3 2026-10-05): весь блок одним экраном — список пяти этапов, раскрыт наведённый (покой — 01),
+   фото и итог в правой колонке. Прежняя закреплённая сцена с часами и партитурой снята.
+   ===================================================================================================== */
+
+.eve {
+  margin-top: calc(64 * var(--u));
+  padding-inline: var(--margin);
+}
+
+.eve__score {
+  display: none;
+}
+
+.eve__list {
+  display: grid;
+  row-gap: calc(80 * var(--u));
+}
+
+.eve__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+}
+
+.eve__photo {
+  position: relative;
+  grid-column: 1 / -1;
+  aspect-ratio: 358 / 448;
+  overflow: hidden;
+  background: var(--c-placeholder);
+}
+
+.eve__photo picture,
+.eve__photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.eve__photo img {
+  object-fit: cover;
+}
+
+/* Часы заходят на нижний край фото на 56 (приём ore «объект + крупное слово на краю») */
+.eve__time {
+  position: relative;
+  z-index: 1;
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: calc(-56 * var(--u));
+  white-space: nowrap;
+  color: var(--c-greige-light);
+}
+
+.eve__count {
+  grid-column: 2;
+  grid-row: 2;
+  margin: calc(20 * var(--u)) -0.4em 0 0;     /* хвост трекинга +40 % не отодвигает цифры от края */
+}
+
+.eve__meta {
+  display: flex;
+  gap: 16px;
+  grid-column: 1 / -1;
+  margin-top: calc(20 * var(--u));
+}
+
+.eve__bar {
+  position: relative;
+  grid-column: 1 / -1;
+  height: 3px;
+  margin-top: calc(13 * var(--u));
+}
+
+.eve__bar::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--c-line-divider);
+}
+
+.eve__seg {
+  position: absolute;
+  top: 0;
+  left: calc(var(--start) / 300 * 100%);
+  width: calc(var(--min) / 300 * 100%);
+  height: 3px;
+  background: var(--c-terracotta);
+  transform-origin: 0 50%;
+}
+
+.eve__title {
+  grid-column: 1 / -1;
+  margin-top: calc(18 * var(--u));
+  font-family: var(--ff-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: var(--lh-text);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--c-greige-light);
+}
+
+.eve__desc {
+  grid-column: 1 / -1;
+  margin-top: calc(8 * var(--u));
+  color: var(--c-greige-80);
+}
+
+/* Итог крупно на фото «Зал сверху». «Тон / финал» — Slate 100 → 89 → 40 % (подгонка по рендерам 223:2466, 241:1585, 254:2511) */
+.eve__final {
+  position: relative;
+  isolation: isolate;
+  min-height: calc(640 * var(--u));
+  margin-top: calc(96 * var(--u));
+  padding: calc(72 * var(--u)) var(--margin) calc(96 * var(--u));
+}
+
+.eve__hall {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.eve__hall picture,
+.eve__hall img {
+  width: 100%;
+  height: 100%;
+}
+
+.eve__hall img {
+  object-fit: cover;
+}
+
+.eve__hall::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgb(34 34 34 / 1) 0%, rgb(34 34 34 / 0.98) 10%, rgb(34 34 34 / 0.95) 20%, rgb(34 34 34 / 0.94) 30%,
+    rgb(34 34 34 / 0.91) 40%, rgb(34 34 34 / 0.89) 50%, rgb(34 34 34 / 0.82) 60%, rgb(34 34 34 / 0.7) 70%,
+    rgb(34 34 34 / 0.58) 80%, rgb(34 34 34 / 0.48) 90%, rgb(34 34 34 / 0.4) 100%);
+}
+
+.eve__sum {
+  color: var(--c-greige-light);
+}
+
+.eve__sum > span {
+  display: block;
+}
+
+.eve__sum-2 {
+  padding-left: calc(44 * var(--u));
+}
+
+.eve__sum-3 {
+  text-align: right;
+}
+
+.eve__note-lead {
+  display: none;                               /* начало итога капсом — только десктоп с JS */
+}
+
+.eve__note {
+  width: calc(216 * var(--u));
+  margin: calc(48 * var(--u)) 0 0 auto;
+  color: var(--c-greige-light);
+}
+
+@media (min-width: 600px) {
+  .eve {
+    margin-top: calc(80 * var(--u));
+  }
+
+  .eve__list {
+    row-gap: calc(120 * var(--u));
+  }
+
+  /* Слева колонка 385 (счётчик сверху, часы низом на 40 выше низа фото), справа фото 385 × 481 от оси */
+  .eve__item {
+    grid-template-columns: calc(385 * var(--u)) 1fr;
+  }
+
+  .eve__photo {
+    grid-column: 2;
+    grid-row: 1;
+    aspect-ratio: 385 / 481;
+  }
+
+  .eve__count {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .eve__time {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+    margin: 0 0 calc(40 * var(--u));
+  }
+
+  .eve__bar,
+  .eve__meta,
+  .eve__title,
+  .eve__desc {
+    grid-column: 1;
+    width: calc(353 * var(--u));
+  }
+
+  .eve__bar { grid-row: 2; margin-top: calc(23 * var(--u)); }
+  .eve__meta { grid-row: 3; margin-top: calc(18 * var(--u)); }
+  .eve__title { grid-row: 4; margin-top: calc(16 * var(--u)); }
+  .eve__desc { grid-row: 5; }
+
+  .eve__final {
+    min-height: calc(900 * var(--u));
+    margin-top: calc(120 * var(--u));
+    padding: calc(120 * var(--u)) var(--margin) calc(120 * var(--u));
+  }
+
+  .eve__sum-2 {
+    padding-left: calc(88 * var(--u));
+  }
+
+  .eve__note {
+    width: calc(385 * var(--u));
+    margin-top: calc(69 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) {
+  .eve__final {
+    min-height: calc(720 * var(--su));
+    margin-top: 0;
+    padding: calc(80 * var(--u)) var(--margin) calc(116 * var(--u)) var(--x0);
+  }
+
+  .eve__sum-2 {
+    padding-left: calc(336 * var(--u));
+  }
+
+  .eve__sum-3 {
+    padding-left: calc(656 * var(--u));
+    text-align: left;
+  }
+
+  .eve__note {
+    width: 416px;
+    margin: calc(56 * var(--u)) 0 0 calc(656 * var(--u));
+    line-height: 1.5;
+    color: var(--c-greige-80);
+  }
+
+  /* ---------- Д3 · A «список этапов»: весь блок одним экраном (кадры 223:2466, 223:2492…2570; окна 318:2377).
+     Без JS десктоп показывает пункты стопкой (раскладка планшета). blocks.js ставит --k = min(s, (экран − 206 − dmax) / 622),
+     --dmax (самое длинное описание), --lead-h и --note-h. Низ самой длинной раскрытой строки — на экран − 64.
+     Строка 72k: 16k · название 48k (lh 0,8) · 17,6k; раскрытая + 13k + мета 15 + 8 + описание.
+     Справа (x 896u): лид на 104, итог прижат к экран − 64, фото — остаток (лид + 32k … итог − 40k) ---------- */
+  .js .s-evening {
+    --k: var(--s);
+    --cw: min(416px, 416 * var(--u));
+    --list-top: calc(var(--scr) - 64px - 373 * var(--k) - 23px - var(--dmax, 72px));
+    position: relative;
+    height: var(--scr);
+  }
+
+  .js .s-evening > .sh {
+    padding: 0;
+  }
+
+  .js .s-evening .sh__label {
+    position: absolute;
+    top: 104px;
+    left: var(--x0);
+  }
+
+  .js .s-evening .sh__title {
+    margin: 0;
+    font-size: calc(120 * var(--k));
+  }
+
+  .js .s-evening .sh__l1,
+  .js .s-evening .sh .sh__l2 {
+    position: absolute;
+    top: calc(119px + 17 * var(--k));
+    left: var(--x0);
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  .js .s-evening .sh .sh__l2 {
+    top: calc(119px + 113 * var(--k));
+    left: calc(var(--x0) + 336 * var(--u));
+  }
+
+  .js .s-evening .sh__lead {
+    position: absolute;
+    top: 104px;
+    left: calc(var(--x0) + 896 * var(--u));
+    width: var(--cw);
+    margin: 0;
+  }
+
+  /* Список — абсолютный блок от поля; он же опора фото (фото лежит в пункте, но стоит в правой колонке) */
+  .js .eve {
+    position: absolute;
+    top: var(--list-top);
+    left: var(--x0);
+    width: calc(832 * var(--u));
+    margin: 0;
+    padding: 0;
+  }
+
+  .js .eve__score,
+  .js .eve__count,
+  .js .eve__bar {
+    display: none;
+  }
+
+  .js .eve__list {
+    display: block;
+  }
+
+  /* Линия строки — фоном: толщина --w у раскрытой (интенсивность 3 / 6 / 12 / 9 / 9), у остальных 1 px Divider */
+  .js .eve__item {
+    --w: 1px;
+    --lc: var(--c-line-divider);
+    display: grid;
+    grid-template-columns: calc(112 * var(--u)) 1fr;
+    grid-template-rows: auto minmax(0, 0fr);
+    align-items: start;
+    padding: calc(16 * var(--k)) 0 calc(17.6 * var(--k));
+    background: linear-gradient(var(--lc), var(--lc)) 0 0 / 100% var(--w) no-repeat;
+    transition: grid-template-rows 0.4s var(--ease-state), background-size 0.4s var(--ease-state);
+  }
+
+  .js .eve__item[data-i="1"] { --wo: 3px; }
+  .js .eve__item[data-i="2"] { --wo: 6px; }
+  .js .eve__item[data-i="3"] { --wo: 12px; }
+  .js .eve__item[data-i="4"],
+  .js .eve__item[data-i="5"] { --wo: 9px; }
+
+  .js .eve__item[data-on] {
+    --w: var(--wo);
+    --lc: var(--c-terracotta);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .js .eve__item:focus-visible {
+    outline-offset: 4px;
+  }
+
+  .js .eve__time {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    margin: calc((38.4 * var(--k) - 15.4px) / 2) 0 0;
+    font: 400 11px / 1.4 var(--ff-sans);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+
+  .js .eve__title {
+    grid-column: 2;
+    grid-row: 1;
+    width: auto;
+    margin: 0;
+    font-family: var(--ff-serif);
+    font-size: calc(48 * var(--k));
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    text-transform: none;
+  }
+
+  .js .eve__time,
+  .js .eve__title {
+    color: var(--c-greige-50);
+    transition: color 0.4s var(--ease-state);
+  }
+
+  .js .eve__item[data-on] :is(.eve__time, .eve__title) {
+    color: var(--c-greige-light);
+  }
+
+  /* Мета и описание — в одном ряду (0fr у закрытой строки): описание задаёт высоту, его отступ сверху = 13k + мета 15 + 8,
+     мета лежит в начале той же ячейки. Отступы — внутри (поля не сжались бы до нуля) */
+  .js .eve__meta,
+  .js .eve__desc {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: stretch;                       /* высота = ряд: закрытая строка не перекрывает соседнюю */
+    min-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+
+  .js .eve__item[data-on] :is(.eve__meta, .eve__desc) {
+    opacity: 1;
+    transition: opacity 0.4s ease-out 0.15s;
+  }
+
+  .js .eve__meta {
+    width: auto;
+    gap: 24px;
+    margin: 0;
+  }
+
+  .js .eve__meta > span {
+    margin-top: calc(13 * var(--k));
+    line-height: 15px;
+  }
+
+  .js .eve__dur {
+    color: var(--c-greige-80);
+  }
+
+  .js .eve__desc {
+    width: min(560px, 720 * var(--u));
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .js .eve__desc::before {
+    content: "";
+    display: block;
+    height: calc(13 * var(--k) + 23px);
+  }
+
+  /* Фото: 5 : 6 целиком по ширине колонки, окно — остаток высоты; точка фокуса — по снимку (01, 04 — верх; 05 — 90 %) */
+  .js .eve__photo {
+    position: absolute;
+    top: calc(104px + var(--lead-h, 72px) + 32 * var(--k) - var(--list-top));
+    left: calc(896 * var(--u));
+    width: calc(416 * var(--u));
+    height: calc(var(--scr) - 168px - var(--lead-h, 72px) - var(--note-h, 108px) - 126.4 * var(--k));
+    aspect-ratio: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease-in-out;
+  }
+
+  .js .eve__item[data-on] .eve__photo {
+    opacity: 1;
+  }
+
+  /* Фокус по снимку (Д4): 01 — лица вверху, 04 — балерина, 05 — гости под конфетти */
+  .js .eve__item[data-i="1"] .eve__photo img { object-position: 50% 0; }
+  .js .eve__item[data-i="4"] .eve__photo img { object-position: 50% 45%; }
+  .js .eve__item[data-i="5"] .eve__photo img { object-position: 50% 65%; }
+
+  /* Итог: «Это ориентир,» антиквой 48k, продолжение капсом («а не готовая программа.» — Greige Light), прижат к экран − 64.
+     Вторая и третья строки крупного итога (телефон, планшет) остаются для чтения с экрана */
+  .js .eve__final {
+    position: absolute;
+    left: calc(var(--x0) + 896 * var(--u));
+    bottom: 64px;
+    width: var(--cw);
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .js .eve__hall {
+    display: none;
+  }
+
+  .js .eve__sum {
+    font-size: calc(48 * var(--k));
+  }
+
+  .js .eve__sum :is(.eve__sum-2, .eve__sum-3) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .js .eve__note {
+    width: auto;
+    margin: calc(16 * var(--k)) 0 0;
+  }
+
+  .js .eve__note-lead {
+    display: inline;
+    color: var(--c-greige-light);
+  }
+}
+
+/* =====================================================================================================
+   03 Музыка. Кадры 242:1855 / 254:2577 / 223:2626 + 223:2654, 223:2682, заметки 242:1945, 254:2915, 223:2728.
+   Телефон и планшет: карусель scroll-snap без JS (JS — только счётчик). Телефон: карточка 310, зазор 16, поля ленты 40,
+   текущая по центру. Планшет: карточки 360, поле 32, привязка к началу.
+   Десктоп: сцена 1440 × 560 в край (смена фото opacity 0,5 с) и три колонки-переключателя (наведение, клик, фокус).
+   ===================================================================================================== */
+
+.s-music {
+  padding-bottom: calc(96 * var(--u));
+}
+
+.music__count {
+  margin: calc(48 * var(--u)) calc(var(--margin) - 0.4em) 0 var(--margin);
+  text-align: right;
+}
+
+.music__scene {
+  display: none;
+}
+
+.music__rail {
+  margin-top: calc(17 * var(--u));
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: calc(40 * var(--u));
+  scrollbar-width: none;
+}
+
+.music__rail::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .music__rail { scroll-behavior: smooth; }
+}
+
+.music__track {
+  display: flex;
+  gap: calc(16 * var(--u));
+  width: max-content;
+  padding-inline: calc(40 * var(--u));
+}
+
+.music__card {
+  flex: 0 0 calc(310 * var(--u));
+  scroll-snap-align: center;
+}
+
+.music__photo {
+  position: relative;
+  aspect-ratio: 310 / 388;
+  overflow: hidden;
+  background: var(--c-placeholder);
+}
+
+.music__photo picture,
+.music__photo img,
+.music__shot picture,
+.music__shot img {
+  width: 100%;
+  height: 100%;
+}
+
+.music__photo img,
+.music__shot img {
+  object-fit: cover;
+}
+
+.music__num {
+  display: block;
+  margin-top: calc(24 * var(--u));
+}
+
+.music__title {
+  margin-top: calc(12 * var(--u));
+  font-family: var(--ff-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: var(--lh-text);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--c-greige-light);
+}
+
+.music__title br {
+  display: none;
+}
+
+.music__dances {
+  margin-top: calc(8 * var(--u));
+  color: var(--c-greige-light);
+}
+
+.music__desc {
+  margin-top: calc(12 * var(--u));
+  color: var(--c-greige-80);
+}
+
+@media (min-width: 600px) {
+  .s-music {
+    padding-bottom: calc(120 * var(--u));
+  }
+
+  .music__count {
+    margin-top: calc(44 * var(--u));
+  }
+
+  .music__rail {
+    scroll-padding-inline: calc(32 * var(--u));
+  }
+
+  .music__track {
+    padding-inline: calc(32 * var(--u));
+  }
+
+  .music__card {
+    flex-basis: calc(360 * var(--u));
+    scroll-snap-align: start;
+  }
+
+  .music__photo {
+    aspect-ratio: 360 / 450;
+  }
+
+  .music__dances {
+    margin-top: calc(6 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) {
+  .music__count {
+    display: none;
+  }
+
+  .music__scene {
+    display: block;
+    position: relative;
+    height: calc(560 * var(--su));
+    margin: calc(90 * var(--u)) var(--edge) 0;
+    overflow: hidden;
+  }
+
+  .music__shot {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .s-music[data-state="1"] .music__shot[data-i="1"],
+  .s-music[data-state="2"] .music__shot[data-i="2"],
+  .s-music[data-state="3"] .music__shot[data-i="3"] {
+    opacity: 1;
+  }
+
+  .music__rail {
+    margin-top: calc(40 * var(--u));
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .music__track {
+    display: grid;
+    grid-template-columns: repeat(3, calc(416 * var(--u)));
+    gap: calc(32 * var(--u));
+    width: auto;
+    padding: 0 0 0 var(--x0);
+  }
+
+  .music__card {
+    position: relative;
+    cursor: pointer;
+    border-top: 1px solid var(--c-line-divider);
+  }
+
+  .music__card::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--c-terracotta);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .music__photo {
+    display: none;
+  }
+
+  .music__num,
+  .music__title,
+  .music__dances,
+  .music__desc {
+    transition: color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+
+  .music__num {
+    color: var(--c-greige-35);
+  }
+
+  .music__title {
+    margin-top: calc(17 * var(--u));
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--c-greige-50);
+  }
+
+  .music__title br {
+    display: inline;
+  }
+
+  .music__dances {
+    margin-top: calc(20 * var(--u));
+    color: var(--c-greige-50);
+  }
+
+  .music__desc {
+    width: 416px;
+    max-width: 100%;
+    margin-top: calc(21 * var(--u));
+    line-height: 1.5;
+  }
+
+  .js .music__card:not([data-on]) .music__desc {
+    opacity: 0;
+  }
+
+  .music__card[data-on] { cursor: default; }
+  .music__card[data-on]::before { opacity: 1; }
+  .music__card[data-on] .music__num { color: var(--c-terracotta); }
+  .music__card[data-on] .music__title { color: var(--c-greige-light); }
+  .music__card[data-on] .music__dances { color: var(--c-greige-90); }
+}
+
+/* =====================================================================================================
+   04 Танцмейстер. Кадры 242:1948 / 254:2611 / 198:876 + наведения 198:897, 198:918, заметки 242:2079, 254:2918.
+   Телефон: полоса слова 38 у поля + фото 304 × 448; слово вертикально от низа фото вверх. Планшет: фото 770 × 560,
+   слово Giant 92 под фото, номер справа от слова. «Тон» — Terra по нижним 59 % фото (подгонка по рендерам: 0 → 0,94).
+   Десктоп: сцена 680 в край, две панели-слоя с clip-path 716 | 716 → 1032 | 400 (наведение, фокус, тап),
+   фото внутри панели держит центр (сдвиг ±158), соседняя панель — Terra 50 %.
+   ===================================================================================================== */
+
+.dm__stage {
+  display: grid;
+  row-gap: calc(64 * var(--u));
+  margin-top: calc(64 * var(--u));
+  padding-inline: var(--margin);
+}
+
+.dm__panel {
+  display: grid;
+  grid-template-columns: calc(38 * var(--u)) 1fr;
+  column-gap: calc(16 * var(--u));
+  align-items: start;
+}
+
+.dm__photo {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  aspect-ratio: 304 / 448;
+  overflow: hidden;
+  background: var(--c-placeholder);
+}
+
+.dm__photo picture,
+.dm__photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.dm__photo img {
+  object-fit: cover;
+}
+
+.dm__photo::after,
+.dm__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    rgb(101 54 36 / 0) 41%, rgb(101 54 36 / 0.25) 50%, rgb(101 54 36 / 0.54) 60%, rgb(101 54 36 / 0.67) 70%,
+    rgb(101 54 36 / 0.76) 80%, rgb(101 54 36 / 0.85) 90%, rgb(101 54 36 / 0.94) 100%);
+}
+
+.dm__panel::before {
+  display: none;
+}
+
+.dm__num {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* Полоса слова во всю высоту фото: слово от её низа вверх, растянутые при входе буквы обрезаются по верху фото */
+.dm__word {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: stretch;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  overflow: clip;
+  color: var(--c-greige-light);
+}
+
+@supports not (overflow: clip) {
+  .dm__word { overflow: hidden; }
+}
+
+.dm__text {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: calc(24 * var(--u));
+}
+
+.dm__foot {
+  padding: calc(96 * var(--u)) var(--margin) calc(96 * var(--u));
+}
+
+.dm__q1,
+.dm__q2 {
+  display: block;
+  width: calc(300 * var(--u));
+}
+
+.dm__q2 {
+  margin-left: calc(58 * var(--u));
+}
+
+.dm__tempo {
+  width: calc(216 * var(--u));
+  margin: calc(40 * var(--u)) 0 0 auto;
+}
+
+@media (min-width: 600px) {
+  .dm__stage {
+    row-gap: calc(120 * var(--u));
+    margin-top: calc(79 * var(--u));
+  }
+
+  .dm__panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .dm__photo {
+    flex: 0 0 100%;
+    aspect-ratio: 770 / 560;
+  }
+
+  .dm__word {
+    order: 1;
+    margin-top: calc(32 * var(--u));
+    writing-mode: horizontal-tb;
+    transform: none;
+    overflow: visible;
+    --fs-t: 92;
+  }
+
+  /* Номер справа от слова: УЧАСТНИКИ + номер = 768 из 770, и flex переносит номер на новую строку. Слово «отдаёт»
+     строке 80 px, номер возвращается на место сдвигом left (на раскладку не влияет) */
+  .dm__word {
+    margin-right: -80px;
+  }
+
+  .dm__num {
+    position: relative;
+    left: 80px;
+    order: 2;
+    margin: calc(36 * var(--u)) 0 0 12px;
+  }
+
+  .dm__text {
+    order: 3;
+    flex: 0 0 calc(385 * var(--u));
+    margin: calc(32 * var(--u)) 0 0 calc(385 * var(--u));
+  }
+
+  .dm__foot {
+    padding: calc(120 * var(--u)) var(--margin) calc(120 * var(--u));
+  }
+
+  /* «Выйти танцевать» одной строкой: 95 вместо 96 — в 96 строка ровно 770 из 770 (решение этапа 3) */
+  .dm__q1 {
+    width: auto;
+    font-size: calc(95 / 96 * 1em);
+    white-space: nowrap;
+  }
+
+  .dm__q2 {
+    width: calc(682 * var(--u));
+    margin-left: calc(88 * var(--u));
+  }
+
+  .dm__tempo {
+    width: calc(385 * var(--u));
+    margin-top: calc(60 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) {
+  .dm__stage {
+    position: relative;
+    display: block;
+    height: calc(680 * var(--su));
+    margin: calc(76 * var(--u)) var(--edge) 0;
+    padding: 0;
+    overflow: hidden;
+    --r1: calc(716 * var(--su));                 /* правый край «Зрителей» */
+    --l2: calc(724 * var(--su));                 /* левый край «Участников» */
+    --dx: 0px;                                   /* сдвиг фото: держит центр панели */
+  }
+
+  .s-dancemaster[data-state="spectators"] .dm__stage { --r1: calc(1032 * var(--su)); --l2: calc(1040 * var(--su)); --dx: calc(158 * var(--su)); }
+  .s-dancemaster[data-state="participants"] .dm__stage { --r1: calc(400 * var(--su)); --l2: calc(408 * var(--su)); --dx: calc(-158 * var(--su)); }
+
+  .dm__panel {
+    position: absolute;
+    inset: 0;
+    display: block;
+    transition: clip-path 0.5s ease-in-out;
+  }
+
+  .dm__panel[data-panel="spectators"] { clip-path: inset(0 calc(100% - var(--r1)) 0 0); }
+  .dm__panel[data-panel="participants"] { clip-path: inset(0 0 0 var(--l2)); --pl: calc(724 * var(--su)); }
+
+  /* «Тон» десктопа — по нижним 400 из 680 во всю панель */
+  .dm__panel::before {
+    display: block;
+    top: calc(280 * var(--su));
+    z-index: 1;
+    background: linear-gradient(to bottom,
+      rgb(101 54 36 / 0) 0%, rgb(101 54 36 / 0.22) 15%, rgb(101 54 36 / 0.52) 32%, rgb(101 54 36 / 0.66) 49%,
+      rgb(101 54 36 / 0.76) 66%, rgb(101 54 36 / 0.85) 83%, rgb(101 54 36 / 0.94) 100%);
+  }
+
+  /* Затемнение соседней панели — Terra 50 % */
+  .dm__panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: var(--c-terra);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .s-dancemaster[data-state="spectators"] [data-panel="participants"]::after,
+  .s-dancemaster[data-state="participants"] [data-panel="spectators"]::after {
+    opacity: 0.5;
+  }
+
+  .dm__photo {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    aspect-ratio: auto;
+    background: none;
+    transform: translateX(var(--dx));
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .dm__photo::after {
+    display: none;
+  }
+
+  .dm__panel[data-panel="spectators"] .dm__photo { left: calc(-158 * var(--su)); width: calc(1032 * var(--su)); }
+  .dm__panel[data-panel="participants"] .dm__photo { left: calc(566 * var(--su)); width: calc(1031 * var(--su)); }
+
+  /* Текст панели — от её левого края: у «Участников» край едет вместе с clip-path */
+  .dm__num,
+  .dm__word,
+  .dm__text {
+    position: absolute;
+    z-index: 3;
+    left: calc(var(--pl, 0px) + 40 * var(--su));
+    margin: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+
+  .dm__num { top: calc(568 * var(--su)); }
+
+  .dm__word {
+    bottom: calc(48 * var(--su));
+    writing-mode: horizontal-tb;
+    transform: none;
+    overflow: visible;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .dm__text {
+    left: calc(var(--pl, 0px) + 576 * var(--su));
+    bottom: calc(48 * var(--su));
+    width: min(416px, calc(416 * var(--su)));     /* в раскрытой панели справа остаётся 40 — на 1024 тоже */
+    line-height: 1.5;
+  }
+
+  .js .dm__text { opacity: 0; }
+  .s-dancemaster[data-state="spectators"] [data-panel="spectators"] .dm__text,
+  .s-dancemaster[data-state="participants"] [data-panel="participants"] .dm__text { opacity: 1; }
+
+  .s-dancemaster[data-state="spectators"] [data-panel="participants"] :is(.dm__num, .dm__word, .dm__text) { transform: translateX(calc(316 * var(--su))); }
+  .s-dancemaster[data-state="participants"] [data-panel="participants"] :is(.dm__num, .dm__word, .dm__text) { transform: translateX(calc(-316 * var(--su))); }
+
+  .dm__foot {
+    display: grid;
+    grid-template-columns: calc(896 * var(--u)) minmax(0, 416px);   /* на 1024 абзац уже 416 — колонка сжимается */
+    align-items: start;
+    padding: calc(64 * var(--u)) var(--margin) calc(122 * var(--u)) var(--x0);
+  }
+
+  .dm__quote {
+    width: calc(864 * var(--u));
+  }
+
+  .dm__q1,
+  .dm__q2 {
+    display: inline;
+    width: auto;
+    margin: 0;
+    font-size: 1em;
+    white-space: normal;
+  }
+
+  .dm__tempo {
+    width: auto;
+    margin: calc(12 * var(--u)) 0 0;
+    line-height: 1.5;
+    color: var(--c-small, var(--c-greige-80));
+  }
+}
+
+/* =====================================================================================================
+   Д3а «в экран» (десктоп, система Д2): 01 и 04 — шапка раздела отдельным экраном, тело следующим; 03 — одним экраном.
+   Кадры 219:1907 (наведения 219:1939…2075), 223:2626 (223:2654, 223:2682), 198:876 (198:897, 198:918);
+   проверочные окна — секция 307:2595, генератор раскладки tools/d3a_figma_gen.py.
+   Метка — на 104 px; строки H2 — на 104 + 56s и 104 + 176s, кегль 150s; x — × --u; мелкий текст — px.
+   ===================================================================================================== */
+
+@media (min-width: 1024px) {
+  /* ---------- Экран-шапка 01; шапка 04 — не в экран (правка 2026-10-06): по содержимому, под лидом 96 ---------- */
+  .s-prep > .sh {
+    position: relative;
+    height: var(--scr);
+    padding: 0;
+  }
+
+  .s-dancemaster > .sh {
+    position: relative;
+    padding: calc(104px + 256 * var(--s)) 0 96px var(--x0);
+  }
+
+  :is(.s-prep, .s-dancemaster, .s-music) .sh__label {
+    position: absolute;
+    top: 104px;
+    left: var(--x0);
+  }
+
+  :is(.s-prep, .s-dancemaster, .s-music) .sh__title {
+    margin: 0;
+    font-size: calc(var(--fs) * var(--kh, var(--s)));
+  }
+
+  :is(.s-prep, .s-dancemaster, .s-music) .sh__l1,
+  :is(.s-prep, .s-music) .sh__l2 {
+    position: absolute;
+    top: calc(104px + 56 * var(--kh, var(--s)));
+    left: var(--x0);
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  .s-prep .sh__l2 {
+    top: calc(104px + 176 * var(--s));
+    left: calc(var(--x0) + 656 * var(--u));
+  }
+
+  .s-prep .sh__lead {
+    position: absolute;
+    top: calc(104px + 376 * var(--s));
+    left: calc(var(--x0) + 656 * var(--u));
+    margin: 0;
+  }
+
+  .s-dancemaster .sh__lead {
+    margin: 0 0 0 calc(656 * var(--u));
+  }
+
+  /* Фото экрана-шапки 01 (вариант A1, кадр 310:2065): от 104 + 336s (на 40s ниже «ваш вечер») до низа экрана, в край;
+     сверху — тень Ink 240s (1 → 0,7 → 0), лид лежит на ней */
+  .prep__photo {
+    display: block;
+    position: absolute;
+    top: calc(104px + 336 * var(--s));
+    bottom: 0;
+    left: var(--edge);
+    right: var(--edge);
+    overflow: hidden;
+  }
+
+  .prep__photo picture,
+  .prep__photo img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .prep__photo img {
+    object-fit: cover;
+  }
+
+  .prep__photo::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: calc(240 * var(--s));
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgb(6 6 6 / 1) 0%, rgb(6 6 6 / 0.7) 45%, rgb(6 6 6 / 0) 100%);
+  }
+
+  /* ---------- 01: экран строк. Шаг строки — 128s, но пять строк и запас 130 под самое длинное описание
+     («Разговор», 90 + 40) помещаются в экран под линией 104: шаг ≤ (экран − 104 − 24 − 130 − 1) / 5.
+     Строка: 17k · слово 112k (lh 0,85) · 15,8k, k = шаг / 128; описание — на шаге, под ним 40 (раскрытие = описание + 40) ---------- */
+  .s-prep {
+    --step: min(calc(128 * var(--s)), calc((var(--scr) - 259px) / 5));
+    --k: calc(var(--step) / 128);
+    min-height: calc(2 * var(--scr));
+  }
+
+  .prep__list {
+    margin: 104px 0 0 var(--x0);
+    padding-bottom: 0;
+  }
+
+  .prep__step {
+    column-gap: 16px;
+    padding: calc(17 * var(--k) - 1px) 0 calc(15.8 * var(--k));   /* линия 1 px — внутри шага, как в макете */
+  }
+
+  .s-prep .prep__word {
+    font-size: calc(var(--fs) * var(--k));
+  }
+
+  .prep__num {
+    margin-top: 6px;
+  }
+
+  .prep__desc {
+    padding: calc(15.8 * var(--k)) 0 calc(40px - 15.8 * var(--k));   /* под описанием — 40 на любом шаге */
+  }
+
+  /* ---------- 03: одним экраном. Фото — от 104 + 256kh до низа; колонки стоят на фото от низа (40s),
+     над ними тень Ink; H2 — × kh = min(s, (верх колонок − 24 − 104) / 296): на низких окнах «сопровождение»
+     ужимается, чтобы не упираться в колонки (kh ставит blocks.js; без JS — s) ---------- */
+  .s-music {
+    position: relative;
+    height: var(--scr);
+    padding: 0;
+  }
+
+  .s-music > .sh {
+    padding: 0;
+  }
+
+  :is(.s-music, .s-prep) .sh :is(.sh__label, .sh__l1, .sh__l2, .sh__lead) {
+    z-index: 1;
+  }
+
+  .s-music .sh .sh__l2 {
+    top: calc(104px + 176 * var(--kh, var(--s)));
+    left: calc(var(--x0) + 336 * var(--u));
+  }
+
+  .s-music .sh__lead {
+    --lw: min(416px, 416 * var(--su));
+    position: absolute;
+    top: calc(104px + 72 * var(--kh, var(--s)));
+    left: min(calc(var(--x0) + 896 * var(--u)), calc(var(--x0) + 1312 * var(--u) - var(--lw)));
+    width: var(--lw);
+    margin: 0;
+  }
+
+  .music__scene {
+    position: absolute;
+    top: calc(104px + 256 * var(--kh, var(--s)));
+    bottom: 0;
+    left: var(--edge);
+    right: var(--edge);
+    height: auto;
+    margin: 0;
+  }
+
+  .music__rail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(40 * var(--s));
+    margin: 0;
+  }
+
+  .music__rail::before {
+    content: "";
+    position: absolute;
+    top: calc(-136 * var(--s));
+    bottom: calc(-40 * var(--s));
+    left: var(--edge);
+    right: var(--edge);
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+      rgb(6 6 6 / 0) 0%, rgb(6 6 6 / 0.72) 25%, rgb(6 6 6 / 0.9) 50%, rgb(6 6 6 / 0.96) 100%);
+  }
+
+  .music__num {
+    margin-top: 23px;                          /* + линия 1 = 24 */
+  }
+
+  .music__title {
+    margin-top: 17px;
+    font-size: calc(32 * var(--s));
+  }
+
+  .music__dances {
+    margin-top: 20px;
+  }
+
+  .music__desc {
+    margin-top: 21px;
+  }
+
+  /* ---------- 04: экран сцены. Цитата 64s стоит от низа (верх — экран − 64s − 173s), сцена — остаток над ней
+     (экран − 285s); «Тон» — нижние 400s панели; слово 32s, номер и абзац — на 48 px от низа сцены ---------- */
+  .dm__stage {
+    height: calc(var(--scr) - 285 * var(--s));
+    margin: 0 var(--edge);
+  }
+
+  .dm__panel::before {
+    top: auto;
+    height: calc(400 * var(--s));
+  }
+
+  .dm__num,
+  .dm__word {
+    left: calc(var(--pl, 0px) + 40px);
+  }
+
+  .dm__num {
+    top: calc(100% - 80px - 32 * var(--s));
+  }
+
+  .dm__word {
+    bottom: 48px;
+    font-size: calc(32 * var(--s));
+  }
+
+  .dm__text {
+    left: calc(var(--pl, 0px) + max(40px, min(576 * var(--su), 1032 * var(--su) - 456px)));
+    bottom: 48px;
+    width: 416px;
+  }
+
+  .dm__foot {
+    position: relative;
+    display: block;
+    height: calc(285 * var(--s));
+    padding: 0;
+  }
+
+  .dm__quote {
+    position: absolute;
+    top: calc(48 * var(--s));
+    left: var(--x0);
+    width: calc(864 * var(--u));
+    font-size: calc(var(--fs) * var(--s));
+  }
+
+  .dm__tempo {
+    --tw: min(416px, 416 * var(--su));
+    position: absolute;
+    top: calc(60 * var(--s));
+    left: min(calc(var(--x0) + 896 * var(--u)), calc(var(--x0) + 1312 * var(--u) - var(--tw)));
+    width: var(--tw);
+    margin: 0;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .prep__step, .prep__word, .prep__num, .prep__more, .prep__more-in,
+  .eve__item, .eve__time, .eve__title, .eve__meta, .eve__desc, .eve__photo,
+  .music__shot, .music__card::before, .music__num, .music__title, .music__dances, .music__desc,
+  .dm__panel, .dm__panel::after, .dm__photo, .dm__num, .dm__word, .dm__text {
+    transition-duration: 0.15s;
+  }
+}
+
+/* =====================================================================================================
+   05 Шоу. Кадры 242:2090 / 256:2921 / 213:778 + форматы 242:2122, 242:2154, 256:3092, 256:3126, 213:872, 213:899,
+   занавес 50 % 242:2186 / 256:3160, заметки 242:2236, 256:3657, 213:937.
+   Сцена: три кадра слоями, следующий лежит поверх и открывается от оси (clip-path inset 50 % → 0), предыдущий уходит
+   в наезд 1 → 1,06 и темнеет на 15 %; назад — занавес закрывается к оси. Положение кадра и слова — data-pos
+   (before / active / after, switch.js). Барабан — окно, в котором слово формата едет на шаг ленты: вперёд старое уходит
+   вверх (телефон — за поле влево), новое приходит снизу (с фото справа). Описание: старое гаснет за 40 % хода, новое
+   поднимается на 16 px на последних 40 %. Счётчик — на середине. Телефон: слово вертикально, полоса 38 у поля;
+   планшет: Giant 62 под фото; десктоп: Giant 107, сцена закреплена, шаг формата — по прокрутке (как 02).
+   Без JS — формат 01 и все описания под сценой.
+   ===================================================================================================== */
+
+.s-show {
+  position: relative;
+  padding-bottom: calc(82.5 * var(--u));
+  --show-t: 1.2s;
+}
+
+/* «+» — ось занавеса: 32 над сценой, по центру фото */
+.show__plus {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: calc(48 * var(--u)) 0 calc(16 * var(--u)) calc((100% + 35 * var(--u)) / 2 - 8px);
+}
+
+.show__plus::before,
+.show__plus::after,
+.etq__plus::before,
+.etq__plus::after {
+  content: "";
+  position: absolute;
+  background: var(--c-greige-light);
+}
+
+.show__plus::before,
+.etq__plus::before {
+  left: 0;
+  top: 7.5px;
+  width: 16px;
+  height: 1px;
+}
+
+.show__plus::after,
+.etq__plus::after {
+  left: 7.5px;
+  top: 0;
+  width: 1px;
+  height: 16px;
+}
+
+/* Свайп по сцене: горизонтальный жест — смена формата, вертикальный скролл браузер оставляет себе */
+.show__stage {
+  position: relative;
+  touch-action: pan-y;
+}
+
+/* Сцена: телефон 355 × 600 от x 35 в правый край */
+.show__scene {
+  position: relative;
+  height: calc(600 * var(--u));
+  margin-left: calc(35 * var(--u));
+  overflow: hidden;
+  background: var(--c-placeholder);
+}
+
+.show__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.show__frame picture,
+.show__frame img {
+  width: 100%;
+  height: 100%;
+}
+
+.show__frame img {
+  object-fit: cover;
+}
+
+/* Предыдущий кадр темнеет на 15 % */
+.show__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+html:not(.js) .show__frame:not([data-i="1"]),
+html:not(.js) .show__word:not([data-i="1"]) {
+  display: none;
+}
+
+.js .show__frame {
+  clip-path: inset(0 50% 0 50%);
+  transition: clip-path var(--show-t) var(--ease-curtain);
+}
+
+.js .show__frame picture {
+  transition: transform var(--show-t) var(--ease-curtain);
+}
+
+.js .show__frame::after {
+  transition: opacity var(--show-t) var(--ease-curtain);
+}
+
+.js .show__frame:is([data-pos="active"], [data-pos="before"]) {
+  clip-path: inset(0);
+}
+
+.js .show__frame[data-pos="before"] picture {
+  transform: scale(1.06);
+}
+
+.js .show__frame[data-pos="before"]::after {
+  opacity: 0.15;
+}
+
+/* Барабан телефона: окно 76 × 600 у поля (две полосы по 38), слово читается снизу вверх от низа фото */
+.show__win {
+  position: absolute;
+  top: 0;
+  left: var(--margin);
+  width: calc(76 * var(--u));
+  height: calc(600 * var(--u));
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.show__word {
+  position: absolute;
+  inset: 0;
+}
+
+.js .show__word {
+  transition: transform var(--show-t) var(--ease-curtain);
+}
+
+.js .show__word[data-pos="before"] { transform: translateX(calc(-100% - 20 * var(--u))); }
+.js .show__word[data-pos="after"] { transform: translateX(calc(100% + 20 * var(--u))); }
+
+.show__wt {
+  height: calc(600 * var(--u));                  /* = окно; 100 % WebKit в вертикальном письме считает от окна браузера */
+  margin: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  color: var(--c-greige-light);
+  --fs-t: 62;
+  --fs-d: 107;
+}
+
+/* Строка слова — по длине текста: WebKit отдаёт блоку в вертикальном письме длину окна, а не сцены */
+.show__line {
+  display: block;
+  inline-size: max-content;
+}
+
+/* «ФОРМАТ» — вторая полоса, сдвинут вверх лесенкой: 276 от низа фото */
+.show__line--2 {
+  padding-inline-start: calc(276 * var(--u));
+}
+
+/* Под сценой: счётчик у поля, описание колонкой 216 от x 158, ниже пункты шагом 44 (зона во всю ширину) */
+.show__info {
+  display: grid;
+  grid-template-columns: calc(142 * var(--u)) 1fr;
+  align-items: start;
+  padding: calc(40 * var(--u)) var(--margin) 0;
+}
+
+.show__count {
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--c-greige-light);
+}
+
+.show__descs {
+  display: grid;
+  grid-column: 2;
+  grid-row: 1;
+  row-gap: 16px;
+}
+
+.show__desc {
+  color: var(--c-greige-light);
+}
+
+/* Описания стопкой в одной ячейке: высота — по самому длинному, секция не прыгает */
+.js .show__desc {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(16px);
+  visibility: hidden;
+  transition: opacity 0.48s ease-in, transform 0.48s ease-in, visibility 0s 0.48s;
+}
+
+.js .show__desc[data-on] {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition: opacity 0.48s ease-out 0.72s, transform 0.48s var(--ease-reveal) 0.72s, visibility 0s;
+}
+
+.show__tabs {
+  position: relative;
+  display: grid;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: calc(25.5 * var(--u)) calc(-1 * var(--margin)) 0;
+}
+
+html:not(.js) .show__tabs {
+  pointer-events: none;
+}
+
+.show__tab {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-left: calc(var(--margin) + 24 * var(--u));
+  text-align: left;
+  color: var(--c-greige-light);
+}
+
+.show__tab:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Линия активного пункта 16 × 1 у поля, едет на шаг 44 */
+.show__mark {
+  position: absolute;
+  top: 21.5px;
+  left: var(--margin);
+  width: 16px;
+  height: 1px;
+  background: var(--c-greige-light);
+  transform: translateY(calc((var(--i, 1) - 1) * 44px));
+  transition: transform var(--show-t) var(--ease-curtain);
+}
+
+html:not(.js) .show__mark {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .s-show {
+    padding-bottom: calc(112.5 * var(--u));
+  }
+
+  .show__plus {
+    margin: calc(58 * var(--u)) 0 calc(20 * var(--u)) calc(50% - 8px);
+  }
+
+  .show__scene {
+    height: calc(560 * var(--u));
+    margin-left: 0;
+  }
+
+  /* Барабан планшета: окно 770 × 110 на 34 выше низа фото, шаг ленты 130 больше окна — краткая «Й» соседа не выглядывает */
+  .show__win {
+    top: calc(526 * var(--u));
+    width: calc(770 * var(--u));
+    height: calc(110 * var(--u));
+  }
+
+  .js .show__word[data-pos="before"] { transform: translateY(-118%); }
+  .js .show__word[data-pos="after"] { transform: translateY(118%); }
+
+  .show__wt {
+    height: auto;
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+
+  .show__line--2 {
+    margin-top: calc(4 * var(--u));
+    padding-inline-start: calc(385 * var(--u));
+  }
+
+  .show__info {
+    grid-template-columns: calc(385 * var(--u)) 1fr;
+    grid-template-rows: auto 1fr;
+    padding-top: calc(120 * var(--u));
+  }
+
+  .show__descs {
+    grid-row: 1 / span 2;
+  }
+
+  .show__tabs {
+    grid-column: 1;
+    margin: calc(30.5 * var(--u)) 0 0 calc(-1 * var(--margin));
+  }
+
+  .show__mark {
+    top: 21.5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Шапка 05: заголовок на 8 ниже общей шапки, лид — справа от «шоу» (x 1008, y 376) */
+  .s-show {
+    padding-bottom: 0;
+    --H: calc(1180 * var(--u));                  /* сцена + слово + подпись: y 520…1700 кадра */
+  }
+
+  .s-show .sh {
+    position: relative;
+  }
+
+  .s-show .sh__title {
+    margin-top: calc(49 * var(--u));
+  }
+
+  .s-show .sh__lead {
+    position: absolute;
+    top: calc(376 * var(--u));
+    left: calc(var(--x0) + 944 * var(--u));
+    width: min(368px, calc(368 * var(--u)));
+    margin: 0;
+    color: var(--c-greige-light);
+  }
+
+  .show__plus {
+    margin: calc(64 * var(--u)) 0 calc(16 * var(--u)) calc(50% - 8px);
+  }
+
+  .show__stage {
+    height: var(--H);
+  }
+
+  /* Фото в край 1440 × 900: высота — что остаётся от сцены под слово и подпись (280) */
+  .show__scene {
+    height: calc(var(--H) - 280 * var(--u));
+    margin-inline: var(--edge);
+  }
+
+  /* «Тон»: Ash 0 → 70 % по нижним 38 % кадра (подгонка по рендерам 213:778 и 213:899) */
+  .show__scene::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgb(62 62 62 / 0) 62%, rgb(62 62 62 / 0.7) 100%);
+  }
+
+  /* Барабан десктопа: окно в две строки (182) на 138 выше низа фото; одиночное слово — в нижней строке */
+  .show__win {
+    z-index: 2;
+    top: calc(var(--H) - 418 * var(--u));
+    left: var(--x0);
+    width: calc(1312 * var(--u));
+    height: calc(182 * var(--u));
+  }
+
+  .show__word {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  /* Слово меняется на второй половине хода занавеса */
+  .js .show__word {
+    transition: transform calc(var(--show-t) / 2) var(--ease-curtain) calc(var(--show-t) / 2);
+  }
+
+  .js .show__word[data-pos="before"] { transform: translateY(-110%); }
+  .js .show__word[data-pos="after"] { transform: translateY(110%); }
+
+  .show__line--2 {
+    margin-top: 0;
+    padding-inline-start: calc(656 * var(--u));
+  }
+
+  /* Подпись: счётчик и пункты у поля, описание от оси 720 (колонка 416) */
+  .show__info {
+    grid-template-columns: calc(656 * var(--u)) minmax(0, 416px);
+    padding: calc(84 * var(--u)) var(--margin) 0 var(--x0);
+  }
+
+  .show__desc {
+    line-height: 1.5;
+  }
+
+  .show__tabs {
+    margin: calc(31 * var(--u)) 0 0;
+  }
+
+  .show__tab {
+    min-height: 24px;
+    padding-left: 0;
+    color: var(--c-greige-70);
+    transition: color var(--t-hover) var(--ease-state);
+  }
+
+  .show__tab[aria-selected="true"] {
+    color: var(--c-greige-light);
+  }
+
+  .show__mark {
+    display: none;
+  }
+}
+
+/* Закрепление (только с JS и без reduced-motion): дорожка = сцена + 2 перехода по 100svh, сцена sticky по центру под шапкой.
+   Высота сцены — по окну: min(1180 × u, окно − шапка), как в 02 */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .js .show__track {
+    --H: min(calc(1180 * var(--u)), calc(100vh - var(--header-h)));
+    --H: min(calc(1180 * var(--u)), calc(100svh - var(--header-h)));
+    height: calc(var(--H) + 2 * 100vh);
+    height: calc(var(--H) + 2 * 100svh);
+  }
+
+  .js .show__stage {
+    position: sticky;
+    top: calc(var(--header-h) + (100vh - var(--header-h) - var(--H)) / 2);
+    top: calc(var(--header-h) + (100svh - var(--header-h) - var(--H)) / 2);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .show__tab:hover {
+      color: var(--c-greige-light);
+    }
+  }
+}
+
+/* reduced-motion: смена растворением 0,2 с, без занавеса, наезда и барабана */
+@media (prefers-reduced-motion: reduce) {
+  .s-show {
+    --show-t: 0.2s;
+  }
+
+  .js .show__frame,
+  .js .show__frame:is([data-pos="active"], [data-pos="before"]) {
+    clip-path: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .js .show__frame[data-pos="active"] {
+    opacity: 1;
+  }
+
+  .js .show__frame[data-pos="before"] picture {
+    transform: none;
+  }
+
+  .js .show__word,
+  .js .show__word[data-pos] {
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .js .show__word[data-pos="active"] {
+    opacity: 1;
+  }
+
+  .js .show__desc,
+  .js .show__desc[data-on] {
+    transform: none;
+    transition: opacity 0.2s, visibility 0s 0.2s;
+  }
+
+  .js .show__desc[data-on] {
+    transition: opacity 0.2s, visibility 0s;
+  }
+}
+
+/* =====================================================================================================
+   06 Ассистент. Кадры 242:2425 / 256:2960 / 198:1168 + наведения 198:1206, 198:1241, заметки 246:976, 256:3660.
+   Телефон: номер у поля, фото 266 × 448 от x 108, вопрос Giant 45 вертикально от низа фото (две строки — полосы 1 и 2),
+   ответ под фото. Планшет: номер и вопрос Giant 84 во всю колонку, ниже фото 353 × 481 у поля и ответ от оси.
+   Десктоп (с JS): строки-вопросы H3 32 колонкой от x 512, фото 448 × 560 от края окна и ответ от x 960 меняются по наведению
+   (покоя нет — по умолчанию 01). Без JS десктоп показывает раскладку планшета.
+   ===================================================================================================== */
+
+.asst__list {
+  display: grid;
+  row-gap: calc(64 * var(--u));
+  margin-top: calc(64 * var(--u));
+  padding-inline: var(--margin);
+}
+
+/* overflow-x: clip — растянутые при входе буквы вопроса не дают горизонтального скролла (как ступень 01);
+   фото и ответ десктопа позиционированы от списка и не обрезаются */
+.asst__item {
+  display: grid;
+  grid-template-columns: calc(76 * var(--u)) calc(16 * var(--u)) 1fr;
+  align-items: start;
+  overflow-x: clip;
+}
+
+.asst__num {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* Вопрос: полоса у поля во всю высоту фото, слово от её низа вверх */
+.asst__q {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  align-self: end;
+  justify-self: start;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  overflow: clip;
+  max-height: 100%;
+  color: var(--c-greige-light);
+  --fs-t: 84;
+  --fs-d: 84;
+}
+
+/* iOS до 16 без overflow: clip: hidden (у строки — по обеим осям, чтобы не стала прокручиваемой по вертикали) */
+@supports not (overflow: clip) {
+  .asst__item,
+  .asst__q { overflow: hidden; }
+}
+
+.asst__l {
+  display: block;
+}
+
+.asst__photo {
+  grid-column: 3;
+  grid-row: 1;
+  aspect-ratio: 266 / 448;
+  overflow: hidden;
+  background: var(--c-placeholder);
+}
+
+.asst__photo picture,
+.asst__photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.asst__photo img {
+  object-fit: cover;
+}
+
+.asst__a {
+  grid-column: 3;
+  grid-row: 2;
+  margin-top: calc(24 * var(--u));
+}
+
+.asst__ans {
+  color: var(--c-greige-light);
+}
+
+.asst__lbl,
+.asst__note {
+  margin-top: 16px;
+  color: var(--c-greige-80);
+}
+
+/* «Принцип»: линия и Lead колонкой 216 от x 158 */
+.asst__end {
+  width: calc(216 * var(--u));
+  margin: calc(64 * var(--u)) var(--margin) 0 auto;
+  padding: calc(24 * var(--u)) 0 calc(96 * var(--u));
+  border-top: 1px solid var(--c-line-divider);
+  box-sizing: content-box;
+}
+
+.asst__principle {
+  color: var(--c-greige-80);
+}
+
+@media (min-width: 600px) {
+  .asst__list {
+    row-gap: calc(120 * var(--u));
+    margin-top: calc(78 * var(--u));
+  }
+
+  .asst__item {
+    grid-template-columns: calc(385 * var(--u)) 1fr;
+  }
+
+  .asst__num {
+    grid-column: 1 / -1;
+  }
+
+  .asst__q {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: calc(13 * var(--u));
+    writing-mode: horizontal-tb;
+    transform: none;
+    overflow: visible;
+    max-height: none;
+  }
+
+  .asst__photo {
+    grid-column: 1;
+    grid-row: 3;
+    width: calc(353 * var(--u));
+    margin-top: calc(32 * var(--u));
+    aspect-ratio: 353 / 481;
+  }
+
+  .asst__a {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: calc(32 * var(--u));
+  }
+
+  .asst__a > * {
+    line-height: 1.5;
+  }
+
+  .asst__lbl {
+    margin-top: 24px;
+  }
+
+  .asst__end {
+    width: calc(385 * var(--u));
+    margin-top: calc(120 * var(--u));
+    padding-bottom: calc(120 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) {
+  .js .asst__list {
+    position: relative;
+    display: block;
+    min-height: calc(560 * var(--u));
+    margin-top: calc(90 * var(--u));
+    padding: 0 0 0 calc(var(--x0) + 448 * var(--u));
+  }
+
+  /* Строка: линия → 24 → номер → 17 → вопрос → 40. Активная: линия 2 px Terracotta, номер и вопрос светлые */
+  .js .asst__item {
+    display: block;
+    width: calc(416 * var(--u));
+    padding: calc(24 * var(--u)) 0 calc(40 * var(--u));
+    border-top: 1px solid var(--c-line-divider);
+    cursor: default;
+    transition: border-color var(--t-line) var(--ease-state), box-shadow var(--t-line) var(--ease-state);
+  }
+
+  .js .asst__item[data-on] {
+    border-top-color: var(--c-terracotta);
+    box-shadow: inset 0 1px 0 var(--c-terracotta);
+  }
+
+  .js .asst__item:focus-visible {
+    outline-offset: 4px;
+  }
+
+  .js .asst__num {
+    display: block;
+    color: var(--c-greige-50);
+    transition: color var(--t-line) var(--ease-state);
+  }
+
+  .js .asst__item[data-on] .asst__num {
+    color: var(--c-accent-small);
+  }
+
+  .js .asst__q {
+    margin-top: calc(17 * var(--u));
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--c-greige-70);
+    transition: color var(--t-line) var(--ease-state);
+  }
+
+  .js .asst__item[data-on] .asst__q {
+    color: var(--c-greige-light);
+  }
+
+  /* Фото от края окна (x 0) и ответ от x 960 — слои, видна часть активной строки */
+  .js .asst__photo {
+    position: absolute;
+    top: 0;
+    left: var(--edge);
+    width: calc(448 * var(--u));
+    height: calc(560 * var(--u));
+    margin: 0;
+    aspect-ratio: auto;
+    background: none;
+    opacity: 0;
+    transition: opacity 0.35s var(--ease-state);
+  }
+
+  .js .asst__a {
+    position: absolute;
+    top: 0;
+    left: calc(var(--x0) + 896 * var(--u));
+    width: min(416px, calc(416 * var(--u)));
+    margin: 0;
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: opacity 0.35s var(--ease-state), transform 0.35s var(--ease-state);
+  }
+
+  .js .asst__item[data-on] :is(.asst__photo, .asst__a) {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js .asst__lbl {
+    margin-top: 32px;
+  }
+
+  .js .asst__note {
+    margin-top: 16px;
+  }
+
+  .js .asst__end {
+    width: min(416px, calc(416 * var(--u)));
+    margin: calc(-106 * var(--u)) 0 0 calc(var(--x0) + 896 * var(--u));
+    padding: calc(23 * var(--u)) 0 calc(160 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .js .asst__item, .js .asst__num, .js .asst__q, .js .asst__photo, .js .asst__a {
+    transition-duration: 0.15s;
+  }
+
+  .js .asst__a {
+    transform: none;
+  }
+}
+
+/* =====================================================================================================
+   07 Уроки. Кадры 246:991 / 256:2995 / 198:1288, заметки 246:1146, 256:3663. Статичный блок.
+   Ступень: линия → 20 → этап (метка) → 20 → суть (H2 52 / 96, на десктопе Lead 36) → абзац. Телефон и планшет — зигзаг:
+   чётные ступени — этап и суть к правому полю, абзац от x 158 / от оси. Десктоп — лесенка из четырёх колонок 304
+   (линия на 144 / 104 / 64 / 24). Панорама в край. Вход — проявление лесенкой: этап 0, суть 0,1, абзац 0,2 с.
+   ===================================================================================================== */
+
+.less__steps {
+  margin: calc(64 * var(--u)) var(--margin) 0;
+}
+
+.less__step {
+  display: flex;
+  flex-direction: column;
+  padding: calc(20 * var(--u)) 0 calc(64 * var(--u));
+  border-top: 1px solid var(--c-line-divider);
+}
+
+.less__step:last-child {
+  padding-bottom: calc(96 * var(--u));
+}
+
+.less__stage {
+  color: var(--c-greige-light);
+}
+
+.less__gist {
+  margin-top: calc(20 * var(--u));
+  color: var(--c-greige);
+}
+
+.less__g {
+  display: block;
+}
+
+.less__text {
+  width: calc(216 * var(--u));
+  margin-top: calc(24 * var(--u));
+  color: var(--c-greige-light);
+}
+
+/* Чётные ступени — к правому полю; хвост разрядки метки (40 %) компенсирован */
+.less__step:nth-child(even) .less__stage {
+  margin-right: -0.4em;
+  text-align: right;
+}
+
+.less__step:nth-child(even) .less__gist {
+  text-align: right;
+}
+
+.less__step:nth-child(even) .less__text {
+  margin-left: auto;
+}
+
+.less__photo {
+  aspect-ratio: 390 / 488;
+  overflow: hidden;
+  background: var(--c-placeholder);
+}
+
+.less__photo picture,
+.less__photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.less__photo img {
+  object-fit: cover;
+}
+
+@media (min-width: 600px) {
+  .less__step {
+    padding-bottom: calc(60 * var(--u));
+  }
+
+  .less__step:last-child {
+    padding-bottom: calc(120 * var(--u));
+  }
+
+  .less__text {
+    width: calc(385 * var(--u));
+    margin-top: calc(20 * var(--u));
+    line-height: 1.5;
+  }
+
+  .less__photo {
+    aspect-ratio: 834 / 556;
+  }
+}
+
+@media (min-width: 1024px) {
+  .less__steps {
+    display: grid;
+    grid-template-columns: repeat(4, calc(304 * var(--u)));
+    column-gap: calc(32 * var(--u));
+    align-items: start;
+    margin: calc(52 * var(--u)) 0 0 var(--x0);
+  }
+
+  .less__step,
+  .less__step:last-child {
+    padding-bottom: 0;
+  }
+
+  .less__step:nth-child(1) { margin-top: calc(144 * var(--u)); }
+  .less__step:nth-child(2) { margin-top: calc(104 * var(--u)); }
+  .less__step:nth-child(3) { margin-top: calc(64 * var(--u)); }
+  .less__step:nth-child(4) { margin-top: calc(24 * var(--u)); }
+
+  .less__step:nth-child(even) .less__stage,
+  .less__step:nth-child(even) .less__gist {
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .less__step:nth-child(even) .less__text {
+    margin-left: 0;
+  }
+
+  /* Суть на десктопе — Lead 36 (115 %, −1 %), первое слово курсивом */
+  .less__gist {
+    font-size: var(--fs-lead);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .less__text {
+    width: auto;
+  }
+
+  .less__photo {
+    margin: calc(94 * var(--u)) var(--edge) 0;
+    aspect-ratio: 1440 / 480;
+  }
+}
+
+/* =====================================================================================================
+   08 Этикет. Кадры 247:998 / 256:3034 / 207:1958 + «Дамам» 247:1052, 256:3489, 207:2000, смены 50 % 247:1106 / 1167,
+   256:3543 / 3597, заметки 247:1164, 256:3666, 207:2052.
+   Интро лесенкой; переключатель ролей (телефон — над панелью в две строки 44, планшет и десктоп — колонкой слева);
+   панель Surface/Panel: счётчик, 4 правила капсом Ink с линиями и номерами, слово роли антиквой Terracotta Deep;
+   «+» по углам. Смена роли — data-role на секции: строки текущей роли уходят (opacity → 0, +16) за 0,2 с ease-in,
+   строки другой приходят на их место за 0,3 с ease-out, без наложения (решение пользователя, все ширины).
+   Высота строки — по более длинному правилу пары: панель не прыгает. Без JS видны обе роли.
+   ===================================================================================================== */
+
+/* Метка 08 — Greige 80 (на Ink); у 06 на телефоне ещё и лид Greige 90 (заметка 246:976) */
+.s-etiquette .sh__label,
+.s-assistant .sh__label {
+  color: var(--c-greige-80);
+}
+
+.s-assistant .sh__lead {
+  color: var(--c-greige-90);
+}
+
+.etq__intro {
+  padding: calc(40 * var(--u)) var(--margin) 0;
+}
+
+.etq__intro > p {
+  width: calc(216 * var(--u));
+  color: var(--c-greige-80);
+}
+
+.etq__i2,
+.etq__i3 {
+  margin: 16px 0 0 auto;
+}
+
+.etq__i2 {
+  text-align: right;
+}
+
+.etq__book {
+  margin-top: calc(64 * var(--u));
+}
+
+/* Переключатель: строка 44 во всю ширину, номер у правого края */
+.etq__toggle {
+  display: grid;
+}
+
+.etq__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding-inline: var(--margin);
+  text-align: left;
+  color: var(--c-greige-70);
+  transition: color var(--t-hover) var(--ease-state);
+}
+
+.etq__btn[aria-pressed="true"] {
+  color: var(--c-greige-light);
+}
+
+.etq__btn:focus-visible {
+  outline-offset: -2px;
+}
+
+.etq__btn-n {
+  font-size: 11px;
+}
+
+.etq__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: calc(40 * var(--u)) var(--margin) 0;
+  padding: calc(16 * var(--u)) calc(16 * var(--u)) calc(24 * var(--u));
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* «+» по углам: центр на линии края, 16 наружу по вертикали (десктоп — 24 по горизонтали) */
+.etq__plus {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  --py: calc(-16 * var(--u) - 8px);
+  --px: -8px;
+}
+
+.etq__plus:nth-child(1) { top: var(--py); left: var(--px); }
+.etq__plus:nth-child(2) { top: var(--py); right: var(--px); }
+.etq__plus:nth-child(3) { bottom: var(--py); left: var(--px); }
+.etq__plus:nth-child(4) { bottom: var(--py); right: var(--px); }
+
+.etq__count {
+  color: var(--c-text-ink);
+}
+
+.etq__rules {
+  margin-top: calc(49 * var(--u));
+}
+
+.etq__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 16px;
+  align-items: start;
+  padding: calc(12 * var(--u)) 0;
+  border-top: 1px solid var(--c-text-ink);
+}
+
+.etq__rule {
+  grid-column: 1;
+  max-width: calc(270 * var(--u));
+  color: var(--c-text-ink);
+}
+
+.etq__n {
+  grid-column: 2;
+  grid-row: 1;
+  color: var(--c-text-ink);
+}
+
+.etq__word {
+  display: grid;
+  justify-items: end;
+  margin-top: calc(28 * var(--u));
+}
+
+.etq__w {
+  display: block;
+  color: var(--c-terracotta-deep);
+  --fs-d: 128;
+}
+
+/* Смена роли: обе роли в одной ячейке, неактивная скрыта (visibility — не читается с экрана) */
+.js .etq__rule,
+.js .etq__w {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(16px);
+  visibility: hidden;
+  transition: opacity 0.2s ease-in, transform 0.2s ease-in, visibility 0s 0.2s;
+}
+
+.js .s-etiquette[data-role="k"] [data-who="k"],
+.js .s-etiquette[data-role="d"] [data-who="d"] {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition: opacity 0.3s ease-out 0.2s, transform 0.3s ease-out 0.2s, visibility 0s 0.2s;
+}
+
+/* Финал: «Запоминать» от поля, «заранее» и «не нужно —» к правому краю; продолжение капсом колонкой 216 от x 158 */
+.etq__final {
+  padding: calc(96 * var(--u)) var(--margin);
+}
+
+.etq__f {
+  display: block;
+}
+
+.etq__f2,
+.etq__f3 {
+  text-align: right;
+}
+
+.etq__cont {
+  display: block;
+  width: calc(216 * var(--u));
+  margin: calc(40 * var(--u)) 0 0 auto;
+  color: var(--c-greige-light);
+}
+
+@media (min-width: 600px) {
+  .etq__intro {
+    padding-top: calc(56 * var(--u));
+  }
+
+  .etq__intro > p {
+    width: calc(353 * var(--u));
+  }
+
+  .etq__i2,
+  .etq__i3 {
+    margin: 24px 0 0;
+  }
+
+  .etq__intro > .etq__i3 {
+    width: calc(385 * var(--u));
+    margin-left: calc(385 * var(--u));
+  }
+
+  .etq__book {
+    display: grid;
+    grid-template-columns: calc(192 * var(--u)) 1fr;
+    align-items: start;
+    margin-top: calc(80 * var(--u));
+    padding-inline: var(--margin);
+  }
+
+  /* Колонка 160 у поля, зоны 208 × 44, номер с x 176 */
+  .etq__toggle {
+    margin: 3px 0 0 calc(-1 * var(--margin));
+  }
+
+  .etq__btn {
+    display: grid;
+    grid-template-columns: calc(144 * var(--u)) auto;
+    justify-content: start;
+    width: calc(var(--margin) + 176 * var(--u));
+    padding-right: 0;
+  }
+
+  .etq__panel {
+    margin: 0;
+    padding: calc(16 * var(--u)) calc(24 * var(--u)) calc(24 * var(--u));
+  }
+
+  /* Строки планшета — ровно 72 (кадр 256:3034), даже если обе роли в одну строку */
+  .etq__row {
+    min-height: calc(72 * var(--u));
+    padding-bottom: calc(24 * var(--u));
+  }
+
+  .etq__rule {
+    max-width: calc(440 * var(--u));
+    line-height: 1.5;
+  }
+
+  .etq__word {
+    margin-top: calc(51 * var(--u));
+  }
+
+  .etq__final {
+    padding: calc(120 * var(--u)) var(--margin);
+  }
+
+  .etq__f2 {
+    padding-left: calc(385 * var(--u));
+    text-align: left;
+  }
+
+  .etq__cont {
+    width: calc(385 * var(--u));
+    margin: calc(40 * var(--u)) 0 0 calc(385 * var(--u));
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 1024px) {
+  .etq__intro {
+    padding: calc(24 * var(--u)) var(--margin) 0 var(--x0);
+  }
+
+  .etq__intro > p {
+    width: 320px;
+    line-height: 1.5;
+  }
+
+  .etq__i2 {
+    margin: calc(18 * var(--u)) 0 0 calc(336 * var(--u));
+  }
+
+  .etq__intro > .etq__i3 {
+    width: 400px;
+    margin: calc(18 * var(--u)) 0 0 calc(656 * var(--u));
+  }
+
+  .etq__book {
+    grid-template-columns: calc(656 * var(--u)) calc(656 * var(--u));
+    margin-top: calc(60 * var(--u));
+    padding: 0 0 0 var(--x0);
+  }
+
+  /* Переключатель десктопа: строки 24, номер с x 400, зона 368 */
+  .etq__toggle {
+    margin: -4px 0 0 -8px;
+  }
+
+  .etq__btn {
+    grid-template-columns: calc(336 * var(--u)) auto;
+    width: calc(368 * var(--u));
+    min-height: 24px;
+    padding: 0 0 0 8px;
+    line-height: 1.5;
+  }
+
+  .etq__btn-n {
+    font-size: 12px;
+  }
+
+  .etq__panel {
+    padding: calc(32 * var(--u));
+  }
+
+  .etq__plus {
+    --py: -8px;
+    --px: calc(-24 * var(--u) - 8px);
+  }
+
+  .etq__count {
+    font-size: 12px;
+  }
+
+  .etq__rules {
+    margin-top: calc(183 * var(--u));
+  }
+
+  .etq__row {
+    min-height: 0;
+    padding: calc(12 * var(--u)) 0 calc(34 * var(--u));
+  }
+
+  .etq__rule {
+    max-width: none;
+  }
+
+  .etq__n {
+    font-size: 12px;
+  }
+
+  .etq__word {
+    margin-top: calc(18 * var(--u));
+  }
+
+  /* Финал: «Запоминать заранее» одной строкой, «не нужно —» к правому полю; продолжение от оси колонкой 400 */
+  .etq__final {
+    padding: calc(120 * var(--u)) var(--margin) calc(106 * var(--u)) var(--x0);
+  }
+
+  .etq__f1,
+  .etq__f2 {
+    display: inline-block;
+    padding-left: 0;
+  }
+
+  .etq__f3 {
+    margin-top: 0;
+  }
+
+  .etq__cont {
+    width: min(400px, calc(400 * var(--u)));
+    margin: calc(42 * var(--u)) 0 0 calc(656 * var(--u));
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .etq__btn:hover {
+      color: var(--c-greige-light);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .etq__rule,
+  .js .etq__w,
+  .js .s-etiquette[data-role="k"] [data-who="k"],
+  .js .s-etiquette[data-role="d"] [data-who="d"] {
+    transform: none;
+    transition: opacity 0.15s, visibility 0s 0.15s;
+  }
+
+  .js .s-etiquette[data-role="k"] [data-who="k"],
+  .js .s-etiquette[data-role="d"] [data-who="d"] {
+    transition: opacity 0.15s, visibility 0s;
+  }
+}
+
+.etq__photo {
+  display: none;                               /* фото экрана 2 «Этикета» — только десктоп с JS (Д3б) */
+}
+
+/* =====================================================================================================
+   Д3б «в экран» (десктоп, система Д2): 06 — одним экраном, 07 — одним экраном (панорама уходит в 08), 08 — два экрана:
+   шапка и интро, затем вкладки «Кавалерам / Дамам», фото, панель и финал (вариант A1).
+   Кадры 198:1168 (198:1206, 198:1241), 198:1288, 207:1958 (207:2000); проверочные окна — секция «Д3б · выбранное (06 A,
+   07 один экран, 08 A1) на проверочных окнах» (328:3071), генераторы tools/d3b_windows_gen.py, tools/d3b_live_gen.py.
+   Шапка раздела — как Д3а: метка 104, строки H2 на 104 + 56k и 104 + 176k, кегль 150k; x — × --u, мелкий текст — px.
+   ===================================================================================================== */
+
+@media (min-width: 1024px) {
+  /* ---------- Шапка раздела 06, 07, 08 ---------- */
+  .js .s-assistant { --kk: min(var(--s), calc((var(--scr) - 152px) / 720)); --l1w: 871; }
+  .s-lessons { --kk: var(--k7, var(--s)); --l1w: 694; }
+  .js .s-etiquette { --kk: var(--s); }
+
+  :is(.js .s-assistant, .s-lessons, .js .s-etiquette) {
+    position: relative;
+    padding: 0;
+  }
+
+  :is(.js .s-assistant, .s-lessons, .js .s-etiquette) > .sh {
+    padding: 0;
+  }
+
+  :is(.js .s-assistant, .s-lessons, .js .s-etiquette) .sh__label {
+    position: absolute;
+    top: 104px;
+    left: var(--x0);
+  }
+
+  :is(.js .s-assistant, .s-lessons, .js .s-etiquette) .sh__title {
+    margin: 0;
+    font-size: calc(var(--fs) * var(--kk));
+  }
+
+  :is(.js .s-assistant, .s-lessons, .js .s-etiquette) :is(.sh__l1, .sh .sh__l2) {
+    position: absolute;
+    top: calc(104px + 56 * var(--kk));
+    left: var(--x0);
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  :is(.js .s-assistant, .s-lessons, .js .s-etiquette) .sh .sh__l2 {
+    top: calc(104px + 176 * var(--kk));
+    left: calc(var(--x0) + 656 * var(--u));
+  }
+
+  /* Лид — справа от первой строки H2 (как 03): x 960, но не левее конца «Танцевальный» / «Подготовка» + 25 (на 1440 — ровно 960) */
+  :is(.js .s-assistant, .s-lessons) .sh__lead {
+    --lw: min(416px, 416 * var(--su));
+    --ll: max(min(calc(var(--x0) + 896 * var(--u)), calc(var(--x0) + 1312 * var(--u) - var(--lw))),
+              calc(var(--x0) + var(--l1w) * var(--kk) + 25px));
+    position: absolute;
+    top: calc(104px + 72 * var(--kk));
+    left: var(--ll);
+    width: min(var(--lw), calc(var(--x0) + 1312 * var(--u) - var(--ll)));
+    margin: 0;
+  }
+
+  /* ---------- 06: одним экраном. Тело с T = 104 + 336k: фото 448u × (экран − T) от края, строки 112k / 136k / 136k
+     (вопрос 32k), ответ на T, «Принцип» 36k низом на экран − 48. Если раскрытый ответ не помещается над «Принципом»
+     (низкие окна), blocks.js ставит data-tight: «Принцип» — на низ фото под тень Slate ---------- */
+  .js .s-assistant {
+    --T: calc(104px + 336 * var(--kk));
+    height: var(--scr);
+  }
+
+  .js .s-assistant .asst__list {
+    position: absolute;
+    top: var(--T);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 0;
+    margin: 0;
+  }
+
+  .js .s-assistant .asst__item {
+    height: calc(136 * var(--kk));
+    padding: calc(24 * var(--kk)) 0 0;
+  }
+
+  .js .s-assistant .asst__item:first-child {
+    height: calc(112 * var(--kk));
+  }
+
+  .js .s-assistant .asst__q {
+    margin-top: calc(32 * var(--kk) - 15.4px);   /* вопрос — на 56k от линии; номер 24k + 15,4 */
+    font-size: calc(32 * var(--kk));
+  }
+
+  .js .s-assistant .asst__photo {
+    height: 100%;
+  }
+
+  .js .s-assistant .asst__end {
+    position: absolute;
+    left: calc(var(--x0) + 896 * var(--u));
+    bottom: 48px;
+    margin: 0;
+    padding: 23px 0 0;
+  }
+
+  .js .s-assistant .asst__principle {
+    font-size: calc(36 * var(--kk));
+  }
+
+  .js .s-assistant[data-tight] .asst__list::after {
+    content: "";
+    position: absolute;
+    left: var(--edge);
+    bottom: 0;
+    width: calc(448 * var(--u));
+    height: min(calc(240 * var(--kk) + 120px), 100%);
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgb(34 34 34 / 0) 0%, rgb(34 34 34 / 0.75) 45%, rgb(34 34 34 / 0.92) 100%);
+  }
+
+  .js .s-assistant[data-tight] .asst__end {
+    left: calc(var(--edge) + 32px);
+    bottom: 32px;
+    width: calc(448 * var(--u) - 64px);
+    padding: 0;
+    border-top: 0;
+  }
+
+  /* ---------- 07: одним экраном. Лесенка низом на экран − 40k, колонки 304u через 32u, отступы ступеней 144 / 104 / 64 / 24 × k,
+     зазоры 20k, суть 36k. k (--k7) ставит blocks.js: наибольшее ≤ s, при котором верх ступени 04 ≥ низ H2 + 24 ---------- */
+  .s-lessons {
+    height: var(--scr);
+  }
+
+  .s-lessons .less__steps {
+    position: absolute;
+    left: var(--x0);
+    bottom: calc(40 * var(--kk));
+    margin: 0;
+  }
+
+  .s-lessons .less__step {
+    padding-top: calc(20 * var(--kk));
+  }
+
+  .s-lessons .less__step:nth-child(1) { margin-top: calc(144 * var(--kk)); }
+  .s-lessons .less__step:nth-child(2) { margin-top: calc(104 * var(--kk)); }
+  .s-lessons .less__step:nth-child(3) { margin-top: calc(64 * var(--kk)); }
+  .s-lessons .less__step:nth-child(4) { margin-top: calc(24 * var(--kk)); }
+
+  .s-lessons .less__gist {
+    margin-top: calc(20 * var(--kk));
+    font-size: calc(36 * var(--kk));
+  }
+
+  .s-lessons .less__text {
+    margin-top: calc(20 * var(--kk));
+  }
+
+  .s-lessons .less__photo {
+    display: none;                             /* панорама на десктопе — в 08 */
+  }
+
+  /* ---------- 08: шапка и интро (104 + 320s / 392s / 482s) — не в экран (правка 2026-10-06): интро 3 в потоке, под ним 96;
+     экран 2 — последние --scr раздела (padding-bottom), его слои — от 100% − --scr: вкладки 48 на 104,
+     панель не уже 608 (правила — в одну строку), шаг правил p = max(56k, 38), роль 128k низом на 32k; фото слева до панели;
+     финал 150k на 40k ниже панели, строка 2 — от поля, продолжение капсом — справа, низом по второй строке.
+     k (--kb) ставит blocks.js: наибольшее ≤ s, при котором экран 2 помещается ---------- */
+  .js .s-etiquette {
+    --kb: var(--k8, var(--s));
+    --pw: max(calc(656 * var(--u)), 608px);
+    --px: calc(var(--x0) + 1312 * var(--u) - var(--pw));
+    --p: max(calc(56 * var(--kb)), 38px);
+    --ph: calc(224 * var(--kb) + 4 * var(--p));
+    --y2: calc(100% - var(--scr));               /* верх экрана 2 */
+    padding-bottom: var(--scr);
+  }
+
+  .js .s-etiquette .etq__intro {
+    position: relative;
+    display: flow-root;
+    margin: 0;
+    padding: 0 0 96px;
+  }
+
+  .js .s-etiquette .etq__intro > p {
+    position: absolute;
+    margin: 0;
+  }
+
+  .js .s-etiquette .etq__i1 {
+    top: calc(104px + 320 * var(--kk));
+    left: var(--x0);
+    width: min(320px, 320 * var(--u));
+  }
+
+  .js .s-etiquette .etq__intro > .etq__i2 {
+    top: calc(104px + 392 * var(--kk));
+    left: calc(var(--x0) + 656 * var(--u) - min(320px, 320 * var(--u)));
+    width: min(320px, 320 * var(--u));
+  }
+
+  .js .s-etiquette .etq__intro > .etq__i3 {
+    position: static;
+    width: min(400px, 400 * var(--u));
+    margin: calc(104px + 482 * var(--kk)) 0 0 calc(var(--x0) + 656 * var(--u));
+  }
+
+  .js .s-etiquette .etq__book {
+    position: absolute;
+    top: calc(var(--y2) + 104px);
+    left: 0;
+    right: 0;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Вкладки-закладки: активная — цвета панели и сливается с ней, неактивная — контур Greige 40 */
+  .js .s-etiquette .etq__toggle {
+    position: absolute;
+    top: 0;
+    left: var(--px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: var(--pw);
+    margin: 0;
+  }
+
+  .js .s-etiquette .etq__btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    height: 48px;
+    min-height: 48px;
+    padding: 0 24px;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--c-greige-light);
+    box-shadow: inset 0 0 0 1px rgb(171 167 154 / 0.4);
+    transition: color var(--t-hover) var(--ease-state), background-color var(--t-hover) var(--ease-state);
+  }
+
+  .js .s-etiquette .etq__btn[aria-pressed="true"] {
+    color: var(--c-text-ink);
+    background: var(--c-panel);
+    box-shadow: none;
+  }
+
+  .js .s-etiquette .etq__btn-n {
+    font-size: 12px;
+    letter-spacing: 0.62em;
+    margin-right: -0.62em;
+  }
+
+  .js .s-etiquette .etq__btn-n::before {
+    content: "0";
+  }
+
+  .js .s-etiquette .etq__panel {
+    position: absolute;
+    top: 48px;
+    left: var(--px);
+    width: var(--pw);
+    height: var(--ph);
+    margin: 0;
+    padding: calc(32 * var(--kb)) 32px;
+    box-sizing: border-box;
+  }
+
+  .js .s-etiquette .etq__plus:nth-child(-n + 2) { top: -56px; }
+  .js .s-etiquette .etq__plus:nth-child(n + 3) { bottom: -8px; }
+  .js .s-etiquette .etq__plus:nth-child(odd) { left: -32px; }
+  .js .s-etiquette .etq__plus:nth-child(even) { right: -32px; }
+
+  .js .s-etiquette .etq__count {
+    line-height: 17px;
+  }
+
+  .js .s-etiquette .etq__rules {
+    margin-top: calc(56 * var(--kb) - 17px);
+  }
+
+  .js .s-etiquette .etq__row {
+    height: var(--p);
+    padding: 11px 0 0;                         /* + линия 1 = 12 */
+    box-sizing: border-box;
+  }
+
+  .js .s-etiquette .etq__word {
+    margin-top: auto;
+  }
+
+  .js .s-etiquette .etq__w {
+    font-size: calc(128 * var(--kb));
+    line-height: 0.8;
+  }
+
+  .js .etq__photo {
+    display: block;
+    position: absolute;
+    top: calc(var(--y2) + 104px);
+    left: var(--edge);
+    width: calc(var(--px) - 64px - var(--edge));
+    height: calc(48px + var(--ph));
+    overflow: hidden;
+  }
+
+  .js .etq__photo picture,
+  .js .etq__photo img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .js .etq__photo img {
+    object-fit: cover;
+    object-position: 0 50%;
+  }
+
+  .js .s-etiquette .etq__final {
+    position: absolute;
+    top: calc(var(--y2) + 152px + var(--ph) + 40 * var(--kb));
+    left: var(--x0);
+    right: calc(var(--edge) + 64px);
+    margin: 0;
+    padding: 0;
+  }
+
+  .js .s-etiquette .etq__big {
+    display: block;
+    font-size: calc(var(--fs) * var(--kb));
+  }
+
+  .js .s-etiquette .etq__f3 {
+    text-align: left;
+  }
+
+  .js .s-etiquette .etq__cont {
+    position: absolute;
+    top: calc(240 * var(--kb));
+    right: 0;
+    width: 400px;
+    margin: 0;
+    text-align: right;
+    transform: translateY(-100%);
+  }
+}
+
+/* =====================================================================================================
+   09 Дресс-код. Кадры 250:1006 / 256:3669 / 207:1882, заметки 250:1279, 256:4019, 207:1939.
+   Две фигуры: фото, слово роли H2 поверх верхнего края (на телефоне фото на 23 ниже верха слова), номер Label рядом с фото.
+   «+» — на деталях наряда, координаты в % кадра (одни на всех ширинах), 16 / 1 px Greige Light на подложке 18 / 3 px Ink.
+   Правила: телефон — колонкой 216 под фото; планшет — колонкой 353 сбоку, центр правила на высоте своего «+»; десктоп — колонкой
+   224 / 240 сбоку, первая строка на высоте «+». Наложения соседних правил на узких окнах раздвигает blocks.js (--nudge).
+   «Белый» — Display L, продолжение капсом; «Мы поможем» — три абзаца лесенкой. Десктоп: наведение на правило.
+   ===================================================================================================== */
+
+.s-dress {
+  position: relative;
+  padding-bottom: calc(120 * var(--u));
+}
+
+.s-dress .sh__label,
+.dress__num,
+.dress__hl {
+  color: var(--c-greige-80);
+}
+
+.dress__intro {
+  width: calc(216 * var(--u));
+  margin-top: calc(40 * var(--u));
+  color: var(--c-greige-80);
+}
+
+.dress__fig {
+  position: relative;
+  margin: calc(57 * var(--u)) var(--margin) 0;
+}
+
+.dress__fig[data-fig="d"] {
+  margin-top: calc(97 * var(--u));
+}
+
+/* Слово роли поверх фото: верх фото на 23 ниже верха слова */
+.dress__role {
+  position: relative;
+  z-index: 2;
+  margin-bottom: calc(23 * var(--u) - 0.8em);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.dress__num {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: calc(59 * var(--u));
+}
+
+.dress__fig[data-fig="d"] .dress__num {
+  left: calc(316 * var(--u));
+  top: calc(56 * var(--u));
+}
+
+.dress__photo {
+  position: relative;
+  width: calc(300 * var(--u));
+  aspect-ratio: 300 / 472;
+  overflow: hidden;
+  background: var(--c-placeholder);
+}
+
+.dress__fig[data-fig="k"] .dress__photo {
+  margin-left: auto;
+}
+
+.dress__photo picture,
+.dress__photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.dress__photo img {
+  object-fit: cover;
+}
+
+.dress__plus {
+  position: absolute;
+  z-index: 1;
+  left: var(--px);
+  top: var(--py);
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  background:
+    linear-gradient(var(--c-ink), var(--c-ink)) 50% 50% / 18px 3px no-repeat,
+    linear-gradient(var(--c-ink), var(--c-ink)) 50% 50% / 3px 18px no-repeat;
+  transition: transform var(--t-hover) var(--ease-state);
+}
+
+.dress__plus::before,
+.dress__plus::after {
+  content: "";
+  position: absolute;
+  background: var(--c-greige-light);
+  transition: background-color var(--t-hover) var(--ease-state);
+}
+
+.dress__plus::before {
+  left: 1px;
+  top: 8.5px;
+  width: 16px;
+  height: 1px;
+}
+
+.dress__plus::after {
+  left: 8.5px;
+  top: 1px;
+  width: 1px;
+  height: 16px;
+}
+
+.dress__rules {
+  display: grid;
+  row-gap: 16px;
+  width: calc(216 * var(--u));
+  margin-top: calc(24 * var(--u));
+}
+
+.dress__fig[data-fig="k"] .dress__rules {
+  margin-left: auto;
+}
+
+.dress__white {
+  margin: calc(120 * var(--u)) var(--margin) 0;
+}
+
+.dress__w {
+  display: block;
+  color: var(--c-greige-light);
+  white-space: nowrap;
+}
+
+.dress__wc {
+  display: block;
+  width: calc(216 * var(--u));
+  margin: calc(16 * var(--u)) 0 0 auto;
+}
+
+.dress__help {
+  margin: calc(96 * var(--u)) var(--margin) 0;
+}
+
+.dress__svc {
+  display: grid;
+  row-gap: 16px;
+  margin-top: calc(17 * var(--u));
+}
+
+.dress__svc li {
+  width: calc(216 * var(--u));
+  color: var(--c-greige-80);
+}
+
+.dress__svc li:nth-child(2) {
+  margin-left: calc(71 * var(--u));
+}
+
+.dress__svc li:nth-child(3) {
+  margin-left: calc(142 * var(--u));
+}
+
+@media (min-width: 600px) {
+  .dress__intro {
+    width: calc(353 * var(--u));
+    margin-top: calc(56 * var(--u));
+  }
+
+  /* Фигура = рамка фото; слово, номер и правила — от неё */
+  .dress__fig {
+    width: calc(385 * var(--u));
+    margin: calc(98 * var(--u)) 0 0 calc(var(--margin) + 385 * var(--u));
+  }
+
+  .dress__fig[data-fig="d"] {
+    margin: calc(160 * var(--u)) 0 0 var(--margin);
+  }
+
+  .dress__role {
+    position: absolute;
+    top: calc(-40 * var(--u));
+    left: calc(-74 * var(--u));
+    margin: 0;
+  }
+
+  .dress__fig[data-fig="d"] .dress__role {
+    left: 0;
+  }
+
+  .dress__num {
+    left: calc(-74 * var(--u));
+    top: calc(46 * var(--u));
+  }
+
+  .dress__fig[data-fig="d"] .dress__num {
+    left: calc(401 * var(--u));
+    top: calc(42 * var(--u));
+  }
+
+  .dress__photo,
+  .dress__fig[data-fig="k"] .dress__photo {
+    width: 100%;
+    aspect-ratio: 385 / 606;
+    margin: 0;
+  }
+
+  .dress__rules,
+  .dress__fig[data-fig="k"] .dress__rules {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: block;
+    width: calc(353 * var(--u));
+    margin: 0;
+  }
+
+  .dress__fig[data-fig="k"] .dress__rules {
+    right: calc(100% + 32 * var(--u));
+  }
+
+  .dress__fig[data-fig="d"] .dress__rules {
+    left: calc(100% + 32 * var(--u));
+  }
+
+  /* translate, а не transform: transform занят входом (motion.js) */
+  .dress__rule {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--py);
+    translate: 0 calc(-50% + var(--nudge, 0px));
+  }
+
+  .dress__wc {
+    width: calc(385 * var(--u));
+    margin: calc(22 * var(--u)) 0 0 calc(385 * var(--u));
+  }
+
+  .dress__help {
+    margin-top: calc(74 * var(--u));
+  }
+
+  .dress__svc {
+    grid-template-columns: repeat(3, calc(238 * var(--u)));
+    column-gap: calc(26 * var(--u));
+    align-items: start;
+  }
+
+  .dress__svc li,
+  .dress__svc li:nth-child(n) {
+    width: auto;
+    margin-left: 0;
+  }
+
+  .dress__svc li:nth-child(2) {
+    margin-top: calc(40 * var(--u));
+  }
+
+  .dress__svc li:nth-child(3) {
+    margin-top: calc(80 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) {
+  .s-dress {
+    padding-bottom: calc(108 * var(--u));
+  }
+
+  /* Шапка 09: первая строка от x 304 сразу под меткой, вторая — от оси */
+  .s-dress .sh__title {
+    margin-top: calc(9 * var(--u));
+  }
+
+  .s-dress .sh__l1 {
+    padding-left: calc(240 * var(--u));
+  }
+
+  .dress__intro {
+    width: min(320px, calc(320 * var(--u)));
+    margin-top: calc(44 * var(--u));
+  }
+
+  /* Кавалер — фото x 304 / y 680, Дама — x 720 / y 840 (ступень 160: вторая фигура поднята к первой) */
+  .dress__fig {
+    width: calc(400 * var(--u));
+    margin: calc(180 * var(--u)) 0 0 calc(var(--x0) + 240 * var(--u));
+  }
+
+  .dress__fig[data-fig="d"] {
+    margin: calc(-469 * var(--u)) 0 0 calc(var(--x0) + 656 * var(--u));
+  }
+
+  .dress__role {
+    top: calc(-65 * var(--u));
+    left: calc(-240 * var(--u));
+  }
+
+  .dress__fig[data-fig="d"] .dress__role {
+    top: calc(-40 * var(--u));
+  }
+
+  .dress__num {
+    left: calc(432 * var(--u));
+    top: calc(20 * var(--u));
+  }
+
+  .dress__fig[data-fig="d"] .dress__num {
+    left: calc(416 * var(--u));
+    top: calc(44 * var(--u));
+  }
+
+  .dress__photo,
+  .dress__fig[data-fig="k"] .dress__photo {
+    aspect-ratio: 400 / 629;
+  }
+
+  .dress__fig[data-fig="k"] .dress__rules {
+    right: calc(100% + 16 * var(--u));
+    width: min(224px, calc(224 * var(--u)));
+    text-align: right;
+  }
+
+  .dress__fig[data-fig="d"] .dress__rules {
+    left: calc(100% + 16 * var(--u));
+    width: min(240px, calc(240 * var(--u)));
+  }
+
+  /* Первая строка правила (18) — на высоте «+» (Д3в: все правила, и «бабочка», — на 9 выше «+») */
+  .dress__rule {
+    translate: 0 calc(var(--dy, -9px) + var(--nudge, 0px));
+  }
+
+  .dress__white {
+    position: relative;
+    margin: calc(-82 * var(--u)) 0 0;
+    padding-left: var(--x0);
+  }
+
+  .dress__wc {
+    position: absolute;
+    top: calc(119 * var(--u));
+    left: calc(var(--x0) + 656 * var(--u));
+    width: min(400px, calc(400 * var(--u)));
+    margin: 0;
+  }
+
+  .dress__help {
+    margin: calc(57 * var(--u)) 0 0;
+    padding-left: var(--x0);
+  }
+
+  .dress__svc {
+    grid-template-columns: calc(336 * var(--u)) calc(320 * var(--u)) calc(336 * var(--u));
+    column-gap: 0;
+  }
+
+  .dress__svc li {
+    max-width: 336px;
+  }
+
+  .dress__svc li:nth-child(2) {
+    justify-self: end;
+    max-width: 320px;
+    margin-top: calc(40 * var(--u));
+    text-align: right;
+  }
+
+  .dress__svc li:nth-child(3) {
+    margin-top: calc(98 * var(--u));
+  }
+}
+
+/* Наведение на правило: его «+» поворачивается на 45° и светлеет, остальные правила — 40 % (фото не двигается) */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .dress__rule {
+    transition: opacity var(--t-hover) var(--ease-state);
+  }
+
+  .dress__fig[data-hl] .dress__rule:not([data-on]) {
+    opacity: 0.4;
+  }
+
+  .dress__plus[data-on] {
+    transform: rotate(45deg);
+  }
+
+  .dress__plus[data-on]::before,
+  .dress__plus[data-on]::after {
+    background-color: var(--c-selection);
+  }
+}
+
+/* =====================================================================================================
+   10 Вечера. Кадры 251:1319 / 256:3736 / 218:882 + «Кашемир» 252:1368, 256:3860, 219:1006, смены 50 % 252:1413 / 1458,
+   256:3909 / 3958, заметки 253:1697, 256:4022.
+   Слоты 4 : 5 ступенькой (телефон — главный и два малых, планшет и десктоп — четыре), в каждом два кадра слоями. Новый вечер всегда
+   открывается занавесом из центра поверх старого (clip-path inset 50 % → 0, 1,2 с), старый — наезд 1,06; барабан — окно в две строки,
+   лента едет на шаг (--step больше окна). Описание и цифры: старые уходят за 0,2 с, новые приходят за 0,3 с после 0,2 с, без наложения;
+   панели стопкой в одной ячейке — высота по более длинной, секция не прыгает. Положения — data-pos (blocks.js); смена «назад по кругу»
+   тоже идёт вперёд: новый слой без перехода ставится в after (data-jump) и открывается. Без JS — вечер 01 и обе панели стопкой.
+   ===================================================================================================== */
+
+.s-eves {
+  position: relative;
+  padding-bottom: calc(140 * var(--u));
+  --eve-t: 1.2s;
+  --step: calc(80 * var(--u));
+}
+
+.s-eves .sh__lead {
+  color: var(--c-greige-80);
+}
+
+.eves__nav {
+  position: relative;
+  z-index: 3;
+  padding: calc(32 * var(--u)) var(--margin) 0;
+}
+
+.eves__count {
+  color: var(--c-greige-light);
+}
+
+/* Пункты: зоны 44 во всю ширину, второй — в две строки; линия активного 16 × 1 у поля на высоте первой строки (blocks.js) */
+.eves__tabs {
+  position: relative;
+  display: grid;
+  row-gap: 7px;
+  margin: calc(11 * var(--u)) calc(-1 * var(--margin)) 0;
+}
+
+html:not(.js) .eves__tabs {
+  pointer-events: none;
+}
+
+.eves__tab {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--margin) 0 calc(var(--margin) + 24 * var(--u));
+  text-align: left;
+  color: var(--c-greige-70);
+  transition: color var(--t-hover) var(--ease-state);
+}
+
+.eves__tab[aria-selected="true"] {
+  color: var(--c-greige-light);
+}
+
+.eves__tab:focus-visible {
+  outline-offset: -2px;
+}
+
+.eves__mark {
+  position: absolute;
+  top: 0;
+  left: var(--margin);
+  width: 16px;
+  height: 1px;
+  background: var(--c-greige-light);
+  transform: translateY(var(--mark-y, 21.5px));
+  transition: transform 0.3s var(--ease-state);
+}
+
+html:not(.js) .eves__mark {
+  display: none;
+}
+
+/* Сцена телефона: главный слот 358 × 448, окно названия на 21 выше его низа, малые 171 × 214 ступенькой (C ниже на 40) */
+.eves__scene {
+  position: relative;
+  height: calc(789 * var(--u));
+  margin: calc(43 * var(--u)) var(--margin) 0;
+}
+
+.eves__slot {
+  position: absolute;
+  overflow: hidden;
+  background: var(--c-placeholder);
+}
+
+.eves__slot[data-slot="b"] {
+  left: 0;
+  top: 0;
+  width: calc(358 * var(--u));
+  height: calc(448 * var(--u));
+  touch-action: pan-y;
+}
+
+.eves__slot[data-slot="a"],
+.eves__slot[data-slot="c"] {
+  width: calc(171 * var(--u));
+  height: calc(214 * var(--u));
+}
+
+.eves__slot[data-slot="a"] {
+  left: 0;
+  top: calc(535 * var(--u));
+}
+
+.eves__slot[data-slot="c"] {
+  left: calc(187 * var(--u));
+  top: calc(575 * var(--u));
+}
+
+.eves__slot[data-slot="d"] {
+  display: none;
+}
+
+.eves__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.eves__frame picture,
+.eves__frame img {
+  width: 100%;
+  height: 100%;
+}
+
+.eves__frame img {
+  object-fit: cover;
+}
+
+html:not(.js) .eves__frame:not([data-i="1"]),
+html:not(.js) .eves__word:not([data-i="1"]) {
+  display: none;
+}
+
+.js .eves__frame {
+  clip-path: inset(0 50% 0 50%);
+  transition: clip-path var(--eve-t) var(--ease-curtain);
+}
+
+.js .eves__frame:is([data-pos="active"], [data-pos="before"]) {
+  clip-path: inset(0);
+}
+
+.js .eves__frame[data-pos="active"] {
+  z-index: 2;
+}
+
+.js .eves__frame[data-pos="before"] {
+  z-index: 1;
+}
+
+.js .eves__frame picture {
+  transition: transform var(--eve-t) var(--ease-curtain);
+}
+
+.js .eves__frame[data-pos="before"] picture {
+  transform: scale(1.06);
+}
+
+.js .s-eves [data-jump],
+.js .s-eves [data-jump] picture {
+  transition: none !important;
+}
+
+/* Барабан: окно в две строки; первая строка от поля, вторая к правому краю */
+.eves__win {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: calc(427 * var(--u));
+  width: calc(358 * var(--u));
+  height: calc(76 * var(--u));
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.eves__word {
+  position: absolute;
+  inset: 0;
+}
+
+.eves__wt {
+  margin: 0;
+  color: var(--c-greige-light);
+  --fs-d: 191;
+}
+
+.eves__line {
+  display: block;
+  white-space: nowrap;
+}
+
+.eves__line--2 {
+  text-align: right;
+}
+
+.js .eves__word {
+  transition: transform var(--eve-t) var(--ease-curtain);
+}
+
+.js .eves__word[data-pos="before"] {
+  transform: translateY(calc(-1 * var(--step)));
+}
+
+.js .eves__word[data-pos="after"] {
+  transform: translateY(var(--step));
+}
+
+/* Описание Lead 24 колонкой 300 от x 74, ниже через 48 — цифры у поля (цифра → 24 → подпись, шаг 56) */
+.eves__info {
+  display: grid;
+  margin-top: calc(56 * var(--u));
+  padding: 0 var(--margin);
+}
+
+.eves__panel {
+  grid-area: 1 / 1;
+}
+
+.eves__desc {
+  width: calc(300 * var(--u));
+  margin-left: calc(58 * var(--u));
+  color: var(--c-greige-90);
+}
+
+.eves__facts {
+  display: grid;
+  row-gap: calc(17 * var(--u));
+  margin-top: calc(48 * var(--u));
+}
+
+.eves__fact {
+  display: grid;
+  justify-items: start;
+  row-gap: calc(9 * var(--u));
+}
+
+/* Цифра: Unbounded 12 разреженно (в макете — «2 0»; разрядка вместо пробелов, читается как число) */
+.eves__fn {
+  font-size: 12px;
+  line-height: 1.25;
+  letter-spacing: 0.4em;
+  color: var(--c-greige-light);
+}
+
+.eves__fl {
+  color: var(--c-greige-80);
+}
+
+.js .eves__panel {
+  opacity: 0;
+  transform: translateY(16px);
+  visibility: hidden;
+  transition: opacity 0.2s ease-in, transform 0.2s ease-in, visibility 0s 0.2s;
+}
+
+.js .eves__panel[data-pos="before"] {
+  transform: translateY(-16px);
+}
+
+.js .eves__panel[data-pos="active"] {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition: opacity 0.3s ease-out 0.2s, transform 0.3s var(--ease-reveal) 0.2s, visibility 0s;
+}
+
+@media (min-width: 600px) {
+  .s-eves {
+    padding-bottom: calc(136 * var(--u));
+    --step: calc(180 * var(--u));
+  }
+
+  .eves__nav {
+    padding-top: calc(66 * var(--u));
+  }
+
+  .eves__tabs {
+    row-gap: 0;
+    margin-top: calc(6 * var(--u));
+  }
+
+  /* Сцена планшета 770 × 459: B 282 × 352 от x 220, A / C 169 × 211, D 94 × 117; окно 770 × 160 заходит на низ B на 53 */
+  .eves__scene {
+    height: calc(459 * var(--u));
+    margin-top: calc(41 * var(--u));
+  }
+
+  .eves__slot[data-slot="b"] {
+    left: calc(188 * var(--u));
+    width: calc(282 * var(--u));
+    height: calc(352 * var(--u));
+  }
+
+  .eves__slot[data-slot="a"],
+  .eves__slot[data-slot="c"] {
+    width: calc(169 * var(--u));
+    height: calc(211 * var(--u));
+  }
+
+  .eves__slot[data-slot="a"] {
+    top: calc(94 * var(--u));
+  }
+
+  .eves__slot[data-slot="c"] {
+    left: calc(488 * var(--u));
+    top: calc(47 * var(--u));
+  }
+
+  .eves__slot[data-slot="d"] {
+    display: block;
+    left: calc(676 * var(--u));
+    top: calc(164 * var(--u));
+    width: calc(94 * var(--u));
+    height: calc(117 * var(--u));
+  }
+
+  .eves__win {
+    top: calc(299 * var(--u));
+    width: calc(770 * var(--u));
+    height: calc(160 * var(--u));
+  }
+
+  .eves__line--2 {
+    margin-top: calc(4 * var(--u));
+  }
+
+  /* Цифры у поля, описание Lead 30 от оси */
+  .eves__info {
+    margin-top: calc(81 * var(--u));
+  }
+
+  .eves__panel {
+    display: grid;
+    grid-template-columns: calc(385 * var(--u)) 1fr;
+    align-items: start;
+  }
+
+  .eves__desc {
+    grid-column: 2;
+    grid-row: 1;
+    width: auto;
+    margin: 0;
+  }
+
+  .eves__facts {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .s-eves {
+    padding-bottom: calc(78 * var(--u));
+    --step: calc(340 * var(--u));
+  }
+
+  /* Пункты слева от главного слота (у поля, y 600), сцена — в той же ячейке */
+  .eves__body {
+    display: grid;
+    margin-top: calc(32 * var(--u));
+  }
+
+  .eves__nav,
+  .eves__scene {
+    grid-area: 1 / 1;
+  }
+
+  .eves__nav {
+    justify-self: start;
+    padding: 0 0 0 var(--x0);
+  }
+
+  .eves__tabs {
+    width: min(352px, calc(352 * var(--u)));
+    margin: calc(23 * var(--u)) 0 0;
+  }
+
+  .eves__tab {
+    min-height: 0;
+    padding: 4.5px 0;
+  }
+
+  .eves__mark {
+    display: none;
+  }
+
+  /* Сцена 1440: A 64 / 800, B 384 / 640, C 896 / 720, D 1216 / 920; окно 1312 × 324 на y 1150 (всё — от y 600) */
+  .eves__scene {
+    height: calc(874 * var(--u));
+    margin: 0;
+  }
+
+  .eves__slot[data-slot="b"] {
+    left: calc(var(--x0) + 320 * var(--u));
+    top: calc(40 * var(--u));
+    width: calc(480 * var(--u));
+    height: calc(600 * var(--u));
+  }
+
+  .eves__slot[data-slot="a"],
+  .eves__slot[data-slot="c"] {
+    width: calc(288 * var(--u));
+    height: calc(360 * var(--u));
+  }
+
+  .eves__slot[data-slot="a"] {
+    left: var(--x0);
+    top: calc(200 * var(--u));
+  }
+
+  .eves__slot[data-slot="c"] {
+    left: calc(var(--x0) + 832 * var(--u));
+    top: calc(120 * var(--u));
+  }
+
+  .eves__slot[data-slot="d"] {
+    left: calc(var(--x0) + 1152 * var(--u));
+    top: calc(320 * var(--u));
+    width: calc(160 * var(--u));
+    height: calc(200 * var(--u));
+  }
+
+  .eves__win {
+    left: var(--x0);
+    top: calc(550 * var(--u));
+    width: calc(1312 * var(--u));
+    height: calc(324 * var(--u));
+  }
+
+  .eves__line--2 {
+    margin-top: 0;
+  }
+
+  .eves__info {
+    margin-top: calc(62 * var(--u));
+    padding: 0 var(--margin) 0 var(--x0);
+  }
+
+  .eves__panel {
+    grid-template-columns: calc(656 * var(--u)) calc(656 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .eves__tab:hover {
+    color: var(--c-greige-light);
+  }
+}
+
+/* reduced-motion: смена растворением 0,2 с, без занавеса, наезда и барабана */
+@media (prefers-reduced-motion: reduce) {
+  .s-eves {
+    --eve-t: 0.2s;
+  }
+
+  .js .eves__frame,
+  .js .eves__frame:is([data-pos="active"], [data-pos="before"]) {
+    clip-path: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .js .eves__frame[data-pos="active"] {
+    opacity: 1;
+  }
+
+  .js .eves__frame[data-pos="before"] picture {
+    transform: none;
+  }
+
+  .js .eves__word,
+  .js .eves__word[data-pos] {
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .js .eves__word[data-pos="active"] {
+    opacity: 1;
+  }
+
+  .js .eves__panel,
+  .js .eves__panel[data-pos] {
+    transform: none;
+    transition: opacity 0.2s, visibility 0s 0.2s;
+  }
+
+  .js .eves__panel[data-pos="active"] {
+    transition: opacity 0.2s, visibility 0s;
+  }
+}
+
+/* =====================================================================================================
+   11 О нас · 12 Связаться · Контакты · подвал. Кадры 253:1706 / 256:3789 / 191:890, 191:895, 191:901, 191:930, заметки 253:2181, 256:4025.
+   Телефон и планшет — блоки стопкой; десктоп — колонка меток 224 у поля, текст от x 288. Контакты: телефон и почта — ссылки tel: / mailto:
+   во всю строку с меткой; на телефоне H2 лесенкой. Панель формы на Panel — «затвор»: кнопки открывают лист (form.js); над ней шапка
+   «Над светлым» (data-header). Без JS панели нет — лист формы стоит на странице.
+   ===================================================================================================== */
+
+.s-about {
+  padding: calc(104 * var(--u)) var(--margin) calc(96 * var(--u));
+}
+
+.about__label,
+.about__quote {
+  color: var(--c-greige);
+}
+
+.about__quote {
+  margin-top: calc(21 * var(--u));
+}
+
+.about__note {
+  width: calc(216 * var(--u));
+  margin: calc(32 * var(--u)) 0 0 auto;
+  color: var(--c-greige-80);
+}
+
+/* 12: заголовок CTA — капс 12 (десктоп — H3 32), подводка колонкой 216 от x 158, ссылка-стрелка к правому краю */
+.s-cta {
+  padding: calc(64 * var(--u)) var(--margin) calc(65 * var(--u) - 8px);
+}
+
+.cta__title {
+  margin-top: calc(21 * var(--u));
+  font-family: var(--ff-sans);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: var(--lh-text);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--c-greige-light);
+}
+
+.cta__lead {
+  width: calc(216 * var(--u));
+  margin: calc(16 * var(--u)) 0 0 auto;
+}
+
+/* Зона нажатия — сама ссылка: строка текста + 8 сверху и снизу (≥ 44) */
+.cta__link {
+  display: block;
+  width: max-content;
+  margin: calc(40 * var(--u) - 8px) 0 0 auto;
+  padding-block: 8px;
+  color: var(--c-greige-light);
+}
+
+.cta__lt {
+  display: inline-block;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--c-line-link);
+  white-space: nowrap;
+  transition: border-color var(--t-hover) var(--ease-state);
+}
+
+/* Контакты */
+.s-contact {
+  padding: calc(96 * var(--u)) var(--margin);
+}
+
+.contact__intro {
+  width: calc(216 * var(--u));
+  margin-left: auto;
+  color: var(--c-greige-80);
+}
+
+.contact__row {
+  display: block;
+  margin: calc(48 * var(--u)) calc(-1 * var(--margin)) 0;
+  padding-inline: var(--margin);
+  color: var(--c-greige);
+  transition: color var(--t-hover) var(--ease-state);
+}
+
+.contact__row:focus-visible {
+  outline-offset: -2px;
+}
+
+.contact__lbl {
+  display: block;
+  color: var(--c-greige-80);
+}
+
+.contact__val {
+  display: block;
+  margin-top: calc(12 * var(--u));
+}
+
+/* Телефон: «+7 495» от поля, «000-00-00» к правому краю; почта — разрыв после @ */
+.contact__l1,
+.contact__l2 {
+  display: block;
+  white-space: nowrap;
+}
+
+.contact__l2 {
+  text-align: right;
+}
+
+/* Разрыв после @ нужен только строке (планшет, десктоп); между блоками телефона <wbr> дал бы пустую строку */
+.contact__val wbr {
+  display: none;
+}
+
+/* Панель-затвор 358: метка, три поля (подпись капсом Ink + линия Panel Rule), «→ отправить» H2 Terracotta Deep справа, согласие */
+.contact__panel {
+  margin-top: calc(64 * var(--u));
+  padding: calc(32 * var(--u)) calc(16 * var(--u));
+}
+
+.cp__field {
+  display: block;
+  width: 100%;
+  margin-top: calc(24 * var(--u));
+  padding-bottom: calc(38 * var(--u));
+  border-bottom: 1px solid var(--c-line-panel);
+  text-align: left;
+  color: var(--c-text-ink);
+  cursor: text;
+}
+
+.cp__field:first-of-type {
+  margin-top: calc(33 * var(--u));
+}
+
+.cp__field--area {
+  padding-bottom: calc(76 * var(--u));
+}
+
+.cp__lbl {
+  display: block;
+}
+
+.cp__ex {
+  display: none;
+}
+
+.cp__submit {
+  display: block;
+  width: 100%;
+  margin-top: calc(39 * var(--u) - 8px);
+  padding-block: 8px;
+  text-align: right;
+  color: var(--c-terracotta-deep);
+}
+
+.cp__consent {
+  margin-top: calc(24 * var(--u) - 8px);
+}
+
+.cp__consent a,
+.sheet__consent a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+[data-surface="panel"] :focus-visible {
+  outline-color: var(--c-text-ink);
+}
+
+html:not(.js) .contact__panel {
+  display: none;
+}
+
+/* Подвал: линия Divider 20, логотип 94 × 36. Ссылок нет (П-01: разделы — в меню); что ещё будет в подвале — этап 6 */
+.s-footer {
+  border-top: 1px solid var(--c-line-divider);
+}
+
+.footer__in {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: calc(47 * var(--u)) var(--margin) calc(35 * var(--u));
+}
+
+.footer__logo {
+  display: block;
+  width: 94px;
+  color: var(--c-greige);
+}
+
+.footer__logo svg {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 600px) {
+  .about__note {
+    width: calc(385 * var(--u));
+    margin-top: calc(40 * var(--u));
+  }
+
+  .s-cta {
+    padding-bottom: calc(77 * var(--u) - 8px);
+  }
+
+  .cta__title {
+    width: calc(385 * var(--u));
+  }
+
+  .cta__lead {
+    width: calc(385 * var(--u));
+    margin-top: calc(14 * var(--u));
+  }
+
+  .cta__link {
+    margin-top: calc(48 * var(--u) - 8px);
+  }
+
+  .s-contact {
+    padding: calc(64 * var(--u)) var(--margin) calc(80 * var(--u));
+  }
+
+  .contact__intro {
+    width: calc(385 * var(--u));
+  }
+
+  .contact__row {
+    margin-top: calc(56 * var(--u));
+  }
+
+  .contact__row + .contact__row {
+    margin-top: calc(36 * var(--u));
+  }
+
+  /* Планшет: телефон и почта одной строкой */
+  .contact__l1,
+  .contact__l2 {
+    display: inline;
+  }
+
+  .contact__val wbr {
+    display: inline;
+  }
+
+  .contact__panel {
+    margin-top: calc(46 * var(--u));
+    padding: calc(32 * var(--u)) calc(32 * var(--u)) calc(42 * var(--u));
+  }
+
+  .cp__field {
+    padding-bottom: calc(36 * var(--u));
+  }
+
+  .cp__field--area {
+    padding-bottom: calc(74 * var(--u));
+  }
+
+  .cp__submit {
+    margin-top: calc(40 * var(--u) - 8px);
+  }
+
+  .cp__consent {
+    margin-top: calc(35 * var(--u) - 8px);
+  }
+
+  .footer__in {
+    padding: calc(47 * var(--u)) var(--margin) calc(56 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) {
+  .s-about {
+    display: grid;
+    grid-template-columns: calc(224 * var(--u)) minmax(0, calc(960 * var(--u)));
+    padding: calc(96 * var(--u)) var(--margin) calc(96 * var(--u)) var(--x0);
+  }
+
+  .about__quote {
+    margin-top: 0;
+  }
+
+  .about__note {
+    width: min(416px, calc(416 * var(--u)));
+    margin: calc(36 * var(--u)) 0 0;
+  }
+
+  .s-cta {
+    display: grid;
+    grid-template-columns: calc(224 * var(--u)) 1fr auto;
+    align-items: start;
+    padding: calc(96 * var(--u)) var(--margin) calc(96 * var(--u)) var(--x0);
+  }
+
+  .cta__title {
+    width: auto;
+    margin: 0;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .cta__lead {
+    width: min(416px, calc(416 * var(--u)));
+    margin: 20px 0 0;
+  }
+
+  .cta__link {
+    margin: -8px 0 0;
+  }
+
+  /* Контакты 1440: данные от x 288 (колонка 784 с отступом 224), панель 528 × 624 от x 848 */
+  .s-contact {
+    display: grid;
+    grid-template-columns: calc(784 * var(--u)) calc(528 * var(--u));
+    align-items: start;
+    padding: calc(160 * var(--u)) var(--margin) calc(160 * var(--u)) var(--x0);
+  }
+
+  .contact__info {
+    padding-left: calc(224 * var(--u));
+  }
+
+  .contact__intro {
+    width: min(416px, calc(416 * var(--u)));
+    margin: 0;
+  }
+
+  .contact__row,
+  .contact__row + .contact__row {
+    margin: calc(40 * var(--u)) 0 0;
+    padding: 0;
+  }
+
+  .contact__row + .contact__row .contact__val {
+    margin-top: calc(8 * var(--u));
+  }
+
+  .contact__panel {
+    margin: 0;
+    padding: calc(40 * var(--u));
+  }
+
+  /* Поля десктопа: подпись Body/Fact 11, пример значения капсом 12 через 16, линия на 71 от верха поля */
+  .cp__field,
+  .cp__field:first-of-type {
+    margin-top: calc(28 * var(--u));
+    padding-bottom: calc(20 * var(--u));
+  }
+
+  .cp__field--area {
+    padding-bottom: calc(88 * var(--u));
+  }
+
+  .cp__lbl {
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+  }
+
+  .cp__ex {
+    display: block;
+    min-height: 18px;
+    margin-top: 16px;
+  }
+
+  .cp__submit {
+    margin-top: calc(28 * var(--u) - 8px);
+  }
+
+  .cp__consent {
+    width: min(416px, 100%);
+    margin-top: calc(16 * var(--u) - 8px);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+  }
+
+  .footer__in {
+    padding: calc(64 * var(--u)) var(--margin) calc(64 * var(--u)) var(--x0);
+  }
+
+  .footer__logo {
+    width: 135px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta__link:hover .cta__lt {
+    border-color: var(--c-greige-light);
+  }
+
+  .contact__row:hover {
+    color: var(--c-greige-light);
+  }
+}
+
+/* =====================================================================================================
+   Д3в (десктоп, система Д2): 09 A — шапка и «Мы поможем» / фигуры и «Белый»; 10 B — шапка / тело одним экраном (название на фото);
+   11–подвал A — «О нас» + «Связаться» / Контакты + подвал. Шапки 09, 10 и «О нас» + «Связаться» — не в экран (правка 2026-10-06):
+   высота по содержимому, под ним 96; экраны тела — --scr.
+   Кадры 207:1882, 218:882 (219:1006), 191:890 / 191:895 / 191:901 / 191:930; проверочные окна — секция «Д3в · выбранное (09 A, 10 B,
+   11–подвал A) на проверочных окнах», генераторы tools/d3v_windows_gen.py, tools/d3v_live_gen.py.
+   Шапка раздела — метка 104, строки H2 на 104 + 56s и 104 + 176s, кегль 150s; x — × --u (ось A — точка 720), мелкий текст — px.
+   09 и 10 — сетка: строки «шапка (+ «Мы поможем») → экран тела»; слои тела — абсолютно в своей строке сетки.
+   ===================================================================================================== */
+
+@media (min-width: 1024px) {
+  :is(.s-dress, .s-eves) {
+    --A: calc(var(--x0) + 656 * var(--u));
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0;
+  }
+
+  :is(.s-dress, .s-eves) > .sh {
+    position: relative;
+    grid-row: 1;
+  }
+
+  :is(.s-dress, .s-eves) .sh__label {
+    position: absolute;
+    top: 104px;
+    left: var(--x0);
+  }
+
+  :is(.s-dress, .s-eves) .sh__title {
+    margin: 0;
+    font-size: calc(var(--fs) * var(--s));
+  }
+
+  :is(.s-dress, .s-eves) .sh__l1,
+  :is(.s-dress, .s-eves) .sh .sh__l2 {
+    position: absolute;
+    top: calc(104px + 56 * var(--s));
+    left: var(--x0);
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  :is(.s-dress, .s-eves) .sh .sh__l2 {
+    top: calc(104px + 176 * var(--s));
+    left: var(--A);
+  }
+
+  /* ---------- 09 экран 1 (не в экран): строка 1 от X(304); интро в левой колонке на 24 ниже строки 1; «Мы поможем» — на 64 ниже
+     интро и строки 2, колонки 336u / 320u / 336u (вторая правым краем к оси), ступени 40s и --o3 = max(98s, 40s + вторая + 4)
+     из blocks.js (третья колонка не выше низа второй — они сходятся на оси); под ними 96 ---------- */
+  .s-dress {
+    --k: var(--k9, var(--s));
+    grid-template-rows: auto auto var(--scr);
+  }
+
+  .s-dress .sh__l1 {
+    left: calc(var(--x0) + 240 * var(--u));
+  }
+
+  .s-dress > .sh {
+    min-height: calc(104px + 296 * var(--s));
+    padding: calc(128px + 176 * var(--s)) 0 0 var(--x0);
+  }
+
+  .s-dress .dress__intro {
+    margin: 0;
+  }
+
+  .s-dress .dress__help {
+    grid-row: 2;
+    margin: 64px 0 0;
+    padding: 0 0 96px var(--x0);
+  }
+
+  .s-dress .dress__svc {
+    margin-top: 17px;                          /* метка 15 + 17 = 32 */
+  }
+
+  .s-dress .dress__svc li:nth-child(2) {
+    margin-top: calc(40 * var(--s));
+  }
+
+  .s-dress .dress__svc li:nth-child(3) {
+    margin-top: var(--o3, calc(98 * var(--s)));
+  }
+
+  /* ---------- 09 экран 2: лесенка 144k — «Кавалерам» 150k на 104, фото 400k × 629k правым краем на оси − 16u, «Дамам» на 104 + 144k
+     от оси, фото дамы на 104 + 184k; номера — у фото; «Белый» 230k на 24 ниже фото кавалера, продолжение — от оси на 119k ниже.
+     k (--k9) ставит blocks.js: min(s, (экран − 168) / 878, (экран − 168 − продолжение) / 813) ---------- */
+  .s-dress :is(.dress__fig, .dress__fig[data-fig="d"], .dress__white) {
+    position: absolute;
+    grid-row: 3;
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .s-dress .dress__fig {
+    top: calc(104px + 65 * var(--k));
+    left: calc(var(--A) - 16 * var(--u) - 400 * var(--k));
+    width: calc(400 * var(--k));
+  }
+
+  .s-dress .dress__fig[data-fig="d"] {
+    top: calc(104px + 184 * var(--k));
+    left: var(--A);
+  }
+
+  .s-dress .dress__role {
+    top: calc(-65 * var(--k));
+    left: calc(400 * var(--k) - 640 * var(--u));
+    font-size: calc(var(--fs) * var(--k));
+  }
+
+  .s-dress .dress__fig[data-fig="d"] .dress__role {
+    top: calc(-40 * var(--k));
+    left: 0;
+  }
+
+  .s-dress .dress__num {
+    top: calc(20 * var(--k));
+    left: calc(400 * var(--k) + 32 * var(--u));
+  }
+
+  .s-dress .dress__fig[data-fig="d"] .dress__num {
+    top: calc(44 * var(--k));
+    left: calc(400 * var(--k) + 16 * var(--u));
+  }
+
+  .s-dress .dress__white {
+    top: calc(128px + 694 * var(--k));
+    left: 0;
+    right: 0;
+    padding-left: var(--x0);
+  }
+
+  .s-dress .dress__w {
+    font-size: calc(var(--fs) * var(--k));
+  }
+
+  .s-dress .dress__wc {
+    top: calc(119 * var(--k));
+    left: var(--A);
+  }
+
+  /* ---------- 10 экран 1 (не в экран): лид от оси на 104 + 376s колонкой min(272, 272u), под ним 96 ---------- */
+  .s-eves {
+    --k: var(--k10, var(--s));
+    --step: calc(340 * var(--k));
+    grid-template-rows: auto var(--scr);
+  }
+
+  .s-eves > .sh {
+    padding: calc(104px + 376 * var(--s)) 0 96px var(--x0);
+  }
+
+  .s-eves .sh__lead {
+    width: min(272px, 272 * var(--u));
+    margin: 0 0 0 calc(656 * var(--u));
+  }
+
+  /* ---------- 10 экран 2: счётчик на 104, пункты на 144 / 168; суть 36s колонкой 656u от оси — низом самой длинной на экран − 48
+     (--tt из blocks.js), цифры — от её верха у поля; коллаж от 144: x × u, y × k (B 384 / 0 · 480 × 600, A 64 / 160 · 288 × 360,
+     C 896 / 80 · 288 × 360, D 1216 / 280 · 160 × 200), слот A — не выше низа пунктов + 16 (--a-min); название 191k (строки 162k)
+     на 144 + 276k — низом на низ фото B. k (--k10) = min(s, (верх сути − 184) / 600) ---------- */
+  .s-eves :is(.eves__body, .eves__info) {
+    position: absolute;
+    grid-row: 2;
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .s-eves .eves__body {
+    inset: 0;
+    display: block;
+  }
+
+  .s-eves .eves__nav {
+    position: absolute;
+    z-index: 3;
+    top: 104px;
+    left: var(--x0);
+    padding: 0;
+  }
+
+  .s-eves .eves__tabs {
+    margin-top: 18.5px;                        /* первый пункт — на 40 ниже счётчика (+ поле 4,5) */
+  }
+
+  .s-eves .eves__scene {
+    position: absolute;
+    inset: 0;
+    height: auto;
+    margin: 0;
+  }
+
+  .s-eves .eves__slot[data-slot="b"] {
+    left: calc(var(--x0) + 320 * var(--u));
+    top: 144px;
+    width: calc(480 * var(--u));
+    height: calc(600 * var(--k));
+  }
+
+  .s-eves .eves__slot[data-slot="a"] {
+    left: var(--x0);
+    top: max(calc(144px + 160 * var(--k)), var(--a-min, 0px));
+    width: calc(288 * var(--u));
+    height: calc(360 * var(--k));
+  }
+
+  .s-eves .eves__slot[data-slot="c"] {
+    left: calc(var(--x0) + 832 * var(--u));
+    top: calc(144px + 80 * var(--k));
+    width: calc(288 * var(--u));
+    height: calc(360 * var(--k));
+  }
+
+  .s-eves .eves__slot[data-slot="d"] {
+    left: calc(var(--x0) + 1152 * var(--u));
+    top: calc(144px + 280 * var(--k));
+    width: calc(160 * var(--u));
+    height: calc(200 * var(--k));
+  }
+
+  .s-eves .eves__win {
+    left: var(--x0);
+    top: calc(144px + 276 * var(--k));
+    width: calc(1312 * var(--u));
+    height: calc(324 * var(--k));
+  }
+
+  .s-eves .eves__wt {
+    font-size: calc(var(--fs) * var(--k));
+  }
+
+  .s-eves .eves__info {
+    top: var(--tt, calc(100% - 294px));
+    left: 0;
+    right: 0;
+    padding: 0 0 0 var(--x0);
+  }
+
+  .s-eves .eves__desc {
+    font-size: calc(36 * var(--s));
+  }
+
+  /* ---------- 11 «О нас» + 12 «Связаться» (не в экран): метка и цитата на 104, цитата 36s, подпись через 36s, под ней 96;
+     полоса — поля 96s. Контакты + подвал — экран: данные и панель на 104, подвал 149 (поля 48) низом на экран, панель — поверх подвала.
+     Данные: зазоры 40s, телефон и почта 64s. Панель — шаг kp (--kp из blocks.js, kp = min(s, (экран − 365 − согласие) / 377)):
+     поля 40kp, зазоры 28kp, поле «о вечере» max(52, 120kp), «отправить» 72kp ---------- */
+  .s-about {
+    padding: 104px var(--margin) 96px var(--x0);
+  }
+
+  .about__quote {
+    font-size: calc(36 * var(--s));
+  }
+
+  .about__note {
+    margin-top: calc(36 * var(--s));
+  }
+
+  .s-cta {
+    padding-block: calc(96 * var(--s));
+  }
+
+  .s-contact {
+    --kp: var(--s);
+    position: relative;
+    z-index: 1;
+    height: calc(var(--scr) - 149px);
+    padding: 104px var(--margin) 0 var(--x0);
+  }
+
+  .contact__row,
+  .contact__row + .contact__row {
+    margin-top: calc(40 * var(--s));
+  }
+
+  .contact__val {
+    margin-top: 12px;
+    font-size: calc(var(--fs) * var(--s));
+  }
+
+  .contact__row + .contact__row .contact__val {
+    margin-top: 8px;
+  }
+
+  .contact__panel {
+    padding: calc(40 * var(--kp));
+  }
+
+  /* Поле — подпись 27 + область + 10 + линия 1; высота не зависит от того, в сколько строк лёг пример */
+  .cp__field,
+  .cp__field:first-of-type {
+    height: 72px;
+    margin-top: calc(28 * var(--kp));
+    padding-bottom: 0;
+  }
+
+  .cp__field--area {
+    height: calc(38px + max(52px, 120 * var(--kp)));
+  }
+
+  .cp__submit {
+    margin-top: calc(28 * var(--kp) - 8px);
+    font-size: calc(var(--fs) * var(--kp));
+  }
+
+  .cp__consent {
+    margin-top: 8px;
+  }
+
+  .footer__in {
+    padding: 48px var(--margin) 48px var(--x0);
+  }
+}
+
+/* =====================================================================================================
+   Лист формы. Кадры 253:2035 / 256:3842 (пусто), фокус 253:2053, ввод 253:2072, открытие 50 % 253:2093, заметки 253:2184, 256:4028.
+   Полноэкранный <dialog> на Panel поверх страницы и шапки: открытие — растворение 0,45 с ease-out, закрытие — 0,45 с ease-in.
+   Сверху метка и «×» (зона 44), поля в нижней части: подпись капсом 12 над полем, значение 16 px, линия 1 px Ink; фокус мышью и пальцем
+   не подсвечивается, с клавиатуры — линия 2 px. «→ отправить» — H2 Terracotta Deep справа внизу, слева линия по базовой.
+   Десктоп собран по планшету (кадра нет, решение пользователя): поля от оси, «→ отправить» 72, примеры значений — подсказками.
+   ===================================================================================================== */
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--c-panel);
+  color: var(--c-text-ink);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.sheet::backdrop {
+  background: transparent;
+}
+
+/* Пока лист открыт, место под полосу прокрутки (scrollbar-gutter блокировки) — цвета листа, а не Ink */
+html {
+  transition: background-color 0.45s;
+}
+
+html.is-sheet {
+  background-color: var(--c-panel);
+}
+
+.js .sheet {
+  opacity: 0;
+  transition: opacity 0.45s ease-in;
+}
+
+.js .sheet[data-state="open"] {
+  opacity: 1;
+  transition: opacity 0.45s ease-out;
+}
+
+.sheet__form {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+}
+
+.sheet__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  margin-top: 9px;
+  padding-inline: var(--margin);
+}
+
+/* Открыватель без поля ставит фокус на заголовок (form.js) — без рамки, как у «Заявка отправлена» */
+.sheet__label {
+  outline: none;
+}
+
+.sheet__close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -12px;
+  color: var(--c-text-ink);
+}
+
+.sheet__body,
+.sheet__done {
+  margin-top: auto;
+  padding: 48px var(--margin) 24px;
+}
+
+.sheet__done:not([hidden]) {
+  display: flex;
+  flex-direction: column;
+}
+
+.field + .field {
+  margin-top: 24px;
+}
+
+.field__lbl {
+  display: block;
+}
+
+.field__in {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 0 9px;
+  border: 0;
+  border-bottom: 1px solid var(--c-text-ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--c-text-ink);
+  caret-color: var(--c-text-ink);
+  appearance: none;
+  transition: box-shadow 0.15s;
+}
+
+.field__in--area {
+  min-height: 90px;
+  resize: none;
+  overflow: hidden;
+}
+
+/* Фокус: мышью и пальцем — только курсор; с клавиатуры (html[data-kbd], form.js) — линия 2 px */
+.field__in:focus-visible {
+  outline: none;
+}
+
+html[data-kbd] .field__in:focus {
+  box-shadow: inset 0 -1px 0 var(--c-text-ink);
+}
+
+.field__in::placeholder {
+  color: transparent;
+  opacity: 1;
+}
+
+.field[data-invalid] .field__in {
+  border-bottom-color: var(--c-terracotta-deep);
+  box-shadow: inset 0 -1px 0 var(--c-terracotta-deep);
+}
+
+.field__err {
+  margin-top: 8px;
+}
+
+.sheet__consent {
+  margin-top: 40px;
+}
+
+.sheet__fail {
+  margin-top: 16px;
+}
+
+.sheet__send {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Линия слева — по базовой линии «отправить» (класс t-submit даёт ей кегль кнопки: отступ в em) */
+.sheet__rule {
+  flex: 1;
+  height: 1px;
+  margin-bottom: 0.115em;
+  background: var(--c-text-ink);
+}
+
+.sheet__submit {
+  flex: none;
+  margin-block: -8px;
+  padding-block: 8px;
+  color: var(--c-terracotta-deep);
+  transition: opacity 0.2s;
+}
+
+.sheet[data-sending] .sheet__submit {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.sheet__done-h {
+  outline: none;
+  --fs-d: 120;                                 /* в колонке 656 от оси: «отправлена» 150 не входит */
+}
+
+.sheet__done-t {
+  width: calc(216 * var(--u));
+  margin-top: 24px;
+}
+
+/* Без JS (и без <dialog>, iOS до 15.4) лист стоит на странице после данных Контактов, панели-затвора нет */
+html.no-dialog .contact__panel {
+  display: none;
+}
+
+html:is(:not(.js), .no-dialog) .sheet {
+  opacity: 1;
+  position: static;
+  display: block;
+  height: auto;
+  margin-top: calc(64 * var(--u));
+}
+
+@media (min-width: 600px) {
+  .sheet__top {
+    margin-top: 21px;
+  }
+
+  .sheet__body,
+  .sheet__done {
+    padding-bottom: 37px;
+  }
+
+  .field + .field {
+    margin-top: 34px;
+  }
+
+  .field__in {
+    padding: 9px 0 10px;
+  }
+
+  .field__in--area {
+    min-height: 104px;
+  }
+
+  .sheet__send {
+    gap: 16px;
+    margin-top: 92px;
+  }
+
+  /* Планшет: линия в кадре 256:3842 стоит выше базовой — на 44 от верха «отправить» 96 */
+  .sheet__rule {
+    margin-bottom: 0.34em;
+  }
+
+  .sheet__done-t {
+    width: calc(385 * var(--u));
+  }
+}
+
+@media (min-width: 1024px) {
+  .sheet__top {
+    margin-top: 28px;
+  }
+
+  .sheet__body,
+  .sheet__done {
+    margin-left: calc(var(--margin) + 656 * var(--u));
+    padding: 64px var(--margin) 40px 0;
+  }
+
+  .field__in::placeholder {
+    color: rgb(6 6 6 / 0.5);
+  }
+
+  .sheet__send {
+    margin-top: 64px;
+  }
+
+  .sheet__rule {
+    margin-bottom: 0.115em;
+  }
+
+  .sheet__done-t {
+    width: min(416px, 100%);
+  }
+
+  html:is(:not(.js), .no-dialog) .sheet {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .sheet,
+  .js .sheet[data-state="open"] {
+    transition: none;
+  }
+}

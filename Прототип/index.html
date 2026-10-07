@@ -5,6 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Частные балы — Ваша история. Ваш вечер.</title>
 <meta name="description" content="Частные и корпоративные балы под ключ. Оркестр, танцмейстер, постановка, координация. Работаем с 2009 года — Санкт-Петербург и весь мир.">
+
+<!-- ================= ЗНАЧКИ И ПРЕВЬЮ (задача 3.1) =================
+
+     ДОМЕН. Все адреса ниже начинаются на https://example.com — это
+     плейсхолдер: домен на момент правки не назначен. Заменить нужно
+     ровно четыре места, все они в этом блоке (canonical, og:url,
+     og:image, twitter:image). Пока стоит плейсхолдер, карточка
+     в мессенджере не соберётся: og:image обязан быть абсолютным —
+     Telegram и WhatsApp тянут картинку со своих серверов, и
+     относительный путь им разрешать не от чего.
+
+     ЗНАЧКИ. Три файла на три случая: SVG берут современные браузеры
+     (масштабируется без ступенек), .ico — старые и часть агрегаторов,
+     apple-touch-icon — iOS для значка на домашнем экране. Знак — ромб
+     из схемы 01, пропорции подобраны по пробе на 16 px. -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<link rel="canonical" href="https://example.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://example.com/">
+<meta property="og:site_name" content="Частные балы">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Частные балы — Ваша история. Ваш вечер.">
+<!-- Описание для карточки короче, чем meta description: в ленте
+     Telegram обрезается примерно на 120 знаках, и хвост про города
+     там пропал бы посреди фразы. -->
+<meta property="og:description" content="Частные и корпоративные балы под ключ: оркестр, танцмейстер, постановка, координация. Работаем с 2009 года.">
+<meta property="og:image" content="https://example.com/assets/og-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Пары в бальных нарядах танцуют в зале">
+
+<!-- summary_large_image — карточка во всю ширину. Без этой строки
+     Twitter и часть клиентов покажут крошечный квадрат сбоку. -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Частные балы — Ваша история. Ваш вечер.">
+<meta name="twitter:description" content="Частные и корпоративные балы под ключ: оркестр, танцмейстер, постановка, координация. Работаем с 2009 года.">
+<meta name="twitter:image" content="https://example.com/assets/og-preview.jpg">
+
+<!-- Цвет адресной строки на мобильных — тот же фон, что у страницы -->
+<meta name="theme-color" content="#060606">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -177,63 +222,54 @@
           <a href="#segments" class="nav-link" data-menu-close>
             <span class="nav-link__num">01</span>
             <span class="nav-link__text">Форматы</span>
-            <span class="nav-link__bg"></span>
           </a>
         </li>
         <li class="menu-list-item" data-shape="2">
           <a href="#process" class="nav-link" data-menu-close>
             <span class="nav-link__num">02</span>
             <span class="nav-link__text">Подход</span>
-            <span class="nav-link__bg"></span>
           </a>
         </li>
         <li class="menu-list-item" data-shape="3">
           <a href="#evening-structure" class="nav-link" data-menu-close>
             <span class="nav-link__num">03</span>
             <span class="nav-link__text">Структура</span>
-            <span class="nav-link__bg"></span>
           </a>
         </li>
         <li class="menu-list-item" data-shape="4">
           <a href="#music" class="nav-link" data-menu-close>
             <span class="nav-link__num">04</span>
             <span class="nav-link__text">Звук</span>
-            <span class="nav-link__bg"></span>
           </a>
         </li>
         <li class="menu-list-item" data-shape="5">
           <a href="#people" class="nav-link" data-menu-close>
             <span class="nav-link__num">05</span>
             <span class="nav-link__text">Люди</span>
-            <span class="nav-link__bg"></span>
           </a>
         </li>
         <li class="menu-list-item" data-shape="6">
           <a href="#prep" class="nav-link" data-menu-close>
             <span class="nav-link__num">06</span>
             <span class="nav-link__text">До вечера</span>
-            <span class="nav-link__bg"></span>
           </a>
         </li>
         <li class="menu-list-item" data-shape="7">
           <a href="#etiquette" class="nav-link" data-menu-close>
             <span class="nav-link__num">07</span>
             <span class="nav-link__text">Правила</span>
-            <span class="nav-link__bg"></span>
           </a>
         </li>
         <li class="menu-list-item" data-shape="8">
           <a href="#cases" class="nav-link" data-menu-close>
             <span class="nav-link__num">08</span>
             <span class="nav-link__text">Вечера</span>
-            <span class="nav-link__bg"></span>
           </a>
         </li>
         <li class="menu-list-item" data-shape="9">
           <a href="#about" class="nav-link" data-menu-close>
             <span class="nav-link__num">09</span>
             <span class="nav-link__text">О нас</span>
-            <span class="nav-link__bg"></span>
           </a>
         </li>
       </ul>
@@ -276,6 +312,41 @@
          на нём с пустым кадром. Пока облегчённых версий нет, разрешается
          hero.mp4; poster — кадр из самой петли, так что до её прихода
          (и если ни один файл не найден) экран выглядит цельно. -->
+    <!-- ВРЕМЕННО, НА ПЕРИОД ДОРАБОТКИ: вместо петли стоит кадр.
+         Причина — hero.mp4 весит 76,6 МБ, облегчённых версий ещё нет,
+         и каждая проверка макета упирается в загрузку. Чтобы вернуть
+         видео: раскомментировать блок ниже и удалить <img>.
+         Побочный эффект, о котором стоит помнить: вместе с видео
+         отключается и бесконечный твин scale в script.js (раздел 8) —
+         он живёт внутри if (heroVideo). -->
+    <picture>
+      <!-- 4.4. Свой кадр для телефона. Горизонтальный полонез при
+           object-fit: cover на 390 px обрезается до середины строя — в кадре
+           остаются два лица, а бала не остаётся; именно первый экран продаёт
+           формат. Здесь стоит вертикальный кадр из той же библиотеки
+           (ball-07, 1706×2560): пара в зале, за ней золочёный интерьер,
+           нижняя треть — пустой паркет, ровно под заголовок и подписи.
+           Порог 760 px — тот же, по которому вёрстка переходит в одну
+           колонку. Габариты кадру не нужны: .hero__media растянут по
+           inset: 0, а сама картинка — width/height 100 %, так что
+           собственный размер файла в раскладку не входит. -->
+      <source media="(max-width: 760px)"
+              type="image/webp"
+              srcset="assets/photos/ball-07-400.webp 400w, assets/photos/ball-07-666.webp 666w, assets/photos/ball-07-1066.webp 1066w"
+              sizes="100vw">
+      <source type="image/webp"
+              srcset="assets/photos/hero-still-600.webp 600w, assets/photos/hero-still-1000.webp 1000w, assets/photos/hero-still-1600.webp 1600w"
+              sizes="100vw">
+      <img
+        class="hero__still"
+        src="assets/photos/hero-still.jpg"
+        alt=""
+        width="2560" height="1706"
+        fetchpriority="high"
+        decoding="async">
+    </picture>
+
+    <!--
     <video
       class="hero__video"
       autoplay
@@ -288,20 +359,28 @@
       disablepictureinpicture
       aria-hidden="true"
       tabindex="-1"></video>
+    -->
   </div>
   <div class="hero__scrim"></div>
 
   <div class="hero__inner">
-    <h1 class="t-h1 hero__title" data-gradual>
+    <h1 class="t-h1 hero__title">
       <span class="line"><span>Частные балы</span></span>
       <span class="line line-2"><span>Ваша история. Ваш вечер.</span></span>
     </h1>
 
-    <div class="hero__meta" data-reveal style="--d:700ms">
+    <!-- Восемь и девять ступеней здесь стояли потому, что заголовок героя
+         набирался больше двух секунд и обе подписи его ждали. После A1b
+         набор укладывается в 1158 мс, ждать больше нечего — и подписи
+         вернулись на штатную лестницу в три ступени (этап 4, B1).
+         Складываются задержки здесь по-настоящему: герой — единственная
+         секция, которой скрипт ставит .is-in сразу при загрузке
+         (script.js, раздел 3b), а не по появлению на экране. -->
+    <div class="hero__meta" data-reveal>
       <p class="t-label">Санкт-Петербург · Москва · Дубай · Ницца · Пекин</p>
     </div>
 
-    <div class="hero__meta-right" data-reveal style="--d:820ms">
+    <div class="hero__meta-right" data-reveal>
       <p class="t-label">Свадьбы · Юбилеи · Корпоративные вечера<br>Клиентские приёмы</p>
     </div>
   </div>
@@ -341,8 +420,13 @@
           <span class="segment__kind">Для семьи и близких</span>
         </p>
         <div class="segment__media">
-          <img class="photo" src="assets/photos/nk-08.jpg" alt="Гости танцуют в паре на паркете бального зала"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/nk-08-600.webp 600w, assets/photos/nk-08-1000.webp 1000w"
+                    sizes="(max-width: 860px) 100vw, 50vw">
+            <img class="photo" src="assets/photos/nk-08.jpg" alt="Гости танцуют в паре на паркете бального зала"
+                 width="1250" height="833" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="segment__title">
           <h2 class="t-format"><span>Частный<br>бал</span></h2>
@@ -363,8 +447,13 @@
           <span class="segment__kind">Для компании, партнёров и сотрудников</span>
         </p>
         <div class="segment__media">
-          <img class="photo" src="assets/photos/ball-08.jpg" alt="Общий план зала: корпоративный бал, гости в вечерних нарядах"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/guests-corridor-600.webp 600w, assets/photos/guests-corridor-1000.webp 1000w, assets/photos/guests-corridor-1600.webp 1600w"
+                    sizes="(max-width: 860px) 100vw, 50vw">
+            <img class="photo" src="assets/photos/guests-corridor.jpg" alt="Гости в вечерних нарядах идут по галерее к бальному залу"
+                 width="2500" height="1667" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="segment__title">
           <h2 class="t-format"><span>Корпоративный<br>бал</span></h2>
@@ -407,7 +496,7 @@
 
     <!-- Крупный заголовок-графика: две строки, вторая уходит вправо -->
     <div class="proc__head">
-      <h2 class="proc__title" data-gradual>
+      <h2 class="proc__title">
         <span class="line"><span>Как мы готовим</span></span>
         <span class="line proc__title-2"><span>ваш вечер</span></span>
       </h2>
@@ -415,16 +504,16 @@
       <!-- Рассыпанная микротипографика: блоки идут по диагонали через экран,
            проявляются по очереди сверху вниз -->
       <div class="scatter">
-        <p class="t-label scatter__note scatter__note--1" data-reveal style="--d:0ms">
+        <p class="t-label scatter__note scatter__note--1" data-reveal>
           Мы не начинаем с анкеты<br>и не заканчиваем договором.
         </p>
-        <p class="t-label scatter__note scatter__note--2" data-reveal style="--d:140ms">
+        <p class="t-label scatter__note scatter__note--2" data-reveal>
           Пять шагов от первого звонка<br>до последнего вальса.
         </p>
-        <p class="t-label scatter__note scatter__note--3" data-reveal style="--d:280ms">
+        <p class="t-label scatter__note scatter__note--3" data-reveal>
           На каждом шаге вы знаете,<br>что происходит и почему.
         </p>
-        <p class="t-num scatter__note scatter__note--4" data-reveal style="--d:420ms">05 / ЭТАПОВ</p>
+        <p class="t-num scatter__note scatter__note--4" data-reveal>05 / ЭТАПОВ</p>
       </div>
     </div>
 
@@ -460,7 +549,7 @@
             </ol>
           </div>
 
-          <a class="cta proc__cta" href="#contact" data-reveal style="--d:200ms">
+          <a class="cta proc__cta" href="#contact" data-reveal>
             Начать с разговора
             <svg viewBox="0 0 26 8" aria-hidden="true"><path d="M0 4h24M20 1l4 3-4 3"/></svg>
           </a>
@@ -474,7 +563,7 @@
             <p class="t-label step__tag">Первая встреча</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual="quick">Разговор</h3>
+            <h3 class="t-h3 step__title">Разговор</h3>
             <p class="t-body">
               Вы рассказываете о своём вечере — для кого он, почему именно бал, что для вас важно.
               Мы слушаем и спрашиваем о том, что редко попадает в бриф: что вы хотите
@@ -482,79 +571,123 @@
             </p>
           </div>
           <div class="step__media">
-            <img class="photo" src="assets/photos/nk-06.jpg" alt="Гости общаются перед началом вечера"
-                 loading="lazy" decoding="async">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/photos/nk-06-600.webp 600w, assets/photos/nk-06-1000.webp 1000w, assets/photos/nk-06-1600.webp 1600w"
+                      sizes="(max-width: 860px) 100vw, 33vw">
+              <img class="photo" src="assets/photos/nk-06.jpg" alt="Гости общаются перед началом вечера"
+                   width="4000" height="2667" loading="lazy" decoding="async">
+            </picture>
           </div>
         </li>
 
-        <li class="step" data-reveal style="--d:80ms" data-step="02">
+        <li class="step" data-reveal data-step="02">
           <div class="step__rail">
             <p class="t-num step__num">02</p>
             <p class="t-label step__tag">Замысел вечера</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual="quick">Концепция</h3>
+            <h3 class="t-h3 step__title">Концепция</h3>
             <p class="t-body">
               Она вырастает из вашего рассказа: локация, музыка, программа, детали —
               всё связано между собой и с вашей историей.
             </p>
           </div>
           <div class="step__media">
-            <img class="photo" src="assets/photos/ball-03.jpg" alt="Зал бала с декорациями и сценой"
-                 loading="lazy" decoding="async">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/photos/hall-empty-600.webp 600w, assets/photos/hall-empty-1000.webp 1000w, assets/photos/hall-empty-1600.webp 1600w"
+                      sizes="(max-width: 860px) 100vw, 33vw">
+              <img class="photo" src="assets/photos/hall-empty.jpg" alt="Пустой бальный зал со сценой и накрытыми столами до приезда гостей"
+                   width="2500" height="1667" loading="lazy" decoding="async">
+            </picture>
           </div>
         </li>
 
-        <li class="step" data-reveal style="--d:160ms" data-step="03">
+        <li class="step" data-reveal data-step="03">
           <div class="step__rail">
             <p class="t-num step__num">03</p>
             <p class="t-label step__tag">До события</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual="quick">Репетиции</h3>
+            <h3 class="t-h3 step__title">Репетиции</h3>
             <p class="t-body">
               Если вы или ваши гости хотите подготовиться — мы проводим уроки.
               Это первый шаг к тому, чтобы на балу все чувствовали себя уверенно.
             </p>
           </div>
           <div class="step__media">
-            <img class="photo" src="assets/photos/nk-01.jpg" alt="Пары разучивают фигуры вальса"
-                 loading="lazy" decoding="async">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/photos/nk-01-600.webp 600w, assets/photos/nk-01-1000.webp 1000w, assets/photos/nk-01-1600.webp 1600w"
+                      sizes="(max-width: 860px) 100vw, 33vw">
+              <img class="photo" src="assets/photos/nk-01.jpg" alt="Пары разучивают фигуры вальса"
+                   width="4000" height="2667" loading="lazy" decoding="async">
+            </picture>
           </div>
         </li>
 
-        <li class="step" data-reveal style="--d:240ms" data-step="04">
+        <li class="step" data-reveal data-step="04">
           <div class="step__rail">
             <p class="t-num step__num">04</p>
             <p class="t-label step__tag">Тот самый день</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual="quick">Вечер</h3>
+            <h3 class="t-h3 step__title">Вечер</h3>
             <p class="t-body">
               Мы рядом с первого момента до последнего танца. Вы не бегаете
               с координацией и не считаете минуты. Вы просто наслаждаетесь.
             </p>
           </div>
+          <!-- Этап 17. Здесь стоял couples-dancing.jpg — горизонталь 2500×1667
+               в квадратной коробке 1/1: object-fit: cover срезал треть кадра
+               по бокам. На его место встал host-and-guests.jpg, висевший
+               без слота с этапа 1. Причин три, и все три проверены замером:
+
+               1) сюжет. Ведущий с микрофоном перед собравшимися гостями —
+                  это и есть «тот самый день», подпись шага. У couples-dancing
+                  сюжет общий и повторяет соседние шаги 03 и 05, где тоже
+                  танцуют.
+               2) пропорция. Кадр снят вертикалью 1320×1667 (0,792) — один
+                  из девяти вертикальных в библиотеке из 34. Коробка шага
+                  переведена с 1/1 на 4/5 (0,8): расхождение с родной
+                  пропорцией 0,01 — срез практически нулевой против прежней
+                  трети.
+               3) ступени webp под него собраны ещё этапом 2 (475/792/1267)
+                  и всё это время лежали без употребления.
+
+               couples-dancing.jpg слота лишился и уходит в список кадров
+               без слота — вместе с восемью другими (см. журнал этапа 17). -->
           <div class="step__media">
-            <img class="photo" src="assets/photos/ball-11.jpg" alt="Паркет во время вальса, пары в танце"
-                 loading="lazy" decoding="async">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/photos/host-and-guests-475.webp 475w, assets/photos/host-and-guests-792.webp 792w, assets/photos/host-and-guests-1267.webp 1267w"
+                      sizes="(max-width: 860px) 90vw, (max-width: 1024px) 84vw, 23vw">
+              <img class="photo" src="assets/photos/host-and-guests.jpg" alt="Ведущий с микрофоном открывает вечер перед гостями"
+                   width="1320" height="1667" loading="lazy" decoding="async">
+            </picture>
           </div>
         </li>
 
-        <li class="step" data-reveal style="--d:320ms" data-step="05">
+        <li class="step" data-reveal data-step="05">
           <div class="step__rail">
             <p class="t-num step__num">05</p>
             <p class="t-label step__tag">После бала</p>
           </div>
           <div class="step__body">
-            <h3 class="t-h3 step__title" data-gradual="quick">Воспоминания</h3>
+            <h3 class="t-h3 step__title">Воспоминания</h3>
             <p class="t-body">
               Фото и видео, к которым вы возвращаетесь. Не для соцсетей — для себя.
             </p>
           </div>
           <div class="step__media">
-            <img class="photo" src="assets/photos/002051_resized.jpg" alt="Чёрно-белый кадр танцующего зала"
-                 loading="lazy" decoding="async">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/photos/002051_resized-600.webp 600w, assets/photos/002051_resized-1000.webp 1000w, assets/photos/002051_resized-1600.webp 1600w"
+                      sizes="(max-width: 860px) 100vw, 33vw">
+              <img class="photo" src="assets/photos/002051_resized.jpg" alt="Чёрно-белый кадр танцующего зала"
+                   width="2560" height="1706" loading="lazy" decoding="async">
+            </picture>
           </div>
         </li>
       </ol>
@@ -563,12 +696,22 @@
 </section>
 
 <!-- ================= ПОЛНОЭКРАННОЕ МЕДИА ================= -->
-<section class="section section--void section--tight">
+<!-- section--bleed: кадр в край, голого Ink в полосе не остаётся.
+     Полоса зажата между двумя цветными сценами, и на 390/768/1024 все три
+     заливки попадали в экран разом — правило «максимум две» ломалось.
+     Третья такая полоса (перед «Людьми») модификатора не несёт намеренно:
+     она стоит между двумя Ink-сценами, третьей заливки там нет. -->
+<section class="section section--void section--tight section--bleed">
   <div class="grid">
     <div class="col-full" data-reveal>
-      <div class="media media--wide" data-parallax>
-        <img class="photo" src="assets/photos/ball-06.jpg" alt="Большой бальный зал: гости собираются под звуки оркестра"
-             loading="lazy" decoding="async">
+      <div class="media media--wide">
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/photos/ball-06-600.webp 600w, assets/photos/ball-06-1000.webp 1000w, assets/photos/ball-06-1600.webp 1600w"
+                  sizes="100vw">
+          <img class="photo" src="assets/photos/ball-06.jpg" alt="Большой бальный зал: гости собираются под звуки оркестра"
+               width="2560" height="1706" loading="lazy" decoding="async">
+        </picture>
       </div>
       <p class="t-label media__caption">Омега-бал · Санкт-Петербург · 180 гостей</p>
     </div>
@@ -587,7 +730,7 @@
 <!-- id развёрнут в evening-structure: рядом живёт секция кейсов, и пара
      evening/evenings отличалась одной буквой — при правке ссылки промахнуться
      было проще, чем попасть. -->
-<section class="section section--deep" id="evening-structure">
+<section class="section section--slate" id="evening-structure">
   <p class="coords coords--l" aria-hidden="true" data-reveal>21.30</p>
   <p class="coords coords--r" aria-hidden="true" data-reveal>02.30</p>
   <div class="grid">
@@ -612,13 +755,13 @@
         локацию и настроение. Но чтобы дать общее представление, вот
         как может выглядеть структура вечера.
       </p>
-      <p class="t-label mega-note__col mega-note__col--lead" style="--d:120ms">
+      <p class="t-label mega-note__col mega-note__col--lead">
         Вечер складывается из частей,<br>и каждая тянет за собой следующую.
       </p>
     </div>
 
     <div class="col-1-6" data-reveal>
-      <h2 class="t-h2" data-gradual>Как проходит вечер</h2>
+      <h2 class="t-h2">Как проходит вечер</h2>
     </div>
 
     <!-- ——— Временна́я шкала ———
@@ -650,7 +793,7 @@
           <p class="t-num timeline__time"><span>21.30</span></p>
           <div class="timeline__body">
             <p class="t-num timeline__num">01</p>
-            <h3 class="t-h3" data-gradual="quick">Сбор гостей и приветствие</h3>
+            <h3 class="t-h3">Сбор гостей и приветствие</h3>
             <p class="t-body">
               Гости приходят, знакомятся, получают бейджики с именами.
               Лёгкое общение за фуршетом — зал наполняется звуками оркестра.
@@ -658,11 +801,11 @@
           </div>
         </li>
 
-        <li class="timeline__item" data-reveal style="--d:80ms" data-span="25">
+        <li class="timeline__item" data-reveal data-span="25">
           <p class="t-num timeline__time"><span>22.00</span></p>
           <div class="timeline__body">
             <p class="t-num timeline__num">02</p>
-            <h3 class="t-h3" data-gradual="quick">Церемония открытия</h3>
+            <h3 class="t-h3">Церемония открытия</h3>
             <p class="t-body">
               Вечер начинается не с первого танца. Он начинается с момента, когда зал замирает.
               Хозяева бала и почётные гости выходят на торжественное шествие, следом —
@@ -674,31 +817,36 @@
         <!-- Кадр-врезка на уровне вальса-открытия: подтверждает конкретный
              момент шкалы, а не иллюстрирует секцию вообще. Формат --tall
              в этой секции больше нигде не встречается. -->
-        <li class="timeline__item timeline__item--framed" data-reveal style="--d:160ms" data-span="20">
+        <li class="timeline__item timeline__item--framed" data-reveal data-span="20">
           <p class="t-num timeline__time"><span>22.25</span></p>
           <div class="timeline__body">
             <p class="t-num timeline__num">03</p>
-            <h3 class="t-h3" data-gradual="quick">Вальс-открытие</h3>
+            <h3 class="t-h3">Вальс-открытие</h3>
             <p class="t-body">
               Хозяева бала или сотрудники компании танцуют первый вальс. Потом на паркет
               приглашаются все. Лёд ломается, зал объединяется. Порядок выхода мы прописываем
               заранее: кто, за кем, под какую музыку.
             </p>
           </div>
-          <figure class="timeline__media" data-reveal="x" style="--d:240ms">
-            <div class="media media--tall" data-parallax>
-              <img class="photo" src="assets/photos/ball-11.jpg" alt="Первый вальс: пара на паркете под оркестр"
-                   loading="lazy" decoding="async">
+          <figure class="timeline__media" data-reveal="x">
+            <div class="media media--tall">
+              <picture>
+                <source type="image/webp"
+                        srcset="assets/photos/waltz-opening-600.webp 600w, assets/photos/waltz-opening-1000.webp 1000w, assets/photos/waltz-opening-1600.webp 1600w"
+                        sizes="(max-width: 860px) 100vw, 22vw">
+                <img class="photo" src="assets/photos/waltz-opening.jpg" alt="Вальс-открытие: ряд пар на паркете, оркестр за спиной"
+                     width="2560" height="1707" loading="lazy" decoding="async">
+              </picture>
             </div>
             <figcaption class="t-label media__caption">Вальс-открытие · выход хозяев бала</figcaption>
           </figure>
         </li>
 
-        <li class="timeline__item" data-reveal style="--d:240ms" data-span="120">
+        <li class="timeline__item" data-reveal data-span="120">
           <p class="t-num timeline__time"><span>22.45</span></p>
           <div class="timeline__body">
             <p class="t-num timeline__num">04</p>
-            <h3 class="t-h3" data-gradual="quick">Танцевальная программа</h3>
+            <h3 class="t-h3">Танцевальная программа</h3>
             <p class="t-body">
               Вальсы, кадрили, свинг, фокстрот, латина. Танцмейстер ведёт зал:
               чередует ритмы, вовлекает гостей, меняет энергию. Паузы для общения и фуршетов.
@@ -710,30 +858,35 @@
           </div>
         </li>
 
-        <li class="timeline__item timeline__item--framed" data-reveal style="--d:320ms" data-span="45">
+        <li class="timeline__item timeline__item--framed" data-reveal data-span="45">
           <p class="t-num timeline__time"><span>00.45</span></p>
           <div class="timeline__body">
             <p class="t-num timeline__num">05</p>
-            <h3 class="t-h3" data-gradual="quick">Шоу-номера</h3>
+            <h3 class="t-h3">Шоу-номера</h3>
             <p class="t-body">
               Профессиональные танцоры, совместные выступления, хореография от гостей —
               моменты, когда все забывают про еду и разговоры.
             </p>
           </div>
-          <figure class="timeline__media" data-reveal="x" style="--d:400ms">
-            <div class="media media--tall" data-parallax>
-              <img class="photo" src="assets/photos/ball-07.jpg" alt="Шоу-номер: профессиональная пара на паркете"
-                   loading="lazy" decoding="async">
+          <figure class="timeline__media" data-reveal="x">
+            <div class="media media--tall">
+              <picture>
+                <source type="image/webp"
+                        srcset="assets/photos/show-duet-red-400.webp 400w, assets/photos/show-duet-red-667.webp 667w, assets/photos/show-duet-red-1067.webp 1067w"
+                        sizes="(max-width: 860px) 100vw, 22vw">
+                <img class="photo" src="assets/photos/show-duet-red.jpg" alt="Шоу-номер: пара танцует в красном сценическом свете"
+                     width="1707" height="2560" loading="lazy" decoding="async">
+              </picture>
             </div>
             <figcaption class="t-label media__caption">Шоу-номер · пауза в танцевальной части</figcaption>
           </figure>
         </li>
 
-        <li class="timeline__item" data-reveal style="--d:400ms" data-span="20">
+        <li class="timeline__item" data-reveal data-span="20">
           <p class="t-num timeline__time"><span>02.00</span></p>
           <div class="timeline__body">
             <p class="t-num timeline__num">06</p>
-            <h3 class="t-h3" data-gradual="quick">Финальный танец</h3>
+            <h3 class="t-h3">Финальный танец</h3>
             <p class="t-body">
               Общий финальный вальс. Момент, когда все оказываются на паркете.
               Закрытие вечера.
@@ -761,7 +914,7 @@
 </section>
 
 <!-- ================= МУЗЫКА ================= -->
-<section class="section section--paper on-paper" id="music">
+<section class="section section--slate" id="music">
   <!-- Длительность музыкальной части и число тактов в минуту -->
   <p class="coords coords--l" aria-hidden="true" data-reveal>03.00</p>
   <p class="coords coords--r" aria-hidden="true" data-reveal>180.00</p>
@@ -774,53 +927,117 @@
     <p class="t-mega"><span>Музыка</span></p>
 
     <div class="col-1-5" data-reveal>
-      <h2 class="t-h2" data-gradual>Музыкальное сопровождение</h2>
+      <h2 class="t-h2">Музыкальное сопровождение</h2>
     </div>
-    <div class="col-7-e" style="align-self:end; --d:120ms" data-reveal>
+    <div class="col-7-e" style="align-self:end" data-reveal>
       <p class="t-italic">
         Звук управляет вечером раньше,<br>чем это начинает делать программа.
       </p>
     </div>
 
-    <div class="music" style="margin-top:clamp(40px,5vw,80px)">
-      <div class="music__item" data-reveal>
-        <div class="music__media">
-          <img class="photo" src="assets/photos/venue-01.jpg" alt="Симфонический оркестр на сцене"
-               loading="lazy" decoding="async">
-        </div>
-        <p class="t-num">01</p>
-        <p class="t-body">
-          Придаёт происходящему вес. Разница между живыми музыкантами и колонками
-          слышна сразу. Под него идут венский вальс, кадриль и всё, что требует торжественности.
-        </p>
-        <h3 class="t-h3" data-gradual>Симфонический оркестр</h3>
-      </div>
+    <!-- Три состава — ступенчатая сетка (этап 17).
 
-      <div class="music__item" data-reveal style="--d:110ms">
-        <div class="music__media">
-          <img class="photo" src="assets/photos/nk-03.jpg" alt="Духовой оркестр: валторнист во время выступления"
-               loading="lazy" decoding="async">
-        </div>
-        <p class="t-num">02</p>
-        <p class="t-body">
-          Официальность уходит. Свинг, фокстрот и латина звучат тепло —
-          под них легко знакомиться.
-        </p>
-        <h3 class="t-h3" data-gradual>Духовой оркестр<br>и джаз-бэнд</h3>
-      </div>
+         Библиотека снята в 3:2 (25 кадров из 34, замер этапа 17), и
+         вертикальные пропорции резали снимки по живому: у дирижёра
+         уходило лицо, у духовых — головы. Кадр стоит в родной пропорции,
+         поэтому object-position не нужен вовсе — спасать нечего.
 
-      <div class="music__item" data-reveal style="--d:220ms">
-        <div class="music__media">
-          <img class="photo" src="assets/photos/nk-04.jpg" alt="Музыканты и дирижёр в зале во время бала"
-               loading="lazy" decoding="async">
+         До этапа 17 все три кадра шли во всю контентную зону встык,
+         и секция читалась лентой — на это и пожаловался владелец.
+         Ленту разбивает ступень: кадры получают разную ширину и разную
+         привязку к сетке (8 колонок слева, 6 справа, 7 слева), между
+         ними появляется поле. Пропорция при этом не тронута — разбор
+         про 3:2 выше остаётся в силе. Раскладка задана в styles.css,
+         блок 10; sizes у каждого кадра свой и посчитан по замеру.
+
+         Порядок внутри ступени: кадр, под ним заголовок и описание в две
+         колонки. Появление идёт каскадом сверху вниз — за это отвечают
+         data-reveal на самой полосе и три ступени --d внутри неё.
+
+         Побочно поправлен srcset. Ступени 600w у всех трёх кадров собраны
+         ещё этапом 2, но в srcset перечислены не были — начинались с 1000w,
+         и телефон тянул ступень вчетверо тяжелее нужного (замер на 390:
+         коробка 384 px, бралась 1000w, +160%). Ступень добавлена, дескрипторы
+         сверены с именами файлов. -->
+
+    <div class="music" style="margin-top:clamp(56px,7vw,110px)">
+
+      <article class="music__item" data-reveal>
+        <div class="music__media" data-reveal>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/conductor-600.webp 600w, assets/photos/conductor-1000.webp 1000w, assets/photos/conductor-1600.webp 1600w"
+                    sizes="(max-width: 760px) 100vw, (max-width: 1024px) 88vw, 62vw">
+            <img class="photo" src="assets/photos/conductor.jpg" alt="Дирижёр перед симфоническим оркестром"
+                 width="2560" height="1707" loading="lazy" decoding="async">
+          </picture>
         </div>
-        <p class="t-num">03</p>
-        <p class="t-body">
-          Работает на энергию: знакомые хиты, когда нужно разогреть зал
-          и завершить вечер на высокой ноте.
-        </p>
-        <h3 class="t-h3" data-gradual>Музыкальная группа</h3>
-      </div>
+        <div class="music__caption">
+          <div class="music__head" data-reveal>
+            <p class="t-num">01</p>
+            <h3 class="t-h3 music__title">Симфонический оркестр</h3>
+          </div>
+          <p class="t-body music__text" data-reveal>
+            Придаёт происходящему вес. Разница между живыми музыкантами и колонками
+            слышна сразу. Под него идут венский вальс, кадриль и всё, что требует торжественности.
+          </p>
+        </div>
+      </article>
+
+      <article class="music__item" data-reveal>
+        <div class="music__media" data-reveal>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/violins-closeup-600.webp 600w, assets/photos/violins-closeup-1000.webp 1000w, assets/photos/violins-closeup-1600.webp 1600w"
+                    sizes="(max-width: 760px) 100vw, (max-width: 1024px) 88vw, 46vw">
+            <!-- Этап 17. Кадр срезан справа на 340 px (2560→2220): в правом
+                 верхнем углу стоял обрывок чужого логотипа — литеры «ТА»
+                 и белый росчерк на экране за оркестром. Сюжет не пострадал,
+                 наоборот — срез поджал кадр к скрипачу. Ступени webp
+                 пересняты с обрезанного исходника, width/height ниже
+                 обновлены под новую пропорцию (1,300 вместо 1,500). -->
+            <img class="photo" src="assets/photos/violins-closeup.jpg" alt="Струнная группа оркестра во время игры"
+                 width="2220" height="1707" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="music__caption">
+          <div class="music__head" data-reveal>
+            <p class="t-num">02</p>
+            <h3 class="t-h3 music__title">Духовой оркестр и джаз-бэнд</h3>
+          </div>
+          <p class="t-body music__text" data-reveal>
+            Официальность уходит. Свинг, фокстрот и латина звучат тепло —
+            под них легко знакомиться.
+          </p>
+        </div>
+      </article>
+
+      <!-- Третий кадр — общий план зала: эстрадный состав виден у сцены
+           справа. Замена прежнему снимку с ведущим, который держал микрофон
+           и к «музыкальной группе» отношения не имел. Крупного плана бэнда
+           в библиотеке пока нет — кадр ждёт съёмки. -->
+      <article class="music__item" data-reveal>
+        <div class="music__media" data-reveal>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/nk-02-600.webp 600w, assets/photos/nk-02-1000.webp 1000w, assets/photos/nk-02-1600.webp 1600w"
+                    sizes="(max-width: 760px) 100vw, (max-width: 1024px) 88vw, 54vw">
+            <img class="photo" src="assets/photos/nk-02.jpg" alt="Эстрадный состав у сцены бального зала"
+                 width="4000" height="2667" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="music__caption">
+          <div class="music__head" data-reveal>
+            <p class="t-num">03</p>
+            <h3 class="t-h3 music__title">Музыкальная группа</h3>
+          </div>
+          <p class="t-body music__text" data-reveal>
+            Работает на энергию: знакомые хиты, когда нужно разогреть зал
+            и завершить вечер на высокой ноте.
+          </p>
+        </div>
+      </article>
+
     </div>
 
     <div class="col-1-6" style="margin-top:clamp(32px,4vw,56px)" data-reveal>
@@ -830,6 +1047,41 @@
       <p class="t-italic" style="margin-top:20px">
         Но музыка сама по себе не поднимает людей с мест.<br>Для этого в зале есть человек.
       </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ПОЛНОЭКРАННОЕ МЕДИА · ВЫДОХ №2 ================= -->
+<!-- Один из трёх «выдохов» страницы (задача 8.1): разрывает 7,5 экрана плотного чтения между «Звуком» и «Людьми».
+     Правило приёма — кадр во всю ширину и одна строка подписи,
+     ни заголовка, ни абзаца: иначе пауза перестаёт быть паузой. -->
+<!-- Этап 17. Полоса получила section--bleed — третья и последняя из полос
+     с крупным кадром, до этого этапа единственная без модификатора.
+
+     Прежний разбор (см. комментарий у полосы после «Форматов») объяснял
+     это правилом «максимум две заливки на экран»: полоса стоит между
+     двумя Ink-сценами, третьей заливки здесь нет, и модификатор не был
+     нужен ДЛЯ ЗАЛИВКИ. Это по-прежнему верно — и потому bleed ничего
+     не ломает: Ink на Ink третьей заливки не создаёт ни на одной ширине.
+
+     Но у модификатора есть и второе действие, о котором тот разбор
+     не говорил, — масштаб кадра. Замер этапа 17 на 1440: полосы с bleed
+     дают кадр в 100% ширины экрана, эта давала 82%. На переломе между
+     «Звуком» и «Людьми» кадр читался иллюстрацией там, где два его
+     собрата читаются событием. Выровнено по ним. -->
+<section class="section section--void section--tight section--bleed">
+  <div class="grid">
+    <div class="col-full" data-reveal>
+      <div class="media media--wide">
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/photos/hall-white-warm-600.webp 600w, assets/photos/hall-white-warm-1000.webp 1000w, assets/photos/hall-white-warm-1600.webp 1600w"
+                  sizes="100vw">
+          <img class="photo" src="assets/photos/hall-white-warm.jpg" alt="Белый зал с расписным плафоном, гости за столами"
+               width="2560" height="1707" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <p class="t-label media__caption">Белый зал · роспись плафона и свет над столами</p>
     </div>
   </div>
 </section>
@@ -847,19 +1099,29 @@
 
     <p class="t-mega"><span>Люди</span></p>
 
-    <!-- Медиа внутри строки текста: кадр набран как буква и участвует
-         в замере ширины наравне с ними. Приём применён ровно один раз.
-         Смысл в движении внутри неподвижной строки, поэтому здесь <video>,
-         а не фотография: со статичным кадром приём читается как случайная
-         картинка между слов. Постер — тот же кадр, который показывает петля,
-         так что до её появления строка выглядит законченной.
-         data-sources перебирает скрипт; тяжёлый hero.mp4 в этот список
-         не входит — в строку высотой .72em он не годится. -->
-    <p class="t-mega t-mega--inline"><span>Танцмейстер<video class="inline-media"
-           autoplay muted loop playsinline preload="metadata"
-           poster="assets/photos/ball-11.jpg"
-           data-sources="assets/inline-dance-720.webm,assets/inline-dance-720.mp4"
-           disablepictureinpicture aria-hidden="true" tabindex="-1"></video>ведёт зал</span></p>
+    <!-- Задача 1.2 закрыта снятием приёма. Здесь стоял <video class="inline-media">:
+         кадр, набранный как буква и участвующий в замере ширины строки наравне
+         с ними. Смысл приёма — движение внутри неподвижной строки, и держался он
+         на петле inline-dance-720.webm/.mp4. Файлов не было ни одного дня жизни
+         прототипа: в консоли висели два 404, а в строке стоял статичный постер —
+         то есть ровно тот случайный кадр между слов, от которого приём и уходил.
+         План (задача 1.2) называет статичный кадр худшим из трёх исходов.
+
+         Из двух допустимых — снять или снять петлю до 1 МБ — выбрано снятие:
+         решение владельца от 4 сентября 2026. Строка осталась мега-строкой
+         и набирается тем же приёмом, что «ВЕЧЕР», «МУЗЫКА» и «ЛЮДИ».
+
+         Возврат стоит одной вставки <video> обратно в этот <span>: механика
+         в script.js (loadedmetadata → fitMega) и правила .inline-media в стилях
+         сняты вместе с элементом и описаны там же, в тех же местах. -->
+    <!-- Этап 16: строка снята с мега-приёма (решение владельца: мега-строк
+         пять из семи). Была <p class="t-mega t-mega--inline">. Теперь обычный
+         H2 антиквой — тот же .t-h2, что у «Танцмейстера» и «Танцевальных шоу»
+         в полосах ниже; своей колонки у неё нет, поэтому она в .col-1-7,
+         как «Мы не делаем шаблоны» в «О нас». -->
+    <div class="col-1-7" data-reveal>
+      <h2 class="t-h2">Танцмейстер ведёт зал</h2>
+    </div>
 
     <!-- Три полосы складываются в стопку: каждая следующая наезжает на предыдущую.
          Обёртка нужна только для sticky-контекста, раскладку она не меняет. -->
@@ -867,15 +1129,20 @@
 
     <!-- Танцмейстер -->
     <div class="figure-row">
-      <div class="figure-row__media" data-reveal data-parallax>
+      <div class="figure-row__media" data-reveal>
         <div class="media media--tall" style="height:100%">
-          <img class="photo" src="assets/photos/ball-05.jpg" alt="Танцмейстер с микрофоном ведёт зал"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/dancemaster-portrait-400.webp 400w, assets/photos/dancemaster-portrait-666.webp 666w, assets/photos/dancemaster-portrait-1066.webp 1066w"
+                    sizes="(max-width: 1024px) 100vw, 33vw">
+            <img class="photo" src="assets/photos/dancemaster-portrait.jpg" alt="Портрет танцмейстера с микрофоном"
+                 width="1706" height="2560" loading="lazy" decoding="async">
+          </picture>
         </div>
       </div>
-      <div class="figure-row__text" data-reveal="x" style="--d:120ms">
+      <div class="figure-row__text" data-reveal="x">
         <p class="t-num" style="margin-bottom:20px">A</p>
-        <h2 class="t-h2" data-gradual>Танцмейстер</h2>
+        <h2 class="t-h2">Танцмейстер</h2>
         <p class="t-body">
           Не ставит номера и не учит движениям. Его работа — атмосфера: снять скованность,
           вовлечь тех, кто пришёл постоять в стороне, дать залу общий ритм.
@@ -902,15 +1169,20 @@
 
     <!-- Шоу -->
     <div class="figure-row figure-row--flip">
-      <div class="figure-row__media" data-reveal data-parallax>
+      <div class="figure-row__media" data-reveal>
         <div class="media media--tall" style="height:100%">
-          <img class="photo" src="assets/photos/ball-07.jpg" alt="Шоу-номер: профессиональная пара исполняет танец"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/show-pair-stage-600.webp 600w, assets/photos/show-pair-stage-1000.webp 1000w, assets/photos/show-pair-stage-1600.webp 1600w"
+                    sizes="(max-width: 1024px) 100vw, 33vw">
+            <img class="photo" src="assets/photos/show-pair-stage.jpg" alt="Танцевальная пара на сцене перед оркестром"
+                 width="2560" height="1707" loading="lazy" decoding="async">
+          </picture>
         </div>
       </div>
-      <div class="figure-row__text" data-reveal="x" style="--d:120ms">
+      <div class="figure-row__text" data-reveal="x">
         <p class="t-num" style="margin-bottom:20px">B</p>
-        <h2 class="t-h2" data-gradual>Танцевальные шоу</h2>
+        <h2 class="t-h2">Танцевальные шоу</h2>
         <p class="t-body">
           Разговоры за столами обрываются на полуслове: начинается шоу-номер.
           Профессиональная пара исполняет вальс, танго или пасодобль — хореография,
@@ -934,15 +1206,20 @@
 
     <!-- Ассистент -->
     <div class="figure-row figure-row--narrow">
-      <div class="figure-row__media" data-reveal data-parallax>
+      <div class="figure-row__media" data-reveal>
         <div class="media media--tall" style="height:100%">
-          <img class="photo" src="assets/photos/nk-02.jpg" alt="Танцевальный ассистент ведёт гостью в вальсе"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/nk-02-600.webp 600w, assets/photos/nk-02-1000.webp 1000w, assets/photos/nk-02-1600.webp 1600w"
+                    sizes="(max-width: 1024px) 100vw, 33vw">
+            <img class="photo" src="assets/photos/nk-02.jpg" alt="Танцевальный ассистент ведёт гостью в вальсе"
+                 width="4000" height="2667" loading="lazy" decoding="async">
+          </picture>
         </div>
       </div>
-      <div class="figure-row__text" data-reveal="x" style="--d:120ms">
+      <div class="figure-row__text" data-reveal="x">
         <p class="t-num" style="margin-bottom:20px">C</p>
-        <h2 class="t-h2" data-gradual>Танцевальный ассистент</h2>
+        <h2 class="t-h2">Танцевальный ассистент</h2>
         <p class="t-body">
           Может быть рядом с вами весь вечер: от сбора гостей до финального вальса.
         </p>
@@ -966,25 +1243,30 @@
 </section>
 
 <!-- ================= ПОДГОТОВКА ================= -->
-<section class="section section--deep" id="prep">
+<section class="section section--slate" id="prep">
   <div class="grid">
-    <div class="eyebrow" data-line data-reveal style="--d:0ms">
+    <div class="eyebrow" data-line data-reveal>
       <p class="t-num">06 — ДО ВЕЧЕРА</p>
       <p class="t-label">Бал начинается на первом уроке</p>
     </div>
 
     <div class="col-1-6" data-reveal>
-      <h2 class="t-h2" data-gradual>Подготовка<br>к балу</h2>
+      <h2 class="t-h2">Подготовка<br>к балу</h2>
 
       <div class="media-frame" style="margin-top:clamp(28px,3.5vw,48px)">
-        <div class="media media--wide" data-parallax>
-          <img class="photo" src="assets/photos/nk-05.jpg" alt="Пары репетируют вальс в зале перед балом"
-               loading="lazy" decoding="async">
+        <div class="media media--wide">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/nk-05-600.webp 600w, assets/photos/nk-05-1000.webp 1000w, assets/photos/nk-05-1600.webp 1600w"
+                    sizes="(max-width: 860px) 100vw, 46vw">
+            <img class="photo" src="assets/photos/nk-05.jpg" alt="Пары репетируют вальс в зале перед балом"
+                 width="4000" height="2667" loading="lazy" decoding="async">
+          </picture>
         </div>
       </div>
     </div>
 
-    <div class="col-8-e" style="--d:140ms" data-reveal="x">
+    <div class="col-8-e" data-reveal="x">
       <p class="t-body">
         Бал начинается задолго до входа в зал — на первом уроке.
         Гости, которые уже пробовали движения, приходят с азартом: они хотят ещё.
@@ -1006,7 +1288,7 @@
 </section>
 
 <!-- ================= ЭТИКЕТ И ДРЕСС-КОД (один экран, два таба) ================= -->
-<section class="section section--minor section--void" id="etiquette">
+<section class="section section--minor section--slate" id="etiquette">
   <div class="grid">
     <div class="eyebrow" data-line data-reveal>
       <p class="t-num">07 — ПРАВИЛА</p>
@@ -1017,10 +1299,10 @@
     <p class="t-mega"><span>Правила</span></p>
 
     <div class="col-1-5" data-reveal>
-      <h2 class="t-h2 rules-title is-active" data-tab="etiquette" data-gradual>Танцевальный этикет</h2>
-      <h2 class="t-h2 rules-title" data-tab="dresscode" data-gradual>Дресс-код</h2>
+      <h2 class="t-h2 rules-title is-active" data-tab="etiquette">Танцевальный этикет</h2>
+      <h2 class="t-h2 rules-title" data-tab="dresscode">Дресс-код</h2>
     </div>
-    <div class="col-7-e" style="--d:120ms" data-reveal="x">
+    <div class="col-7-e" data-reveal="x">
       <p class="t-body is-active" data-tab="etiquette">
         Несколько правил, которые делают вечер проще для всех. Учить ничего не придётся:
         танцмейстер подсказывает прямо на паркете, в моменте, без давления.
@@ -1057,7 +1339,7 @@
           <li>Проявлять тактичность</li>
         </ul>
       </div>
-      <div class="rules__col" data-line data-reveal style="--d:110ms">
+      <div class="rules__col" data-line data-reveal>
         <p class="t-num">Для дам</p>
         <ul class="rules__list">
           <li>Принимать или корректно отклонять приглашения</li>
@@ -1066,7 +1348,7 @@
           <li>Проявлять доброжелательность</li>
         </ul>
       </div>
-      <div class="rules__col" data-line data-reveal style="--d:220ms">
+      <div class="rules__col" data-line data-reveal>
         <p class="t-num">Мы помогаем</p>
         <ul class="rules__list">
           <li>Танцмейстер подсказывает в моменте, с юмором</li>
@@ -1089,7 +1371,7 @@
           <li>Чёрные классические туфли</li>
         </ul>
       </div>
-      <div class="rules__col" data-line data-reveal style="--d:110ms">
+      <div class="rules__col" data-line data-reveal>
         <p class="t-num">Для дам</p>
         <ul class="rules__list">
           <li>Платье в пол — любой цвет, кроме белого</li>
@@ -1098,7 +1380,7 @@
           <li>Вечерняя обувь на комфортной колодке</li>
         </ul>
       </div>
-      <div class="rules__col" data-line data-reveal style="--d:220ms">
+      <div class="rules__col" data-line data-reveal>
         <p class="t-num">Мы помогаем</p>
         <ul class="rules__list">
           <li>Рекомендации уходят гостям вместе с приглашением</li>
@@ -1106,6 +1388,32 @@
           <li>На входе — деликатная координация</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ПОЛНОЭКРАННОЕ МЕДИА · ВЫДОХ №3 ================= -->
+<!-- Один из трёх «выдохов» страницы (задача 8.1): пауза между «Правилами» и «Вечерами», ровно на 22-м экране.
+     Правило приёма — кадр во всю ширину и одна строка подписи,
+     ни заголовка, ни абзаца: иначе пауза перестаёт быть паузой. -->
+<!-- section--bleed: кадр в край, голого Ink в полосе не остаётся.
+     Полоса зажата между двумя цветными сценами, и на 390/768/1024 все три
+     заливки попадали в экран разом — правило «максимум две» ломалось.
+     Третья такая полоса (перед «Людьми») модификатора не несёт намеренно:
+     она стоит между двумя Ink-сценами, третьей заливки там нет. -->
+<section class="section section--void section--tight section--bleed">
+  <div class="grid">
+    <div class="col-full" data-reveal>
+      <div class="media media--wide">
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/photos/hall-entrance-600.webp 600w, assets/photos/hall-entrance-1000.webp 1000w, assets/photos/hall-entrance-1600.webp 1600w"
+                  sizes="100vw">
+          <img class="photo" src="assets/photos/hall-entrance.jpg" alt="Пара идёт между столами, гости смотрят ей вслед"
+               width="2560" height="1707" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <p class="t-label media__caption">Выход пары · гости по сторонам прохода</p>
     </div>
   </div>
 </section>
@@ -1131,16 +1439,21 @@
 
     <div class="case">
       <div class="media-frame case__hero-frame" data-reveal>
-        <div class="case__hero media" data-parallax>
-          <img class="photo" src="assets/photos/ball-04.jpg" alt="Церемония открытия бала: торжественное шествие гостей"
-               loading="lazy" decoding="async" style="object-position:center 62%">
+        <div class="case__hero media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/ball-04-400.webp 400w, assets/photos/ball-04-666.webp 666w, assets/photos/ball-04-1066.webp 1066w"
+                    sizes="100vw">
+            <img class="photo" src="assets/photos/ball-04.jpg" alt="Церемония открытия бала: торжественное шествие гостей"
+                 width="1706" height="2560" loading="lazy" decoding="async" style="object-position:center 62%">
+          </picture>
         </div>
       </div>
 
       <div class="case__grid">
         <div class="case__lead" data-reveal>
           <p class="t-num" style="margin-bottom:20px">Кейс 01</p>
-          <h2 class="t-h2" data-gradual>Омега-бал</h2>
+          <h2 class="t-h2">Омега-бал</h2>
           <p class="t-italic" style="margin-top:20px">20 лет компании</p>
           <p class="t-body" style="margin-top:clamp(24px,3vw,40px)">
             Компания отмечала двадцатилетие. Не «корпоратив с банкетом», а бал —
@@ -1159,23 +1472,30 @@
 
         <div class="case__facts">
           <div class="fact" data-line data-reveal>
-            <p class="fact__value" data-count>180</p>
+            <p class="fact__value">180</p>
             <p class="t-label">гостей на вечере</p>
           </div>
-          <div class="fact" data-line data-reveal style="--d:80ms">
-            <p class="fact__value" data-count>2</p>
+          <!-- Задача D1: счётчика здесь нет. Два состава — это перечисление,
+               а не масштаб: набегание от нуля до двух показывает одно
+               промежуточное значение и читается как подёргивание. -->
+          <div class="fact" data-line data-reveal>
+            <p class="fact__value">2</p>
             <p class="t-label">музыкальных состава — оркестр и группа</p>
           </div>
-          <div class="fact" data-line data-reveal style="--d:160ms">
-            <p class="fact__value" data-count>20</p>
+          <!-- Задача D1: срок, а не количество. «20 лет» набегает так же,
+               как год основания ниже, и с тем же изъяном. -->
+          <div class="fact" data-line data-reveal>
+            <p class="fact__value">20</p>
             <p class="t-label">лет компании — повод для бала</p>
           </div>
-          <div class="fact" data-line data-reveal style="--d:240ms">
-            <p class="fact__value" data-count>01</p>
+          <!-- Задача D1: единица. Движение есть, информации ноль —
+               ведущий нуль держит ширину поля и без счётчика. -->
+          <div class="fact" data-line data-reveal>
+            <p class="fact__value">01</p>
             <p class="t-label">персональный номер топ-менеджмента</p>
           </div>
 
-          <div class="case__facts-note" style="margin-top:clamp(16px,2vw,32px); --d:300ms" data-reveal>
+          <div class="case__facts-note" style="margin-top:clamp(16px,2vw,32px)" data-reveal>
             <p class="t-body">
               <strong>Открытие.</strong> Выход почётных гостей, выступление оперных артистов
               и балетной труппы, первый венский вальс с вовлечением всех участников.
@@ -1200,17 +1520,32 @@
       </div>
 
       <div class="case__gallery">
-        <figure class="media media--square media--framed" data-reveal data-parallax>
-          <img class="photo" src="assets/photos/ball-01.jpg" alt="Солистка в костюме открывает бал"
-               loading="lazy" decoding="async">
+        <figure class="media media--square media--framed" data-reveal>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/ball-01-400.webp 400w, assets/photos/ball-01-666.webp 666w, assets/photos/ball-01-1066.webp 1066w"
+                    sizes="(max-width: 1024px) 100vw, 46vw">
+            <img class="photo" src="assets/photos/ball-01.jpg" alt="Солистка в костюме открывает бал"
+                 width="1706" height="2560" loading="lazy" decoding="async">
+          </picture>
         </figure>
-        <figure class="media media--square" data-reveal style="--d:100ms" data-parallax>
-          <img class="photo" src="assets/photos/ball-02.jpg" alt="Балетная труппа в сцене открытия"
-               loading="lazy" decoding="async">
+        <figure class="media media--square" data-reveal>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/ball-07-400.webp 400w, assets/photos/ball-07-666.webp 666w, assets/photos/ball-07-1066.webp 1066w"
+                    sizes="(max-width: 1024px) 100vw, 33vw">
+            <img class="photo" src="assets/photos/ball-02.jpg" alt="Балетная труппа в сцене открытия"
+                 width="1706" height="2560" loading="lazy" decoding="async">
+          </picture>
         </figure>
-        <figure class="media media--square" data-reveal style="--d:200ms" data-parallax>
-          <img class="photo" src="assets/photos/ball-10.jpg" alt="Зал в танце, кадры с большого экрана"
-               loading="lazy" decoding="async">
+        <figure class="media media--square" data-reveal>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/photos/ball-10-600.webp 600w, assets/photos/ball-10-1000.webp 1000w, assets/photos/ball-10-1600.webp 1600w"
+                    sizes="(max-width: 1024px) 100vw, 33vw">
+            <img class="photo" src="assets/photos/ball-10.jpg" alt="Зал в танце, кадры с большого экрана"
+                 width="2560" height="1706" loading="lazy" decoding="async">
+          </picture>
         </figure>
       </div>
     </div>
@@ -1225,13 +1560,24 @@
       <p class="t-label">Работаем с 2009 года</p>
     </div>
 
-    <p class="t-mega"><span>С 2009</span></p>
+    <!-- Этап 16: строка снята с мега-приёма (решение владельца: мега-строк
+         пять из семи). Была <p class="t-mega">. Теперь обычный H2 антиквой,
+         в своей колонке — как «Как проходит вечер» и «Подготовка к балу».
 
+         Секция несёт два H2 подряд: «С 2009» и «Мы не делаем шаблоны».
+         Это осознанно — первый называет срок, второй утверждение, и оба
+         набраны одним стилем, то есть читаются как одна интонация, а не
+         как иерархия. Слить их в один заголовок значило бы править
+         копирайт, а этап правит стиль. -->
     <div class="col-1-7" data-reveal>
-      <h2 class="t-h2" data-gradual>Мы не делаем шаблоны</h2>
+      <h2 class="t-h2">С 2009</h2>
     </div>
 
-    <div class="col-1-5" style="margin-top:clamp(32px,4vw,56px); --d:120ms" data-reveal>
+    <div class="col-1-7" data-reveal>
+      <h2 class="t-h2">Мы не делаем шаблоны</h2>
+    </div>
+
+    <div class="col-1-5" style="margin-top:clamp(32px,4vw,56px)" data-reveal>
       <p class="t-body">
         В команде — режиссёры, хореографы, стилисты, декораторы, звукорежиссёры,
         координаторы. Люди, которые работают вместе годами и отвечают за каждую деталь.
@@ -1244,20 +1590,23 @@
 
     <div class="col-7-e" style="margin-top:clamp(32px,4vw,56px)">
       <div class="rules" style="grid-template-columns:1fr 1fr">
+        <!-- Задача D1: год, а не количество. Число, набегающее от нуля
+             до 2009, проходит через 400, 1200, 1800 — значения, которые
+             к делу не относятся вовсе, и приём читается как сбой загрузки. -->
         <div class="fact" data-reveal>
-          <p class="fact__value" data-count>2009</p>
+          <p class="fact__value">2009</p>
           <p class="t-label">год основания</p>
         </div>
-        <div class="fact" data-reveal style="--d:80ms">
+        <div class="fact" data-reveal>
           <p class="fact__value">СПб</p>
           <p class="t-label">база — но работаем в любой точке мира</p>
         </div>
-        <div class="fact" data-reveal style="--d:160ms">
-          <p class="fact__value" data-count>30–200</p>
+        <div class="fact" data-reveal>
+          <p class="fact__value">30–200</p>
           <p class="t-label">гостей — от камерного вечера до большого бала</p>
         </div>
-        <div class="fact" data-reveal style="--d:240ms">
-          <p class="fact__value" data-count>100%</p>
+        <div class="fact" data-reveal>
+          <p class="fact__value">100%</p>
           <p class="t-label">координации на нас — логистика, команда, декор</p>
         </div>
       </div>
@@ -1267,40 +1616,57 @@
 </section>
 
 <!-- ================= МАНИФЕСТ ================= -->
-<section class="section section--paper on-paper manifesto">
+<!-- ================= ПОЛОСА-ПЕРЕДЫШКА (QuoteBand) =================
+     Компонент системы: components\layout\QuoteBand.jsx.
+     Врезка курсивом сверху, крупная антиква под ней, по центру, на Ash,
+     поле 112px. Прежний .manifesto был этим приёмом наполовину: сцена
+     и курсив совпадали, второй половины — крупной антиквы — не было,
+     а вместо поля стоял целый экран 100svh.
+
+     ВНИМАНИЕ РЕДАКТОРУ. Реплика ниже — ПЛЕЙСХОЛДЕР. Сочинять фразу
+     за бренд нельзя, и владельцу задан вопрос (см. ПРОГРЕСС.md,
+     открытые вопросы этапа 18). До ответа строка помечена
+     data-placeholder и видна как незакрытая: снять пометку —
+     значит подтвердить текст. -->
+<section class="section section--ash on-ash quote-band">
   <div class="grid">
-    <p class="t-italic manifesto__text" data-reveal>
-      Красивое событие начинается не с декора, а с понимания — ради чего оно собирается.
-    </p>
+    <div class="quote-band__inner">
+      <p class="t-italic quote-band__eyebrow" data-reveal>
+        Красивое событие начинается не с декора, а с понимания — ради чего оно собирается.
+      </p>
+      <blockquote class="quote-band__quote" data-reveal data-placeholder>
+        Здесь будет реплика вечера — её выбирает владелец
+      </blockquote>
+    </div>
   </div>
 </section>
 
 <!-- ================= СВЯЗАТЬСЯ ================= -->
-<section class="section section--paper on-paper" id="contact">
+<section class="section section--ash on-ash" id="contact">
   <div class="grid">
-    <h2 class="t-h1 contact__title" data-gradual style="opacity:1">Расскажите<br>о вашем вечере</h2>
+    <h2 class="t-h1 contact__title">Расскажите<br>о вашем вечере</h2>
 
     <!-- Контактный экран подан рассыпанной типографикой (Screenshot_5):
          вводный текст и координаты стоят на разных осях над формой -->
     <div class="scatter contact__scatter">
-      <p class="t-body scatter__note scatter__note--2" data-reveal style="--d:0ms">
+      <p class="t-body scatter__note scatter__note--2" data-reveal>
         Мы поможем понять, как его сделать. Первый разговор — не про бюджет и количество
         гостей, а про то, что для вас важно.
       </p>
 
-      <div class="scatter__note scatter__note--3 contact__direct" data-reveal style="--d:140ms">
+      <div class="scatter__note scatter__note--3 contact__direct" data-reveal>
         <div>
-          <p class="t-num" style="color:var(--greige-700)">Телефон</p>
+          <p class="t-num">Телефон</p>
           <a href="tel:+78123090909" style="font-size:clamp(18px,1.6vw,24px); font-weight:600">+7 812 309‑09‑09</a>
         </div>
         <div>
-          <p class="t-num" style="color:var(--greige-700)">Почта</p>
+          <p class="t-num">Почта</p>
           <a href="mailto:hello@plyaskingroup.ru" style="font-size:clamp(18px,1.6vw,24px); font-weight:600">hello@plyaskingroup.ru</a>
         </div>
       </div>
     </div>
 
-    <form class="contact__form contact__form--wide" data-reveal style="--d:140ms" id="contactForm" novalidate>
+    <form class="contact__form contact__form--wide" data-reveal id="contactForm" novalidate>
       <div class="field">
         <label for="f-name">Имя</label>
         <input id="f-name" name="name" type="text" autocomplete="name" required>
@@ -1314,7 +1680,43 @@
         <textarea id="f-about" name="about" rows="3"></textarea>
       </div>
       <button class="submit" type="submit">отправить</button>
-      <p class="t-label" id="formStatus" role="status" style="margin-top:24px; min-height:1.4em"></p>
+
+      <!-- Ловушка для ботов. Поле настоящее, но человеку недоступно:
+           убрано из потока клавиатуры (tabindex="-1"), из подсказок
+           автозаполнения (autocomplete="off") и от озвучки экранным
+           диктором (aria-hidden). Скрыто классом .trap, а не
+           display:none: часть ботов пропускает заведомо невидимые поля,
+           а снятое с потока — заполняет. Заполнено — заявку не шлём,
+           но отвечаем как при успехе: молчаливый отказ не подсказывает
+           боту, на чём он попался.
+           Имя «website» выбрано нарочно приманчивым. -->
+      <div class="trap" aria-hidden="true">
+        <label for="f-website">Не заполняйте это поле</label>
+        <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- Согласие на обработку персональных данных — 152-ФЗ.
+           Галочка, а не строка мелким шрифтом: закон требует согласия
+           «конкретного, информированного и сознательного», то есть
+           действия пользователя, а не факта отправки формы.
+           required — форма не уйдёт без отметки.
+
+           Ссылка ведёт в privacy.html — отдельный файл рядом с этим.
+           Сейчас там ЗАГОТОВКА: правового текста у проекта нет, и
+           сочинять его нельзя — политику готовит юрист владельца.
+           Открывается в новой вкладке нарочно: заполненная форма
+           не должна теряться при переходе. -->
+      <label class="consent">
+        <input type="checkbox" name="consent" required>
+        <span>Согласен на обработку персональных данных и с условиями
+          <a href="privacy.html" target="_blank" rel="noopener">политики
+          конфиденциальности</a>.</span>
+      </label>
+
+      <!-- role="status" оставлен: сообщение читается диктором само,
+           без перевода фокуса. aria-live=polite подразумевается ролью —
+           диктор дочитает текущую фразу и только потом сообщит. -->
+      <p class="form-status" id="formStatus" role="status"></p>
     </form>
   </div>
 </section>
@@ -1369,6 +1771,7 @@
         <li><a href="tel:+78123090909">+7 812 309‑09‑09</a></li>
         <li><a href="mailto:hello@plyaskingroup.ru">hello@plyaskingroup.ru</a></li>
         <li><a href="#contact">Форма обратной связи</a></li>
+        <li><a href="privacy.html">Политика конфиденциальности</a></li>
       </ul>
     </div>
 
@@ -1379,10 +1782,59 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<!-- ================= СТОРОННИЕ БИБЛИОТЕКИ =================
+     Две линии обороны, обе синхронные — порядок исполнения обязан
+     остаться прежним: script.js читает window.gsap и window.Lenis
+     сразу, без ожидания события загрузки.
+
+     1. CDN с integrity: браузер считает SHA-384 полученного файла и
+        сверяет с хешем ниже. Не совпало — файл не исполняется вовсе.
+        crossorigin="anonymous" обязателен: без него ответ непрозрачный
+        и проверить его нечем. Хеши сняты с тех самых файлов, что лежат
+        в vendor/ — openssl dgst -sha384; менять версию можно только
+        вместе с хешем и локальной копией.
+
+     2. document.write на случай, когда библиотеки не оказалось:
+        CDN недоступен, заблокирован или integrity не сошёлся. Проверка
+        идёт сразу после тега, поэтому подстановка успевает до script.js.
+        Именно document.write, а не createElement: вставленный им тег
+        исполняется синхронно в этой же точке разбора, тогда как
+        appendChild отдал бы управление дальше и script.js стартовал бы
+        раньше библиотек. Метод устаревший, но здесь он единственный
+        даёт нужный порядок без переписывания script.js на события. -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+        integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt"
+        crossorigin="anonymous"></script>
+<script>window.gsap||document.write('<script src="vendor/gsap.min.js"><\/script>');</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"
+        integrity="sha384-BXj4dUwqsTW7BsafEOy150542LwVf57RoKjTk3Ay1dXyFXRwipZgJWd1QKIxStwq"
+        crossorigin="anonymous"></script>
+<script>window.CustomEase||document.write('<script src="vendor/CustomEase.min.js"><\/script>');</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+        integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d"
+        crossorigin="anonymous"></script>
+<script>window.ScrollTrigger||document.write('<script src="vendor/ScrollTrigger.min.js"><\/script>');</script>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"
+        integrity="sha384-tKsJDT6PlUI0pSBt9/sBKJluKgA19/a6mBrDsZaXotLB4ZYfMGM6xt6/WgGpYhTm"
+        crossorigin="anonymous"></script>
+<script>window.Lenis||document.write('<script src="vendor/lenis.min.js"><\/script>');</script>
+
 <script src="script.js"></script>
+
+<!-- ================= РЕЖИМ ПРАВОК (служебное) =================
+     Оверлей для комментариев к элементам макета. Спит, пока в адресе
+     нет ?review=1: без флага review.js выходит первой же строкой и не
+     вешает ни одного слушателя, а review.css рисует только скрытые
+     блоки, которых на странице нет. Открывать так:
+
+         index.html?review=1
+
+     Перед сдачей — удалить эти две строки и оба файла. Больше нигде
+     в проекте они не упоминаются. -->
+<link rel="stylesheet" href="review.css">
+<script src="review.js"></script>
 </body>
 </html>

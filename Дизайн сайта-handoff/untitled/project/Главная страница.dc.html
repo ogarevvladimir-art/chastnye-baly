@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="_ds/chastnye-baly-design-system-059c2ef5-e053-4fa5-8440-cbd102d18006/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/chastnye-baly-design-system-059c2ef5-e053-4fa5-8440-cbd102d18006/tokens/colors.css">
+<link rel="stylesheet" href="_ds/chastnye-baly-design-system-059c2ef5-e053-4fa5-8440-cbd102d18006/tokens/typography.css">
+<link rel="stylesheet" href="_ds/chastnye-baly-design-system-059c2ef5-e053-4fa5-8440-cbd102d18006/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/chastnye-baly-design-system-059c2ef5-e053-4fa5-8440-cbd102d18006/tokens/layout.css">
+<link rel="stylesheet" href="_ds/chastnye-baly-design-system-059c2ef5-e053-4fa5-8440-cbd102d18006/tokens/motion.css">
+<link rel="stylesheet" href="_ds/chastnye-baly-design-system-059c2ef5-e053-4fa5-8440-cbd102d18006/styles.css">
+<script src="_ds/chastnye-baly-design-system-059c2ef5-e053-4fa5-8440-cbd102d18006/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#060606}
+a{color:#c96a42;text-decoration:none}
+a:hover{color:#e08a5f}
+</style>
+</helmet>
+<div style="background:#060606;color:#aba79a;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;overflow-x:hidden">
+
+<div style="position:sticky;top:0;z-index:60;background: {{ headerBg }};transition:background 240ms ease">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px clamp(20px,5vw,64px);min-height:48px">
+    <a href="#hero" style="color:inherit;text-decoration:none;flex:0 0 auto">
+      <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.Wordmark" size="22" hint-size="180px,26px"></x-import>
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(20px,3vw,40px)">
+      <a href="tel:+74950000000" style="font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-decoration:none">+7 495 000-00-00</a>
+      <button type="button" onClick="{{ openMenu }}" style="min-height:48px;padding:0;border:0;background:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;letter-spacing:2.34px;text-transform:uppercase;color:rgba(171,167,154,0.9)" style-hover="color:#c96a42">Меню</button>
+    </div>
+  </div>
+</div>
+
+<div style="position:fixed;inset:0;z-index:100;background:#060606;display: {{ menuDisplay }};flex-direction:column;justify-content:space-between;padding:20px clamp(20px,5vw,64px) clamp(40px,6vw,80px)">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px">
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.Wordmark" size="22" hint-size="180px,26px"></x-import>
+    <button type="button" onClick="{{ closeMenu }}" style="min-height:48px;padding:0;border:0;background:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;letter-spacing:2.34px;text-transform:uppercase;color:rgba(171,167,154,0.9)" style-hover="color:#c96a42">Закрыть</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:clamp(8px,1.4vw,18px)">
+    <a href="#process" onClick="{{ closeMenu }}" style="font-family:'Old Standard TT',Georgia,serif;font-size:clamp(34px,7vw,80px);line-height:1;letter-spacing:-0.03em;color:rgba(171,167,154,0.9);text-decoration:none" style-hover="color:#c96a42">Как это происходит</a>
+    <a href="#omega" onClick="{{ closeMenu }}" style="font-family:'Old Standard TT',Georgia,serif;font-size:clamp(34px,7vw,80px);line-height:1;letter-spacing:-0.03em;color:rgba(171,167,154,0.9);text-decoration:none" style-hover="color:#c96a42">Вечера</a>
+    <a href="#about" onClick="{{ closeMenu }}" style="font-family:'Old Standard TT',Georgia,serif;font-size:clamp(34px,7vw,80px);line-height:1;letter-spacing:-0.03em;color:rgba(171,167,154,0.9);text-decoration:none" style-hover="color:#c96a42">О нас</a>
+    <a href="#contact" onClick="{{ closeMenu }}" style="font-family:'Old Standard TT',Georgia,serif;font-size:clamp(34px,7vw,80px);line-height:1;letter-spacing:-0.03em;color:rgba(171,167,154,0.9);text-decoration:none" style-hover="color:#c96a42">Связаться</a>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px 48px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:rgba(171,167,154,0.5)">
+    <span>+7 495 000-00-00</span>
+    <span>hello@ballevent.ru</span>
+  </div>
+</div>
+
+<div id="hero" style="position:relative;width:100%;height:clamp(340px,62vh,700px);margin-top:-88px">
+  <image-slot id="hero-video" shape="rect" placeholder="Hero-видео на весь экран: общий план бального зала"></image-slot>
+</div>
+
+<div style="background:#653624;padding:clamp(56px,7vw,100px) clamp(20px,5vw,64px) clamp(48px,6vw,88px);display:flex;flex-direction:column;gap:clamp(20px,3vw,34px)">
+  <div style="font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:rgba(171,167,154,0.7)">01 — Частные балы</div>
+  <h1 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(44px,9vw,118px);line-height:0.82;letter-spacing:-0.05em;color:rgba(171,167,154,0.95);text-wrap:pretty">Ваша история.<br>Ваш вечер.</h1>
+  <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.TextLink" href="#contact" tone="on-brand" hint-size="260px,52px">обсудить вечер</x-import>
+</div>
+
+<div id="formats" style="padding:clamp(96px,12vw,160px) clamp(20px,5vw,64px);display:flex;flex-direction:column;gap:clamp(28px,4vw,44px)">
+  <div style="font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">02 — Форматы</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.SegmentCard" number="01" title="Частный бал" subtitle="Для семьи и близких" hint-size="100%,340px">Свадьба, юбилей, день рождения — событие, за которым стоит целая история семьи. Бал становится той редкой и бесценной возможностью собрать вместе несколько поколений близких людей и подарить им вечер, который останется в памяти на годы.</x-import>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.SegmentCard" number="02" title="Корпоративный бал" subtitle="Для компании, партнёров и сотрудников" surface="brand" hint-size="100%,340px">Годовщина компании, новогодний приём, вечер в честь партнёров, торжественная презентация бренда, чествование лучших сотрудников. Балом венчают конференцию или форум, придают особый вес открытию новой площадки и превращают деловое событие в подлинный праздник.</x-import>
+  </div>
+</div>
+
+<div id="process" style="padding:0 clamp(20px,5vw,64px) clamp(96px,12vw,160px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">03 — Подготовка</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Как мы готовим<br>ваш вечер</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Мы не начинаем с анкеты и не заканчиваем договором. Мы начинаем с разговора.</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.StepItem" number="01" title="Разговор" hint-size="100%,240px">Вы рассказываете о своём вечере — для кого он, почему именно бал, что для вас важно. Мы слушаем и спрашиваем о том, что редко попадает в бриф: что вы хотите почувствовать в тот вечер, когда всё закончится.</x-import>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.StepItem" number="02" title="Концепция" hint-size="100%,240px">Она вырастает из вашего рассказа: локация, музыка, программа, детали — всё связано между собой и с вашей историей.</x-import>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.StepItem" number="03" title="Репетиции" hint-size="100%,240px">Если вы или ваши гости хотите подготовиться — мы проводим уроки. Это первый шаг к тому, чтобы на балу все чувствовали себя уверенно.</x-import>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.StepItem" number="04" title="Вечер" hint-size="100%,240px">Мы рядом с первого момента до последнего танца. Вы не бегаете с координацией и не считаете минуты. Вы просто наслаждаетесь.</x-import>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.StepItem" number="05" title="Воспоминания" hint-size="100%,240px">Фото и видео, к которым вы возвращаетесь. Не для соцсетей — для себя.</x-import>
+  </div>
+</div>
+
+<div id="evening" style="padding:0 clamp(20px,5vw,64px) clamp(96px,12vw,160px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">04 — Вечер</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Как проходит<br>вечер</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Сценарий каждого бала собирается заново — под вашу компанию, локацию и настроение. Но чтобы дать общее представление, вот как может выглядеть структура вечера:</p>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column">
+    <div style="display:flex;flex-wrap:wrap;gap:16px 24px;padding:clamp(20px,2.5vw,32px) 0;border-top:1px solid rgba(171,167,154,0.12)">
+      <div style="flex:0 0 60px;font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">01</div>
+      <div style="flex:0 0 260px;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(171,167,154,0.8)">Сбор гостей и приветствие</div>
+      <div style="flex:1 1 360px;min-width:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Гости приходят, знакомятся, получают бейджики с именами. Лёгкое общение за фуршетом — зал наполняется звуками оркестра.</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px 24px;padding:clamp(20px,2.5vw,32px) 0;border-top:1px solid rgba(171,167,154,0.12)">
+      <div style="flex:0 0 60px;font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">02</div>
+      <div style="flex:0 0 260px;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(171,167,154,0.8)">Торжественное открытие</div>
+      <div style="flex:1 1 360px;min-width:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Хозяева бала выходят первыми. Оперные артисты, балетная труппа — первые пять минут, которые задают ритм всего вечера. Вальс-открытие, после которого приглашаются все гости.</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px 24px;padding:clamp(20px,2.5vw,32px) 0;border-top:1px solid rgba(171,167,154,0.12)">
+      <div style="flex:0 0 60px;font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">03</div>
+      <div style="flex:0 0 260px;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(171,167,154,0.8)">Танцевальная программа</div>
+      <div style="flex:1 1 360px;min-width:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Вальсы, кадрили, свинг, фокстрот, латина. Танцмейстер ведёт зал: чередует ритмы, вовлекает гостей, меняет энергию. Паузы для общения и фуршетов.</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px 24px;padding:clamp(20px,2.5vw,32px) 0;border-top:1px solid rgba(171,167,154,0.12)">
+      <div style="flex:0 0 60px;font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">04</div>
+      <div style="flex:0 0 260px;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(171,167,154,0.8)">Шоу-номера</div>
+      <div style="flex:1 1 360px;min-width:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Профессиональные танцоры, совместные выступления, хореография от гостей — моменты, когда все забывают про еду и разговоры.</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px 24px;padding:clamp(20px,2.5vw,32px) 0;border-top:1px solid rgba(171,167,154,0.12);border-bottom:1px solid rgba(171,167,154,0.12)">
+      <div style="flex:0 0 60px;font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">05</div>
+      <div style="flex:0 0 260px;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(171,167,154,0.8)">Финальный танец и завершение</div>
+      <div style="flex:1 1 360px;min-width:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Общий финальный вальс. Момент, когда все оказываются на паркете. Закрытие вечера.</div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end">
+    <div style="flex:1 1 420px;min-width:0;height:clamp(280px,34vw,460px);position:relative">
+      <image-slot id="evening-hall" shape="rect" placeholder="Общий план: зал во время танцевальной программы"></image-slot>
+    </div>
+    <p style="flex:1 1 320px;min-width:0;margin:0;max-width:520px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Это ориентир, а не готовая программа. Мы адаптируем сценарий под ваш формат: от камерного вечера на тридцать человек до масштабного бала на двести. Длительность, количество пауз, интенсивность танцевальной части — всё подстраивается под ваших гостей.</p>
+  </div>
+</div>
+
+<div id="music" style="padding:0 clamp(20px,5vw,64px) clamp(96px,12vw,160px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">05 — Музыка</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Музыкальное<br>сопровождение</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Музыка — главный инструмент управления атмосферой. Она задаёт темп вечера раньше, чем это делает программа.</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+    <div style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:1px solid rgba(171,167,154,0.12)">
+      <div style="font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">01</div>
+      <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Симфонический оркестр задаёт торжественный тон. Живой звук — создаёт ощущение исключительности. Идеально для венского вальса, кадрили и моментов, когда нужно подчеркнуть важность события.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:1px solid rgba(171,167,154,0.12)">
+      <div style="font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">02</div>
+      <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Духовой оркестр или джаз-бэнд раскрепощают гостей. Ритмы свинга, фокстрота и латины звучат тепло и живо — хочется двигаться, знакомиться, улыбаться. Формат, который снимает официальность и запускает живое общение.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:1px solid rgba(171,167,154,0.12)">
+      <div style="font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">03</div>
+      <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Музыкальная группа работает на энергию. Знакомые хиты, зажигательные ритмы — когда нужно разогреть зал, поднять настроение и завершить вечер на высокой ноте.</p>
+    </div>
+  </div>
+</div>
+
+<div id="dancemaster" style="padding:0 clamp(20px,5vw,64px) clamp(96px,12vw,160px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">06 — Танцмейстер</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Ведёт зал,<br>а не номер</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Танцмейстер — не хореограф в привычном смысле. Он не ставит номер и не учит движения. Он работает с атмосферой: снимает скованность, вовлекает тех, кто пришёл постоять в стороне, и даёт всему залу ритм, в котором хочется двигаться.</p>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:1 1 380px;min-width:0;height:clamp(280px,32vw,520px);position:relative">
+      <image-slot id="dancemaster-portrait" shape="rect" placeholder="Танцмейстер в зале: средний план во время фигуры"></image-slot>
+    </div>
+    <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:24px">
+      <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Парные танцы, ротация партнёров, общие фигуры — гости знакомятся без неловких пауз и вопросов «а с кем мне танцевать». Никто никого не уговаривает: танцевать просто становится проще, чем стоять у стены.</p>
+      <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Чередуя спокойные вальсы с динамичными ритмами, он следит за таймингом и настроением зала. Вечер не провисает, гости не устают, программа идёт в нужном ритме.</p>
+      <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">И самое важное — гости уходят не только с фото, но и с навыками. Пару па венского вальса, основы свинга или кадрили. Не «мы были на балу», а «мы научились танцевать вальс». Это то, что обсуждают после вечера.</p>
+    </div>
+  </div>
+</div>
+
+<x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.QuoteBand" eyebrow="мы научились танцевать вальс" hint-size="100%,340px">это то, что обсуждают после вечера</x-import>
+
+<div id="show" style="padding:clamp(96px,12vw,160px) clamp(20px,5vw,64px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">07 — Шоу</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Танцевальные<br>шоу</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Разговоры за столами обрываются на полуслове: начинается шоу-номер.</p>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:1 1 300px;min-width:0;height:clamp(240px,26vw,420px);position:relative">
+      <image-slot id="show-pro" shape="rect" placeholder="Профессиональная пара: вальс, танго или пасодобль"></image-slot>
+    </div>
+    <div style="flex:1 1 300px;min-width:0;height:clamp(240px,26vw,420px);position:relative">
+      <image-slot id="show-guests" shape="rect" placeholder="Совместный номер: гости и танцоры на паркете"></image-slot>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+    <p style="margin:0;padding-top:24px;border-top:1px solid rgba(171,167,154,0.12);font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Профессиональная пара исполняет вальс, танго или пасодобль — поставленная хореография, костюмы, техника, отточенная годами. Гости смотрят и понимают: вот оно, вот так это бывает.</p>
+    <p style="margin:0;padding-top:24px;border-top:1px solid rgba(171,167,154,0.12);font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Но шоу может быть не только от профессионалов. Заранее подготовленный номер от сотрудников компании, друзей именинника или свадебной пары — простая, но эффектная хореография, поставленная нашими хореографами. Простые движения смотрятся иначе, когда их делают люди, которых все знают.</p>
+    <p style="margin:0;padding-top:24px;border-top:1px solid rgba(171,167,154,0.12);font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Есть ещё один формат — совместный. Гости танцуют в окружении или в паре с танцорами. Даже простые движения выглядят эффектно, потому что рядом — человек, который держит ритм и поддерживает.</p>
+    <p style="margin:0;padding-top:24px;border-top:1px solid rgba(171,167,154,0.12);font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Мы берём на себя всё: постановку номера, репетиции, подбор музыки, интеграцию в сценарий. Гости не ощущают себя на сцене. Они чувствуют, что вечер происходит с их участием.</p>
+  </div>
+</div>
+
+<div id="assistant" style="background:#222222;padding:clamp(72px,9vw,120px) clamp(20px,5vw,64px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">08 — Ассистент</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Танцевальный<br>ассистент</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Танцевальный ассистент — человек, который может быть рядом с вами весь вечер: от сбора гостей до финального вальса.</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px 48px">
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Он работает с теми, кому нужна поддержка: кто стесняется, кто не умеет танцевать, кто пришёл без пары. Не подходит с фразой «давайте танцевать» — подходит, когда видит, что человек готов. Подсказывает движения, держит ритм, помогает почувствовать себя уверенно.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Не нужно готовиться заранее или брать уроки. Вы учитесь в процессе, в комфортном темпе, под оркестр. Ассистент подстраивается под вас — не вы под него.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">И самое главное: вы не будете стоять у стены. Ассистент включит вас в программу в том темпе, в котором вам комфортно.</p>
+  </div>
+</div>
+
+<div id="lessons" style="padding:clamp(96px,12vw,160px) clamp(20px,5vw,64px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">09 — Уроки</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Подготовка<br>к балу</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Бал начинается задолго до входа в зал — на первом уроке.</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px 48px">
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Гости, которые уже пробовали движения, приходят на бал не с ощущением «а вдруг я не смогу», а с азартом «я хочу ещё». Страх исчезает ещё до того, как начинается вечер.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Но уроки — это ещё и способ познакомить гостей друг с другом до события. Люди общаются, смеются, привыкают друг к другу. На самом балу уже нет чужих — только свои.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Мы не читаем лекции по этикету. Мы показываем: как пригласить, как принять приглашение, как двигаться в паре. Легко, практично, с юмором. Без формальностей и давления.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Подготовка становится частью события. Гости ждут бала с большим интересом, делятся ожиданиями, приводят друзей.</p>
+  </div>
+  <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.TextLink" href="#contact" hint-size="420px,52px">как проходят подготовительные уроки</x-import>
+</div>
+
+<div id="etiquette" style="padding:0 clamp(20px,5vw,64px) clamp(96px,12vw,160px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">10 — Этикет</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Танцевальный<br>этикет</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Этикет на балу — это несколько правил, которые делают вечер комфортным для всех. Не «как правильно», а «как удобно». Знание базовых вещей снимает напряжение и даёт ощущение уверенности.</p>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Не нужно запоминать всё заранее. Танцмейстер подсказывает прямо на паркете — в моменте, с юмором, без давления. Современный бал — не реконструкция. Здесь ценят искренность больше, чем идеальную технику. И большинство гостей впервые на балу. Вы не выделяетесь — вы в компании единомышленников.</p>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column">
+    <div style="border-top:1px solid rgba(171,167,154,0.12)">
+      <button type="button" onClick="{{ toggle1 }}" style="width:100%;min-height:48px;padding:clamp(20px,2.5vw,32px) 0;border:0;background:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:space-between;gap:24px;text-align:left;color:rgba(171,167,154,0.8);font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase" style-hover="color:rgba(171,167,154,1)">
+        <span>Для кавалеров</span>
+        <span style="font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">{{ sign1 }}</span>
+      </button>
+      <div style="overflow:hidden;padding-bottom:clamp(20px,2.5vw,32px);display: {{ open1 }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 48px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5)">
+          <div>Инициировать приглашение на танец.</div>
+          <div>Обеспечивать партнёрше комфорт на паркете.</div>
+          <div>Следить за ритмом и пространством.</div>
+          <div>Проявлять тактичность в общении.</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(171,167,154,0.12);border-bottom:1px solid rgba(171,167,154,0.12)">
+      <button type="button" onClick="{{ toggle2 }}" style="width:100%;min-height:48px;padding:clamp(20px,2.5vw,32px) 0;border:0;background:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:space-between;gap:24px;text-align:left;color:rgba(171,167,154,0.8);font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase" style-hover="color:rgba(171,167,154,1)">
+        <span>Для дам</span>
+        <span style="font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">{{ sign2 }}</span>
+      </button>
+      <div style="overflow:hidden;padding-bottom:clamp(20px,2.5vw,32px);display: {{ open2 }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 48px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5)">
+          <div>Принимать или корректно отклонять приглашения.</div>
+          <div>Поддерживать темп и направление движения в паре.</div>
+          <div>Соблюдать дресс-код.</div>
+          <div>Проявлять доброжелательность и открытость.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="dresscode" style="padding:0 clamp(20px,5vw,64px) clamp(96px,12vw,160px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">11 — Дресс-код</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Не ограничение,<br>а стиль</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Дресс-код — не ограничение. Это стиль, который создаёт атмосферу. Когда все гости одеты в одном ключе — зал выглядит цельно, и каждый чувствует себя частью общего вечера.</p>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column">
+    <div style="border-top:1px solid rgba(171,167,154,0.12)">
+      <button type="button" onClick="{{ toggle3 }}" style="width:100%;min-height:48px;padding:clamp(20px,2.5vw,32px) 0;border:0;background:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:space-between;gap:24px;text-align:left;color:rgba(171,167,154,0.8);font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase" style-hover="color:rgba(171,167,154,1)">
+        <span>Для кавалеров</span>
+        <span style="font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">{{ sign3 }}</span>
+      </button>
+      <div style="overflow:hidden;padding-bottom:clamp(20px,2.5vw,32px);display: {{ open3 }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 48px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5)">
+          <div>Смокинг или фрак чёрного цвета.</div>
+          <div>Белая рубашка без узоров.</div>
+          <div>Чёрная бабочка — строгой формы, без декора.</div>
+          <div>Чёрные классические туфли.</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(171,167,154,0.12)">
+      <button type="button" onClick="{{ toggle4 }}" style="width:100%;min-height:48px;padding:clamp(20px,2.5vw,32px) 0;border:0;background:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:space-between;gap:24px;text-align:left;color:rgba(171,167,154,0.8);font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase" style-hover="color:rgba(171,167,154,1)">
+        <span>Для дам</span>
+        <span style="font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">{{ sign4 }}</span>
+      </button>
+      <div style="overflow:hidden;padding-bottom:clamp(20px,2.5vw,32px);display: {{ open4 }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 48px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5)">
+          <div>Платье в пол — любой цвет, кроме белого. Белый цвет зарезервирован для хозяев бала и почётных гостей — это часть протокола.</div>
+          <div>Элегантные украшения по выбору.</div>
+          <div>Вечерняя обувь на комфортной колодке.</div>
+          <div>Причёска и макияж, соответствующие формату.</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(171,167,154,0.12);border-bottom:1px solid rgba(171,167,154,0.12)">
+      <button type="button" onClick="{{ toggle5 }}" style="width:100%;min-height:48px;padding:clamp(20px,2.5vw,32px) 0;border:0;background:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:space-between;gap:24px;text-align:left;color:rgba(171,167,154,0.8);font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase" style-hover="color:rgba(171,167,154,1)">
+        <span>Мы помогаем</span>
+        <span style="font-size:13px;font-weight:500;letter-spacing:2.34px;color:#c96a42">{{ sign5 }}</span>
+      </button>
+      <div style="overflow:hidden;padding-bottom:clamp(20px,2.5vw,32px);display: {{ open5 }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 48px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5)">
+          <div>Чёткие рекомендации по дресс-коду направляются гостям вместе с приглашением.</div>
+          <div>По запросу предоставляем контакты проверенных партнёров — прокат, стилисты.</div>
+          <div>На входе — деликатная координация без неловких ситуаций.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="omega" style="padding:0 clamp(20px,5vw,64px) clamp(96px,12vw,160px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">12 — Вечера</div>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+      <h2 style="margin:0;font-family:'Old Standard TT',Georgia,serif;font-weight:400;font-size:clamp(38px,6.5vw,88px);line-height:0.84;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">Омега-бал —<br>20 лет компании</h2>
+      <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Компания отмечала двадцатилетие. Не «корпоратив с банкетом», а бал — в формате, который соответствовал масштабу события.</p>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:2 1 480px;min-width:0;height:clamp(280px,32vw,520px);position:relative">
+      <image-slot id="omega-main" shape="rect" placeholder="Омега-бал: вальс-открытие, общий план"></image-slot>
+    </div>
+    <div style="flex:1 1 240px;min-width:0;height:clamp(280px,32vw,520px);position:relative">
+      <image-slot id="omega-detail" shape="rect" placeholder="Омега-бал: деталь — оркестр, пригласительные, костюмы"></image-slot>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px 48px">
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Мы разработали концепцию, которая связала историю бренда с эстетикой вечера. Каждая деталь — от пригласительных до финального аккорда — работала на одно: чтобы гости почувствовали, что это вечер, на котором хочется быть.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Открытие было торжественным: выход почётных гостей, выступление оперных артистов и балетной труппы, первый венский вальс с вовлечением всех участников.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Для топ-менеджмента мы поставили персональный танцевальный номер. Индивидуальные репетиции с хореографом, адаптация хореографии под уровень подготовки, интеграция в сценарий открытия как ключевой акцент.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Сотрудники участвовали в подготовке: серия мастер-классов под руководством Главного танцмейстера — базовые шаги венского вальса и кадрили, правила этикета в практике, знакомство гостей до основного события.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Мы создали творческий ролик: сотрудники вместе с профессиональными танцорами. Живой, эмоциональный контент, который компания использовала для внутренних коммуникаций.</p>
+    <p style="margin:0;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Музыкальное сопровождение: симфонический оркестр для торжественной части, музыкальная группа для динамичного финала. Полная координация тайминга и репертуара.</p>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;padding-top:clamp(24px,3vw,44px);border-top:1px solid rgba(171,167,154,0.12)">
+    <div style="font-family:'Old Standard TT',Georgia,serif;font-size:clamp(52px,10vw,140px);line-height:0.8;letter-spacing:-0.05em;color:rgba(171,167,154,0.9)">180 гостей.</div>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.TextLink" href="#contact" hint-size="280px,52px">все наши вечера</x-import>
+  </div>
+</div>
+
+<div id="about" style="background:#3e3e3e;padding:clamp(72px,9vw,120px) clamp(20px,5vw,64px);display:flex;flex-wrap:wrap;gap:24px">
+  <div style="flex:0 0 200px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:rgba(171,167,154,0.7)">13 — О нас</div>
+  <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+    <p style="margin:0;max-width:720px;font-family:'Old Standard TT',Georgia,serif;font-size:clamp(24px,3.2vw,44px);line-height:1.15;letter-spacing:-0.02em;color:rgba(171,167,154,0.95);text-wrap:pretty">В команде — режиссёры, хореографы, стилисты, декораторы, звукорежиссёры, координаторы. Люди, которые работают вместе годами и отвечают за каждую деталь.</p>
+    <p style="margin:0;max-width:640px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.6);text-wrap:pretty">Мы не делаем шаблоны. Каждое событие строим вокруг вашей истории — ценностей, эстетики, гостей. От первой встречи до последнего танца.</p>
+  </div>
+</div>
+
+<x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.CTABand" number="14" label="Связаться" title="Расскажите о вашем вечере" action="Оставить заявку" onAction="{{ focusForm }}" hint-size="100%,360px"></x-import>
+
+<div id="contact" style="padding:clamp(72px,9vw,120px) clamp(20px,5vw,64px);display:flex;flex-wrap:wrap;gap:clamp(44px,6vw,72px)">
+  <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+    <p style="margin:0;max-width:520px;font-size:14px;font-weight:600;line-height:1.7;letter-spacing:0.5px;text-transform:uppercase;color:rgba(171,167,154,0.5);text-wrap:pretty">Расскажите о вашем вечере — мы поможем понять, как его сделать.</p>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:rgba(171,167,154,0.35)">Телефон</div>
+      <a href="tel:+74950000000" style="font-family:'Old Standard TT',Georgia,serif;font-size:clamp(26px,3.4vw,44px);line-height:1;letter-spacing:-0.02em;color:rgba(171,167,154,0.9);text-decoration:none" style-hover="color:#c96a42">+7 495 000-00-00</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:rgba(171,167,154,0.35)">Электронная почта</div>
+      <a href="mailto:hello@ballevent.ru" style="font-family:'Old Standard TT',Georgia,serif;font-size:clamp(26px,3.4vw,44px);line-height:1;letter-spacing:-0.02em;color:rgba(171,167,154,0.9);text-decoration:none" style-hover="color:#c96a42">hello@ballevent.ru</a>
+    </div>
+  </div>
+  <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vw,34px)">
+    <div style="font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">Форма обратной связи</div>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.FormField" label="Как вас зовут" placeholder="Имя" name="name" hint-size="100%,84px"></x-import>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.FormField" label="Телефон" placeholder="+7" name="phone" type="tel" hint-size="100%,84px"></x-import>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.FormField" label="Несколько слов о вечере" placeholder="Повод, дата, примерное число гостей" name="about" hint-size="100%,84px"></x-import>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:24px">
+      <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.Button" onClick="{{ submit }}" hint-size="220px,52px">Оставить заявку</x-import>
+      <div style="font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:#c96a42">{{ formHint }}</div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:clamp(40px,5vw,64px) clamp(20px,5vw,64px);border-top:1px solid rgba(171,167,154,0.12);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px">
+  <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.Wordmark" size="22" hint-size="180px,26px"></x-import>
+  <div style="display:flex;flex-wrap:wrap;gap:16px 32px;font-size:13px;font-weight:500;letter-spacing:2.34px;text-transform:uppercase;color:rgba(171,167,154,0.35)">
+    <a href="#process" style="color:inherit;text-decoration:none" style-hover="color:rgba(171,167,154,0.9)">Как это происходит</a>
+    <a href="#omega" style="color:inherit;text-decoration:none" style-hover="color:rgba(171,167,154,0.9)">Вечера</a>
+    <a href="#about" style="color:inherit;text-decoration:none" style-hover="color:rgba(171,167,154,0.9)">О нас</a>
+    <a href="#contact" style="color:inherit;text-decoration:none" style-hover="color:rgba(171,167,154,0.9)">Связаться</a>
+  </div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2400}}">
+class Component extends DCLogic {
+  state = { menu: false, open: {}, scrolled: false, sent: false };
+
+  componentDidMount() {
+    this.onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const next = y > 40;
+      if (next !== this.state.scrolled) this.setState({ scrolled: next });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+  }
+
+  toggle(k) {
+    this.setState(s => ({ open: Object.assign({}, s.open, { [k]: !s.open[k] }) }));
+  }
+
+  renderVals() {
+    const o = this.state.open;
+    const vals = {
+      headerBg: this.state.menu ? 'transparent' : (this.state.scrolled ? '#060606' : 'transparent'),
+      menuDisplay: this.state.menu ? 'flex' : 'none',
+      openMenu: () => this.setState({ menu: true }),
+      closeMenu: () => this.setState({ menu: false }),
+      focusForm: () => {
+        const el = document.getElementById('contact');
+        if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+      },
+      submit: () => this.setState({ sent: true }),
+      formHint: this.state.sent ? 'Заявка отправлена — мы позвоним' : 'Нажимая кнопку, вы соглашаетесь с обработкой данных'
+    };
+    for (let i = 1; i <= 5; i++) {
+      vals['open' + i] = o[i] ? 'block' : 'none';
+      vals['sign' + i] = o[i] ? '−' : '+';
+      vals['toggle' + i] = () => this.toggle(i);
+    }
+    return vals;
+  }
+}
+</script>
+</body>
+</html>

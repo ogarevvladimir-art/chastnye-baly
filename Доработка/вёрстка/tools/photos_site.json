@@ -1,0 +1,2434 @@
+{
+ "evening/step-05": {
+  "label": "02 Вечер · 05",
+  "src": "assets/photos/0533.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     800,
+     960
+    ],
+    "widths": [
+     800,
+     1200,
+     1600
+    ],
+    "rest_window": [
+     640,
+     4052,
+     800,
+     960
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     800,
+     960
+    ],
+    "figma_node": "223:2471",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     358,
+     448
+    ],
+    "widths": [
+     358,
+     716,
+     1074
+    ],
+    "rest_window": [
+     16,
+     8446,
+     358,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     358,
+     448
+    ],
+    "figma_node": "258:4102",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     385,
+     481
+    ],
+    "widths": [
+     385,
+     770
+    ],
+    "rest_window": [
+     417,
+     8739,
+     385,
+     481
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     385,
+     481
+    ],
+    "figma_node": "258:4601",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "formats/corporate": {
+  "label": "Форматы · корпоративные",
+  "src": "assets/photos/KOR_0906_1.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     971,
+     959
+    ],
+    "widths": [
+     971,
+     1456,
+     1942
+    ],
+    "rest_window": [
+     720,
+     932,
+     720,
+     960
+    ],
+    "rest_in_frame": [
+     146,
+     0,
+     720,
+     959
+    ],
+    "figma_node": "223:2174",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     358,
+     448
+    ],
+    "widths": [
+     358,
+     716,
+     1074
+    ],
+    "rest_window": [
+     16,
+     2018,
+     358,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     358,
+     448
+    ],
+    "figma_node": "258:4060",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     770,
+     520
+    ],
+    "widths": [
+     770,
+     1540
+    ],
+    "rest_window": [
+     32,
+     2650,
+     770,
+     520
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     770,
+     520
+    ],
+    "figma_node": "258:4557",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "evening/hall": {
+  "label": "02 Вечер · зал сверху",
+  "src": "assets/photos/BI4A1614.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1440,
+     720
+    ],
+    "widths": [
+     1440,
+     2160,
+     2880
+    ],
+    "rest_window": [
+     0,
+     5012,
+     1440,
+     720
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     1440,
+     720
+    ],
+    "figma_node": "223:2472",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     390,
+     640
+    ],
+    "widths": [
+     390,
+     780,
+     1170
+    ],
+    "rest_window": [
+     0,
+     9171,
+     390,
+     640
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     390,
+     640
+    ],
+    "figma_node": "258:4107",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     834,
+     900
+    ],
+    "widths": [
+     834,
+     1668
+    ],
+    "rest_window": [
+     0,
+     9495,
+     834,
+     900
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     834,
+     900
+    ],
+    "figma_node": "258:4606",
+    "override": null
+   }
+  }
+ },
+ "dancemaster/participants": {
+  "label": "04 Танцмейстер · участники",
+  "src": "assets/photos/13.09.25 Бал. Гимназия №2 (101).jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1031,
+     680
+    ],
+    "widths": [
+     1031,
+     1546,
+     2062
+    ],
+    "rest_window": [
+     724,
+     7936,
+     716,
+     680
+    ],
+    "rest_in_frame": [
+     158,
+     0,
+     716,
+     680
+    ],
+    "figma_node": "198:884",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     304,
+     448
+    ],
+    "widths": [
+     304,
+     608,
+     912
+    ],
+    "rest_window": [
+     70,
+     12109,
+     304,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     304,
+     448
+    ],
+    "figma_node": "258:4205",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     770,
+     560
+    ],
+    "widths": [
+     770,
+     1540
+    ],
+    "rest_window": [
+     32,
+     13043,
+     770,
+     560
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     770,
+     560
+    ],
+    "figma_node": "258:4703",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "evenings/kashemir-a": {
+  "label": "10 Вечера · Кашемир A",
+  "src": "assets/photos/ballevent/kashemir/kashemir_16.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     288,
+     360
+    ],
+    "widths": [
+     288,
+     432,
+     576
+    ],
+    "rest_window": [
+     208,
+     18260,
+     0,
+     360
+    ],
+    "rest_in_frame": null,
+    "figma_node": "219:997",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     171,
+     214
+    ],
+    "widths": [
+     171,
+     342,
+     513
+    ],
+    "rest_window": [
+     102,
+     25097,
+     0,
+     214
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4460",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     169,
+     211
+    ],
+    "widths": [
+     169,
+     338
+    ],
+    "rest_window": [
+     116,
+     26707,
+     0,
+     211
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4960",
+    "override": null
+   }
+  }
+ },
+ "evening/step-02": {
+  "label": "02 Вечер · 02",
+  "src": "assets/photos/13.09.25 Бал. Гимназия №2 (102).jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     800,
+     960
+    ],
+    "widths": [
+     800,
+     1200,
+     1600
+    ],
+    "rest_window": [
+     640,
+     4052,
+     800,
+     960
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     800,
+     960
+    ],
+    "figma_node": "223:2468",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     358,
+     448
+    ],
+    "widths": [
+     358,
+     716,
+     1074
+    ],
+    "rest_window": [
+     16,
+     6223,
+     358,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     358,
+     448
+    ],
+    "figma_node": "258:4105",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     385,
+     481
+    ],
+    "widths": [
+     385,
+     770
+    ],
+    "rest_window": [
+     417,
+     6363,
+     385,
+     481
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     385,
+     481
+    ],
+    "figma_node": "258:4604",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "assistant/shy": {
+  "label": "06 Ассистент · стесняетесь",
+  "src": "assets/photos/farkovets1431.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     448,
+     560
+    ],
+    "widths": [
+     448,
+     672,
+     896
+    ],
+    "rest_window": [
+     0,
+     11316,
+     448,
+     560
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     448,
+     560
+    ],
+    "figma_node": "198:1203",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     266,
+     448
+    ],
+    "widths": [
+     266,
+     532,
+     798
+    ],
+    "rest_window": [
+     108,
+     15203,
+     266,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     266,
+     448
+    ],
+    "figma_node": "258:4256",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     353,
+     481
+    ],
+    "widths": [
+     353,
+     706
+    ],
+    "rest_window": [
+     32,
+     16727,
+     353,
+     481
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     353,
+     481
+    ],
+    "figma_node": "258:4756",
+    "override": null
+   }
+  }
+ },
+ "hero/arch": {
+  "label": "Hero · пара под аркой",
+  "src": "assets/photos/farkovets1289.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1440,
+     932
+    ],
+    "widths": [
+     1440,
+     2160,
+     2667
+    ],
+    "rest_window": [
+     0,
+     0,
+     1440,
+     932
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     1440,
+     932
+    ],
+    "figma_node": "223:2151",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     390,
+     780
+    ],
+    "widths": [
+     390,
+     780,
+     1170
+    ],
+    "rest_window": [
+     0,
+     0,
+     390,
+     780
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     390,
+     780
+    ],
+    "figma_node": "258:4037",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     834,
+     1130
+    ],
+    "widths": [
+     834,
+     1668
+    ],
+    "rest_window": [
+     0,
+     0,
+     834,
+     1130
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     834,
+     1130
+    ],
+    "figma_node": "258:4534",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "assistant/no-partner": {
+  "label": "06 Ассистент · пришли без пары",
+  "src": "assets/photos/@buzin_photo-1167.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     448,
+     560
+    ],
+    "widths": [
+     448,
+     672,
+     896
+    ],
+    "rest_window": [
+     0,
+     11316,
+     448,
+     560
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     448,
+     560
+    ],
+    "figma_node": "219:1058",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     266,
+     448
+    ],
+    "widths": [
+     266,
+     532,
+     798
+    ],
+    "rest_window": [
+     108,
+     16530,
+     266,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     266,
+     448
+    ],
+    "figma_node": "258:4269",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     353,
+     481
+    ],
+    "widths": [
+     353,
+     706
+    ],
+    "rest_window": [
+     32,
+     18333,
+     353,
+     481
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     353,
+     481
+    ],
+    "figma_node": "258:4769",
+    "override": null
+   }
+  }
+ },
+ "music/brass": {
+  "label": "03 Музыка · духовой",
+  "src": "assets/photos/nk-03.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1440,
+     560
+    ],
+    "widths": [
+     1440,
+     2160,
+     2880
+    ],
+    "rest_window": [
+     0,
+     6372,
+     1440,
+     560
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     1440,
+     560
+    ],
+    "figma_node": "223:2630",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     310,
+     388
+    ],
+    "widths": [
+     310,
+     620,
+     930
+    ],
+    "rest_window": [
+     366,
+     10251,
+     310,
+     388
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     310,
+     388
+    ],
+    "figma_node": "258:4179",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     360,
+     450
+    ],
+    "widths": [
+     360,
+     720
+    ],
+    "rest_window": [
+     408,
+     10875,
+     360,
+     450
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     360,
+     450
+    ],
+    "figma_node": "258:4677",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "dresscode/cavalier": {
+  "label": "09 Дресс-код · кавалер",
+  "src": "assets/photos/NesterovaMaria_0377.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     400,
+     629
+    ],
+    "widths": [
+     400,
+     600,
+     800
+    ],
+    "rest_window": [
+     304,
+     16220,
+     400,
+     629
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     400,
+     629
+    ],
+    "figma_node": "207:1887",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     300,
+     472
+    ],
+    "widths": [
+     300,
+     600,
+     900
+    ],
+    "rest_window": [
+     74,
+     21766,
+     300,
+     472
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     300,
+     472
+    ],
+    "figma_node": "258:4375",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     385,
+     606
+    ],
+    "widths": [
+     385,
+     770
+    ],
+    "rest_window": [
+     417,
+     23937,
+     385,
+     606
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     385,
+     606
+    ],
+    "figma_node": "258:4875",
+    "override": null
+   }
+  }
+ },
+ "music/band": {
+  "label": "03 Музыка · группа",
+  "src": "assets/photos/NesterovaMaria_0057_resized.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1440,
+     560
+    ],
+    "widths": [
+     1440,
+     2160,
+     2560
+    ],
+    "rest_window": [
+     0,
+     6372,
+     1440,
+     560
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     1440,
+     560
+    ],
+    "figma_node": "223:2632",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     310,
+     388
+    ],
+    "widths": [
+     310,
+     620,
+     930
+    ],
+    "rest_window": [
+     692,
+     10251,
+     310,
+     388
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     310,
+     388
+    ],
+    "figma_node": "258:4185",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     360,
+     450
+    ],
+    "widths": [
+     360,
+     720
+    ],
+    "rest_window": [
+     784,
+     10875,
+     360,
+     450
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     360,
+     450
+    ],
+    "figma_node": "258:4683",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "show/professionals": {
+  "label": "05 Шоу · профессионалы",
+  "src": "assets/photos/nk-01.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1440,
+     900
+    ],
+    "widths": [
+     1440,
+     2160,
+     2880
+    ],
+    "rest_window": [
+     0,
+     9496,
+     1440,
+     900
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     1440,
+     900
+    ],
+    "figma_node": "213:851",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     355,
+     600
+    ],
+    "widths": [
+     355,
+     710,
+     1065
+    ],
+    "rest_window": [
+     35,
+     13755,
+     355,
+     600
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     355,
+     600
+    ],
+    "figma_node": "258:4223",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     834,
+     560
+    ],
+    "widths": [
+     834,
+     1668
+    ],
+    "rest_window": [
+     0,
+     15126,
+     834,
+     560
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     834,
+     560
+    ],
+    "figma_node": "258:4722",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "evenings/omega-a": {
+  "label": "10 Вечера · Омега A",
+  "src": "assets/photos/ballevent/omega/omega_11.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     288,
+     360
+    ],
+    "widths": [
+     288,
+     432,
+     576
+    ],
+    "rest_window": [
+     64,
+     18260,
+     288,
+     360
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     288,
+     360
+    ],
+    "figma_node": "219:995",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     171,
+     214
+    ],
+    "widths": [
+     171,
+     342,
+     513
+    ],
+    "rest_window": [
+     16,
+     25097,
+     171,
+     214
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     171,
+     214
+    ],
+    "figma_node": "258:4458",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     169,
+     211
+    ],
+    "widths": [
+     169,
+     338
+    ],
+    "rest_window": [
+     32,
+     26707,
+     169,
+     211
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     169,
+     211
+    ],
+    "figma_node": "258:4958",
+    "override": null
+   }
+  }
+ },
+ "music/symphonic": {
+  "label": "03 Музыка · симфонический",
+  "src": "assets/photos/nk-04.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1440,
+     560
+    ],
+    "widths": [
+     1440,
+     2160,
+     2880
+    ],
+    "rest_window": [
+     0,
+     6372,
+     1440,
+     560
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     1440,
+     560
+    ],
+    "figma_node": "223:2628",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     310,
+     388
+    ],
+    "widths": [
+     310,
+     620,
+     930
+    ],
+    "rest_window": [
+     40,
+     10251,
+     310,
+     388
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     310,
+     388
+    ],
+    "figma_node": "258:4173",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     360,
+     450
+    ],
+    "widths": [
+     360,
+     720
+    ],
+    "rest_window": [
+     32,
+     10875,
+     360,
+     450
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     360,
+     450
+    ],
+    "figma_node": "258:4671",
+    "override": null
+   }
+  }
+ },
+ "dresscode/lady": {
+  "label": "09 Дресс-код · дама",
+  "src": "assets/photos/NesterovaMaria_0031.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     400,
+     628
+    ],
+    "widths": [
+     400,
+     600,
+     800
+    ],
+    "rest_window": [
+     720,
+     16380,
+     400,
+     629
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     400,
+     629
+    ],
+    "figma_node": "207:1888",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     300,
+     472
+    ],
+    "widths": [
+     300,
+     600,
+     900
+    ],
+    "rest_window": [
+     16,
+     22558,
+     300,
+     472
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     300,
+     472
+    ],
+    "figma_node": "258:4376",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     385,
+     606
+    ],
+    "widths": [
+     385,
+     770
+    ],
+    "rest_window": [
+     32,
+     24703,
+     385,
+     606
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     385,
+     606
+    ],
+    "figma_node": "258:4876",
+    "override": null
+   }
+  }
+ },
+ "evenings/omega-d": {
+  "label": "10 Вечера · Омега D",
+  "src": "assets/photos/ballevent/omega/omega_10.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     160,
+     200
+    ],
+    "widths": [
+     160,
+     240,
+     320
+    ],
+    "rest_window": [
+     1216,
+     18380,
+     160,
+     200
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     160,
+     200
+    ],
+    "figma_node": "219:1003",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     94,
+     117
+    ],
+    "widths": [
+     94,
+     188
+    ],
+    "rest_window": [
+     708,
+     26777,
+     94,
+     117
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     94,
+     117
+    ],
+    "figma_node": "258:4975",
+    "override": null
+   }
+  }
+ },
+ "evening/step-01": {
+  "label": "02 Вечер · 01",
+  "src": "../Правки по сайту бал/2024/1W1A2194.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     800,
+     960
+    ],
+    "widths": [
+     800,
+     1200,
+     1600
+    ],
+    "rest_window": [
+     640,
+     4052,
+     800,
+     960
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     800,
+     960
+    ],
+    "figma_node": "223:2467",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     358,
+     448
+    ],
+    "widths": [
+     358,
+     716,
+     1074
+    ],
+    "rest_window": [
+     16,
+     5530,
+     358,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     358,
+     448
+    ],
+    "figma_node": "258:4106",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     385,
+     481
+    ],
+    "widths": [
+     385,
+     770
+    ],
+    "rest_window": [
+     417,
+     5607,
+     385,
+     481
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     385,
+     481
+    ],
+    "figma_node": "258:4605",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "evenings/kashemir-d": {
+  "label": "10 Вечера · Кашемир D",
+  "src": "assets/photos/ballevent/kashemir/kashemir_10.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     160,
+     200
+    ],
+    "widths": [
+     160,
+     240,
+     320
+    ],
+    "rest_window": [
+     1296,
+     18380,
+     0,
+     200
+    ],
+    "rest_in_frame": null,
+    "figma_node": "219:1005",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     94,
+     117
+    ],
+    "widths": [
+     94,
+     188
+    ],
+    "rest_window": [
+     755,
+     26777,
+     0,
+     117
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4977",
+    "override": null
+   }
+  }
+ },
+ "evenings/omega-b": {
+  "label": "10 Вечера · Омега B",
+  "src": "assets/photos/ballevent/omega/omega_14.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     480,
+     600
+    ],
+    "widths": [
+     480,
+     640
+    ],
+    "rest_window": [
+     384,
+     18100,
+     480,
+     600
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     480,
+     600
+    ],
+    "figma_node": "218:891",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     358,
+     448
+    ],
+    "widths": [
+     358,
+     639
+    ],
+    "rest_window": [
+     16,
+     24562,
+     358,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     358,
+     448
+    ],
+    "figma_node": "258:4442",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     282,
+     352
+    ],
+    "widths": [
+     282,
+     564
+    ],
+    "rest_window": [
+     220,
+     26613,
+     282,
+     352
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     282,
+     352
+    ],
+    "figma_node": "258:4942",
+    "override": null
+   }
+  }
+ },
+ "show/joint": {
+  "label": "05 Шоу · совместный",
+  "src": "assets/photos/KOR_0445_1.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1440,
+     900
+    ],
+    "widths": [
+     1440,
+     2160,
+     2500
+    ],
+    "rest_window": [
+     720,
+     9496,
+     0,
+     900
+    ],
+    "rest_in_frame": null,
+    "figma_node": "213:853",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     355,
+     600
+    ],
+    "widths": [
+     355,
+     710,
+     986
+    ],
+    "rest_window": [
+     212,
+     13755,
+     0,
+     600
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4225",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     834,
+     560
+    ],
+    "widths": [
+     834,
+     1668
+    ],
+    "rest_window": [
+     417,
+     15126,
+     0,
+     560
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4724",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "assistant/cant-dance": {
+  "label": "06 Ассистент · не умеете танцевать",
+  "src": "assets/photos/KOR_1620_1.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     448,
+     560
+    ],
+    "widths": [
+     448,
+     672,
+     896
+    ],
+    "rest_window": [
+     0,
+     11316,
+     448,
+     560
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     448,
+     560
+    ],
+    "figma_node": "198:1204",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     266,
+     448
+    ],
+    "widths": [
+     266,
+     532,
+     798
+    ],
+    "rest_window": [
+     108,
+     15803,
+     266,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     266,
+     448
+    ],
+    "figma_node": "258:4261",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     353,
+     481
+    ],
+    "widths": [
+     353,
+     706
+    ],
+    "rest_window": [
+     32,
+     17530,
+     353,
+     481
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     353,
+     481
+    ],
+    "figma_node": "258:4761",
+    "override": null
+   }
+  }
+ },
+ "evenings/omega-c": {
+  "label": "10 Вечера · Омега C",
+  "src": "assets/photos/ballevent/omega/omega_16.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     288,
+     360
+    ],
+    "widths": [
+     288,
+     432,
+     576
+    ],
+    "rest_window": [
+     896,
+     18180,
+     288,
+     360
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     288,
+     360
+    ],
+    "figma_node": "219:999",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     171,
+     214
+    ],
+    "widths": [
+     171,
+     342,
+     513
+    ],
+    "rest_window": [
+     203,
+     25137,
+     171,
+     214
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     171,
+     214
+    ],
+    "figma_node": "258:4462",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     169,
+     211
+    ],
+    "widths": [
+     169,
+     338
+    ],
+    "rest_window": [
+     520,
+     26660,
+     169,
+     211
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     169,
+     211
+    ],
+    "figma_node": "258:4962",
+    "override": null
+   }
+  }
+ },
+ "dancemaster/spectators": {
+  "label": "04 Танцмейстер · зрители",
+  "src": "assets/photos/KOR_0895_1.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1032,
+     680
+    ],
+    "widths": [
+     1032,
+     1548,
+     2064
+    ],
+    "rest_window": [
+     0,
+     7936,
+     716,
+     680
+    ],
+    "rest_in_frame": [
+     158,
+     0,
+     716,
+     680
+    ],
+    "figma_node": "198:882",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     304,
+     448
+    ],
+    "widths": [
+     304,
+     608,
+     912
+    ],
+    "rest_window": [
+     70,
+     11445,
+     304,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     304,
+     448
+    ],
+    "figma_node": "258:4199",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     770,
+     560
+    ],
+    "widths": [
+     770,
+     1540
+    ],
+    "rest_window": [
+     32,
+     12095,
+     770,
+     560
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     770,
+     560
+    ],
+    "figma_node": "258:4697",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "show/own": {
+  "label": "05 Шоу · номер от своих",
+  "src": "assets/photos/NesterovaMaria_0297_resized.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1440,
+     900
+    ],
+    "widths": [
+     1440,
+     2160,
+     2560
+    ],
+    "rest_window": [
+     720,
+     9496,
+     0,
+     900
+    ],
+    "rest_in_frame": null,
+    "figma_node": "213:855",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     355,
+     600
+    ],
+    "widths": [
+     355,
+     710,
+     1010
+    ],
+    "rest_window": [
+     212,
+     13755,
+     0,
+     600
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4227",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     834,
+     560
+    ],
+    "widths": [
+     834,
+     1668
+    ],
+    "rest_window": [
+     417,
+     15126,
+     0,
+     560
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4726",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "evenings/kashemir-c": {
+  "label": "10 Вечера · Кашемир C",
+  "src": "assets/photos/ballevent/kashemir/kashemir_14.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     288,
+     360
+    ],
+    "widths": [
+     288,
+     432,
+     576
+    ],
+    "rest_window": [
+     1040,
+     18180,
+     0,
+     360
+    ],
+    "rest_in_frame": null,
+    "figma_node": "219:1001",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     171,
+     214
+    ],
+    "widths": [
+     171,
+     342,
+     513
+    ],
+    "rest_window": [
+     288,
+     25137,
+     0,
+     214
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4464",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     169,
+     211
+    ],
+    "widths": [
+     169,
+     338
+    ],
+    "rest_window": [
+     604,
+     26660,
+     0,
+     211
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4964",
+    "override": null
+   }
+  }
+ },
+ "evening/step-03": {
+  "label": "02 Вечер · 03",
+  "src": "assets/photos/422A2400.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     800,
+     960
+    ],
+    "widths": [
+     800,
+     1200,
+     1600
+    ],
+    "rest_window": [
+     640,
+     4052,
+     800,
+     960
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     800,
+     960
+    ],
+    "figma_node": "223:2469",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     358,
+     448
+    ],
+    "widths": [
+     358,
+     716,
+     1074
+    ],
+    "rest_window": [
+     16,
+     6980,
+     358,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     358,
+     448
+    ],
+    "figma_node": "258:4104",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     385,
+     481
+    ],
+    "widths": [
+     385,
+     770
+    ],
+    "rest_window": [
+     417,
+     7173,
+     385,
+     481
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     385,
+     481
+    ],
+    "figma_node": "258:4603",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "formats/private": {
+  "label": "Форматы · частные",
+  "src": "assets/photos/nk-06.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1005,
+     660
+    ],
+    "widths": [
+     1005,
+     1508,
+     2010
+    ],
+    "rest_window": [
+     0,
+     1232,
+     720,
+     660
+    ],
+    "rest_in_frame": [
+     143,
+     0,
+     720,
+     660
+    ],
+    "figma_node": "223:2171",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     358,
+     448
+    ],
+    "widths": [
+     358,
+     716,
+     1074
+    ],
+    "rest_window": [
+     16,
+     1095,
+     358,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     358,
+     448
+    ],
+    "figma_node": "258:4043",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     770,
+     520
+    ],
+    "widths": [
+     770,
+     1540
+    ],
+    "rest_window": [
+     32,
+     1560,
+     770,
+     520
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     770,
+     520
+    ],
+    "figma_node": "258:4540",
+    "override": null
+   }
+  }
+ },
+ "evening/step-04": {
+  "label": "02 Вечер · 04",
+  "src": "assets/photos/venue-03.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     800,
+     960
+    ],
+    "widths": [
+     800,
+     1200,
+     1600
+    ],
+    "rest_window": [
+     640,
+     4052,
+     800,
+     960
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     800,
+     960
+    ],
+    "figma_node": "223:2470",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     358,
+     448
+    ],
+    "widths": [
+     358,
+     716,
+     1074
+    ],
+    "rest_window": [
+     16,
+     7721,
+     358,
+     448
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     358,
+     448
+    ],
+    "figma_node": "258:4103",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     385,
+     481
+    ],
+    "widths": [
+     385,
+     770
+    ],
+    "rest_window": [
+     417,
+     7965,
+     385,
+     481
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     385,
+     481
+    ],
+    "figma_node": "258:4602",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ },
+ "evenings/kashemir-b": {
+  "label": "10 Вечера · Кашемир B",
+  "src": "assets/photos/ballevent/kashemir/kashemir_17.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     480,
+     600
+    ],
+    "widths": [
+     480,
+     640
+    ],
+    "rest_window": [
+     624,
+     18100,
+     0,
+     600
+    ],
+    "rest_in_frame": null,
+    "figma_node": "218:893",
+    "override": null
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     358,
+     448
+    ],
+    "widths": [
+     358,
+     639
+    ],
+    "rest_window": [
+     195,
+     24562,
+     0,
+     448
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4444",
+    "override": null
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     282,
+     352
+    ],
+    "widths": [
+     282,
+     564
+    ],
+    "rest_window": [
+     361,
+     26613,
+     0,
+     352
+    ],
+    "rest_in_frame": null,
+    "figma_node": "258:4944",
+    "override": null
+   }
+  }
+ },
+ "lessons/ball": {
+  "label": "07 Уроки · бал",
+  "src": "assets/photos/nk-02.jpg",
+  "layouts": {
+   "d": {
+    "media": "(min-width: 1024px)",
+    "frame": [
+     1440,
+     480
+    ],
+    "widths": [
+     1440,
+     2160,
+     2880
+    ],
+    "rest_window": [
+     0,
+     13124,
+     1440,
+     480
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     1440,
+     480
+    ],
+    "figma_node": "198:1318",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "m": {
+    "media": "(max-width: 599px)",
+    "frame": [
+     390,
+     488
+    ],
+    "widths": [
+     390,
+     780,
+     1170
+    ],
+    "rest_window": [
+     0,
+     19194,
+     390,
+     488
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     390,
+     488
+    ],
+    "figma_node": "258:4311",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   },
+   "t": {
+    "media": "(min-width: 600px) and (max-width: 1023px)",
+    "frame": [
+     834,
+     556
+    ],
+    "widths": [
+     834,
+     1668
+    ],
+    "rest_window": [
+     0,
+     21118,
+     834,
+     556
+    ],
+    "rest_in_frame": [
+     0,
+     0,
+     834,
+     556
+    ],
+    "figma_node": "258:4811",
+    "override": "Д4: замена снимка (photo_replace.json)"
+   }
+  }
+ }
+}

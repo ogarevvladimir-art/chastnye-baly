@@ -1,0 +1,8 @@
+/* Гарнитуры системы. Локальных бинарников шрифтов в исходных материалах не было —
+   обе гарнитуры подключаются с Google Fonts (Old Standard TT есть и в Tilda).
+   Old Standard TT — точное совпадение с макетом.
+   Гротеск служебного слоя в бренде не определён: в Tilda переменные
+   --t-headline-font / --t-text-font не заданы, а Archivo из исходного канваса
+   убран по требованию заказчика. До получения файлов гротеск берётся системный
+   (--font-sans в tokens/typography.css) — это плейсхолдер, а не выбор бренда. */
+@import url("https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap");

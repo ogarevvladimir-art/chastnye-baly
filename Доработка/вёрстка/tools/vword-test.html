@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Проверка вертикального гиганта (writing-mode)</title>
+  <link rel="stylesheet" href="../../../site/css/tokens.css">
+  <link rel="stylesheet" href="../../../site/css/base.css">
+  <style>
+    body { padding: 16px; display: flex; gap: 8px; align-items: flex-start; }
+    .v { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; color: var(--c-greige-light); }
+    .s { text-orientation: sideways; }
+    .h { white-space: nowrap; color: var(--c-greige-light); }
+  </style>
+</head>
+<body>
+  <div class="t-giant v" id="a1">Разговор</div>
+  <div class="t-giant v" id="a2">Концепция</div>
+  <div class="t-giant v" id="a3">Репетиции</div>
+  <div class="t-giant v" id="a4">Вечер</div>
+  <div class="t-giant v" id="a5">Воспоминания</div>
+  <div class="t-giant v s" id="b5">Воспоминания</div>
+  <div>
+    <div class="t-giant h" id="h1">Разговор</div>
+    <div class="t-giant h" id="h5">Воспоминания</div>
+  </div>
+</body>
+</html>

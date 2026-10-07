@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" viewport="700x470" name="Основы" subtitle="Кнопка, текстовая ссылка, метка секции, поле формы" -->
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>html,body{margin:0}body{background:var(--surface-page);color:var(--greige-90);font-family:var(--font-sans);width:700px;box-sizing:border-box;padding:20px}
+.cap{font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--text-muted)}
+.demo{border:1px solid var(--line-row);padding:18px;display:flex;align-items:center;justify-content:center;min-height:84px}
+a{color:var(--color-accent);text-decoration:none}a:hover{color:var(--color-accent-hover)}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Button, TextLink, SectionLabel, FormField } = window.ChastnyeBalyDesignSystem_059c2e;
+function Cell({ cap, children }) {
+  return <div style={{display:'flex',flexDirection:'column',gap:8}}><div className="demo">{children}</div><div className="cap">{cap}</div></div>;
+}
+function App() {
+  return (
+    <div style={{display:'flex',flexDirection:'column',gap:22}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}}>
+        <Cell cap="Button · md · rest / hover"><Button>Оставить заявку</Button></Cell>
+        <Cell cap="Button · lg"><Button size="lg">Оставить заявку</Button></Cell>
+        <Cell cap="Button · disabled"><Button disabled>Оставить заявку</Button></Cell>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+        <Cell cap="TextLink · hover растит линию"><TextLink>обсудить вечер</TextLink></Cell>
+        <Cell cap="SectionLabel · accent / on-brand">
+          <div style={{display:'flex',flexDirection:'column',gap:10}}>
+            <SectionLabel number="02">ПОДГОТОВКА</SectionLabel>
+            <SectionLabel number="01" />
+            <div style={{background:'var(--surface-brand)',padding:'6px 10px'}}><SectionLabel number="01" tone="on-brand">ЧАСТНЫЕ БАЛЫ</SectionLabel></div>
+          </div>
+        </Cell>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16,alignItems:'start'}}>
+        <FormField label="Имя" placeholder="Как к вам обращаться" hint="rest · плейсхолдер 30%" />
+        <FormField label="Телефон" value="+7 916 " state="focus" hint="focus · линия 100%" />
+        <FormField label="E-mail" value="ivanov@" state="error" hint="error · терракота на линии и метке" />
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script></body></html>

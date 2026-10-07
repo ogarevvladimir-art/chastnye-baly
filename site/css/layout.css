@@ -1,0 +1,440 @@
+/* Раскладка страницы: контейнер, ссылка «К содержанию», шапка, меню. */
+
+/* Содержимое секции: поля 16 / 32 / 64; шире 1920 композиция замирает и встаёт по центру, фон секции идёт в край */
+.wrap {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+.skip {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 12px 16px;
+  background: var(--c-panel);
+  color: var(--c-text-ink);
+  transform: translateY(-200%);
+}
+
+.skip:focus-visible {
+  transform: none;
+}
+
+/* ---------- Шапка ----------
+   Единственный fixed-элемент: логотип и «Меню» на всех ширинах (П-01). Фона нет (поверх фото и полей). «Над светлым» — по частям:
+   data-over="light" у логотипа или «Меню», под серединой которых светлая зона (header.js, data-header="light"): часть Ink, смена 0,2 с. */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--header-h);
+  color: var(--c-greige-light);
+  --c-logo: var(--c-greige);
+  transition: color 0.2s var(--ease-state);
+}
+
+html:not([data-menu]) .site-header__logo[data-over="light"],
+html:not([data-menu]) .site-header__menu[data-over="light"] {
+  color: var(--c-text-ink);
+}
+
+.site-header__in {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: var(--page-max);
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: var(--header-pad);
+}
+
+/* Логотип 94 × 36 */
+.site-header__logo {
+  display: block;
+  color: var(--c-logo);
+  transition: color 0.2s var(--ease-state);
+}
+
+.site-header__logo .logo {
+  width: 94px;
+  height: auto;
+}
+
+/* «Меню» ↔ «Закрыть»: ширина кнопки — по «Закрыть», слово у правого края, зона нажатия 96 / 112 × 44 до края экрана */
+.site-header__menu {
+  display: grid;
+  align-items: center;
+  justify-items: end;
+  min-width: calc(96px - var(--header-pad));
+  min-height: var(--tap);
+  margin-left: auto;
+  margin-right: calc(-1 * var(--header-pad));
+  padding-right: var(--header-pad);
+  font-family: var(--ff-sans);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: inherit;
+  transition: color 0.2s var(--ease-state);
+}
+
+.site-header__menu > span {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.site-header__menu-size {
+  visibility: hidden;
+}
+
+.site-header__menu:focus-visible {
+  outline-offset: -2px;
+}
+
+@media (min-width: 600px) {
+  .site-header__menu {
+    min-width: calc(112px - var(--header-pad));
+  }
+}
+
+/* Десктоп: «Меню» 16 */
+@media (min-width: 1024px) {
+  .site-header__menu {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+/* Меню открыто: шапка светлая */
+html[data-menu] .site-header {
+  color: var(--c-greige-light);
+  --c-logo: var(--c-greige);
+}
+
+/* Блокировка скролла под меню: место под полосу прокрутки сохраняется — ширина окна, --vw и кегли не прыгают */
+html.is-locked {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+/* ---------- Меню ----------
+   Шторка Ink сверху: открытие 0,7 с ease-out quad, закрытие 0,75 с ease-in quad. Стопка прижата к нижнему краю шторки
+   и едет с ней. Состояния — data-state: closed / open / closing (menu.js). */
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  height: 100vh;
+  height: 100dvh;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.menu[data-state="open"],
+.menu[data-state="closing"] {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu__panel {
+  position: absolute;
+  inset: 0;
+  background: var(--c-ink);
+  transform: translateY(-100%);
+}
+
+.menu[data-state="open"] .menu__panel {
+  transform: none;
+  transition: transform 0.7s var(--ease-menu);
+}
+
+.menu[data-state="closing"] .menu__panel {
+  transform: translateY(-100%);
+  transition: transform 0.75s cubic-bezier(0.11, 0, 0.5, 0);
+}
+
+.menu__in {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: var(--page-max);
+  height: 100%;
+  margin-inline: auto;
+  padding: 96px var(--margin) calc(16px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Телефон и почта — капс 12, Greige 70, над стопкой */
+.menu__contacts {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  opacity: 0;
+}
+
+.menu__contacts a {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap);
+  margin-block: -14px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--c-greige-70);
+}
+
+.menu[data-state="open"] .menu__contacts,
+.menu[data-state="closing"] .menu__contacts {
+  opacity: 1;
+}
+
+.menu[data-state="open"] .menu__contacts {
+  transition: opacity 0.2s ease-out 0.5s;
+}
+
+.menu__nav {
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+/* Пункт: гигант 40 / 72, шаг 44 / 80 — строка целиком и есть зона нажатия. Нечётные Greige Light, чётные Terracotta Deep */
+.menu__item {
+  display: block;
+}
+
+.menu__label {
+  display: none;
+}
+
+.menu__word {
+  display: block;
+  --step: 44;
+  padding-block: calc((var(--step) / var(--fs) - 0.85) / 2 * 1em);
+  white-space: nowrap;
+  color: var(--c-greige-light);
+  opacity: 0;
+}
+
+.menu__list li:nth-child(even) .menu__word {
+  color: var(--c-terracotta-deep);
+}
+
+/* Уже 380 гигант стоит на полу 38: «ПОДГОТОВКА» шире колонки на 1 px (360) — трекинг чуть плотнее */
+@media (max-width: 379px) {
+  .menu__word {
+    letter-spacing: -0.035em;
+  }
+}
+
+/* Проявление снизу вверх: нижнее слово — 0,1 с, шаг 0,045 с, 0,2 с ease-out. При закрытии слова уезжают со шторкой */
+.menu[data-state="open"] .menu__word,
+.menu[data-state="closing"] .menu__word {
+  opacity: 1;
+}
+
+.menu[data-state="open"] .menu__word {
+  transition: opacity 0.2s ease-out calc(0.1s + (12 - var(--i)) * 0.045s);
+}
+
+.menu__list li:nth-child(1) { --i: 1; }
+.menu__list li:nth-child(2) { --i: 2; }
+.menu__list li:nth-child(3) { --i: 3; }
+.menu__list li:nth-child(4) { --i: 4; }
+.menu__list li:nth-child(5) { --i: 5; }
+.menu__list li:nth-child(6) { --i: 6; }
+.menu__list li:nth-child(7) { --i: 7; }
+.menu__list li:nth-child(8) { --i: 8; }
+.menu__list li:nth-child(9) { --i: 9; }
+.menu__list li:nth-child(10) { --i: 10; }
+.menu__list li:nth-child(11) { --i: 11; }
+.menu__list li:nth-child(12) { --i: 12; }
+
+@media (min-width: 600px) {
+  .menu__in {
+    padding-top: 104px;
+    padding-bottom: calc(32px + env(safe-area-inset-bottom));
+  }
+
+  .menu__word {
+    --step: 80;
+  }
+}
+
+/* Десктоп: метки «01 — Подготовка» двумя колонками лесенкой (01–06 от поля, 07–12 от оси), шаг 32;
+   наведение или фокус — метка Greige Light и гигант раздела Terracotta Deep 150 у нижнего края. Телефон и почта внизу.
+   Окно ниже 932 (Р-3): верх меток (144) и низ гиганта (100 над низом окна, не меньше 72) идут за высотой окна, а гигант
+   ужимается до места между метками и низом (зазор 24) — на метки 07–12 не заходит. Без нижнего предела.
+   Закрытие (П-03): гиганты скрыты; если закрыли кликом по пункту (data-picked, menu.js), его гигант уезжает со шторкой. */
+@media (min-width: 1024px) {
+  .menu {
+    --menu-h: 100vh;
+    --menu-top: min(144px, 15.45vh);
+    --menu-bottom: max(72px, min(100px, 10.73vh));
+  }
+
+  @supports (height: 100dvh) {
+    .menu {
+      --menu-h: 100dvh;
+      --menu-top: min(144px, 15.45dvh);
+      --menu-bottom: max(72px, min(100px, 10.73dvh));
+    }
+  }
+
+  .menu__in {
+    display: block;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .menu__contacts {
+    position: absolute;
+    left: var(--margin);
+    bottom: 43px;
+    display: grid;
+    grid-template-columns: calc(656 * var(--u)) auto;
+    justify-content: start;
+    gap: 0;
+  }
+
+  .menu__contacts a {
+    font-size: 11px;
+    line-height: 1.4;
+    margin-block: -13px;
+  }
+
+  /* Колонки меток с y 152 (строка 32, метка по центру); низ гиганта — на 100 px выше низа экрана (832 из 932) */
+  .menu__nav {
+    position: absolute;
+    top: var(--menu-top);
+    bottom: var(--menu-bottom);
+    left: var(--margin);
+    right: var(--margin);
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu__list {
+    display: grid;
+    grid-template-columns: calc(656 * var(--u)) auto;
+    grid-template-rows: repeat(12, 32px);
+    justify-content: start;
+  }
+
+  .menu__list li:nth-child(-n + 6) { grid-column: 1; }
+  .menu__list li:nth-child(n + 7) { grid-column: 2; }
+  .menu__list li { grid-row: var(--i); }
+
+  .menu__item {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+  }
+
+  .menu__label {
+    display: block;
+    color: var(--c-greige-70);
+    opacity: 0;
+    transition: color var(--t-hover) var(--ease-state);
+  }
+
+  .menu[data-state="open"] .menu__label,
+  .menu[data-state="closing"] .menu__label {
+    opacity: 1;
+  }
+
+  .menu[data-state="open"] .menu__label {
+    transition: opacity 0.2s ease-out calc(0.1s + (12 - var(--i)) * 0.045s), color var(--t-hover) var(--ease-state);
+  }
+
+  .menu__word,
+  .menu__list li:nth-child(even) .menu__word {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0;
+    font-size: min(calc(var(--fs) * var(--u)), calc((var(--menu-h) - var(--menu-top) - var(--menu-bottom) - 12 * 32px - 24px) / 0.85));
+    color: var(--c-terracotta-deep);
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: opacity var(--t-hover) var(--ease-state), transform var(--t-hover) var(--ease-state);
+  }
+
+  .menu[data-state="open"] .menu__word {
+    opacity: 0;
+    transition: opacity var(--t-hover) var(--ease-state), transform var(--t-hover) var(--ease-state);
+  }
+
+  .menu[data-state="open"] .menu__item:hover .menu__label,
+  .menu[data-state="open"] .menu__item:focus-visible .menu__label {
+    color: var(--c-greige-light);
+  }
+
+  .menu[data-state="open"] .menu__item:hover .menu__word,
+  .menu[data-state="open"] .menu__item:focus-visible .menu__word {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* li .menu__word — специфичнее «nth-child(even) .menu__word» с переходом наведения */
+  .menu[data-state="closing"] .menu__list li .menu__word {
+    opacity: 0;
+    transition: none;
+  }
+
+  .menu[data-state="closing"] .menu__list li .menu__item[data-picked] .menu__word {
+    opacity: 1;
+    transform: none;
+  }
+
+  .menu__item:focus-visible {
+    outline-offset: 4px;
+  }
+}
+
+/* reduced-motion: шторка без движения — проявление ≤ 0,15 с, слова сразу на месте */
+@media (prefers-reduced-motion: reduce) {
+  .menu__panel,
+  .menu[data-state="closing"] .menu__panel {
+    transform: none;
+    opacity: 0;
+  }
+
+  .menu[data-state="open"] .menu__panel {
+    opacity: 1;
+    transition: opacity 0.15s linear;
+  }
+
+  .menu[data-state="closing"] .menu__panel {
+    transition: opacity 0.15s linear;
+  }
+
+  .menu[data-state] .menu__word,
+  .menu[data-state] .menu__label,
+  .menu[data-state] .menu__contacts {
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
+
+/* Каркас этапа 0: высота секции по кадру Figma (--h-m / --h-t / --h-d, px макета).
+   Класс .ph снимается с секции, когда блок свёрстан. */
+.ph {
+  --h: var(--h-m);
+  min-height: calc(var(--h) * var(--u));
+}
+
+@media (min-width: 600px) {
+  .ph { --h: var(--h-t); }
+}
+
+@media (min-width: 1024px) {
+  .ph { --h: var(--h-d); }
+}

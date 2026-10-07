@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Страница сайта" description="Лендинг «Частные балы»: hero на Terra, шаги подготовки, сегменты, полоса-передышка, финальный CTA" -->
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap">
+<script src="./ds-base.js"></script>
+<style>body{margin:0;background:#060606}a{color:#c96a42;text-decoration:none}a:hover{color:#e08a5f}</style>
+</helmet>
+<div style="background: #060606; color: #aba79a; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif">
+
+  <div style="background: #653624; padding: 0 64px">
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.SiteHeader" items="{{ nav }}" active="Вечера" phone="+7 495 000-00-00" surface="brand" hint-size="100%,80px"></x-import>
+  </div>
+
+  <div style="background: #653624; padding: 100px 64px 88px; display: flex; flex-direction: column; gap: 34px; min-height: 460px; box-sizing: border-box">
+    <div style="font-size: 13px; font-weight: 500; letter-spacing: 2.34px; color: rgba(171,167,154,0.7)">01 — ЧАСТНЫЕ БАЛЫ</div>
+    <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-weight: 400; font-size: 118px; line-height: 0.8; letter-spacing: -6px; color: rgba(171,167,154,0.95)">Ваша история.<br>Ваш вечер.</h1>
+    <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.TextLink" hint-size="260px,52px">обсудить вечер</x-import>
+  </div>
+
+  <div style="padding: 132px 64px; display: flex; flex-direction: column; gap: 72px">
+    <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: start">
+      <div style="grid-column: span 3; font-size: 13px; font-weight: 500; letter-spacing: 2.34px; color: #c96a42">02 — ПОДГОТОВКА</div>
+      <div style="grid-column: span 9; display: flex; flex-direction: column; gap: 34px">
+        <h2 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-weight: 400; font-size: 88px; line-height: 0.8; letter-spacing: -5px; color: rgba(171,167,154,0.9)">Как мы готовим<br>ваш вечер</h2>
+        <p style="margin: 0; max-width: 640px; font-size: 14px; font-weight: 600; line-height: 1.7; letter-spacing: 0.5px; text-transform: uppercase; color: rgba(171,167,154,0.5)">Мы не начинаем с анкеты и не заканчиваем договором. Мы начинаем с разговора.</p>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+      <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.StepItem" number="01" title="Разговор" hint-size="100%,220px">Вы рассказываете о своём вечере — для кого он, почему именно бал, что для вас важно.</x-import>
+      <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.StepItem" number="02" title="Сценарий" hint-size="100%,220px">Мы собираем вечер из того, что услышали: музыка, танцы, порядок, паузы.</x-import>
+      <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.StepItem" number="03" title="Репетиции" hint-size="100%,220px">Танцмейстер и ассистент готовят вас и гостей — в вашем темпе, а не по программе.</x-import>
+    </div>
+  </div>
+
+  <div style="padding: 0 64px 132px; display: flex; flex-direction: column; gap: 44px">
+    <div style="font-size: 13px; font-weight: 500; letter-spacing: 2.34px; color: #c96a42">03 — ВЕЧЕРА</div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+      <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.SegmentCard" number="01" title="Частный бал" subtitle="для семьи и близких" hint-size="100%,300px">Свадьба, юбилей, день рождения — событие, за которым стоит целая история семьи.</x-import>
+      <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.SegmentCard" number="02" title="Корпоративный бал" subtitle="для компании и партнёров" surface="brand" hint-size="100%,300px">Годовщина компании, новогодний приём, вечер в честь партнёров.</x-import>
+    </div>
+  </div>
+
+  <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.QuoteBand" eyebrow="мы научились танцевать вальс" hint-size="100%,340px">чтобы вечер стал тем, что вспоминают годами</x-import>
+
+  <x-import component-from-global-scope="ChastnyeBalyDesignSystem_059c2e.CTABand" number="05" label="СВЯЗАТЬСЯ" title="Расскажите о вечере" hint-size="100%,360px"></x-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2100}}">
+class Component extends DCLogic {
+  renderVals() {
+    return { nav: ['Как это происходит', 'Вечера', 'О нас', 'Связаться'] };
+  }
+}
+</script>
+</body>
+</html>

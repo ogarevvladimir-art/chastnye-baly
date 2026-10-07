@@ -1,13 +1,13 @@
 /* =========================================================
    ЧАСТНЫЕ БАЛЫ — поведение прототипа
 
-   Слои движения:
-   · reveal-on-scroll (opacity + translate, stagger через --d) — база;
-   · посимвольное появление заголовков (data-gradual);
+   Слои движения (этап 15 свёл их к одному таймингу 240ms ease):
+   · reveal-on-scroll — чистая прозрачность 0 → 1, без сдвига и каскада;
    · инерционный скролл (Lenis), связанный с тикером GSAP;
-   · раскрытие медиа маской снизу вверх + контр-движение картинки;
+   · выезд мега-строки из-под маски — единственное движение сверх системы,
+     оставленное решением владельца как ведущий приём сайта;
    · sticky-стопка полос в секции «Люди»;
-   · прочерчивающиеся hairline и счётчики в фактах.
+   · прочерчивающиеся hairline (рост линии — роль из системы).
 
    Всё, что движется, отключается при prefers-reduced-motion: reduce.
    ========================================================= */
@@ -28,6 +28,158 @@
   if (hasGsapLib && window.ScrollTrigger) gsap.registerPlugin(window.ScrollTrigger);
   var hasST = hasGsapLib && !!window.ScrollTrigger;
 
+  /* ---------- 0. Шкала движения ---------- */
+  /* Пять ступеней длительности, шаг каскада и кривые объявлены один раз —
+     в :root (styles.css, «Шкала движения»). Читаем их оттуда, а не держим
+     здесь вторую копию: две копии одной шкалы разъезжаются на первой же
+     правке, и половина сайта начинает двигаться не как вторая половина.
+     CSS считает в миллисекундах, GSAP — в секундах; перевод здесь. */
+  var rootCS = window.getComputedStyle(document.documentElement);
+
+  /* ---------- 0a. Готовность гарнитур ---------- */
+  /* Заголовки с посимвольным появлением показываются не раньше, чем придут
+     веб-шрифты. Причина не в красоте первого кадра, а в вёрстке: запасная
+     гарнитура шире, и «Частные балы» в 130 px не помещаются в свою колонку —
+     строка уезжает на вторую, первый экран становится выше на 114 px, а с
+     приходом Manrope собирается обратно. Пока заголовок спрятан и его строки
+     не переносятся (styles.css, A1a), высота коробки от гарнитуры не зависит
+     и сдвигать нечего.
+
+     Ждать почти не приходится: таблица стилей шрифтов и так блокирует
+     отрисовку, остаются сами файлы. Сторож — на случай, если ready не придёт
+     вовсе (сеть отвалилась, шрифты вырезаны прокси): заголовок обязан
+     появиться в любом случае, пусть и запасной гарнитурой. */
+  var FONTS_GUARD = 900;
+
+  function whenFontsReady(fn) {
+    if (!document.fonts || !document.fonts.ready) return fn();
+    var called = false;
+    var run = function () {
+      if (called) return;
+      called = true;
+      fn();
+    };
+    document.fonts.ready.then(run, run);
+    window.setTimeout(run, FONTS_GUARD);
+  }
+
+  /* ---------- Этап 19. Заголовок героя: притирка фолбэка ----------
+
+     Хвост «сдвиг заголовка героя» с самого начала работы. Разбор целиком —
+     в styles.css у правила .hero__title .line; здесь исполнение.
+
+     Коротко: до этапа 15 заголовок нёс data-gradual и был разобран
+     на span'ы по знакам, отчего его высота была задана с первого кадра.
+     Приём сняли — и заголовок стал обычным текстом, который до прихода
+     Old Standard TT / Manrope набирается фолбэком. Фолбэк шире, строка
+     переносилась на две, высота скакала со 228,8 на 114,4. Это и был
+     весь CLS: 0,0376 на 1440 при нуле на версии до этапа 13.
+
+     CSS уже запретил перенос (white-space: nowrap). Осталось второе:
+     фолбэк шире поля, и без притирки его просто срезало бы краем —
+     на 1024 заголовок читался «ЧАСТНЫЕ БАЛ». Здесь считается,
+     насколько строку сжать по горизонтали, чтобы она влезла целиком.
+
+     Коэффициент только УМЕНЬШАЕТ (min(1, …)): растягивать строку шире
+     набранной незачем — кегль задан clamp'ом и это его работа.
+     У настоящей гарнитуры набор у́же поля, коэффициент выходит ровно 1,
+     и в установившемся состоянии не меняется ничего.
+
+     Считается дважды: сразу (пока стоит фолбэк) и по готовности
+     гарнитур — через whenFontsReady, у которого есть страховка
+     по таймауту на случай, если шрифты не придут вовсе. */
+  function fitHeroLines() {
+    var lines = document.querySelectorAll('.hero__title .line');
+    if (!lines.length) return;
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var span = line.firstElementChild;
+      if (!span) continue;
+
+      /* Замер идёт при коэффициенте 1: getBoundingClientRect отдаёт
+         ширину УЖЕ С УЧЁТОМ transform, и мерить сжатую строку значило бы
+         считать коэффициент от собственного прошлого результата. */
+      span.style.setProperty('--fit-x', '1');
+
+      var avail = line.clientWidth;
+      var need  = span.getBoundingClientRect().width;
+      if (!avail || !need) continue;
+
+      span.style.setProperty('--fit-x', Math.min(1, avail / need).toFixed(4));
+    }
+  }
+
+  fitHeroLines();
+  whenFontsReady(fitHeroLines);
+
+  var heroFitTicking = false;
+  window.addEventListener('resize', function () {
+    if (heroFitTicking) return;
+    heroFitTicking = true;
+    window.requestAnimationFrame(function () {
+      heroFitTicking = false;
+      fitHeroLines();
+    });
+  }, { passive: true });
+
+  function motionSec(token) {
+    var v = rootCS.getPropertyValue(token).trim();
+    // Стилей нет — движения тоже: анимировать нечего, ставим мгновенно
+    if (!v) return 0;
+    var n = parseFloat(v);
+    if (isNaN(n)) return 0;
+    return v.slice(-2) === 'ms' ? n / 1000 : n;
+  }
+
+  /* Кривая берётся из того же токена и отдаётся CustomEase, чтобы твин
+     и CSS-переход шли по одной геометрии, а не «примерно похоже».
+     Без плагина (или при неразборчивом значении) — ближайший штатный ease.
+
+     Токен системы — ключевое слово `ease`, а не cubic-bezier. У CSS это
+     ровно cubic-bezier(.25, .1, .25, 1); собственного эквивалента у GSAP
+     нет (его 'power1.inOut' заметно симметричнее), поэтому раскрываем
+     ключевые слова в их спецификационные координаты и дальше идём
+     тем же путём, что и любая явная кривая. */
+  var CSS_KEYWORD_EASE = {
+    'ease':        [.25, .1, .25, 1],
+    'ease-in':     [.42, 0, 1, 1],
+    'ease-out':    [0, 0, .58, 1],
+    'ease-in-out': [.42, 0, .58, 1],
+    'linear':      [0, 0, 1, 1]
+  };
+
+  function motionEase(token, fallback) {
+    if (!hasGsapLib) return fallback;
+    var id = token.replace(/^--/, '');
+    try {
+      var raw = rootCS.getPropertyValue(token).trim();
+      var nums = CSS_KEYWORD_EASE[raw] || raw.match(/-?\d*\.?\d+/g);
+      if (!window.CustomEase || !nums || nums.length !== 4) {
+        // Без CustomEase ключевое слово CSS всё же понимает сам GSAP
+        return (raw && gsap.parseEase(raw)) ? raw : fallback;
+      }
+      gsap.registerPlugin(window.CustomEase);
+      CustomEase.create(id, nums.join(','));
+      return gsap.parseEase(id) ? id : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  /* Одна длительность и одна кривая на всё, что ведёт GSAP, — те же самые,
+     что и у переходов в CSS: шкала объявлена в styles.css (раздел 1)
+     и читается отсюда, копии значений в JS нет. */
+  var DUR_MOTION = motionSec('--duration-hover');
+
+  var EASE_MOTION = motionEase('--easing', 'power1.inOut');
+
+  /* Инерция скролла — не переход интерфейса, и под 240ms её не подвести:
+     это физика прокрутки, а не появление или отклик элемента. Держим
+     прежнюю величину явным числом, чтобы снятая шкала её не задела.
+     Вынесено в журнал как открытый вопрос к этапу 16. */
+  var SCROLL_GLIDE = 1.3;
+
   /* ---------- 0a. Инерционный скролл (Lenis) ---------- */
   /* Скролл ведёт Lenis, кадры — тикер GSAP: два независимых rAF-цикла
      давали бы рассинхрон между позицией страницы и ScrollTrigger'ами.
@@ -37,7 +189,8 @@
 
   if (!reduceMotion && typeof window.Lenis !== 'undefined') {
     lenis = new Lenis({
-      duration: 1.15,
+      // Инерция скролла — самое медленное движение на странице, ступень 5
+      duration: SCROLL_GLIDE,
       easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
     });
 
@@ -112,7 +265,7 @@
     if (lenis) {
       e.preventDefault();
       // Хедер фиксированный: подводим цель под него, а не под самый верх
-      lenis.scrollTo(target, { offset: -80, duration: 1.25 });
+      lenis.scrollTo(target, { offset: -80, duration: SCROLL_GLIDE });
       // Адрес обновляем сами: preventDefault снял штатное поведение
       if (window.history && history.pushState) history.pushState(null, '', hash);
     }
@@ -265,26 +418,17 @@
     var backdrops    = navOverlay.querySelectorAll('.backdrop-layer');
     var navLinks     = navOverlay.querySelectorAll('.nav-link');
     var fadeTargets  = navOverlay.querySelectorAll('[data-menu-fade]');
-    var btnTexts     = menuButton.querySelectorAll('.menu-button__text > span');
-    var btnIcon      = menuButton.querySelector('.menu-button__icon');
     var shapeItems   = navOverlay.querySelectorAll('.menu-list-item[data-shape]');
     var isMenuOpen   = false;
-    var EASE = 'power2.out';
-    var DUR  = reduceMotion ? 0.01 : 0.7;
+    /* Раскрытие меню идёт тем же одним таймингом, что и всё остальное:
+       240ms ease. Этап 15 снял отсюда каскад (stagger), выезды пунктов
+       снизу с поворотом, всплытие подписей и въезд штор сбоку — меню было
+       самым крупным местом, где жили приёмы, которых в системе нет.
+       Осталась смена прозрачности: панель есть или её нет. */
+    var EASE = EASE_MOTION;
+    var DUR  = reduceMotion ? 0 : DUR_MOTION;
 
     if (hasGsap) {
-      // Кастомный ease референса; при недоступности плагина — штатный power2
-      try {
-        if (window.CustomEase) {
-          gsap.registerPlugin(window.CustomEase);
-          if (!gsap.parseEase('menuMain')) {
-            CustomEase.create('menuMain', '0.65, 0.01, 0.05, 0.99');
-          }
-        }
-      } catch (e) { /* тихо откатываемся ниже */ }
-
-      if (gsap.parseEase('menuMain')) EASE = 'menuMain';
-
       /* Наведение на пункт — проявление соответствующей фоновой графики */
       shapeItems.forEach(function (item) {
         var shape = navOverlay.querySelector('.bg-shape-' + item.getAttribute('data-shape'));
@@ -296,15 +440,17 @@
             s.classList.remove('active');
           });
           shape.classList.add('active');
+          /* Ни пружины, ни каскада, ни масштаба с поворотом: графика
+             просто проявляется — единственное, что система разрешает. */
           gsap.fromTo(els,
-            { scale: 0.5, opacity: 0, rotation: -10 },
-            { scale: 1, opacity: 1, rotation: 0, duration: 0.6,
-              stagger: 0.08, ease: 'back.out(1.7)', overwrite: 'auto' });
+            { opacity: 0 },
+            { opacity: 1, duration: DUR_MOTION, ease: EASE_MOTION,
+              overwrite: 'auto' });
         });
 
         item.addEventListener('mouseleave', function () {
           gsap.to(els, {
-            scale: 0.8, opacity: 0, duration: 0.3, ease: 'power2.in',
+            opacity: 0, duration: DUR_MOTION, ease: EASE_MOTION,
             overwrite: 'auto',
             onComplete: function () { shape.classList.remove('active'); }
           });
@@ -322,18 +468,17 @@
 
       if (!hasGsap) return;
 
+      /* Всё появляется разом и одной прозрачностью. Шторы и панель ставятся
+         на место без хода: их положение — раскладка, а не движение.
+         Смена значка кнопки идёт тем же fade, поворот на 315° снят. */
       gsap.timeline({ defaults: { ease: EASE, duration: DUR } })
         .set(navOverlay, { display: 'block' })
         .set(panel, { xPercent: 0 }, '<')
-        .fromTo(btnTexts, { yPercent: 0 }, { yPercent: -100, stagger: 0.2 })
-        .fromTo(btnIcon, { rotate: 0 }, { rotate: 315 }, '<')
-        .fromTo(scrim, { autoAlpha: 0 }, { autoAlpha: 1 }, '<')
-        .fromTo(backdrops, { xPercent: 101 }, { xPercent: 0, stagger: 0.12, duration: DUR * 0.82 }, '<')
-        // Амплитуду сняли под крупный кегель: на 128px прежние 140%/6°
-        // выносили слово далеко за маску и разворачивали его слишком заметно
-        .fromTo(navLinks, { yPercent: 105, rotate: 3 }, { yPercent: 0, rotate: 0, stagger: 0.05 }, '<+=0.35')
-        .fromTo(fadeTargets, { autoAlpha: 0, yPercent: 50 },
-                { autoAlpha: 1, yPercent: 0, stagger: 0.04, clearProps: 'all' }, '<+=0.2');
+        .set(backdrops, { xPercent: 0 }, '<')
+        .fromTo(scrim, { autoAlpha: 0 }, { autoAlpha: 1 })
+        .fromTo(navLinks, { autoAlpha: 0 }, { autoAlpha: 1 }, '<')
+        .fromTo(fadeTargets, { autoAlpha: 0 },
+                { autoAlpha: 1, clearProps: 'all' }, '<');
     }
 
     function closeMenu() {
@@ -348,9 +493,7 @@
 
       gsap.timeline({ defaults: { ease: EASE, duration: DUR } })
         .to(scrim, { autoAlpha: 0 })
-        .to(panel, { xPercent: 120 }, '<')
-        .to(btnTexts, { yPercent: 0 }, '<')
-        .to(btnIcon, { rotate: 0 }, '<')
+        .to(navLinks, { autoAlpha: 0 }, '<')
         .set(navOverlay, { display: 'none' });
     }
 
@@ -365,81 +508,176 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && isMenuOpen) closeMenu();
     });
-  }
 
-  /* ---------- 3. Посимвольное появление заголовков ---------- */
-  /* Разбиваем на символы до создания observer'а: он должен увидеть готовые узлы.
-     Текст целиком остаётся в aria-label, чтобы скринридер не читал по буквам. */
-  document.querySelectorAll('[data-gradual]').forEach(function (title) {
-    // <br> текста не даёт — подставляем пробел, иначе слова склеятся в aria-label.
-    // Но после дефиса («Вальс-<br>открытие») перенос внутри слова — пробел не нужен.
-    var plain = title.innerHTML
-      .replace(/-\s*<br\s*\/?>/gi, '-')
-      .replace(/<br\s*\/?>/gi, ' ')
-      .replace(/<[^>]+>/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
-    if (!plain) return;
+    /* ---------- Этап 19. Текущий раздел в меню ----------
 
-    title.setAttribute('aria-label', plain);
-    // Длинные и многострочные набираются быстрее, иначе хвост заметно отстаёт
-    if (plain.length > 18 || title.querySelector('br')) title.classList.add('is-long');
+       Хвост с этапа 8: место под правило было оставлено в styles.css
+       (.nav-link[aria-current] .nav-link__text), но ставить его было
+       не на чем — слежения за прокруткой в файле не было.
 
-    var index = 0;
+       Что делает: помечает пункт меню того раздела, в котором сейчас
+       стоит страница. Метка — атрибут aria-current="true"; цвет вешает
+       CSS, здесь только факт «мы в этом разделе». Терракота по системе
+       допустима как метка раздела, и теперь она значит ровно это.
 
-    // Рекурсивный обход: текст в hero и proc__title лежит внутри .line > span,
-    // поэтому одним уровнем childNodes не обойтись
-    function split(parent) {
-      Array.prototype.slice.call(parent.childNodes).forEach(function (node) {
-        // Элемент — спускаемся внутрь, саму обёртку прячем от скринридера
-        if (node.nodeType === 1) {
-          node.setAttribute('aria-hidden', 'true');
-          split(node);
-          return;
-        }
-        if (node.nodeType !== 3) return;
+       ПОЧЕМУ IntersectionObserver, А НЕ ЗАМЕР НА КАЖДЫЙ КАДР ПРОКРУТКИ.
+       Тем же приёмом в файле сделаны появления (раздел 3) и пауза
+       героя за кадром: наблюдатель будит браузер только на пересечении
+       границы, а не 60 раз в секунду. Прокрутку здесь ведёт Lenis,
+       и вешать на неё ещё один синхронный замер геометрии значило бы
+       платить кадрами за подсветку, которой в закрытом меню не видно.
 
-        // Отступы разметки между блочными строками (.line) — не текст заголовка.
-        // Без этой проверки переносы строк в HTML становятся пустыми .char
-        // и раздувают заголовок по высоте.
-        if (!node.nodeValue.trim()) return;
+       ПОЧЕМУ ПОЛОСА, А НЕ ТОЧКА. Разделы разной высоты, и на стыке
+       двух в кадре всегда два сразу. Считаем текущим тот, что накрывает
+       ЛИНИЮ В ТРЕТИ ЭКРАНА СВЕРХУ: rootMargin отрезает от корневой
+       области всё, кроме узкой полосы на этой высоте, и пересекается
+       с ней в каждый момент ровно один раздел. Треть, а не середина:
+       читают верх экрана, и раздел должен помечаться, когда его
+       заголовок пришёл, а не когда он дошёл до середины.
 
-        var frag = document.createDocumentFragment();
+       ПОРЯДОК ВАЖЕН. entries приходят не в порядке страницы, поэтому
+       из накрывающих линию берём не «последний в списке», а тот,
+       что ниже всех по документу: при быстрой прокрутке в одну пачку
+       попадают вход одного раздела и выход другого.
 
-        // Режем на слова и пробелы: буквы кладём внутрь .word, пробелы — снаружи,
-        // чтобы строка могла переноситься только по пробелам
-        node.nodeValue.split(/(\s+)/).forEach(function (part) {
-          if (!part) return;
+       БЕЗ JS и без IntersectionObserver метки просто нет — все девять
+       пунктов идут одинаковым грежем, как и до этапа. Это не потеря
+       содержания: пункт и так назван словом и номером. */
+    var navSectionLinks = navOverlay.querySelectorAll('.nav-link[href^="#"]');
 
-          if (!part.trim()) {
-            // Пробел оставляем обычным текстом: inline-block не схлопывается
-            // на переносе строки и утаскивает лишние 8px в начало новой строки
-            // («Корпоративный / ␣бал»). Такта он тоже не тратит.
-            frag.appendChild(document.createTextNode(part));
-            return;
+    if (navSectionLinks.length && 'IntersectionObserver' in window) {
+      var navBySection = {};
+      var navWatched = [];
+
+      navSectionLinks.forEach(function (link) {
+        var id = (link.getAttribute('href') || '').slice(1);
+        if (!id) return;
+        var section = document.getElementById(id);
+        if (!section) return;
+        navBySection[id] = link;
+        navWatched.push(section);
+      });
+
+      if (navWatched.length) {
+        var navCurrentId = null;
+        /* Что сейчас пересекает линию. Держим множеством, а не одним
+           значением: разделы входят и выходят разными событиями, и на
+           стыке важно знать всех, кто накрывает линию, чтобы выбрать
+           нижнего по документу. */
+        var navHits = {};
+
+        function navApply() {
+          var pick = null, pickTop = -Infinity, id;
+
+          for (id in navHits) {
+            if (!navHits[id]) continue;
+            var box = document.getElementById(id);
+            if (!box) continue;
+            var top = box.getBoundingClientRect().top;
+            /* Ниже всех по документу — то есть с наибольшим top среди
+               тех, кто линию уже накрыл. */
+            if (top > pickTop) { pickTop = top; pick = id; }
           }
 
-          var word = document.createElement('span');
-          word.className = 'word';
-          word.setAttribute('aria-hidden', 'true');
+          if (pick === navCurrentId) return;
 
-          part.split('').forEach(function (ch) {
-            var span = document.createElement('span');
-            span.className = 'char';
-            span.textContent = ch;
-            span.style.setProperty('--i', index++);
-            word.appendChild(span);
+          if (navCurrentId && navBySection[navCurrentId])
+            navBySection[navCurrentId].removeAttribute('aria-current');
+
+          navCurrentId = pick;
+
+          if (navCurrentId && navBySection[navCurrentId])
+            navBySection[navCurrentId].setAttribute('aria-current', 'true');
+        }
+
+        var navObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            navHits[entry.target.id] = entry.isIntersecting;
           });
-
-          frag.appendChild(word);
+          navApply();
+        }, {
+          /* Полоса на трети экрана сверху: сверху отрезаем 33%,
+             снизу — оставшиеся 67% минус пара пикселей на саму полосу. */
+          rootMargin: '-33% 0px -66% 0px',
+          threshold: 0
         });
 
-        node.parentNode.replaceChild(frag, node);
-      });
+        navWatched.forEach(function (section) { navObserver.observe(section); });
+      }
     }
 
-    split(title);
-  });
+    /* ---------- Этап 19. Правый край лестницы меню (задача 2.7) ----------
+
+       РЕШЕНИЕ: ровный правый край НЕ ДЕЛАЕТСЯ. Ниже — почему, потому что
+       задача висит с этапа 8 и её надо снять с доски, а не передать дальше
+       десятым этапом.
+
+       ЧТО ТРЕБОВАЛОСЬ. Девять пунктов идут лестницей: каждый следующий
+       начинается правее предыдущего (--step, 0…30cqw). Правые концы слов
+       при этом падают куда придётся: на 1440 «Форматы» кончаются на 333,
+       «До вечера» на 585, «О нас» на 632. Разброс 299px. Задание просило
+       пересчитать формулу --menu-size так, чтобы край стал ровным.
+
+       ЧТО ВСКРЫЛ ЗАМЕР — три вещи, и последняя закрывает вопрос.
+
+       1. Девять членов «по ширине» в --menu-size не выбирались НИ РАЗУ.
+          На всех пяти ширинах и на всех проверенных высотах экрана
+          (900, 1080, 1440, 720) побеждал высотный член. На 1440x900:
+          высотный отдаёт 50,03px, самый тесный из девяти width-членов —
+          193,6px. Они не соревновались, они молчали. Половина формулы
+          описывала ограничение, которое не наступает; она снята
+          (см. styles.css).
+
+       2. Коэффициент .58 («ширина прописной Manrope Extra-Bold») неверен.
+          Фактическая ширина слова на единицу кегля: «Звук» 2,42,
+          «О нас» 2,90, «Люди» 2,99, «Вечера» 3,54, «Подход» 4,13,
+          «Правила» 4,51, «Форматы» 4,87, «До вечера» 5,13,
+          «Структура» 5,48. Модель «все знаки одной ширины» ошибается
+          на «Люди» на 29 %: она не знает, из каких букв набрано слово.
+
+       3. ГЛАВНОЕ. Ровного края нет ни при каком кегле — это арифметика.
+          Чтобы девять слов кончались на одной вертикали E, кегль каждого
+          обязан быть (E − step) / unit. Отношение самого крупного кегля
+          к самому мелкому при этом НЕ ОПУСКАЕТСЯ НИЖЕ 2,2 ни на одной
+          ширине и ни при каком положении края:
+
+            ширина 1440, край 650px  — кегли 72,5…189,8, отношение 2,62
+            ширина 1440, край 1301px — кегли 200,8…458,6, отношение 2,28
+            ширина  390, край 338px  — кегли  54,0…119,9, отношение 2,22
+            ширина 2560, край 2392px — кегли 375,2…855,4, отношение 2,28
+
+          То есть «Звук» обязан быть вдвое с лишним крупнее «Структуры» —
+          всегда. Причина в пункте 2: разброс собственной ширины слов
+          (2,42 против 5,48) и есть тот множитель, который ровный край
+          перекладывает в кегли. Ниже некоторого края часть кеглей уходит
+          в МИНУС («О нас» на 1440 при крае 390px: −7,5px) — ступень
+          каскада там уже правее требуемого края.
+
+          Перебор всех положений края шагом в пиксель на трёх ширинах:
+          края, при котором все девять кеглей положительны И отношение
+          не больше 1,67, не существует НИ ОДНОГО.
+
+       ЧТО БЫЛО БЫ ЦЕНОЙ. Три варианта, все хуже нынешнего:
+         — свой кегль каждому пункту: разнобой 2,2× в списке из девяти
+           слов; читается не как лестница, а как случайный набор кеглей,
+           и ломает «кегль — то, что разводит пункты между собой»
+           (задача 2.6, этап 8);
+         — выключка вправо (край ровный по построению): убивает сам
+           каскад, ради которого ступень и заводилась;
+         — растяжка слов по ширине (scaleX / font-stretch): меняет
+           рисунок гарнитуры, а гарнитуры этап не трогает.
+
+       ЧТО ОСТАВЛЕНО. Общий кегль и неровный правый край — то есть
+       нынешнее положение. Лестница читается слева, по ступеням и номерам;
+       правый край в этой композиции не несёт роли — он не линия, вдоль
+       которой что-то выстроено, а просто конец слова.
+
+       Снято при этом только мёртвое: девять width-членов и --fit.
+       Кегль от этого не изменился ни на одной из пяти ширин (проверено:
+       50,03px на 768/1024/1440/2560 и 40px на 390 — до и после).
+
+       Задача 2.7 закрывается этим разбором, а не правкой. */
+  }
 
   /* ---------- 3a-bis. Мега-заголовки во всю ширину ---------- */
   /* Главный приём референса: слово ровно по ширине вьюпорта, буквы упираются
@@ -450,6 +688,68 @@
 
   if (megaTitles.length) {
     var MEGA_BASE = 100;
+
+    /* Просвет по краям (задача 2.2). Доля ширины экрана — чтобы поле росло
+       вместе с кеглем, — но не меньше четырёх пикселей: на 320px восемь
+       десятых процента дают 2,6px, а это уже не просвет, а погрешность. */
+    var MEGA_GAP_RATIO = .008;
+    var MEGA_GAP_MIN = 4;
+
+    /* Канвас нужен ровно за одним: он единственный отдаёт границы краски,
+       а не сумму ширин знаков. Один на все семь строк. */
+    var megaInk = (function () {
+      try { return document.createElement('canvas').getContext('2d'); }
+      catch (e) { return null; }
+    })();
+    /* null — ещё не проверяли, умеет ли движок ctx.letterSpacing */
+    var megaInkOk = null;
+
+    /* Боковые свесы краски при текущем кегле элемента.
+       left  — от начала строки до первой краски: у первого знака есть
+               собственный отступ гарнитуры (у «В» это .0625em);
+       right — насколько краска последней буквы выходит за конец строки:
+               отрицательный трекинг вычитается и после неё, поэтому
+               ширина строки меньше ширины краски.
+       Замер на кегле 440px: 27px слева против −11px справа. То есть слово
+       не только стояло не по центру — справа его резала собственная маска.
+       Без этих двух чисел «равное поле с обеих сторон» не считается:
+       по коробке строки поля выйдут равными, по буквам — нет.
+
+       Кадр внутри строки в канвас не попадал бы, и это не мешало: он стоял
+       в середине, и от его отсутствия одинаково уменьшались и
+       actualBoundingBoxRight, и width — разность, то есть сам свес,
+       не менялась. Ни кадра, ни строки-исключения больше нет (этап 16
+       снял «ТАНЦМЕЙСТЕР ВЕДЁТ ЗАЛ» с приёма), но рассуждение оставлено:
+       вернётся петля — вернётся и случай.
+
+       exact — можно ли сверить ширину канваса с раскладкой (в строке нет
+       кадра). Расхождение больше процента значит, что движок не применил
+       letterSpacing или взял другую гарнитуру: тогда свесы считать нечем,
+       возвращаем нули и обходимся одним просветом. */
+    function megaBearings(el, advance, exact) {
+      var none = { left: 0, right: 0 };
+      if (!megaInk || megaInkOk === false) return none;
+
+      var cs = getComputedStyle(el);
+      var text = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!text) return none;
+      if (cs.textTransform === 'uppercase') text = text.toUpperCase();
+
+      megaInk.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' +
+                     parseFloat(cs.fontSize) + 'px ' + cs.fontFamily;
+      try { megaInk.letterSpacing = cs.letterSpacing; } catch (e) { megaInkOk = false; return none; }
+
+      var m;
+      try { m = megaInk.measureText(text); } catch (e) { megaInkOk = false; return none; }
+      if (!m || typeof m.actualBoundingBoxRight !== 'number') { megaInkOk = false; return none; }
+
+      if (exact) {
+        megaInkOk = Math.abs(m.width - advance) <= Math.max(1, advance * .01);
+        if (!megaInkOk) return none;
+      }
+
+      return { left: -m.actualBoundingBoxLeft, right: m.actualBoundingBoxRight - m.width };
+    }
 
     /* Шаг 1 — вывести блок к краям экрана.
        Ширина берётся у documentElement, а не у window.innerWidth: последний
@@ -485,12 +785,20 @@
       var avail = placeMega(el);
       if (!avail) return;
 
-      /* Строка, которой на узком экране разрешено переноситься
-         (.t-mega--inline ниже 760px), под приём не подпадает: её ширина
-         всегда равна ширине блока, отношение выродилось бы в единицу
-         и кегль остался бы базовым. Кегль ей задаёт CSS. */
+      /* Строка, которой разрешено переноситься, под приём не подпадает:
+         её ширина всегда равна ширине блока, отношение выродилось бы
+         в единицу и кегль остался бы базовым — кегль такой строке
+         задаёт CSS.
+
+         Этап 16 снял единственную такую строку (.t-mega--inline,
+         «ТАНЦМЕЙСТЕР ВЕДЁТ ЗАЛ» ниже 760px): все пять оставшихся
+         мега-строк идут в nowrap на всех ширинах, и ветка сейчас
+         не срабатывает ни разу. Оставлена намеренно — она сторожит
+         инвариант приёма («кегль считаем только по строке в одну
+         линию»), а не ту конкретную строку. */
       if (getComputedStyle(el).whiteSpace !== 'nowrap') {
         el.style.removeProperty('font-size');
+        el.style.removeProperty('--mega-inset');
         return;
       }
 
@@ -507,9 +815,44 @@
       var measured = line.getBoundingClientRect().width;
 
       if (measured) {
-        el.style.fontSize = (MEGA_BASE * (avail / measured)).toFixed(2) + 'px';
+        /* Сверку канвы с раскладкой (megaBearings, ветка exact) раньше
+           отключала одна строка — та, внутри которой стоял кадр
+           .inline-media: канва меряет только текст и о ширине кадра
+           не знает, отношение не сошлось бы и свесы обнулились.
+           Элемент снят задачей 1.2, медиа внутри строк больше нет,
+           и сверка идёт на всех строках — этапом 16 их стало пять.
+           Снятие .t-mega--inline условия не касается: exact выключал
+           не класс, а кадр внутри строки, а кадра нет с этапа 9.
+           Держим true явной константой, а не убираем параметр:
+           вернётся петля — вернётся и условие. */
+        var exact = true;
+        var gap = Math.max(avail * MEGA_GAP_RATIO, MEGA_GAP_MIN);
+
+        /* Проход первый — кегль. Вписывается в экран не коробка строки,
+           а её краска: к измеренной ширине прибавляются оба свеса,
+           и по этой величине берётся отношение. */
+        var bear = megaBearings(el, measured, exact);
+        var ink = measured - bear.left + bear.right;
+        el.style.fontSize =
+          (MEGA_BASE * (ink > 0 ? (avail - gap * 2) / ink : avail / measured)).toFixed(2) + 'px';
+
+        /* Проход второй — положение. Границы краски движок отдаёт
+           с точностью до пикселя, и полпикселя, измеренные на базовых
+           100px, разъезжаются в два-три на кегле 500px: поля вышли бы
+           заметно разными. Поэтому свесы перемеряются на настоящем
+           кегле, а остаток ширины раскладывается поровну — так поля
+           слева и справа равны по построению, а не по расчёту.
+           Сдвиг ставится margin'ом строки, а не padding'ом элемента:
+           элемент — сама маска, его коробка должна остаться во всю
+           ширину экрана. */
+        var finalWidth = line.getBoundingClientRect().width;
+        var finalBear = megaBearings(el, finalWidth, exact);
+        var finalInk = finalWidth - finalBear.left + finalBear.right;
+        el.style.setProperty('--mega-inset',
+          ((avail - finalInk) / 2 - finalBear.left).toFixed(2) + 'px');
       } else {
         el.style.removeProperty('font-size');
+        el.style.removeProperty('--mega-inset');
       }
 
       // Возврат в следующем кадре: сними мы transition в том же, браузер
@@ -531,20 +874,12 @@
       document.fonts.ready.then(fitAllMega).catch(function () { /* фолбэк уже стоит */ });
     }
 
-    /* Кадр с медиа внутри строки участвует в замере наравне с буквами,
-       но до загрузки его ширина неизвестна. aspect-ratio в CSS задаёт её
-       заранее, так что первый замер уже верен; слушатель — страховка
-       на случай, если движок посчитает иначе. */
-    megaTitles.forEach(function (el) {
-      var media = el.querySelector('.inline-media');
-      if (!media) return;
-      var recheck = function () { fitMega(el); };
-      if (media.tagName === 'VIDEO') {
-        media.addEventListener('loadedmetadata', recheck, { once: true });
-      } else if (!media.complete) {
-        media.addEventListener('load', recheck, { once: true });
-      }
-    });
+    /* Здесь стоял пересчёт кегля по loadedmetadata / load кадра
+       .inline-media: до прихода метаданных ширина медиа неизвестна,
+       и замер строки мог оказаться неверным. Кадр снят задачей 1.2,
+       ждать в мега-строках больше нечего — все семь набраны текстом,
+       и их ширина известна сразу после готовности гарнитур
+       (document.fonts.ready выше). Вернётся петля — вернётся и слушатель. */
 
     // Ресайз через rAF: без троттлинга пересчёт шёл бы на каждое событие
     // окна, а он читает геометрию и заставляет браузер считать раскладку
@@ -664,7 +999,12 @@
        читаться сменой кадра: слайд выходит, останавливается и даёт себя
        прочитать, и только потом уезжает. Без остановок то же расстояние
        превращается в непрерывное сползание — глазу не за что зацепиться. */
-    var SEG_HOLD = .22;
+    /* Этап 18. Доля паузы поднята с .22 до .32 вместе с сокращением
+       пути ленты (styles.css, .segments-scroll: 320svh -> 220svh).
+       Обе величины держат один и тот же эффект — неподвижность слайда
+       по краям, — и менять их порознь нельзя: короче путь при прежней
+       доле означал бы, что лента трогается сразу. */
+    var SEG_HOLD = .32;
 
     /* Разгон и торможение на стыках с паузами. Линейный прогресс на границе
        паузы трогает ленту рывком с полной скоростью — движение начинается
@@ -675,13 +1015,27 @@
         : 1 - Math.pow(-2 * t + 2, 2) / 2;
     }
 
+    /* Подсказка браузеру живёт ровно столько, сколько лента может ехать, —
+       то есть пока её секция проходит мимо экрана. Постоянный will-change
+       в CSS держал бы композитный слой всю сессию (этап 15: «will-change
+       в покое — ноль»), а лента стоит почти всё время. */
+    var segLive = false;
+
+    function setSegLive(on) {
+      if (on === segLive) return;
+      segLive = on;
+      segScroll.classList.toggle('is-sliding', on);
+    }
+
     function updateSegments() {
       var rect = segScroll.getBoundingClientRect();
 
       /* Путь прокрутки = высота контейнера минус экран (лишний экран и есть
          дорога ленты). Прогресс — сколько этого пути уже пройдено. */
       var travel = rect.height - window.innerHeight;
-      if (travel <= 0) return;
+      if (travel <= 0) { setSegLive(false); return; }
+
+      setSegLive(rect.bottom > 0 && rect.top < window.innerHeight);
 
       var raw = -rect.top / travel;
       raw = Math.max(0, Math.min(1, raw));
@@ -728,15 +1082,54 @@
      через .is-in родителя: заголовок формата стоит в низу своей статьи,
      и по классу .segment он бы отыграл задолго до появления на экране. */
   var revealTargets = document.querySelectorAll(
-    '[data-reveal], [data-gradual], [data-line], .scheme:not(.scheme--track), .t-mega, .t-format'
+    '[data-reveal], [data-line], .scheme:not(.scheme--track), .t-mega, .t-format'
   );
 
+  /* Подсказка браузеру (will-change) живёт ровно столько, сколько идёт
+     появление, — за это отвечает класс .is-animating. Раньше она стояла
+     в CSS постоянно: 544 узла держали композитные слои с загрузки и до
+     конца сессии, из них 431 — отдельные буквы заголовков.
+
+     Снимаем по transitionend, а не по таймеру: у букв каскад задержек,
+     последняя доигрывает почти на секунду позже первой, и любое
+     фиксированное число пришлось бы держать синхронно со шкалой.
+     Сторож на случай, если transitionend не придёт вовсе (элемент увели
+     в display: none, вкладка ушла в фон на время перехода) — иначе
+     подсказка залипнет навсегда, то есть вернётся ровно то, что чиним. */
+  var ANIM_GUARD = 4000;
+
+  function markAnimating(el) {
+    // Табы «Правил» переключаются сколько угодно раз — второй слушатель
+    // на тот же элемент не нужен
+    if (el.classList.contains('is-animating')) return;
+    el.classList.add('is-animating');
+
+    var done = function () {
+      el.classList.remove('is-animating');
+      el.removeEventListener('transitionend', onEnd);
+      window.clearTimeout(guard);
+    };
+    // Всплывшее событие от буквы приходит на сам заголовок — этого и ждём:
+    // последнее по времени и есть конец набора
+    var onEnd = function () {
+      window.clearTimeout(settle);
+      // Ещё один такт: следом идут события остальных букв того же кадра
+      settle = window.setTimeout(done, 60);
+    };
+    var settle = 0;
+    var guard = window.setTimeout(done, ANIM_GUARD);
+
+    el.addEventListener('transitionend', onEnd);
+  }
+
   if (reduceMotion || !('IntersectionObserver' in window)) {
+    // Появления нет — нечего и подсказывать
     revealTargets.forEach(function (el) { el.classList.add('is-in'); });
   } else {
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
+          markAnimating(entry.target);
           entry.target.classList.add('is-in');
           revealObserver.unobserve(entry.target);
         }
@@ -750,7 +1143,12 @@
       // Первый экран показываем сразу: нижний rootMargin отрезает подписи hero,
       // и они ждали бы скролла, хотя видны с самого начала
       if (el.closest('.hero')) {
-        el.classList.add('is-in');
+        // Через очередь готовности гарнитур: обратные вызовы идут в порядке
+        // подписки, поэтому заголовок стартует уже правильной гарнитурой.
+        whenFontsReady(function () {
+          markAnimating(el);
+          el.classList.add('is-in');
+        });
         return;
       }
       revealObserver.observe(el);
@@ -775,10 +1173,12 @@
         // Показанный блок observer уже не увидит (он был display:none и,
         // возможно, unobserve'нут) — проявляем его содержимое вручную.
         if (!on) return;
-        if (pane.hasAttribute('data-reveal') || pane.hasAttribute('data-gradual')) {
+        if (pane.hasAttribute('data-reveal')) {
+          if (!reduceMotion) markAnimating(pane);
           pane.classList.add('is-in');
         }
-        pane.querySelectorAll('[data-reveal], [data-gradual]').forEach(function (el) {
+        pane.querySelectorAll('[data-reveal]').forEach(function (el) {
+          if (!reduceMotion) markAnimating(el);
           el.classList.add('is-in');
         });
       });
@@ -822,128 +1222,6 @@
         section.scrollIntoView();
       }
     }
-  }
-
-  /* ---------- 3d. Раскрытие медиа маской ---------- */
-  /* Кадр открывается снизу вверх (clip-path), картинка внутри одновременно
-     идёт навстречу маске: из scale 1.3 / yPercent 8 в исходное положение.
-     Ощущение — не «блок проявился», а «кадр открылся».
-
-     Раскрытые кадры помечаются классом .is-revealed: параллакс ниже трогает
-     только их, иначе два источника писали бы transform картинки одновременно
-     и она бы дёргалась в середине раскрытия. */
-  var maskedMedia = [];
-
-  if (canAnimate && hasST) {
-    /* Кадрирующая коробка — та, у которой overflow: hidden и своё
-       соотношение сторон. У .figure-row__media обёрткой служит вложенный
-       .media, поэтому берём именно его.
-       Кадров шага (.step__media) в списке намеренно нет: в мозаике они
-       появляются без раскрытия маской. */
-    var maskSelectors = [
-      '.media',
-      '.segment__media',
-      '.music__media',
-      '.case__gallery figure'
-    ].join(', ');
-
-    // Герой живёт своей жизнью (видео, собственный fade) — исключаем.
-    // Вложенные совпадения (.case__gallery figure сама .media) отсеиваем Set'ом.
-    var seen = [];
-    document.querySelectorAll(maskSelectors).forEach(function (box) {
-      if (box.closest('.hero')) return;
-      if (seen.indexOf(box) > -1) return;
-      var img = box.querySelector('img');
-      if (!img) return;
-      seen.push(box);
-      maskedMedia.push({ box: box, img: img });
-    });
-
-    maskedMedia.forEach(function (item) {
-      var box = item.box;
-      var img = item.img;
-
-      // Класс снимает штатный transition картинки и ховер-зум на время анимации
-      box.classList.add('is-masked');
-
-      /* Обёртка, в которой нет ничего кроме этого кадра (.figure-row__media,
-         .case__hero), не должна дополнительно уезжать по translateY —
-         иначе кадр и открывается маской, и параллельно всплывает.
-         Обёртки со своим текстом (.segment, .music__item) не трогаем. */
-      var wrap = box.closest('[data-reveal]');
-      if (wrap && wrap !== box && !wrap.querySelector('.t-body, .t-h2, .t-h3, .t-label')) {
-        wrap.classList.add('is-masked-wrap');
-      }
-
-      gsap.set(box, { clipPath: 'inset(100% 0 0 0)' });
-      gsap.set(img, { scale: 1.3, yPercent: 8, transformOrigin: 'center center' });
-
-      var tl = gsap.timeline({
-        paused: true,
-        onComplete: function () {
-          // Отдаём картинку параллаксу: GSAP снимает свои инлайновые
-          // transform-свойства, дальше её двигает applyParallax()
-          gsap.set(img, { clearProps: 'transform' });
-          box.classList.remove('is-masked');
-          box.classList.add('is-revealed');
-        }
-      });
-
-      tl.to(box, { clipPath: 'inset(0% 0 0 0)', duration: 1.3, ease: 'expo.out' })
-        .to(img, { scale: 1, yPercent: 0, duration: 1.3, ease: 'expo.out' }, '<');
-
-      ScrollTrigger.create({
-        trigger: box,
-        start: 'top 88%',
-        once: true,
-        onEnter: function () { tl.play(); }
-      });
-    });
-  }
-
-  /* ---------- 4. Параллакс медиа ---------- */
-  /* Кадры шагов сюда не попадают: в мозаике они стоят неподвижно.
-     Раскладка там и без того держится на сдвигах (см. .step в 8.3),
-     и едущая внутри картинка спорила бы с ними. */
-  /* Собственного rAF здесь нет: шина скролла и так даёт ровно один вызов
-     на кадр, а свой тикер поверх неё добавил бы кадр задержки — картинка
-     ехала бы позади страницы. */
-  var parallaxItems = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
-
-  /* Параллакс не должен спорить с раскрытием маски: пока кадр открывается,
-     transform картинки ведёт GSAP. Ищем ближайший кадрирующий бокс и ждём,
-     когда с него снимут .is-masked. */
-  function parallaxReady(img) {
-    var box = img.parentElement;
-    return !box || !box.classList.contains('is-masked');
-  }
-
-  /* Зум и амплитуда связаны жёстко: при сдвиге ±S на кадре высотой H картинка
-     обнажит край, если масштаб меньше 1 + 2S/H. Поэтому фиксируем зум, а ход
-     считаем от него — S = H * (scale - 1) / 2, с запасом.
-
-     Прежние 22px были константой, и на кадре ниже ~550px этого условия
-     не выполняли: под картинкой проглядывала подложка. От высоты — не даёт
-     промахнуться ни на узком кадре, ни на полноэкранном. */
-  var PARALLAX_SCALE = 1.08;
-  var PARALLAX_SAFETY = 0.86;
-
-  function applyParallax() {
-    var vh = window.innerHeight;
-    parallaxItems.forEach(function (el) {
-      var rect = el.getBoundingClientRect();
-      if (rect.bottom < -200 || rect.top > vh + 200) return;
-      // -1 (элемент внизу экрана) → 1 (вверху)
-      var progress = (vh / 2 - (rect.top + rect.height / 2)) / (vh / 2);
-      var inner = el.querySelector('img');
-      if (inner && parallaxReady(inner)) {
-        // Высоту берём из того же rect — она уже измерена в этом кадре
-        var shift = rect.height * (PARALLAX_SCALE - 1) / 2 * PARALLAX_SAFETY;
-        inner.style.transform =
-          'scale(' + PARALLAX_SCALE + ') translate3d(0,' +
-          (progress * shift).toFixed(2) + 'px,0)';
-      }
-    });
   }
 
   /* ---------- 5. Процесс: активный шаг и индикатор прогресса ---------- */
@@ -1071,7 +1349,6 @@
   function onScroll() {
     onScrollHeader();
     updateProcess();
-    if (!reduceMotion) applyParallax();
   }
 
   // Позиции засечек читают раскладку — пересчитываем их только на ресайзе,
@@ -1138,6 +1415,14 @@
         /* Уменьшение — самой полосе, притухание — плёнке ::after поверх неё.
            Гасить полосу через её собственный opacity нельзя: полупрозрачным
            стал бы и фон, и сквозь карточку просвечивала бы предыдущая. */
+        /* Подсказка браузеру живёт ровно на своём отрезке прокрутки:
+           класс ставится, когда полоса действительно начинает уходить
+           вглубь, и снимается на обоих концах. В CSS постоянного
+           will-change больше нет (этап 15: «will-change в покое — ноль»). */
+        var setDepth = function (on) {
+          row.classList.toggle('is-stacking', on);
+        };
+
         var tl = gsap.timeline({
           scrollTrigger: {
             trigger: next,
@@ -1146,80 +1431,20 @@
             start: 'top bottom',
             end: function () { return 'top top+=' + getStickyTop(); },
             scrub: true,
-            invalidateOnRefresh: true
+            invalidateOnRefresh: true,
+            onToggle: function (self) { setDepth(self.isActive); }
           }
         });
 
         tl.to(row, { scale: 0.96, ease: 'none' }, 0)
           .to(row, { '--stack-dim': 0.4, ease: 'none' }, 0);
       });
-    });
-  }
 
-  /* ---------- 5c. Счётчики в фактах ---------- */
-  /* Число набегает от нуля один раз при входе в кадр. Формат исходного
-     текста сохраняем целиком: ведущие нули («01»), знак процента,
-     диапазон через тире («30–200»). Нечисловые значения («СПб») не трогаем. */
-  var counters = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
-
-  if (counters.length && canAnimate && hasST) {
-    counters.forEach(function (el) {
-      var source = el.textContent.trim();
-      // Разбираем строку на куски: числа отдельно, всё прочее — как есть
-      var parts = source.split(/(\d+)/);
-      var numbers = parts.filter(function (p) { return /^\d+$/.test(p); });
-      if (!numbers.length) return;
-
-      // Ведущие нули задают ширину поля: «01» должно набегать как 01, а не 1
-      var pads = numbers.map(function (n) { return n.length; });
-
-      /* Считаем обычным объектом (n0, n1, …), а не массивом: snap до целых
-         у GSAP работает по именованным свойствам, для endArray его нет. */
-      var state = {};
-      var targets = {};
-      var snaps = {};
-      numbers.forEach(function (n, k) {
-        state['n' + k] = 0;
-        targets['n' + k] = Number(n);
-        snaps['n' + k] = 1;
-      });
-
-      function render() {
-        var k = 0;
-        el.textContent = parts.map(function (p) {
-          if (!/^\d+$/.test(p)) return p;
-          var v = String(state['n' + k]);
-          while (v.length < pads[k]) v = '0' + v;
-          k++;
-          return v;
-        }).join('');
-      }
-
-      // Резервируем место сразу: иначе строка «180» стартует с «0»
-      // и подпись справа заметно съезжает по ширине
-      el.style.minWidth = el.getBoundingClientRect().width.toFixed(1) + 'px';
-      el.style.display = 'inline-block';
-      render();
-
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 90%',
-        once: true,               // пересчёта при повторном скролле не будет
-        onEnter: function () {
-          var vars = {
-            duration: 1.4,
-            ease: 'power2.out',
-            snap: snaps,
-            onUpdate: render,
-            onComplete: function () {
-              // Точное исходное значение вместо накопленной дробной ошибки
-              el.textContent = source;
-            }
-          };
-          for (var key in targets) vars[key] = targets[key];
-          gsap.to(state, vars);
-        }
-      });
+      /* Выход из брейкпоинта убивает триггеры, но класс снять некому:
+         на планшете полоса осталась бы с подсказкой навсегда. */
+      return function () {
+        figureRows.forEach(function (row) { row.classList.remove('is-stacking'); });
+      };
     });
   }
 
@@ -1271,8 +1496,18 @@
       return;
     }
 
-    var base = Math.max(48, Math.min(88, vw * 0.045));
-    var range = Math.max(40, Math.min(150, vw * 0.075));
+    /* Этап 18. База и размах сняты с вьюпорта и посажены на шкалу
+       системы: база — интервал «заголовок → текст» (44), размах —
+       интервал «блок → блок» (80). Пропорция длительности при этом
+       цела: шаг по-прежнему растёт как sqrt(доли), просто теперь он
+       ходит между 44 и 124 px, а не между 64,8 и 172,8 на 1440
+       и не между 88 и 238 на 2560, куда его уводил vw.
+       Именно этот множитель делал «Структуру» самой высокой секцией
+       страницы: у восьми пунктов лишнее набегало восемь раз.
+       Величины читаются из CSS, чтобы шкала жила в одном месте. */
+    var cs = getComputedStyle(document.documentElement);
+    var base = parseFloat(cs.getPropertyValue('--space-44')) || 44;
+    var range = parseFloat(cs.getPropertyValue('--space-80')) || 80;
 
     var spans = timelineItems.map(function (el) {
       return Math.max(1, parseFloat(el.getAttribute('data-span')) || 1);
@@ -1417,23 +1652,224 @@
     });
   }
 
-  /* ---------- 7. Форма — заглушка прототипа ---------- */
+  /* ---------- 7. Форма — отправка заявки (задача 3.3) ----------
+
+     ЕДИНСТВЕННАЯ ТОЧКА НАСТРОЙКИ — константа LEAD ниже.
+     Приёмник выбран: CRM (Bitrix24 / amoCRM). Адрес вебхука на момент
+     правки не выдан, поэтому endpoint пуст, и это не поломка, а режим:
+     при пустом адресе форма проверяет ввод и честно говорит, что приём
+     заявок ещё не подключён, вместо того чтобы делать вид, будто письмо
+     ушло. Именно так вела себя прежняя заглушка — она отвечала
+     «спасибо», не отправив ничего.
+
+     Чтобы включить приём, достаточно вписать адрес в endpoint.
+     Остальной код трогать не нужно.
+
+     ПРО КЛЮЧ. Вебхук Bitrix24 вида
+       https://портал.bitrix24.ru/rest/1/КЛЮЧ/crm.lead.add.json
+     это и есть ключ к порталу: он попадёт в исходники страницы и будет
+     виден любому. Тот, кто его нашёл, сможет слать в CRM что угодно.
+     Поэтому у endpoint два законных значения:
+       — адрес своей прокси-функции (ключ остаётся на сервере) — верный путь;
+       — прямой адрес вебхука — быстрее, но ключ открыт; тогда в CRM
+         стоит завести отдельный вебхук только с правом crm.lead.add
+         и держать наготове его отзыв.
+     Выбор за владельцем; код одинаков для обоих. */
+  var LEAD = {
+    /* Куда слать. Пусто — приём не подключён (см. выше). */
+    endpoint: '',
+
+    /* Формат полезной нагрузки:
+         'bitrix' — тело под crm.lead.add (fields: {TITLE, NAME, COMMENTS, ...});
+         'plain'  — плоский JSON {name, contact, about, page, ts}
+                    для прокси, amoCRM или форм-сервиса. */
+    format: 'bitrix',
+
+    /* Сколько ждать ответа. Без предела вкладка с мёртвой сетью
+       крутила бы «отправляем» бесконечно. 15 с — с запасом больше
+       обычного ответа Bitrix и меньше терпения человека. */
+    timeout: 15000
+  };
+
   var form = document.getElementById('contactForm');
   var status = document.getElementById('formStatus');
 
   if (form && status) {
+    var submitBtn = form.querySelector('.submit');
+    var btnLabel = submitBtn ? submitBtn.textContent : '';
+    var sending = false;
+
+    /* Сообщение и его вид ставятся вместе: класс несёт цвет, текст —
+       смысл. Цвет не единственный признак — читающий текст поймёт
+       без него, а диктору роль status зачитает саму фразу. */
+    var say = function (text, kind) {
+      status.textContent = text;
+      status.classList.remove('is-error', 'is-ok');
+      if (kind) status.classList.add(kind);
+    };
+
+    /* Тело запроса собирается по формату из LEAD. Страница и время
+       кладутся всегда: по ним в CRM видно, откуда пришла заявка. */
+    var buildPayload = function (d) {
+      if (LEAD.format === 'bitrix') {
+        return {
+          fields: {
+            TITLE: 'Заявка с сайта «Частные балы» — ' + d.name,
+            NAME: d.name,
+            COMMENTS: (d.about || 'Без описания') +
+                      '\n\nКонтакт: ' + d.contact +
+                      '\nСтраница: ' + d.page,
+            SOURCE_ID: 'WEB',
+            OPENED: 'Y',
+            ASSIGNED_BY_ID: 1
+          },
+          params: { REGISTER_SONET_EVENT: 'Y' }
+        };
+      }
+      return d;
+    };
+
+    /* fetch с пределом ожидания. AbortController есть везде, где есть
+       fetch, но проверка оставлена: без него запрос уйдёт без таймаута,
+       и это лучше, чем отказ отправлять вовсе. */
+    var postLead = function (body) {
+      var ctrl = window.AbortController ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, LEAD.timeout) : null;
+
+      return fetch(LEAD.endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function (res) {
+        if (timer) clearTimeout(timer);
+        /* fetch не считает 4xx и 5xx ошибкой — проверяем сами,
+           иначе «отправлено» показалось бы и на ответе 500. */
+        if (!res.ok) {
+          var err = new Error('HTTP ' + res.status);
+          err.code = res.status;
+          throw err;
+        }
+        return res;
+      }).catch(function (e) {
+        if (timer) clearTimeout(timer);
+        throw e;
+      });
+    };
+
+    /* Сообщение об ошибке говорит, что делать, а не «что-то пошло не
+       так». Телефон и почта берутся из блока контактов на этой же
+       странице: одна правка координат — и здесь они тоже верные. */
+    var fallbackContacts = function () {
+      var tel = document.querySelector('.contact__direct a[href^="tel:"]');
+      var mail = document.querySelector('.contact__direct a[href^="mailto:"]');
+      var parts = [];
+      if (tel) parts.push(tel.textContent.trim());
+      if (mail) parts.push(mail.textContent.trim());
+      return parts.length ? parts.join(' или ') : '';
+    };
+
+    var errorText = function (e) {
+      var where = fallbackContacts();
+      var tail = where
+        ? ' Напишите или позвоните нам напрямую: ' + where + ' — заявку примем так же.'
+        : '';
+
+      /* Причины разделены: пользователю важно, чинить ли ему связь
+         или ждать нас. Обещать «попробуйте позже» при упавшем сервере
+         бессмысленно, если он не знает, что делать сейчас. */
+      if (e && e.name === 'AbortError') {
+        return 'Ответ не пришёл за 15 секунд — возможно, связь медленная. ' +
+               'Попробуйте отправить ещё раз.' + tail;
+      }
+      if (e && e.code >= 500) {
+        return 'Заявка не ушла: сторона приёма не отвечает. ' +
+               'Это на нашей стороне.' + tail;
+      }
+      if (e && e.code) {
+        return 'Заявка не ушла (ошибка ' + e.code + ').' + tail;
+      }
+      /* Сюда попадает и обрыв сети, и блокировка запроса расширением,
+         и промах CORS — по внешним признакам они неразличимы. */
+      return 'Заявка не ушла — похоже, нет связи с сервером. ' +
+             'Проверьте интернет и попробуйте ещё раз.' + tail;
+    };
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (sending) return;             /* двойной Enter по полю */
+
       var name = form.elements.name.value.trim();
       var contact = form.elements.contact.value.trim();
+      var about = form.elements.about.value.trim();
+      var trap = form.elements.website ? form.elements.website.value : '';
+      var consent = form.elements.consent;
 
-      if (!name || !contact) {
-        status.textContent = 'Заполните имя и контакт — мы свяжемся с вами.';
+      /* Ловушка сработала: отвечаем как при успехе и никуда не шлём.
+         Бот не должен узнать, что его отсеяли. */
+      if (trap) {
+        say('Спасибо, ' + (name || 'мы получили заявку') +
+            '. Мы свяжемся с вами в ближайшее время.', 'is-ok');
+        form.reset();
         return;
       }
 
-      status.textContent = 'Спасибо, ' + name + '. Мы позвоним или напишем в ближайшее время.';
-      form.reset();
+      if (!name || !contact) {
+        say('Заполните имя и контакт — без них мы не сможем ответить.', 'is-error');
+        (name ? form.elements.contact : form.elements.name).focus();
+        return;
+      }
+      /* Проверка согласия своя, а не штатная: novalidate на форме
+         отключает встроенные подсказки браузера, и без этой ветки
+         required на галочке ничего бы не сделал. */
+      if (consent && !consent.checked) {
+        say('Отметьте согласие на обработку данных — без него мы не вправе ' +
+            'принять заявку.', 'is-error');
+        consent.focus();
+        return;
+      }
+
+      /* Приёмник ещё не подключён. Честный ответ вместо ложного
+         «спасибо»: человек увидит, что связаться нужно иначе. */
+      if (!LEAD.endpoint) {
+        say('Форма пока не подключена к приёму заявок. ' +
+            'Напишите или позвоните нам: ' + (fallbackContacts() || 'см. контакты выше') +
+            ' — мы ответим.', 'is-error');
+        return;
+      }
+
+      sending = true;
+      if (submitBtn) {
+        submitBtn.classList.add('is-sending');
+        submitBtn.disabled = true;     /* и класс, и атрибут: правило в CSS ловит оба */
+        submitBtn.textContent = 'отправляем';
+      }
+      say('Отправляем заявку…');
+
+      postLead(buildPayload({
+        name: name,
+        contact: contact,
+        about: about,
+        page: location.href,
+        ts: new Date().toISOString()
+      })).then(function () {
+        say('Спасибо, ' + name + '. Заявка у нас — позвоним или напишем ' +
+            'в ближайшее время.', 'is-ok');
+        form.reset();
+      }).catch(function (err) {
+        /* Введённое НЕ стираем: человеку не придётся набирать заново,
+           повторная отправка — один клик. */
+        say(errorText(err), 'is-error');
+      }).then(function () {
+        /* Возврат кнопки в оба исхода — иначе после ошибки она
+           осталась бы навсегда выключенной. */
+        sending = false;
+        if (submitBtn) {
+          submitBtn.classList.remove('is-sending');
+          submitBtn.disabled = false;
+          submitBtn.textContent = btnLabel;
+        }
+      });
     });
   }
 
@@ -1453,13 +1889,32 @@
       heroVideo.addEventListener('loadeddata', showVideo, { once: true });
     }
 
-    /* Очень медленный отъезд камеры: 1.12 → 1 за 20 секунд, линейно.
-       На глаз это не читается как анимация — просто петля перестаёт
-       ощущаться статичной. Yoyo, чтобы масштаб не прыгал на стыке циклов. */
-    if (canAnimate) {
-      gsap.fromTo(heroVideo,
-        { scale: 1.12 },
-        { scale: 1, duration: 20, ease: 'none', repeat: -1, yoyo: true });
+    /* Медленный отъезд камеры (1.12 → 1 бесконечным yoyo) снят этапом 15
+       вместе с токеном --dur-ambient. Твин и так не жил: герой на период
+       доработки стоит фотографией, <video> в разметке закомментирован,
+       и весь этот раздел не выполняется вовсе. Возвращать петлю масштаба
+       вместе с видео не следует — система такого движения не знает.
+
+       Наблюдатель за героем остаётся и теперь отвечает только за
+       воспроизведение: за кадром петля не крутится впустую. Заводится
+       он сразу, а воспроизведение подключается к нему, когда появляется
+       что играть. */
+    var heroPlayable = false;
+    var heroCanObserve = 'IntersectionObserver' in window;
+    // Пока наблюдатель не отчитался, считаем героя видимым: он в первом экране
+    var heroVisible = true;
+
+    if (heroCanObserve) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          heroVisible = entry.isIntersecting;
+          if (heroVisible) {
+            if (heroPlayable) heroVideo.play().catch(function () {});
+          } else {
+            if (heroPlayable) heroVideo.pause();
+          }
+        });
+      }, { threshold: 0.1 }).observe(heroVideo);
     }
 
     /* Ждём перебора источников (раздел 0c): до него src пуст, и play()
@@ -1478,6 +1933,13 @@
         return;
       }
 
+      // Дальше воспроизведением распоряжается наблюдатель выше
+      heroPlayable = true;
+
+      // Источники доехали, когда герой уже уехал с экрана, — не запускаем:
+      // наблюдатель сам включит петлю, когда пользователь вернётся наверх
+      if (!heroVisible) return;
+
       // Safari/iOS могут отклонить autoplay — пробуем ещё раз явно
       var play = heroVideo.play();
       if (play && typeof play.catch === 'function') {
@@ -1488,19 +1950,6 @@
           };
           document.addEventListener('pointerdown', retry, { once: true });
         });
-      }
-
-      // Не крутим видео вхолостую, когда герой ушёл из вида
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              heroVideo.play().catch(function () {});
-            } else {
-              heroVideo.pause();
-            }
-          });
-        }, { threshold: 0.1 }).observe(heroVideo);
       }
     });
   }

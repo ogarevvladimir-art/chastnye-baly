@@ -1,0 +1,72 @@
+:root {
+  --font-display: "Old Standard TT", Georgia, "Times New Roman", serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* --- H1 · Гротеск 700, капитель. Только разделители глав и hero ------- */
+  --h1-family: var(--font-sans);
+  --h1-weight: 700;
+  --h1-size: 130px;      /* базовое значение на 1200px */
+  --h1-tracking: 0;
+  --h1-leading: 1;
+  --h1-size-320: 36px;
+  --h1-size-480: 58px;
+  --h1-size-640: 72px;
+  --h1-size-960: 96px;
+
+  /* --- H2 · Old Standard TT 400. Заголовок секции ----------------------- */
+  --h2-family: var(--font-display);
+  --h2-weight: 400;
+  --h2-size: 96px;
+  --h2-tracking: -6px;
+  --h2-leading: 0.8;
+  --h2-size-320: 48px;
+  --h2-tracking-320: -2px;
+  --h2-size-480: 64px;
+  --h2-tracking-480: -3px;
+  --h2-size-640: 64px;
+  --h2-tracking-640: -4px;
+
+  /* --- H3 · Гротеск 700, капитель. Подзаголовок, имя карточки ----------- */
+  --h3-family: var(--font-sans);
+  --h3-weight: 700;
+  --h3-size: 48px;
+  --h3-tracking: 0;
+  --h3-leading: 1;
+  --h3-size-320: 25px;   /* растёт плавно до 48px на 1920 */
+
+  /* --- Text · Гротеск 600, капитель. Основной текст --------------------- */
+  --text-family: var(--font-sans);
+  --text-weight: 600;
+  --text-size: 14px;
+  --text-tracking: 0.5px;
+  --text-leading: 1;          /* токен Tilda */
+  --text-leading-paragraph: 1.6; /* для абзаца в 2+ строки */
+  --text-size-320: 12px;
+  --text-tracking-320: -0.5px;
+  --text-size-640: 12px;
+  --text-tracking-640: 0;
+
+  /* --- Micro · Old Standard TT Italic. Интонационная врезка ------------- */
+  --micro-family: var(--font-display);
+  --micro-style: italic; /* @kind font */
+  --micro-weight: 400;
+  --micro-size: 30px;      /* фиксированный кегль на всех брейкпоинтах */
+  --micro-tracking: -2px;
+  --micro-leading: 1;
+
+  /* --- Number · Гротеск 500, терракота. Нумерация и метки --------------- */
+  --number-family: var(--font-sans);
+  --number-weight: 500;
+  --number-size: 13px;     /* фиксированный кегль */
+  --number-tracking: 2.34px;
+  --number-leading: 1.2;
+
+  /* --- Служебные значения из компонентов -------------------------------- */
+  --label-size: 11px;         /* метка поля, подпись */
+  --label-tracking: 1px;
+  --nav-size: 12px;           /* пункт навигации, кнопка */
+  --nav-tracking: 0.9px;
+  --button-tracking: 1.5px;
+  --link-size: 34px;          /* текстовая ссылка антиквой */
+  --link-tracking: -1px;
+}

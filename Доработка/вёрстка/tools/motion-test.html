@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Проверка motion.js: вертикальный гигант, светлая шапка</title>
+  <!-- Тестовая страница этапа 2 (не в site/): вертикальный гигант телефона (rotate(-90deg), ПЕРЕДАЧА 2) и шапка «Над светлым» -->
+  <link rel="stylesheet" href="../../../site/css/tokens.css">
+  <link rel="stylesheet" href="../../../site/css/base.css">
+  <link rel="stylesheet" href="../../../site/css/layout.css">
+  <link rel="stylesheet" href="../../../site/css/motion.css">
+  <script>
+    (() => { const r = document.documentElement; r.style.setProperty("--vw", r.clientWidth / 100 + "px"); r.classList.add("js"); })();
+  </script>
+  <style>
+    .pad { height: 900px; }
+    /* Вертикальный гигант: полоса 38 px у поля 16, слово снизу вверх, начало слова — низ фото */
+    .vbox { position: relative; height: 448px; margin: 0 16px; background: #141414; overflow: clip; }
+    .vword { position: absolute; left: 16px; top: 100%; transform-origin: 0 0; transform: rotate(-90deg);
+             white-space: nowrap; color: var(--c-greige-light); }
+    .light { height: 600px; }
+  </style>
+  <script type="module">
+    import { initMotion } from "../../../site/js/motion.js";
+    import { initHeader } from "../../../site/js/header.js";
+    window.__motion = true;
+    initHeader();
+    initMotion();
+  </script>
+</head>
+<body>
+  <header class="site-header" data-variant="dark">
+    <div class="site-header__in">
+      <a class="site-header__logo t-label" href="#">Plyaskin Events</a>
+      <button class="site-header__menu" type="button"><span class="site-header__menu-size" aria-hidden="true">Закрыть</span><span class="site-header__menu-text">Меню</span></button>
+    </div>
+  </header>
+  <div class="pad" data-surface="ink"></div>
+  <div class="vbox" id="v"><span class="vword t-giant" data-giant>Стесняетесь</span></div>
+  <div class="pad" data-surface="ink"></div>
+  <section class="light" id="light" data-surface="panel" data-header="light"></section>
+  <div class="pad" data-surface="ink"></div>
+</body>
+</html>
