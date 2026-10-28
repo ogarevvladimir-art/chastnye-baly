@@ -1,4 +1,4 @@
-"""Проверка поведения этапа 5: 09 Дресс-код, 10 Вечера, 11–подвал, лист формы, шапка над панелью формы, без JS.
+"""Проверка поведения этапа 5: 09 Дресс-код, 10 Вечера, финал (#contact), лист формы, без JS.
 
   python tools/stage5_check.py            # chromium
   python tools/stage5_check.py -b webkit
@@ -36,12 +36,12 @@ def main():
     with serve() as base, sync_playwright() as pw:
         b = getattr(pw, a.browser).launch()
 
-        # --- Горизонтальный скролл: секции 09–подвал, в том числе во время входов ---
+        # --- Горизонтальный скролл: секции 09–финал, в том числе во время входов ---
         bad = []
         for w in WIDTHS:
             ctx, p = open_page(b, base, w, 900)
             worst = 0
-            for sel in (".s-dress", ".dress__fig[data-fig='d']", ".dress__white", ".s-eves", ".eves__scene", ".eves__info", ".s-about", ".s-contact", ".s-footer"):
+            for sel in (".s-dress", ".dress__fig[data-fig='d']", ".dress__white", ".s-eves", ".eves__scene", ".eves__info", "#contact"):
                 to(p, sel, -200)
                 p.wait_for_timeout(250)
                 worst = max(worst, p.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth"))
@@ -163,11 +163,11 @@ def main():
         st = p.evaluate("() => ({ open: document.getElementById('form').open, lock: document.documentElement.classList.contains('is-locked'), f: document.activeElement.className })")
         check("форма: Esc закрывает, фокус на открыватель", st["open"] is False and not st["lock"] and "s-hero__link" in st["f"], str(st))
 
-        to(p, ".contact__panel", -300)
+        to(p, ".fin__link", -300)
         p.wait_for_timeout(1500)
-        p.locator(".cp__field").nth(1).click()
+        p.locator(".fin__link").nth(0).click()
         p.wait_for_timeout(600)
-        check("форма: тап по полю «Телефон» панели — фокус в телефоне", p.evaluate("document.activeElement.id") == "f-phone")
+        check("форма: тап по ссылке финала — фокус на заголовке листа", p.evaluate("document.activeElement.id") == "form-h")
         p.locator(".sheet__close").click()
         p.wait_for_timeout(600)
 
@@ -195,7 +195,7 @@ def main():
         check("форма: отправка (имитация) — «Заявка отправлена», фокус на заголовке", st["done"] and "sheet__done-h" in st["f"], str(st))
         p.locator(".sheet__close").click()
         p.wait_for_timeout(600)
-        p.locator(".cta__link").click()
+        p.locator(".fin__link").nth(0).click()
         p.wait_for_timeout(500)
         check("форма: повторное открытие — снова поля, пустые",
               p.evaluate("!document.querySelector('[data-view=form]').hidden && document.querySelector('#f-name').value === ''"))
@@ -214,7 +214,7 @@ def main():
         check("форма: после закрытия фокус на «Меню»", "site-header__menu" in p.evaluate("document.activeElement.className"))
 
         # Клавиатура: Tab — линия 2 px у поля, мышь — без подсветки
-        p.locator(".cta__link").click()
+        p.locator(".fin__link").nth(0).click()
         p.wait_for_timeout(500)
         p.locator("#f-name").click()
         p.wait_for_timeout(250)
@@ -229,7 +229,7 @@ def main():
         ctx = b.new_context(viewport={"width": 390, "height": 844})
         p = ctx.new_page()
         p.goto(url_for(base, "site/index.html") + "?form=error", wait_until="networkidle")
-        p.evaluate("document.querySelector('.cta__link').click()")
+        p.evaluate("document.querySelector('.fin__link').click()")
         p.wait_for_timeout(500)
         p.fill("#f-name", "Анна")
         p.fill("#f-phone", "+7 916 123-45-67")
@@ -239,32 +239,15 @@ def main():
               p.evaluate("!document.querySelector('.sheet__fail').hidden && !document.querySelector('[data-view=form]').hidden"))
         ctx.close()
 
-        # --- Шапка над панелью формы ---
-        for w in (390, 834, 1440):
-            ctx, p = open_page(b, base, w, 900, reduced=True)
-            p.evaluate("""() => { const r = document.querySelector('.contact__panel').getBoundingClientRect();
-                scrollTo({ top: r.top + scrollY - 10, behavior: 'instant' }); }""")
-            p.wait_for_timeout(500)
-            st = p.evaluate("""() => ({ menu: document.querySelector('.site-header__menu').dataset.over || '',
-                logo: document.querySelector('.site-header__logo').dataset.over || '' })""")
-            want = {"menu": "light", "logo": "light" if w < 600 else ""}
-            if p.evaluate("document.querySelector('.contact__panel').getBoundingClientRect().top > 32"):
-                check(f"шапка над панелью формы ({w}): панель не доезжает до шапки (конец страницы) — шапка без изменений", st == {"menu": "", "logo": ""}, str(st))
-                ctx.close()
-                continue
-            check(f"шапка над панелью формы ({w}): «Меню» Ink" + (", логотип Ink" if w < 600 else ", логотип светлый"), st == want, str(st))
-            ctx.close()
-
         # --- Без JS ---
         ctx = b.new_context(viewport={"width": 390, "height": 844}, java_script_enabled=False)
         p = ctx.new_page()
         p.goto(url_for(base, "site/index.html"), wait_until="networkidle")
         st = p.evaluate("""() => ({ sheet: getComputedStyle(document.getElementById('form')).display,
-            panel: getComputedStyle(document.querySelector('.contact__panel')).display,
             k: getComputedStyle(document.querySelector('.eves__panel[data-i="2"]')).visibility,
             f2: getComputedStyle(document.querySelector('.eves__frame[data-i="2"]')).display })""")
-        check("без JS: лист формы на странице, панели нет, оба описания 10 видны, кадр 2 скрыт",
-              st == {"sheet": "block", "panel": "none", "k": "visible", "f2": "none"}, str(st))
+        check("без JS: лист формы на странице, оба описания 10 видны, кадр 2 скрыт",
+              st == {"sheet": "block", "k": "visible", "f2": "none"}, str(st))
         ctx.close()
         b.close()
 

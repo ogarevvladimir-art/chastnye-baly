@@ -148,32 +148,25 @@ def main():
         p.wait_for_timeout(100)
         check("01: фокус с клавиатуры раскрывает строку", p.evaluate("document.querySelector('.s-prep').dataset.state") == "5")
 
-        # 02 (Д3 A): весь блок одним экраном; покой — раскрыта 01, наведение раскрывает строку и меняет фото
-        to(p, "#evening")
-        p.wait_for_timeout(1500)
-        ev = """() => { const s = document.querySelector('.s-evening'), on = s.querySelector('.eve__item[data-on]');
-            return { s: s.dataset.state, h: Math.round(s.getBoundingClientRect().height),
-                photo: getComputedStyle(on.querySelector('.eve__photo')).opacity, desc: getComputedStyle(on.querySelector('.eve__desc')).opacity }; }"""
-        e = p.evaluate(ev)
-        check("02: покой — раскрыта 01, блок = экран 932", e["s"] == "1" and e["h"] == 932 and e["desc"] == "1", str(e))
-        box = p.locator('.eve__item[data-i="3"]').bounding_box()
-        p.mouse.move(box["x"] + 300, box["y"] + 20)
-        p.mouse.move(box["x"] + 310, box["y"] + 22)
-        p.wait_for_timeout(900)
-        e = p.evaluate(ev)
-        check("02: наведение на 03 — строка, описание и фото 03", e["s"] == "3" and e["photo"] == "1" and e["desc"] == "1", str(e))
-        # Раскрытие сдвигает строки под курсором: проход мышью сверху вниз не должен раскрывать строки цепочкой после остановки
-        b1, b5 = (p.locator(f'.eve__item[data-i="{i}"]').bounding_box() for i in (1, 5))
-        p.mouse.move(b1["x"] + 300, b1["y"] + 10)
-        p.mouse.move(b5["x"] + 300, b5["y"] + 10, steps=25)
-        p.wait_for_timeout(600)
-        s1 = p.evaluate("document.querySelector('.s-evening').dataset.state")
+        # 02 (Ц3): закреплённая сцена, пять этапов по прокрутке; фото — плёнка, слово — барабан (data-pos у этапов)
+        to(p, ".eve__track")
         p.wait_for_timeout(1200)
-        s2 = p.evaluate("document.querySelector('.s-evening').dataset.state")
-        check("02: быстрый проход до 05 — раскрыта 05, дальше строка не меняется сама", s1 == s2 == "5", f"{s1} → {s2}")
-        p.focus('.eve__item[data-i="5"]')
-        p.wait_for_timeout(100)
-        check("02: фокус с клавиатуры раскрывает строку", p.evaluate("document.querySelector('.s-evening').dataset.state") == "5")
+        ev = """() => { const s = document.querySelector('.s-evening'), t = s.querySelector('.eve__track'), st = s.querySelector('.eve__stage');
+            const a = s.querySelector('.eve__step[data-pos="active"]');
+            return { pin: s.hasAttribute('data-pin'), i: a && a.dataset.i, stage: Math.round(st.getBoundingClientRect().top),
+                travel: t.offsetHeight - st.offsetHeight, top: t.getBoundingClientRect().top + scrollY,
+                photo: Math.round(a.querySelector('picture').getBoundingClientRect().top - a.querySelector('.eve__photo').getBoundingClientRect().top),
+                pos: [...s.querySelectorAll('.eve__step')].map(x => x.dataset.pos).join(' ') }; }"""
+        e = p.evaluate(ev)
+        check("02: сцена закреплена, этап 1, фото в окне", e["pin"] and e["i"] == "1" and e["stage"] == 0 and e["photo"] == 0, str(e))
+        p.evaluate(f"scrollTo({{ top: {e['top'] + e['travel'] / 2}, behavior: 'instant' }})")
+        p.wait_for_timeout(1500)
+        e2 = p.evaluate(ev)
+        check("02: середина дорожки — этап 3, сцена стоит, 1–2 before, 4–5 after",
+              e2["i"] == "3" and e2["stage"] == 0 and e2["photo"] == 0 and e2["pos"] == "before before active after after", str(e2))
+        p.evaluate(f"scrollTo({{ top: {e['top'] + e['travel']}, behavior: 'instant' }})")
+        p.wait_for_timeout(1500)
+        check("02: конец дорожки — этап 5", p.evaluate(ev)["i"] == "5")
 
         # 03: переключатель
         to(p, ".music__track", -300)

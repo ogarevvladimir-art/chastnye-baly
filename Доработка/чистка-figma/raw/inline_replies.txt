@@ -1,0 +1,48 @@
+Inline replies (verbatim text as returned to the agent, read-only calls), 2026-10-23, file Chastnye_baly_system, channel auto-1, origin grace.
+Large replies are saved as separate files in this folder (see ОПИСЬ.md, Notes).
+
+[1] list_channels
+[{"channel":"auto-1","fileName":"Chastnye_baly_system","fileKey":"5G8QxdpViZD2y4iNHCvWN5","pageName":"Page 2","connectedAt":1792743215}]
+
+[2] get_pages (origin grace, channel auto-1)
+{"currentPageId":"47:930","pages":[{"id":"0:1","name":"Design System"},{"id":"47:930","name":"Page 2"},{"id":"392:2963","name":"Drafts"}]}
+
+[3] get_metadata (origin grace, channel auto-1)
+{"currentPageId":"47:930","currentPageName":"Page 2","fileName":"Chastnye_baly_system","pageCount":3,"pages":[{"id":"0:1","name":"Design System"},{"id":"47:930","name":"Page 2"},{"id":"392:2963","name":"Drafts"}]}
+
+[4] get_node 0:1, depth 1 (top-level reference for Design System)
+{"children":[{"bounds":{"height":4544,"width":6720,"x":0,"y":0},"childCount":1,"id":"180:1007","name":"1 · Дизайн-система v2 — актуальная","styles":{"cornerRadius":2,"fills":["#444444"],"strokeAlign":"INSIDE","strokeWeight":1,"strokes":["#ffffff1a"]},"type":"SECTION"},{"bounds":{"height":1912,"width":6500,"x":0,"y":4961},"childCount":18,"id":"180:1008","name":"2 · Компоненты","styles":{"cornerRadius":2,"fills":["#444444"],"strokeAlign":"INSIDE","strokeWeight":1,"strokes":["#ffffff1a"]},"type":"SECTION"},{"bounds":{"height":3062,"width":16320,"x":0,"y":7473},"childCount":11,"id":"180:1009","name":"3 · Дизайн-система v1 — устарела","styles":{"cornerRadius":2,"fills":["#444444"],"strokeAlign":"INSIDE","strokeWeight":1,"strokes":["#ffffff1a"]},"type":"SECTION"},{"bounds":{"height":18923,"width":5675,"x":0,"y":11135},"childCount":16,"id":"180:1010","name":"4 · Сайт v1 — исходный макет","styles":{"cornerRadius":2,"fills":["#444444"],"strokeAlign":"INSIDE","strokeWeight":1,"strokes":["#ffffff1a"]},"type":"SECTION"},{"bounds":{"height":800,"width":2000,"x":6275,"y":11135},"childCount":11,"id":"180:1011","name":"Разобрать — потерянные слои","styles":{"cornerRadius":2,"fills":["#444444"],"strokeAlign":"INSIDE","strokeWeight":1,"strokes":["#ffffff1a"]},"type":"SECTION"}],"id":"0:1","name":"Design System","styles":{},"type":"PAGE"}
+
+[5] get_node 392:2963, depth 1 (Drafts)
+{"children":[],"id":"392:2963","name":"Drafts","styles":{},"type":"PAGE"}
+
+[6] get_node 47:930, depth 1 (Page 2) - reply too large, saved: page2_get_node_depth1.json (top-level only, 237 children) and its index page2_get_node_depth1_index.ndjson
+
+[7] get_nodes_info [268:1361, 54:770] (property check: no "visible" key on visible nodes)
+[{"bounds":{"height":36,"width":94,"x":29376,"y":-27220},"id":"268:1361","name":"Логотип Plyaskin Events","styles":{"fills":[{"imageHash":"244cbb7b12a0a9423a3f2ac9e6108976caad3430","scaleMode":"FIT","type":"IMAGE"}]},"type":"RECTANGLE"},{"bounds":{"height":26,"width":393,"x":31998,"y":-13862},"characters":"v3 — ЛЕСЕНКА (текущая)","id":"54:770","name":"v3 — ЛЕСЕНКА (текущая)","styles":{"fills":["#c96a42"],"fontFamily":"Archivo","fontSize":24,"fontStyle":"Medium","fontWeight":500,"letterSpacing":{"unit":"PERCENT","value":20},"textAlignHorizontal":"LEFT"},"type":"TEXT"}]
+
+[8] get_batch_op_spec get_prototype (readOnly: true, mutates: false; paramKeys: nodeId, inputSchema nodeId optional)
+Description (short): reads the prototype flow graph for a whole page or a scoped subtree; returns flowStartingPoints, prototypeStartNodeId, reactionNodeCount, edgeCount, edges[] (sourceId, sourceName, sourceType, trigger, actionType, navigation, destinationId, destinationName, transition, url), overlays[].
+
+[9] get_node 205:1615, depth 0 (checks whether reactions appear in get_node output)
+{"bounds":{"height":860,"width":640,"x":640,"y":352},"childCount":0,"id":"205:1615","name":"Зона / Книжка","styles":{"fills":["#00000000"],"padding":{"bottom":0,"left":0,"right":0,"top":0}},"type":"FRAME"}
+(no "reactions" key in the reply)
+
+[10] batch get_prototype with params.nodeId (47:930, then 0:1, 392:2963, 180:1007, 47:1038)
+All five calls returned the SAME reply: the whole Page 2 graph (pageId "47:930", edgeCount 905). params.nodeId was ignored.
+Saved: page2_get_prototype_batch.json (+ _index.ndjson). This file is the Page 2 graph.
+
+[11] batch get_prototype with op-level nodeIds ["180:1010"] (scoped; works)
+{"failCount":0,"failedAt":-1,"okCount":1,"results":[{"data":{"edgeCount":0,"edges":[],"flowStartingPoints":[],"overlays":[],"pageId":"0:1","pageName":"Design System","prototypeStartNodeId":null,"reactionNodeCount":0},"i":0,"type":"get_prototype"}]}
+
+[12] batch get_prototype with op-level nodeIds ["0:1"] and ["392:2963"] (whole pages, two ops in one batch)
+{"failCount":0,"failedAt":-1,"okCount":2,"results":[{"data":{"edgeCount":0,"edges":[],"flowStartingPoints":[],"overlays":[],"pageId":"0:1","pageName":"Design System","prototypeStartNodeId":null,"reactionNodeCount":0},"i":0,"type":"get_prototype"},{"data":{"edgeCount":0,"edges":[],"flowStartingPoints":[],"overlays":[],"pageId":"392:2963","pageName":"Drafts","prototypeStartNodeId":null,"reactionNodeCount":0},"i":1,"type":"get_prototype"}]}
+
+[13] get_node 0:1 full depth (Design System tree) - saved: ds_0-1_get_node_full.json (+ _index.ndjson)
+[14] get_node 47:930 full depth (Page 2 tree) - saved: page2_get_node_full.json (+ _index.ndjson)
+[15] get_node 392:2963 - no children (see [5]); no full tree needed.
+
+Notes for the reader:
+- Field "visible" appears only as "visible":false (545 hidden nodes on Page 2, 7 on Design System); a node without the key is visible.
+- Instances carry "mainComponent":{"key","name","remote"} and "mainComponentId".
+- Instance children have composite ids such as "I47:1039;37:668".

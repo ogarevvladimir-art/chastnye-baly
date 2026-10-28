@@ -26,79 +26,45 @@ function initPrep() {
   hoverStates(s, steps);
 }
 
-// 02 (десктоп, Д3 A): весь блок одним экраном, раскрыта одна строка — покой 01, дальше наведённая (мышь, фокус, тап).
-// Раскрытие сдвигает строки под курсором, поэтому мышь выбирает строку только движением и не раньше 0,4 с после смены —
-// иначе съехавшая под курсор строка раскрывалась бы сама, цепочкой.
-// k = min(s, (экран − 206 − dmax) / 622): низ самой длинной раскрытой строки — на экран − 64 (заметка 223:2463).
+// 02 (Ц3): пять этапов — слои закреплённой сцены, шаг по прокрутке (scrollSteps, как 05); плёнка фото и барабан слова — CSS по data-pos.
+// Закрепление (data-pin) — с JS и без reduced-motion. Телефон и планшет: высота фото --eve-ph = min(кадр, окно − верх фото − отступ
+// до капса − самый длинный капс − 24 − «ориентир» − его низ по кадру); если фото выходит меньше 60 % кадра (низкое окно) — этапы стопкой.
 function initEvening() {
   const s = document.querySelector(".s-evening");
   if (!s) return;
-  const items = [...s.querySelectorAll(".eve__item")];
-  const descs = items.map((it) => it.querySelector(".eve__desc"));
-  const lead = s.querySelector(".sh__lead");
+  const steps = [...s.querySelectorAll(".eve__step")];
+  const texts = steps.map((st) => st.querySelector(".eve__text"));
   const note = s.querySelector(".eve__note");
-  let on = -1;
-  let changed = 0;
-
-  const set = (i) => {
-    if (!desk.matches) i = 0;
-    if (i === on) return;
-    on = i;
-    changed = performance.now();
-    s.dataset.state = String(i + 1);
-    items.forEach((it, k) => it.toggleAttribute("data-on", desk.matches && k === i));
-  };
+  const probe = s.querySelector(".eve__probe");
+  const track = s.querySelector(".eve__track");
+  const stage = s.querySelector(".eve__stage");
+  const tab = matchMedia("(min-width: 600px)");
+  // По кадрам этапа 1: верх фото, фото → капс, низ «ориентира», высота фото (телефон 400:2936, планшет 400:2985)
+  const M = { top: 140, gap: 36, bottom: 80, ph: 344 };
+  const T = { top: 136, gap: 48, bottom: 124, ph: 576 };
 
   const fit = () => {
-    if (!desk.matches) return ["--k", "--dmax", "--lead-h", "--note-h"].forEach((p) => s.style.removeProperty(p));
-    const u = (Math.min(document.documentElement.clientWidth, 1920) - 128) / 1312;
-    const h = s.clientHeight;
-    const dmax = Math.max(...descs.map((d) => d.scrollHeight - parseFloat(getComputedStyle(d, "::before").height)));   // без отступа над текстом
-    s.style.setProperty("--k", Math.min(u, h / 900, (h - 206 - dmax) / 622).toFixed(4) + "px");
-    s.style.setProperty("--dmax", dmax + "px");
-    s.style.setProperty("--lead-h", lead.offsetHeight + "px");
-    s.style.setProperty("--note-h", note.offsetHeight + "px");
+    if (reducedMotion.matches) return s.removeAttribute("data-pin");
+    if (desk.matches) {
+      s.style.removeProperty("--eve-ph");
+      return s.setAttribute("data-pin", "");
+    }
+    const cw = document.documentElement.clientWidth;
+    const d = tab.matches ? T : M;
+    const u = tab.matches ? (cw - 64) / 770 : (Math.min(cw, 480) - 32) / 358;
+    const caps = Math.max(...texts.map((t) => t.offsetHeight));
+    const ph = Math.min(d.ph * u, probe.offsetHeight - (d.top + d.gap + d.bottom) * u - caps - 24 - note.offsetHeight);
+    s.toggleAttribute("data-pin", ph >= 0.6 * d.ph * u);
+    s.style.setProperty("--eve-ph", ph.toFixed(1) + "px");
   };
 
-  const tabs = () => items.forEach((it) => (desk.matches ? (it.tabIndex = 0) : it.removeAttribute("tabindex")));
-
-  // Движение в первые 0,4 с после смены не выбирает строку, а откладывает выбор: по истечении берётся строка под курсором.
-  // Отложенный выбор новых не ставит — цепочки нет.
-  const list = s.querySelector(".eve__list");
-  let last = null;
-  let timer = 0;
-  const pick = (el) => {
-    const it = el && el.closest(".eve__item");
-    if (it) set(items.indexOf(it));
-  };
-  list.addEventListener("pointermove", (e) => {
-    if (e.pointerType !== "mouse" || !desk.matches) return;
-    last = [e.clientX, e.clientY];
-    const wait = 400 - (performance.now() - changed);
-    clearTimeout(timer);
-    if (wait > 0) timer = setTimeout(() => last && pick(document.elementFromPoint(...last)), wait);
-    else pick(e.target);
-  });
-  list.addEventListener("pointerleave", () => {
-    clearTimeout(timer);
-    last = null;
-  });
-  items.forEach((it, i) => {
-    it.addEventListener("focusin", () => set(i));
-    it.addEventListener("click", (e) => {
-      if (e.pointerType !== "mouse") set(i);
-    });
-  });
-
-  desk.addEventListener("change", () => {
-    tabs();
-    set(0);
-    fit();
-  });
-  new ResizeObserver(fit).observe(s);
+  const sw = createSwitch({ count: steps.length, loop: false, onChange: (i) => setPositions(steps, i) });
+  sw.go(1, true);
+  fit();
+  for (const mq of [desk, tab, reducedMotion]) mq.addEventListener("change", fit);
+  addEventListener("resize", fit);
   document.fonts.ready.then(fit);
-  tabs();
-  set(0);
+  scrollSteps(track, stage, steps.length, (i) => sw.go(i), () => s.hasAttribute("data-pin"));
 }
 
 // 03: десктоп — переключатель; телефон и планшет — счётчик «0N / 03» по самой видимой карточке (IntersectionObserver по ленте)
@@ -207,60 +173,27 @@ function initAssistant() {
   document.fonts.ready.then(fit);
 }
 
-// 07 (десктоп «в экран», Д3б): k = min(s, (экран − 128 − c_i) / (454,8 + отступ_i)) по всем ступеням, где c_i — этап + абзац
-// (мелкий текст, px): лесенка стоит низом на экран − 40k, и верх ступени 04 не выше низа H2 + 24 (суть 36k в две строки — 82,8k)
+// 07 (десктоп «в экран», Ц3): лесенка фрагментов стоит низом на экран − 102k, ступени 0 / 40k / 80k, высоты фрагментов h_i
+// (метка + 12,6 + капс) — px. k — наибольшее ≤ s, при котором фрагмент 1 на 24 ниже фразы (низ 104 + 168k),
+// а фрагмент 2 (и 3 — он ещё ниже) — на 24 ниже гиганта (низ 104 + 356k)
 function initLessons() {
   const s = document.querySelector(".s-lessons");
   if (!s) return;
   const steps = [...s.querySelectorAll(".less__step")];
-  const OFFS = [144, 104, 64, 24];
+  const OFFS = [0, 40, 80];
   const fit = () => {
     if (!desk.matches) return s.style.removeProperty("--k7");
     const u = (Math.min(document.documentElement.clientWidth, 1920) - 128) / 1312;
     const h = s.clientHeight;
+    const hs = steps.map((st) => st.querySelector(".less__stage").getBoundingClientRect().height + 12.6
+      + st.querySelector(".less__text").getBoundingClientRect().height);
+    const fits = (k) => {
+      const top = h - 102 * k - Math.max(...hs.map((c, i) => OFFS[i] * k + c));
+      return top >= 128 + 168 * k && top + 40 * k >= 128 + 356 * k;
+    };
     let k = Math.min(u, h / 900);
-    steps.forEach((st, i) => {
-      const c = st.querySelector(".less__stage").offsetHeight + st.querySelector(".less__text").offsetHeight;
-      k = Math.min(k, (h - 128 - c) / (454.8 + OFFS[i]));
-    });
+    while (k > 0.3 && !fits(k)) k -= 0.005;
     s.style.setProperty("--k7", k.toFixed(4) + "px");
-  };
-  new ResizeObserver(fit).observe(s);
-  document.fonts.ready.then(fit);
-}
-
-function initEtiquette() {
-  const s = document.querySelector(".s-etiquette");
-  if (!s) return;
-  const buttons = [...s.querySelectorAll(".etq__btn")];
-  const panel = s.querySelector(".etq__panel");
-  const count = s.querySelector(".etq__count-n");
-  let busy = false;
-
-  const set = (role) => {
-    if (busy || role === s.dataset.role) return;
-    busy = true;
-    setTimeout(() => (busy = false), reducedMotion.matches ? 150 : 500);
-    s.dataset.role = role;
-    buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.role === role)));
-    count.textContent = role === "k" ? "01" : "02";
-  };
-
-  buttons.forEach((b) => b.addEventListener("click", () => set(b.dataset.role)));
-  panel.addEventListener("click", () => set(s.dataset.role === "k" ? "d" : "k"));
-
-  // Десктоп «в экран» (Д3б, A1): экран 2 = 104 + вкладки 48 + панель (224k + 4p) + 40k + финал 240k + 20k, p = max(56k, правило + 20).
-  // Шапка с интро — не в экран (правка 2026-10-06): экран 2 — то, что ниже интро
-  const rules = [...s.querySelectorAll(".etq__rule")];
-  const intro = s.querySelector(".etq__intro");
-  const fit = () => {
-    if (!desk.matches) return s.style.removeProperty("--k8");
-    const u = (Math.min(document.documentElement.clientWidth, 1920) - 128) / 1312;
-    const h = s.clientHeight - intro.offsetTop - intro.offsetHeight;
-    const pmin = Math.max(...rules.map((r) => r.offsetHeight)) + 20;
-    let k = (h - 152) / 748;
-    if (56 * k < pmin) k = Math.min((h - 152 - 4 * pmin) / 524, pmin / 56);
-    s.style.setProperty("--k8", Math.min(u, h / 900, k).toFixed(4) + "px");
   };
   new ResizeObserver(fit).observe(s);
   document.fonts.ready.then(fit);
@@ -453,24 +386,24 @@ function initEvenings() {
   document.fonts.ready.then(fit);
 }
 
-// Контакты (десктоп, Д3в): Контакты + подвал — экран; шаг панели kp = min(s, (экран − 152 − 213 − согласие) / 377) — панель от 104
-// не ниже экран − 48. Согласие переносится по ширине панели, а она зависит от kp, поэтому два прохода
-function initContact() {
-  const s = document.querySelector(".s-contact");
-  const foot = document.querySelector(".s-footer");
-  if (!s || !foot) return;
-  const consent = s.querySelector(".cp__consent");
+// 11–12 Финал (десктоп, Ц4): низ — px от низа экрана, верх — k от линии 104. --y1 — верх капса фразы: капс низом на 116
+// (28 над ссылкой), но фраза (низ --y1 + 108k) не ниже 32 над контактами (экран − 48) — при k > 1 капс и фраза поднимаются.
+// k (--k12) — наибольшее ≤ s (шаг 0,005), при котором команда (низ 104 + 416k + её высота) на 24 выше фразы (--y1 − 12k)
+function initFinale() {
+  const s = document.querySelector(".s-finale");
+  if (!s) return;
+  const team = s.querySelector(".fin__team");
+  const more = s.querySelector(".fin__more");
   const fit = () => {
-    if (!desk.matches) return s.style.removeProperty("--kp");
+    if (!desk.matches) return ["--k12", "--y1"].forEach((p) => s.style.removeProperty(p));
     const u = (Math.min(document.documentElement.clientWidth, 1920) - 128) / 1312;
-    const h = s.offsetHeight + foot.offsetHeight;
-    const sc = Math.min(u, h / 900);
-    let kp = sc;
-    for (let i = 0; i < 2; i++) {
-      s.style.setProperty("--kp", kp.toFixed(4) + "px");
-      kp = Math.min(sc, (h - 365 - consent.offsetHeight) / 377);
-    }
-    s.style.setProperty("--kp", kp.toFixed(4) + "px");
+    const h = s.clientHeight;
+    const ht = team.offsetHeight;
+    const y1 = (k) => Math.min(h - 116 - more.offsetHeight, h - 80 - 108 * k);
+    let k = Math.min(u, h / 900);
+    while (k > 0.2 && 128 + 416 * k + ht > y1(k) - 12 * k) k -= 0.005;
+    s.style.setProperty("--y1", y1(k).toFixed(1) + "px");
+    s.style.setProperty("--k12", k.toFixed(4) + "px");
   };
   new ResizeObserver(fit).observe(s);
   document.fonts.ready.then(fit);
@@ -478,7 +411,7 @@ function initContact() {
 
 // Каждый блок отдельно: ошибка в одном не останавливает остальные
 export function initBlocks() {
-  for (const init of [initPrep, initEvening, initMusic, initDancemaster, initShow, initAssistant, initLessons, initEtiquette, initDress, initEvenings, initContact]) {
+  for (const init of [initPrep, initEvening, initMusic, initDancemaster, initShow, initAssistant, initLessons, initDress, initEvenings, initFinale]) {
     try {
       init();
     } catch (err) {

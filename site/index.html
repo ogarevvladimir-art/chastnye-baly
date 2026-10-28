@@ -76,7 +76,7 @@
             <li><a class="menu__item" href="#etiquette" aria-label="Этикет"><span class="menu__label t-label" aria-hidden="true">08 — Этикет</span><span class="menu__word t-menu" aria-hidden="true">Этикет</span></a></li>
             <li><a class="menu__item" href="#dresscode" aria-label="Дресс-код"><span class="menu__label t-label" aria-hidden="true">09 — Дресс-код</span><span class="menu__word t-menu" aria-hidden="true">Дресс-код</span></a></li>
             <li><a class="menu__item" href="#evenings" aria-label="Вечера"><span class="menu__label t-label" aria-hidden="true">10 — Вечера</span><span class="menu__word t-menu" aria-hidden="true">Вечера</span></a></li>
-            <li><a class="menu__item" href="#about" aria-label="О нас"><span class="menu__label t-label" aria-hidden="true">11 — О нас</span><span class="menu__word t-menu" aria-hidden="true">О нас</span></a></li>
+            <li><a class="menu__item" href="#contact" aria-label="О нас"><span class="menu__label t-label" aria-hidden="true">11 — О нас</span><span class="menu__word t-menu" aria-hidden="true">О нас</span></a></li>
             <li><a class="menu__item" href="#form" data-form aria-haspopup="dialog" aria-label="Связаться"><span class="menu__label t-label" aria-hidden="true">12 — Связаться</span><span class="menu__word t-menu" aria-hidden="true">Связаться</span></a></li>
           </ol>
         </nav>
@@ -211,157 +211,115 @@
       </ol>
     </section>
 
-    <!-- 02 Вечер: пять пунктов. Телефон и планшет — стопкой; десктоп — весь блок одним экраном: список этапов, раскрыт наведённый, фото справа -->
+    <!-- 02 Вечер (Ц3): шапка «Шапка 1» (фраза вводит гиганта) и пять этапов «фото + слово». С JS и без reduced-motion
+         этапы — закреплённая сцена, шаг по прокрутке: фото уезжает вверх плёнкой, слово — барабан, время и капс растворяются.
+         Без JS — этапы стопкой -->
     <section class="s-evening" id="evening" data-surface="slate" aria-labelledby="evening-h">
-      <header class="sh sh--l2-axis">
-        <p class="sh__label t-label t-accent" data-reveal="fade" data-delay="0.15">02 — программа Вечера</p>
-        <h2 class="sh__title t-h2" id="evening-h">
-          <span class="sh__l1" data-reveal="text" data-delay="0.3"><em>Как</em> проходит</span>
-          <span class="sh__l2" data-reveal="text" data-delay="0.4">вечер</span>
+      <header class="eve__head">
+        <p class="eve__label t-label t-accent">02 — Программа</p>
+        <h2 class="eve__title" id="evening-h">
+          <span class="eve__phrase t-h2"><em>Как</em> проходит</span>
+          <span class="eve__giant t-giant">Вечер</span>
         </h2>
-        <p class="sh__lead t-text" data-reveal="text" data-delay="0.5">Сценарий каждого бала пишется заново — под конкретных гостей, локацию и настроение. Чтобы дать общее представление, вот как может выглядеть структура вечера:</p>
+        <p class="eve__lead t-text">Сценарий каждого бала пишется заново&nbsp;— под ваших гостей, локацию и настроение.</p>
       </header>
-      <div class="eve" data-step="1">
+      <div class="eve__track">
         <div class="eve__stage">
-          <!-- Партитура десктопа: весь вечер одной вертикальной полосой, толщина отрезка — интенсивность -->
-          <div class="eve__score" aria-hidden="true">
-            <span style="--min:60; --w:3"></span><span style="--min:20; --w:6"></span><span style="--min:150; --w:12"></span><span style="--min:30; --w:9"></span><span style="--min:40; --w:9"></span>
-          </div>
-          <ol class="eve__list">
-            <li class="eve__item" data-i="1">
-              <div class="eve__photo" data-photo>
-            <picture>
-              <source media="(min-width: 1024px)" type="image/avif" srcset="img/evening/step-01-d-800.avif 800w, img/evening/step-01-d-1200.avif 1200w, img/evening/step-01-d-1600.avif 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" type="image/webp" srcset="img/evening/step-01-d-800.webp 800w, img/evening/step-01-d-1200.webp 1200w, img/evening/step-01-d-1600.webp 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" srcset="img/evening/step-01-d-800.jpg 800w, img/evening/step-01-d-1200.jpg 1200w, img/evening/step-01-d-1600.jpg 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-01-t-385.avif 385w, img/evening/step-01-t-770.avif 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-01-t-385.webp 385w, img/evening/step-01-t-770.webp 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" srcset="img/evening/step-01-t-385.jpg 385w, img/evening/step-01-t-770.jpg 770w" sizes="calc(50vw - 32px)">
-              <source type="image/avif" srcset="img/evening/step-01-m-358.avif 358w, img/evening/step-01-m-716.avif 716w, img/evening/step-01-m-1074.avif 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <source type="image/webp" srcset="img/evening/step-01-m-358.webp 358w, img/evening/step-01-m-716.webp 716w, img/evening/step-01-m-1074.webp 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <img src="img/evening/step-01-m-358.jpg" srcset="img/evening/step-01-m-358.jpg 358w, img/evening/step-01-m-716.jpg 716w, img/evening/step-01-m-1074.jpg 1074w"
-                   sizes="min(448px, calc(100vw - 32px))" width="358" height="448" alt="Гости знакомятся в зале перед началом бала" loading="lazy" decoding="async">
-            </picture>
+          <span class="eve__probe" aria-hidden="true"></span>
+          <ol class="eve__steps">
+            <li class="eve__step" data-i="1">
+              <p class="eve__time t-label">18:00</p>
+              <div class="eve__fig">
+                <div class="eve__photo">
+                <picture>
+                  <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-01-d-800.avif 800w, img/evening/step-01-d-1200.avif 1200w, img/evening/step-01-d-1600.avif 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-01-d-800.webp 800w, img/evening/step-01-d-1200.webp 1200w, img/evening/step-01-d-1600.webp 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" srcset="img/evening/step-01-d-800.jpg 800w, img/evening/step-01-d-1200.jpg 1200w, img/evening/step-01-d-1600.jpg 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source type="image/avif" srcset="img/evening/step-01-m-358.avif 358w, img/evening/step-01-m-716.avif 716w, img/evening/step-01-m-1074.avif 1074w" sizes="min(80vw, 360px)">
+                  <source type="image/webp" srcset="img/evening/step-01-m-358.webp 358w, img/evening/step-01-m-716.webp 716w, img/evening/step-01-m-1074.webp 1074w" sizes="min(80vw, 360px)">
+                  <img src="img/evening/step-01-m-358.jpg" srcset="img/evening/step-01-m-358.jpg 358w, img/evening/step-01-m-716.jpg 716w, img/evening/step-01-m-1074.jpg 1074w"
+                       sizes="min(80vw, 360px)" width="358" height="448" alt="Гости знакомятся в зале перед началом бала" loading="lazy" decoding="async">
+                </picture>
+                </div>
+                <h3 class="eve__word t-giant"><span class="eve__wi">Сбор<br>гостей</span></h3>
               </div>
-              <p class="eve__time t-stat" data-reveal="text" data-delay="0.15">18:00</p>
-              <p class="eve__count t-label" data-reveal="text" data-delay="0.4">01 / 05</p>
-              <p class="eve__meta" data-reveal="text" data-delay="0.4"><span class="eve__dur t-label">60 мин</span> <span class="eve__int t-label t-accent">тихо</span></p>
-              <span class="eve__bar" style="--start:0; --min:60" aria-hidden="true"><span class="eve__seg" data-reveal="bar" data-delay="0.3"></span></span>
-              <h3 class="eve__title" data-reveal="text" data-delay="0.45">Сбор гостей и приветствие</h3>
-              <p class="eve__desc t-text" data-reveal="text" data-delay="0.5">Гости приходят, знакомятся, общаются за фуршетом. В зале играет оркестр.</p>
+              <p class="eve__text t-text">Сбор гостей. Фуршет, знакомства, в зале играет оркестр.</p>
             </li>
-            <li class="eve__item" data-i="2">
-              <div class="eve__photo" data-photo>
-            <picture>
-              <source media="(min-width: 1024px)" type="image/avif" srcset="img/evening/step-02-d-800.avif 800w, img/evening/step-02-d-1200.avif 1200w, img/evening/step-02-d-1600.avif 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" type="image/webp" srcset="img/evening/step-02-d-800.webp 800w, img/evening/step-02-d-1200.webp 1200w, img/evening/step-02-d-1600.webp 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" srcset="img/evening/step-02-d-800.jpg 800w, img/evening/step-02-d-1200.jpg 1200w, img/evening/step-02-d-1600.jpg 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-02-t-385.avif 385w, img/evening/step-02-t-770.avif 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-02-t-385.webp 385w, img/evening/step-02-t-770.webp 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" srcset="img/evening/step-02-t-385.jpg 385w, img/evening/step-02-t-770.jpg 770w" sizes="calc(50vw - 32px)">
-              <source type="image/avif" srcset="img/evening/step-02-m-358.avif 358w, img/evening/step-02-m-716.avif 716w, img/evening/step-02-m-1074.avif 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <source type="image/webp" srcset="img/evening/step-02-m-358.webp 358w, img/evening/step-02-m-716.webp 716w, img/evening/step-02-m-1074.webp 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <img src="img/evening/step-02-m-358.jpg" srcset="img/evening/step-02-m-358.jpg 358w, img/evening/step-02-m-716.jpg 716w, img/evening/step-02-m-1074.jpg 1074w"
-                   sizes="min(448px, calc(100vw - 32px))" width="358" height="448" alt="Торжественное открытие: первый вальс" loading="lazy" decoding="async">
-            </picture>
+            <li class="eve__step" data-i="2">
+              <p class="eve__time t-label">19:00</p>
+              <div class="eve__fig">
+                <div class="eve__photo">
+                <picture>
+                  <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-02-d-800.avif 800w, img/evening/step-02-d-1200.avif 1200w, img/evening/step-02-d-1600.avif 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-02-d-800.webp 800w, img/evening/step-02-d-1200.webp 1200w, img/evening/step-02-d-1600.webp 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" srcset="img/evening/step-02-d-800.jpg 800w, img/evening/step-02-d-1200.jpg 1200w, img/evening/step-02-d-1600.jpg 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source type="image/avif" srcset="img/evening/step-02-m-358.avif 358w, img/evening/step-02-m-716.avif 716w, img/evening/step-02-m-1074.avif 1074w" sizes="min(80vw, 360px)">
+                  <source type="image/webp" srcset="img/evening/step-02-m-358.webp 358w, img/evening/step-02-m-716.webp 716w, img/evening/step-02-m-1074.webp 1074w" sizes="min(80vw, 360px)">
+                  <img src="img/evening/step-02-m-358.jpg" srcset="img/evening/step-02-m-358.jpg 358w, img/evening/step-02-m-716.jpg 716w, img/evening/step-02-m-1074.jpg 1074w"
+                       sizes="min(80vw, 360px)" width="358" height="448" alt="Торжественное открытие: первый вальс" loading="lazy" decoding="async">
+                </picture>
+                </div>
+                <h3 class="eve__word t-giant"><span class="eve__wi">Открытие</span></h3>
               </div>
-              <p class="eve__time t-stat" data-reveal="text" data-delay="0.15">19:00</p>
-              <p class="eve__count t-label" data-reveal="text" data-delay="0.4">02 / 05</p>
-              <p class="eve__meta" data-reveal="text" data-delay="0.4"><span class="eve__dur t-label">20 мин</span> <span class="eve__int t-label t-accent">вступление</span></p>
-              <span class="eve__bar" style="--start:60; --min:20" aria-hidden="true"><span class="eve__seg" data-reveal="bar" data-delay="0.3"></span></span>
-              <h3 class="eve__title" data-reveal="text" data-delay="0.45">Торжественное открытие</h3>
-              <p class="eve__desc t-text" data-reveal="text" data-delay="0.5">Первыми выходят хозяева бала. Выступают оперные артисты и балетная труппа — первые минуты задают тон всему вечеру. Затем — вальс-открытие, после которого на паркет приглашают всех гостей.</p>
+              <p class="eve__text t-text">Торжественное открытие. Выходят хозяева бала, затем&nbsp;— вальс для всех гостей.</p>
             </li>
-            <li class="eve__item" data-i="3">
-              <div class="eve__photo" data-photo>
-            <picture>
-              <source media="(min-width: 1024px)" type="image/avif" srcset="img/evening/step-03-d-800.avif 800w, img/evening/step-03-d-1200.avif 1200w, img/evening/step-03-d-1600.avif 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" type="image/webp" srcset="img/evening/step-03-d-800.webp 800w, img/evening/step-03-d-1200.webp 1200w, img/evening/step-03-d-1600.webp 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" srcset="img/evening/step-03-d-800.jpg 800w, img/evening/step-03-d-1200.jpg 1200w, img/evening/step-03-d-1600.jpg 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-03-t-385.avif 385w, img/evening/step-03-t-770.avif 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-03-t-385.webp 385w, img/evening/step-03-t-770.webp 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" srcset="img/evening/step-03-t-385.jpg 385w, img/evening/step-03-t-770.jpg 770w" sizes="calc(50vw - 32px)">
-              <source type="image/avif" srcset="img/evening/step-03-m-358.avif 358w, img/evening/step-03-m-716.avif 716w, img/evening/step-03-m-1074.avif 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <source type="image/webp" srcset="img/evening/step-03-m-358.webp 358w, img/evening/step-03-m-716.webp 716w, img/evening/step-03-m-1074.webp 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <img src="img/evening/step-03-m-358.jpg" srcset="img/evening/step-03-m-358.jpg 358w, img/evening/step-03-m-716.jpg 716w, img/evening/step-03-m-1074.jpg 1074w"
-                   sizes="min(448px, calc(100vw - 32px))" width="358" height="448" alt="Пары танцуют в бальном зале" loading="lazy" decoding="async">
-            </picture>
+            <li class="eve__step" data-i="3">
+              <p class="eve__time t-label">19:20</p>
+              <div class="eve__fig">
+                <div class="eve__photo">
+                <picture>
+                  <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-03-d-800.avif 800w, img/evening/step-03-d-1200.avif 1200w, img/evening/step-03-d-1600.avif 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-03-d-800.webp 800w, img/evening/step-03-d-1200.webp 1200w, img/evening/step-03-d-1600.webp 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" srcset="img/evening/step-03-d-800.jpg 800w, img/evening/step-03-d-1200.jpg 1200w, img/evening/step-03-d-1600.jpg 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source type="image/avif" srcset="img/evening/step-03-m-358.avif 358w, img/evening/step-03-m-716.avif 716w, img/evening/step-03-m-1074.avif 1074w" sizes="min(80vw, 360px)">
+                  <source type="image/webp" srcset="img/evening/step-03-m-358.webp 358w, img/evening/step-03-m-716.webp 716w, img/evening/step-03-m-1074.webp 1074w" sizes="min(80vw, 360px)">
+                  <img src="img/evening/step-03-m-358.jpg" srcset="img/evening/step-03-m-358.jpg 358w, img/evening/step-03-m-716.jpg 716w, img/evening/step-03-m-1074.jpg 1074w"
+                       sizes="min(80vw, 360px)" width="358" height="448" alt="Пары танцуют в бальном зале" loading="lazy" decoding="async">
+                </picture>
+                </div>
+                <h3 class="eve__word t-giant"><span class="eve__wi">Танцы</span></h3>
               </div>
-              <p class="eve__time t-stat" data-reveal="text" data-delay="0.15">19:20</p>
-              <p class="eve__count t-label" data-reveal="text" data-delay="0.4">03 / 05</p>
-              <p class="eve__meta" data-reveal="text" data-delay="0.4"><span class="eve__dur t-label">150 мин</span> <span class="eve__int t-label t-accent">пик</span></p>
-              <span class="eve__bar" style="--start:80; --min:150" aria-hidden="true"><span class="eve__seg" data-reveal="bar" data-delay="0.3"></span></span>
-              <h3 class="eve__title" data-reveal="text" data-delay="0.45">Танцевальная программа</h3>
-              <p class="eve__desc t-text" data-reveal="text" data-delay="0.5">Вальсы, кадрили, свинг, фокстрот, латина. Танцмейстер ведёт зал: чередует ритмы, вовлекает гостей, следит за темпом. Между танцами — паузы для общения и фуршетов.</p>
+              <p class="eve__text t-text">Танцевальная программа. Вальсы, кадрили, свинг. Танцмейстер ведёт зал.</p>
             </li>
-            <li class="eve__item" data-i="4">
-              <div class="eve__photo" data-photo>
-            <picture>
-              <source media="(min-width: 1024px)" type="image/avif" srcset="img/evening/step-04-d-800.avif 800w, img/evening/step-04-d-1200.avif 1200w, img/evening/step-04-d-1600.avif 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" type="image/webp" srcset="img/evening/step-04-d-800.webp 800w, img/evening/step-04-d-1200.webp 1200w, img/evening/step-04-d-1600.webp 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" srcset="img/evening/step-04-d-800.jpg 800w, img/evening/step-04-d-1200.jpg 1200w, img/evening/step-04-d-1600.jpg 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-04-t-385.avif 385w, img/evening/step-04-t-770.avif 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-04-t-385.webp 385w, img/evening/step-04-t-770.webp 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" srcset="img/evening/step-04-t-385.jpg 385w, img/evening/step-04-t-770.jpg 770w" sizes="calc(50vw - 32px)">
-              <source type="image/avif" srcset="img/evening/step-04-m-358.avif 358w, img/evening/step-04-m-716.avif 716w, img/evening/step-04-m-1074.avif 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <source type="image/webp" srcset="img/evening/step-04-m-358.webp 358w, img/evening/step-04-m-716.webp 716w, img/evening/step-04-m-1074.webp 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <img src="img/evening/step-04-m-358.jpg" srcset="img/evening/step-04-m-358.jpg 358w, img/evening/step-04-m-716.jpg 716w, img/evening/step-04-m-1074.jpg 1074w"
-                   sizes="min(448px, calc(100vw - 32px))" width="358" height="448" alt="Шоу-номер: выступает балерина" loading="lazy" decoding="async">
-            </picture>
+            <li class="eve__step" data-i="4">
+              <p class="eve__time t-label">21:50</p>
+              <div class="eve__fig">
+                <div class="eve__photo">
+                <picture>
+                  <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-04-d-800.avif 800w, img/evening/step-04-d-1200.avif 1200w, img/evening/step-04-d-1600.avif 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-04-d-800.webp 800w, img/evening/step-04-d-1200.webp 1200w, img/evening/step-04-d-1600.webp 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" srcset="img/evening/step-04-d-800.jpg 800w, img/evening/step-04-d-1200.jpg 1200w, img/evening/step-04-d-1600.jpg 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source type="image/avif" srcset="img/evening/step-04-m-358.avif 358w, img/evening/step-04-m-716.avif 716w, img/evening/step-04-m-1074.avif 1074w" sizes="min(80vw, 360px)">
+                  <source type="image/webp" srcset="img/evening/step-04-m-358.webp 358w, img/evening/step-04-m-716.webp 716w, img/evening/step-04-m-1074.webp 1074w" sizes="min(80vw, 360px)">
+                  <img src="img/evening/step-04-m-358.jpg" srcset="img/evening/step-04-m-358.jpg 358w, img/evening/step-04-m-716.jpg 716w, img/evening/step-04-m-1074.jpg 1074w"
+                       sizes="min(80vw, 360px)" width="358" height="448" alt="Шоу-номер: выступает балерина" loading="lazy" decoding="async">
+                </picture>
+                </div>
+                <h3 class="eve__word t-giant"><span class="eve__wi">Шоу</span></h3>
               </div>
-              <p class="eve__time t-stat" data-reveal="text" data-delay="0.15">21:50</p>
-              <p class="eve__count t-label" data-reveal="text" data-delay="0.4">04 / 05</p>
-              <p class="eve__meta" data-reveal="text" data-delay="0.4"><span class="eve__dur t-label">30 мин</span> <span class="eve__int t-label t-accent">внимание в зал</span></p>
-              <span class="eve__bar" style="--start:230; --min:30" aria-hidden="true"><span class="eve__seg" data-reveal="bar" data-delay="0.3"></span></span>
-              <h3 class="eve__title" data-reveal="text" data-delay="0.45">Шоу-номера</h3>
-              <p class="eve__desc t-text" data-reveal="text" data-delay="0.5">Выступления профессиональных танцоров, совместные номера, хореография от гостей — в эти моменты всё внимание на паркете.</p>
+              <p class="eve__text t-text">Шоу-номера. Всё внимание на паркете.</p>
             </li>
-            <li class="eve__item" data-i="5">
-              <div class="eve__photo" data-photo>
-            <picture>
-              <source media="(min-width: 1024px)" type="image/avif" srcset="img/evening/step-05-d-800.avif 800w, img/evening/step-05-d-1200.avif 1200w, img/evening/step-05-d-1600.avif 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" type="image/webp" srcset="img/evening/step-05-d-800.webp 800w, img/evening/step-05-d-1200.webp 1200w, img/evening/step-05-d-1600.webp 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 1024px)" srcset="img/evening/step-05-d-800.jpg 800w, img/evening/step-05-d-1200.jpg 1200w, img/evening/step-05-d-1600.jpg 1600w" sizes="(min-width: 1920px) 568px, 28.9vw">
-              <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-05-t-385.avif 385w, img/evening/step-05-t-770.avif 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-05-t-385.webp 385w, img/evening/step-05-t-770.webp 770w" sizes="calc(50vw - 32px)">
-              <source media="(min-width: 600px)" srcset="img/evening/step-05-t-385.jpg 385w, img/evening/step-05-t-770.jpg 770w" sizes="calc(50vw - 32px)">
-              <source type="image/avif" srcset="img/evening/step-05-m-358.avif 358w, img/evening/step-05-m-716.avif 716w, img/evening/step-05-m-1074.avif 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <source type="image/webp" srcset="img/evening/step-05-m-358.webp 358w, img/evening/step-05-m-716.webp 716w, img/evening/step-05-m-1074.webp 1074w" sizes="min(448px, calc(100vw - 32px))">
-              <img src="img/evening/step-05-m-358.jpg" srcset="img/evening/step-05-m-358.jpg 358w, img/evening/step-05-m-716.jpg 716w, img/evening/step-05-m-1074.jpg 1074w"
-                   sizes="min(448px, calc(100vw - 32px))" width="358" height="448" alt="Финал бала: конфетти над танцующими гостями" loading="lazy" decoding="async">
-            </picture>
+            <li class="eve__step" data-i="5">
+              <p class="eve__time t-label">22:20</p>
+              <div class="eve__fig">
+                <div class="eve__photo">
+                <picture>
+                  <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/step-05-d-800.avif 800w, img/evening/step-05-d-1200.avif 1200w, img/evening/step-05-d-1600.avif 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/step-05-d-800.webp 800w, img/evening/step-05-d-1200.webp 1200w, img/evening/step-05-d-1600.webp 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source media="(min-width: 600px)" srcset="img/evening/step-05-d-800.jpg 800w, img/evening/step-05-d-1200.jpg 1200w, img/evening/step-05-d-1600.jpg 1600w" sizes="(min-width: 1024px) min(36.6vw, 640px), calc(62.3vw - 40px)">
+                  <source type="image/avif" srcset="img/evening/step-05-m-358.avif 358w, img/evening/step-05-m-716.avif 716w, img/evening/step-05-m-1074.avif 1074w" sizes="min(80vw, 360px)">
+                  <source type="image/webp" srcset="img/evening/step-05-m-358.webp 358w, img/evening/step-05-m-716.webp 716w, img/evening/step-05-m-1074.webp 1074w" sizes="min(80vw, 360px)">
+                  <img src="img/evening/step-05-m-358.jpg" srcset="img/evening/step-05-m-358.jpg 358w, img/evening/step-05-m-716.jpg 716w, img/evening/step-05-m-1074.jpg 1074w"
+                       sizes="min(80vw, 360px)" width="358" height="448" alt="Финал бала: конфетти над танцующими гостями" loading="lazy" decoding="async">
+                </picture>
+                </div>
+                <h3 class="eve__word t-giant"><span class="eve__wi">Финальный<br>вальс</span></h3>
               </div>
-              <p class="eve__time t-stat" data-reveal="text" data-delay="0.15">22:20</p>
-              <p class="eve__count t-label" data-reveal="text" data-delay="0.4">05 / 05</p>
-              <p class="eve__meta" data-reveal="text" data-delay="0.4"><span class="eve__dur t-label">40 мин</span> <span class="eve__int t-label t-accent">общий выход</span></p>
-              <span class="eve__bar" style="--start:260; --min:40" aria-hidden="true"><span class="eve__seg" data-reveal="bar" data-delay="0.3"></span></span>
-              <h3 class="eve__title" data-reveal="text" data-delay="0.45">Финальный танец и завершение</h3>
-              <p class="eve__desc t-text" data-reveal="text" data-delay="0.5">Общий финальный вальс: все гости выходят на паркет. После этого вечер завершается.</p>
+              <p class="eve__text t-text">Финальный вальс&nbsp;— и вечер завершается.</p>
             </li>
           </ol>
+          <p class="eve__note t-text">Это ориентир, а не готовая программа: от тридцати гостей до двухсот.</p>
         </div>
-      </div>
-      <div class="eve__final">
-        <div class="eve__hall">
-        <picture>
-          <source media="(min-width: 1024px)" type="image/avif" srcset="img/evening/hall-d-1440.avif 1440w, img/evening/hall-d-2160.avif 2160w, img/evening/hall-d-2880.avif 2880w" sizes="100vw">
-          <source media="(min-width: 1024px)" type="image/webp" srcset="img/evening/hall-d-1440.webp 1440w, img/evening/hall-d-2160.webp 2160w, img/evening/hall-d-2880.webp 2880w" sizes="100vw">
-          <source media="(min-width: 1024px)" srcset="img/evening/hall-d-1440.jpg 1440w, img/evening/hall-d-2160.jpg 2160w, img/evening/hall-d-2880.jpg 2880w" sizes="100vw">
-          <source media="(min-width: 600px)" type="image/avif" srcset="img/evening/hall-t-834.avif 834w, img/evening/hall-t-1668.avif 1668w" sizes="100vw">
-          <source media="(min-width: 600px)" type="image/webp" srcset="img/evening/hall-t-834.webp 834w, img/evening/hall-t-1668.webp 1668w" sizes="100vw">
-          <source media="(min-width: 600px)" srcset="img/evening/hall-t-834.jpg 834w, img/evening/hall-t-1668.jpg 1668w" sizes="100vw">
-          <source type="image/avif" srcset="img/evening/hall-m-390.avif 390w, img/evening/hall-m-780.avif 780w, img/evening/hall-m-1170.avif 1170w" sizes="100vw">
-          <source type="image/webp" srcset="img/evening/hall-m-390.webp 390w, img/evening/hall-m-780.webp 780w, img/evening/hall-m-1170.webp 1170w" sizes="100vw">
-          <img src="img/evening/hall-m-390.jpg" srcset="img/evening/hall-m-390.jpg 390w, img/evening/hall-m-780.jpg 780w, img/evening/hall-m-1170.jpg 1170w"
-               sizes="100vw" width="390" height="640" alt="" loading="lazy" decoding="async">
-        </picture>
-        </div>
-        <p class="eve__sum t-h2">
-          <span class="eve__sum-1" data-reveal="text" data-delay="0.3">Это ориентир,</span>
-          <span class="eve__sum-2" data-reveal="text" data-delay="0.4"><em>а</em> не готовая</span>
-          <span class="eve__sum-3" data-reveal="text" data-delay="0.5">программа.</span>
-        </p>
-        <p class="eve__note t-text" data-reveal="text" data-delay="0.6"><span class="eve__note-lead" aria-hidden="true">а не готовая программа. </span>Мы адаптируем сценарий под ваш формат: от камерного вечера на тридцать человек до масштабного бала на двести. Длительность, количество пауз и интенсивность танцевальной части подстраиваются под ваших гостей.</p>
       </div>
     </section>
 
@@ -692,99 +650,87 @@
       </div>
     </section>
 
-    <!-- 07 Уроки: четыре ступени. Телефон и планшет — зигзаг (чётные к правому краю); десктоп — лесенка из четырёх колонок; панорама в край -->
+    <!-- 07 Уроки (Ц3, 2026-10-27): экран E «гигант и капс на осях» — фраза «Подготовка к балу» вводит гиганта «Уроки»,
+         три фрагмента капсом лесенкой. Без фото (панорама снята решением 2026-10-27). Статично, без входа.
+         Кадры: десктоп 394:2605, телефон — «M390 / 07 Уроки · Ц3 · покой», планшет — «T834 / 07 Уроки · Ц3 · покой». -->
     <section class="s-lessons" id="lessons" data-surface="ash" aria-labelledby="less-h">
-      <header class="sh sh--l2-axis">
-        <p class="sh__label t-label" data-reveal="fade" data-delay="0.15">07 — Уроки</p>
-        <h2 class="sh__title t-h2" id="less-h">
-          <span class="sh__l1" data-reveal="text" data-delay="0.3">Подготовка</span>
-          <span class="sh__l2" data-reveal="text" data-delay="0.4"><em>к</em> балу</span>
-        </h2>
-        <p class="sh__lead t-text" data-reveal="text" data-delay="0.5">Подготовка начинается с танцевальных уроков до бала.</p>
-      </header>
+      <p class="less__label t-label t-accent">07 — Уроки</p>
+      <h2 class="less__head" id="less-h">
+        <span class="less__phrase t-h2"><span class="less__p1">Подготовка</span> <span class="less__p2"><em>к</em> балу</span></span>
+        <span class="less__giant t-giant">Уроки</span>
+      </h2>
       <ol class="less__steps">
         <li class="less__step">
-          <p class="less__stage t-label" data-reveal="text">Первый урок</p>
-          <h3 class="less__gist t-h2" data-reveal="text" data-delay="0.1"><span class="less__g"><em>Страх</em></span> <span class="less__g">исчезает</span></h3>
-          <p class="less__text t-text" data-reveal="text" data-delay="0.2">Гости, которые уже освоили базовые движения, приходят на вечер без страха: они знают, что смогут танцевать, и хотят продолжать. Неуверенность исчезает ещё до начала бала.</p>
+          <p class="less__stage t-label">Первый урок</p>
+          <p class="less__text t-text">Страх исчезает: гости приходят на бал, уже зная базовые движения.</p>
         </li>
         <li class="less__step">
-          <p class="less__stage t-label" data-reveal="text" data-delay="0.1">На самом уроке</p>
-          <h3 class="less__gist t-h2" data-reveal="text" data-delay="0.2"><span class="less__g"><em>Не лекция</em>&nbsp;—</span> <span class="less__g">показываем</span></h3>
-          <p class="less__text t-text" data-reveal="text" data-delay="0.3">Мы не читаем лекции по этикету, а показываем на практике: как пригласить на танец, как принять или отклонить приглашение, как двигаться в паре. Легко, с юмором, без формальностей и давления.</p>
+          <p class="less__stage t-label">На самом уроке</p>
+          <p class="less__text t-text">Не лекция — показываем: как пригласить, как принять или отклонить приглашение, как двигаться в паре. С&nbsp;юмором, без давления.</p>
         </li>
         <li class="less__step">
-          <p class="less__stage t-label" data-reveal="text" data-delay="0.2">От урока к уроку</p>
-          <h3 class="less__gist t-h2" data-reveal="text" data-delay="0.3"><span class="less__g"><em>Нет чужих</em>&nbsp;—</span> <span class="less__g">только свои</span></h3>
-          <p class="less__text t-text" data-reveal="text" data-delay="0.4">Уроки также знакомят гостей друг с другом до события. Люди общаются, смеются и привыкают друг к другу. На самом балу чужих уже нет.</p>
-        </li>
-        <li class="less__step">
-          <p class="less__stage t-label" data-reveal="text" data-delay="0.3">Накануне бала</p>
-          <h3 class="less__gist t-h2" data-reveal="text" data-delay="0.4"><span class="less__g"><em>Подготовка</em>&nbsp;—</span> <span class="less__g">часть события</span></h3>
-          <p class="less__text t-text" data-reveal="text" data-delay="0.5">Подготовка вовлекает гостей в событие: они с интересом ждут бала, обсуждают его и приводят друзей.</p>
+          <p class="less__stage t-label">От урока к уроку</p>
+          <p class="less__text t-text">Нет чужих — только свои. Гости знакомятся ещё до бала.</p>
         </li>
       </ol>
-      <div class="less__photo" data-photo>
-        <picture>
-          <source media="(min-width: 1024px)" type="image/avif" srcset="img/lessons/ball-d-1440.avif 1440w, img/lessons/ball-d-2160.avif 2160w, img/lessons/ball-d-2880.avif 2880w" sizes="(min-width: 1920px) 1920px, 100vw">
-          <source media="(min-width: 1024px)" type="image/webp" srcset="img/lessons/ball-d-1440.webp 1440w, img/lessons/ball-d-2160.webp 2160w, img/lessons/ball-d-2880.webp 2880w" sizes="(min-width: 1920px) 1920px, 100vw">
-          <source media="(min-width: 1024px)" srcset="img/lessons/ball-d-1440.jpg 1440w, img/lessons/ball-d-2160.jpg 2160w, img/lessons/ball-d-2880.jpg 2880w" sizes="(min-width: 1920px) 1920px, 100vw">
-          <source media="(min-width: 600px)" type="image/avif" srcset="img/lessons/ball-t-834.avif 834w, img/lessons/ball-t-1668.avif 1668w" sizes="100vw">
-          <source media="(min-width: 600px)" type="image/webp" srcset="img/lessons/ball-t-834.webp 834w, img/lessons/ball-t-1668.webp 1668w" sizes="100vw">
-          <source media="(min-width: 600px)" srcset="img/lessons/ball-t-834.jpg 834w, img/lessons/ball-t-1668.jpg 1668w" sizes="100vw">
-          <source type="image/avif" srcset="img/lessons/ball-m-390.avif 390w, img/lessons/ball-m-780.avif 780w, img/lessons/ball-m-1170.avif 1170w" sizes="100vw">
-          <source type="image/webp" srcset="img/lessons/ball-m-390.webp 390w, img/lessons/ball-m-780.webp 780w, img/lessons/ball-m-1170.webp 1170w" sizes="100vw">
-          <img src="img/lessons/ball-m-390.jpg" srcset="img/lessons/ball-m-390.jpg 390w, img/lessons/ball-m-780.jpg 780w, img/lessons/ball-m-1170.jpg 1170w"
-               sizes="100vw" width="390" height="488" alt="Бал сверху: гости выстроились в зале" loading="lazy" decoding="async">
-        </picture>
-      </div>
     </section>
 
-    <!-- 08 Этикет: «книжка». Переключатель «Кавалерам / Дамам» и тап по панели меняют сторону: старые строки уходят, новые приходят
-         (0,2 + 0,3 с, без наложения). Панель светлая — шапка над ней «Над светлым» (data-header) -->
-    <section class="s-etiquette" id="etiquette" data-surface="ink" aria-labelledby="etq-h" data-role="k">
-      <header class="sh sh--l2-axis">
-        <p class="sh__label t-label" data-reveal="fade" data-delay="0.15">08 — Этикет</p>
-        <h2 class="sh__title t-h2" id="etq-h">
-          <span class="sh__l1" data-reveal="text" data-delay="0.3">Танцевальный</span>
-          <span class="sh__l2" data-reveal="text" data-delay="0.4"><em>этикет</em></span>
-        </h2>
-      </header>
-      <div class="etq__intro">
-        <p class="etq__i1 t-text" data-reveal="text" data-delay="0.2">Этикет на балу — несколько правил, которые делают вечер комфортным для всех.</p>
-        <p class="etq__i2 t-text" data-reveal="text" data-delay="0.3">Это не строгие нормы, а рекомендации: знание базовых вещей снимает напряжение и придаёт уверенности.</p>
-        <p class="etq__i3 t-text" data-reveal="text" data-delay="0.4">Современный бал — не историческая реконструкция. Искренность здесь важнее идеальной техники. Большинство гостей впервые на балу, так что вы окажетесь среди таких же новичков.</p>
-      </div>
-      <!-- Фото экрана 2 (Д3б, A1) — только десктоп: панорама 07 переехала сюда, левая часть кадра; ниже 1024 — прозрачная заглушка -->
-      <div class="etq__photo" data-photo>
-        <picture>
-          <source media="(min-width: 1024px)" type="image/avif" srcset="img/etiquette/hall-d-656.avif 656w, img/etiquette/hall-d-984.avif 984w, img/etiquette/hall-d-1312.avif 1312w, img/etiquette/hall-d-1792.avif 1792w" sizes="(min-width: 1920px) 896px, 46vw">
-          <source media="(min-width: 1024px)" type="image/webp" srcset="img/etiquette/hall-d-656.webp 656w, img/etiquette/hall-d-984.webp 984w, img/etiquette/hall-d-1312.webp 1312w, img/etiquette/hall-d-1792.webp 1792w" sizes="(min-width: 1920px) 896px, 46vw">
-          <source media="(min-width: 1024px)" srcset="img/etiquette/hall-d-656.jpg 656w, img/etiquette/hall-d-984.jpg 984w, img/etiquette/hall-d-1312.jpg 1312w, img/etiquette/hall-d-1792.jpg 1792w" sizes="(min-width: 1920px) 896px, 46vw">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="656" height="496" alt="Бал сверху: гости выстроились в зале" loading="lazy" decoding="async">
-        </picture>
-      </div>
-      <div class="etq__book">
-        <div class="etq__toggle" role="group" aria-label="Чьи правила показать">
-          <button class="etq__btn t-text" type="button" aria-pressed="true" aria-controls="etq-panel" data-role="k"><span>Кавалерам</span> <span class="etq__btn-n">1</span></button>
-          <button class="etq__btn t-text" type="button" aria-pressed="false" aria-controls="etq-panel" data-role="d"><span>Дамам</span> <span class="etq__btn-n">2</span></button>
+    <!-- 08 Этикет (Ц2, 2026-10-23): статичный экран «гигант на двух поверхностях» — половины Slate «Кавалерам» и Terra «Дамам»
+         (десктоп — рядом, «Этикет» поперёк шва; телефон и планшет — стопкой), внизу половин — фото «Форматов»;
+         затем финал «Запоминать заранее / не нужно —» на Slate. Кадры: десктоп 392:2940 + 392:2958, телефон 392:3450, планшет 392:3501.
+         Переключения нет; входной анимации нет (не решено) -->
+    <section class="s-etiquette" id="etiquette" data-surface="slate" aria-labelledby="etq-h">
+      <div class="etq__rest">
+        <div class="etq__top">
+          <p class="etq__label t-label t-accent">08 — Этикет</p>
+          <h2 class="etq__giant t-giant" id="etq-h">Этикет</h2>
+          <p class="etq__intro t-text">Несколько правил, которые делают вечер комфортным для всех. Не строгие нормы — рекомендации.</p>
         </div>
-        <div class="etq__panel" id="etq-panel" data-surface="panel" data-header="light" data-reveal="text" data-rise="24">
-          <span class="etq__plus" aria-hidden="true"></span><span class="etq__plus" aria-hidden="true"></span><span class="etq__plus" aria-hidden="true"></span><span class="etq__plus" aria-hidden="true"></span>
-          <p class="etq__count t-label" aria-live="polite"><span class="vh">Сторона </span><span class="etq__count-n">01</span> / 02</p>
-          <ol class="etq__rules">
-            <li class="etq__row" data-reveal="text" data-delay="0.2"><p class="etq__rule t-text" data-who="k">Первыми приглашать на танец.</p><p class="etq__rule t-text" data-who="d">Принимать приглашения или корректно отклонять их.</p><span class="etq__n t-label" aria-hidden="true">01</span></li>
-            <li class="etq__row" data-reveal="text" data-delay="0.28"><p class="etq__rule t-text" data-who="k">Следить, чтобы партнёрше было комфортно на паркете.</p><p class="etq__rule t-text" data-who="d">Следовать темпу и направлению движения партнёра.</p><span class="etq__n t-label" aria-hidden="true">02</span></li>
-            <li class="etq__row" data-reveal="text" data-delay="0.36"><p class="etq__rule t-text" data-who="k">Учитывать ритм и другие пары вокруг.</p><p class="etq__rule t-text" data-who="d">Соблюдать дресс-код.</p><span class="etq__n t-label" aria-hidden="true">03</span></li>
-            <li class="etq__row" data-reveal="text" data-delay="0.44"><p class="etq__rule t-text" data-who="k">Быть вежливыми и тактичными в общении.</p><p class="etq__rule t-text" data-who="d">Проявлять доброжелательность и открытость.</p><span class="etq__n t-label" aria-hidden="true">04</span></li>
-          </ol>
-          <p class="etq__word"><span class="etq__w t-h2" data-who="k">Кавалерам</span><span class="etq__w t-h2" data-who="d">Дамам</span></p>
+        <div class="etq__half" data-half="k" data-surface="slate">
+          <div class="etq__who">
+            <h3 class="etq__meta"><span class="etq__num t-label">01</span> <span class="etq__whom t-text">Кавалерам</span></h3>
+            <p class="etq__rules t-text">Первыми приглашать на танец. Следить, чтобы партнёрше было комфортно.</p>
+          </div>
+          <div class="etq__photo">
+            <picture>
+              <source media="(min-width: 1024px)" type="image/avif" srcset="img/formats/private-d-1005.avif 1005w, img/formats/private-d-1508.avif 1508w, img/formats/private-d-2010.avif 2010w" sizes="(min-width: 1920px) 1340px, 70vw">
+              <source media="(min-width: 1024px)" type="image/webp" srcset="img/formats/private-d-1005.webp 1005w, img/formats/private-d-1508.webp 1508w, img/formats/private-d-2010.webp 2010w" sizes="(min-width: 1920px) 1340px, 70vw">
+              <source media="(min-width: 1024px)" srcset="img/formats/private-d-1005.jpg 1005w, img/formats/private-d-1508.jpg 1508w, img/formats/private-d-2010.jpg 2010w" sizes="(min-width: 1920px) 1340px, 70vw">
+              <source media="(min-width: 600px)" type="image/avif" srcset="img/formats/private-t-770.avif 770w, img/formats/private-t-1540.avif 1540w" sizes="calc(100vw - 64px)">
+              <source media="(min-width: 600px)" type="image/webp" srcset="img/formats/private-t-770.webp 770w, img/formats/private-t-1540.webp 1540w" sizes="calc(100vw - 64px)">
+              <source media="(min-width: 600px)" srcset="img/formats/private-t-770.jpg 770w, img/formats/private-t-1540.jpg 1540w" sizes="calc(100vw - 64px)">
+              <source type="image/avif" srcset="img/formats/private-m-358.avif 358w, img/formats/private-m-716.avif 716w, img/formats/private-m-1074.avif 1074w" sizes="min(448px, calc(100vw - 32px))">
+              <source type="image/webp" srcset="img/formats/private-m-358.webp 358w, img/formats/private-m-716.webp 716w, img/formats/private-m-1074.webp 1074w" sizes="min(448px, calc(100vw - 32px))">
+              <img src="img/formats/private-m-358.jpg" srcset="img/formats/private-m-358.jpg 358w, img/formats/private-m-716.jpg 716w, img/formats/private-m-1074.jpg 1074w"
+                   sizes="min(448px, calc(100vw - 32px))" width="358" height="448" alt="Бал: кавалеры и дамы стоят друг напротив друга" loading="lazy" decoding="async">
+            </picture>
+          </div>
+        </div>
+        <div class="etq__half" data-half="d" data-surface="terra">
+          <div class="etq__who">
+            <h3 class="etq__meta"><span class="etq__num t-label">02</span> <span class="etq__whom t-text">Дамам</span></h3>
+            <p class="etq__rules t-text">Принимать приглашения или корректно отклонять их. Следовать темпу партнёра.</p>
+          </div>
+          <div class="etq__photo">
+            <picture>
+              <source media="(min-width: 1024px)" type="image/avif" srcset="img/etiquette/ladies-d-800.avif 800w, img/etiquette/ladies-d-1200.avif 1200w, img/etiquette/ladies-d-1556.avif 1556w" sizes="(min-width: 1920px) 1067px, 56vw">
+              <source media="(min-width: 1024px)" type="image/webp" srcset="img/etiquette/ladies-d-800.webp 800w, img/etiquette/ladies-d-1200.webp 1200w, img/etiquette/ladies-d-1556.webp 1556w" sizes="(min-width: 1920px) 1067px, 56vw">
+              <source media="(min-width: 1024px)" srcset="img/etiquette/ladies-d-800.jpg 800w, img/etiquette/ladies-d-1200.jpg 1200w, img/etiquette/ladies-d-1556.jpg 1556w" sizes="(min-width: 1920px) 1067px, 56vw">
+              <source media="(min-width: 600px)" type="image/avif" srcset="img/etiquette/ladies-t-770.avif 770w, img/etiquette/ladies-t-1540.avif 1540w" sizes="calc(100vw - 64px)">
+              <source media="(min-width: 600px)" type="image/webp" srcset="img/etiquette/ladies-t-770.webp 770w, img/etiquette/ladies-t-1540.webp 1540w" sizes="calc(100vw - 64px)">
+              <source media="(min-width: 600px)" srcset="img/etiquette/ladies-t-770.jpg 770w, img/etiquette/ladies-t-1540.jpg 1540w" sizes="calc(100vw - 64px)">
+              <source type="image/avif" srcset="img/etiquette/ladies-m-358.avif 358w, img/etiquette/ladies-m-716.avif 716w, img/etiquette/ladies-m-1074.avif 1074w" sizes="min(448px, calc(100vw - 32px))">
+              <source type="image/webp" srcset="img/etiquette/ladies-m-358.webp 358w, img/etiquette/ladies-m-716.webp 716w, img/etiquette/ladies-m-1074.webp 1074w" sizes="min(448px, calc(100vw - 32px))">
+              <img src="img/etiquette/ladies-m-358.jpg" srcset="img/etiquette/ladies-m-358.jpg 358w, img/etiquette/ladies-m-716.jpg 716w, img/etiquette/ladies-m-1074.jpg 1074w"
+                   sizes="min(448px, calc(100vw - 32px))" width="358" height="448" alt="Бал: гости выстроились и протянули руки для полонеза" loading="lazy" decoding="async">
+            </picture>
+          </div>
         </div>
       </div>
-      <p class="etq__final">
-        <span class="etq__big t-h2"><span class="etq__f etq__f1" data-reveal="text" data-delay="0.2">Запоминать</span> <span class="etq__f etq__f2" data-reveal="text" data-delay="0.3">заранее</span> <span class="etq__f etq__f3" data-reveal="text" data-delay="0.4">не нужно&nbsp;—</span></span>
-        <span class="etq__cont t-text" data-reveal="text" data-delay="0.5">танцмейстер подскажет на паркете. В моменте, с юмором, без давления.</span>
-      </p>
+      <div class="etq__final" data-surface="slate">
+        <p class="etq__phrase t-h2"><span class="etq__p1">Запоминать <em>заранее</em></span> <span class="etq__p2">не нужно&nbsp;—</span></p>
+        <p class="etq__cont t-text">Танцмейстер подскажет на паркете. С&nbsp;юмором, без давления.</p>
+      </div>
     </section>
     <!-- 09 Дресс-код: «модная картинка». Две фигуры: фото, слово роли поверх верхнего края, «+» на деталях наряда (координаты — % кадра)
          и правила на высоте своих «+» (телефон — под фото). «Белый» — Display L, «Мы поможем» лесенкой. Десктоп: наведение на правило —
@@ -1031,54 +977,24 @@
       </div>
     </section>
 
-    <!-- 11 О нас · 12 Связаться · Контакты. Вход — проявление лесенкой (как 07). Панель формы в Контактах — «затвор»: тап по полю или
-         «→ отправить» открывает лист формы с фокусом на этом поле (form.js); над панелью шапка «Над светлым» -->
-    <section class="s-about" id="about" data-surface="slate" aria-labelledby="about-h">
-      <h2 class="about__label t-label" id="about-h" data-reveal="fade">11 — О нас</h2>
-      <div class="about__body">
-        <p class="about__quote t-lead" data-reveal="text" data-delay="0.1">В команде — режиссёры, хореографы, стилисты, декораторы, звукорежиссёры, координаторы. Люди, которые работают вместе годами и отвечают за каждую деталь.</p>
-        <p class="about__note t-text" data-reveal="text" data-delay="0.2">Мы не делаем шаблоны. Каждое событие строим вокруг вашей истории — ценностей, эстетики, гостей. От первой встречи до последнего танца.</p>
-      </div>
-    </section>
-
-    <section class="s-cta" data-surface="terra" aria-labelledby="cta-h">
-      <p class="cta__label t-label" data-reveal="fade">12 — Связаться</p>
-      <div class="cta__body">
-        <h2 class="cta__title" id="cta-h" data-reveal="text" data-delay="0.1">Расскажите о вашем вечере</h2>
-        <p class="cta__lead t-text" data-reveal="text" data-delay="0.2">Отвечаем в течение дня. Первая встреча — разговор без обязательств.</p>
-      </div>
-      <a class="cta__link t-link" href="#form" data-form aria-haspopup="dialog" data-reveal="text" data-delay="0.3"><span class="cta__lt"><span aria-hidden="true">→</span>&nbsp; оставить заявку</span></a>
-    </section>
-
-    <section class="s-contact" id="contact" data-surface="ink" aria-label="Контакты">
-      <div class="contact__info">
-        <p class="contact__intro t-text" data-reveal="text">Расскажите о вашем вечере — мы поможем понять, как его сделать.</p>
-        <a class="contact__row" href="tel:+74950000000">
-          <span class="contact__lbl t-label" data-reveal="text" data-delay="0.1">Телефон</span>
-          <span class="contact__val t-h2s"><span class="contact__l1" data-reveal="text" data-delay="0.2">+7 495</span> <span class="contact__l2" data-reveal="text" data-delay="0.3">000-00-00</span></span>
-        </a>
-        <a class="contact__row" href="mailto:hello@ballevent.ru">
-          <span class="contact__lbl t-label" data-reveal="text" data-delay="0.2">Электронная почта</span>
-          <span class="contact__val t-h2s"><span class="contact__l1" data-reveal="text" data-delay="0.3">hello@</span><wbr><span class="contact__l2" data-reveal="text" data-delay="0.4">ballevent.ru</span></span>
-        </a>
-      </div>
-      <!-- Панель-затвор: не форма с вводом, а кнопки, открывающие лист. Без JS скрыта — вместо неё лист стоит на странице -->
-      <div class="contact__panel" data-surface="panel" data-header="light" data-reveal="text">
-        <p class="cp__label t-label">Форма обратной связи</p>
-        <button class="cp__field" type="button" data-form="name" aria-haspopup="dialog"><span class="cp__lbl t-text">Как вас зовут</span><span class="cp__ex t-text" aria-hidden="true">Анна</span></button>
-        <button class="cp__field" type="button" data-form="phone" aria-haspopup="dialog"><span class="cp__lbl t-text">Телефон</span><span class="cp__ex t-text" aria-hidden="true">+7 916 …</span></button>
-        <button class="cp__field cp__field--area" type="button" data-form="message" aria-haspopup="dialog"><span class="cp__lbl t-text">Несколько слов о&nbsp;вечере</span><span class="cp__ex t-text" aria-hidden="true">Юбилей родителей, около шестидесяти гостей, весной.</span></button>
-        <button class="cp__submit t-submit" type="button" data-form="name" aria-haspopup="dialog"><span aria-hidden="true">→</span>&nbsp; отправить</button>
-        <p class="cp__consent t-text">Нажимая «отправить», вы соглашаетесь с <a href="privacy.html">политикой конфиденциальности</a>.</p>
-      </div>
+    <!-- 11–12 Финал (Ц4, 2026-10-27): экран F — гигант «Ваш / вечер» лесенкой, фраза «Расскажите» продолжается капсом от оси,
+         команда капсом от оси A, «→ оставить заявку» открывает форму; контакты строкой внизу. Подвала нет. Статично, без входа.
+         Кадры: десктоп 405:3605 (= библиотека F 353:2137), форма открыта 405:3546; телефон 406:3684, планшет 406:3702. -->
+    <section class="s-finale" id="contact" data-surface="slate" aria-labelledby="fin-h">
+      <p class="fin__label t-label t-accent">11 — Связаться</p>
+      <h2 class="fin__giant" id="fin-h"><span class="fin__g1 t-giant">Ваш</span> <span class="fin__g2 t-giant">вечер</span></h2>
+      <p class="fin__team t-text">Режиссёры, хореографы, стилисты, декораторы&nbsp;— люди, которые работают вместе годами. Мы не делаем шаблоны.</p>
+      <p class="fin__ask"><em class="fin__phrase t-h2">Расскажите</em> <span class="fin__more t-text">о вашем вечере. Отвечаем в&nbsp;течение дня, первая встреча&nbsp;— разговор без обязательств.</span></p>
+      <a class="fin__link t-link" href="#form" data-form aria-haspopup="dialog"><span class="fin__lt"><span aria-hidden="true">→</span>&nbsp; оставить заявку</span></a>
+      <p class="fin__contacts t-text"><a href="tel:+74950000000"><span class="nw">+7 495 000-00-00</span></a> · <a href="mailto:hello@ballevent.ru">hello@ballevent.ru</a></p>
 
       <!-- Лист формы: полноэкранный <dialog> на Panel поверх страницы и шапки (form.js). Подписи над полями, значения 16 px.
            Отправка пока имитируется (этап 6 — send.php). Тексты ошибок и «отправлено» — заглушки, data-stub: ждут текста заказчика -->
       <dialog class="sheet" id="form" aria-labelledby="form-h" data-surface="panel">
         <form class="sheet__form" action="send.php" method="post" novalidate>
           <div class="sheet__top">
-            <h2 class="sheet__label t-label" id="form-h" tabindex="-1">Форма обратной связи</h2>
-            <button class="sheet__close" type="button" aria-label="Закрыть форму"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path d="M2 2l16 16M18 2L2 18" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <h2 class="sheet__label vh" id="form-h" tabindex="-1">Форма обратной связи</h2>
+            <button class="sheet__close" type="button" aria-label="Закрыть форму"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path d="M2 2l16 16M18 2L2 18" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg></button>
           </div>
           <input type="hidden" name="format" value="">
           <div class="sheet__body" data-view="form">
@@ -1096,7 +1012,7 @@
               <label class="field__lbl t-text" for="f-message">Несколько слов о&nbsp;вечере</label>
               <textarea class="field__in field__in--area t-field" id="f-message" name="message" rows="3" placeholder="Юбилей родителей, около шестидесяти гостей, весной."></textarea>
             </div>
-            <p class="sheet__consent t-text">Нажимая «отправить», вы соглашаетесь с <a href="privacy.html">политикой конфиденциальности</a>.</p>
+            <p class="sheet__consent t-text">Нажимая «отправить», вы соглашаетесь с&nbsp;<a href="privacy.html">политикой конфиденциальности</a>.</p>
             <p class="sheet__fail t-text" role="alert" data-stub="ждёт текста заказчика" hidden>Не получилось отправить. Попробуйте ещё раз или позвоните: +7&nbsp;495&nbsp;000-00-00.</p>
             <div class="sheet__send">
               <span class="sheet__rule t-submit" aria-hidden="true"></span>
@@ -1112,10 +1028,5 @@
     </section>
   </main>
 
-  <footer class="s-footer" data-surface="ink">
-    <div class="footer__in">
-      <a class="footer__logo" href="#top" aria-label="Plyaskin Events — в начало"><svg class="logo" aria-hidden="true" focusable="false" viewBox="2 29 1714 658"><use href="#logo-path"/></svg></a>
-    </div>
-  </footer>
 </body>
 </html>

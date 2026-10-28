@@ -26,6 +26,16 @@ DENSITIES = {"m": [1, 2, 3], "t": [1, 2], "d": [1, 1.5, 2]}
 MEDIA = {"m": "(max-width: 599px)", "t": "(min-width: 600px) and (max-width: 1023px)", "d": "(min-width: 1024px)"}
 
 
+# Снимки, снятые с сайта (Ц3, решения 2026-10-27): блок («lessons» — панорама 07 убрана), снимок («evening/hall» — «Зал сверху»
+# нового 02 нет) или раскладка блока («evening:t» — планшет нового 02 берёт десктопные кропы 5 : 6)
+RETIRED = {"lessons", "evening/hall", "evening:t"}
+
+
+def retired(meta, layout):
+    b = meta["block"]
+    return b in RETIRED or f'{b}/{meta["name"]}' in RETIRED or f"{b}:{layout}" in RETIRED
+
+
 def replaced(c, rep):
     """Новый исходник для слота: cover кадра раскладки по точке фокуса (в области rect, если задана) → (src, rect)."""
     fw, fh = c["frame"]
@@ -45,6 +55,8 @@ def main():
     replace = {k: v for k, v in json.loads((HERE / "photo_replace.json").read_text(encoding="utf-8")).items() if k != "_"}
     by_src = {}
     for c in catalog:
+        if retired(names[c["hash"]], c["layout"]):
+            continue
         rep = replace.get(f'{names[c["hash"]]["block"]}/{names[c["hash"]]["name"]}')
         if rep:
             c = {**c, "override": "Д4: замена снимка (photo_replace.json)"}
@@ -96,24 +108,50 @@ def main():
     Image.fromarray(np.clip(toned + 0.5, 0, 255).astype(np.uint8)).save(MASTERS / "prep-hall-d.png")
     manifest.append({"block": "prep", "name": "hall", "media": "d", "src": "Доработка/вёрстка/tools/.cache/masters/prep-hall-d.png",
                      "frame": [1440, 720], "widths": [1440, 2160, 2880]})
-    manifest.append(etiquette_hall(names))
+    manifest.extend(etiquette_ladies(catalog, names, replace))
     (HERE / "images.json").write_text(json.dumps({"images": manifest}, ensure_ascii=False, indent=1), encoding="utf-8")
     (HERE / "photos_site.json").write_text(json.dumps(site, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"\nмастеров {len(manifest)}; мало исходника — {len(flags)}:")
     print("\n".join("  " + f for f in flags))
 
 
-def etiquette_hall(names):
-    """Фото экрана 2 «Этикета» (Д3б, A1): панорама 07 (nk-02) уходит в 08 — левая часть кадра, как в Figma
-    (снимок 1100 × 733 в окне 656 × 496 со сдвигом −230: x 0…59,6 %, y 31,4…99,0 %); тон — кривая панорамы 07."""
-    im = ImageOps.exif_transpose(Image.open(PROJECT / "assets/photos/nk-02.jpg")).convert("RGB")
-    w, h = im.size
-    box = (0, round(h * 230 / 733), round(w * 656 / 1100), round(h * 726 / 733))
-    crop = im.crop(box).resize((1792, 1355), Image.LANCZOS)
-    lessons = [k for k, m in names.items() if m["block"] == "lessons"][0]
-    apply(crop, np.load(V1 / "tone" / f"{lessons}.npy")).save(MASTERS / "etiquette-hall-d.png")
-    return {"block": "etiquette", "name": "hall", "media": "d", "src": "Доработка/вёрстка/tools/.cache/masters/etiquette-hall-d.png",
-            "frame": [656, 496], "widths": [656, 984, 1312, 1792]}
+def etiquette_ladies(catalog, names, replace):
+    """Фото «Дамам» десктопа 08 (Ц2, 2026-10-23): увеличенный кусок «корпоративных» «Форматов» (×1,5 к файлу formats/corporate-d).
+    Кадр 800 × 600 = половина «Дамам» x 0…800, y 300…900 кадра 392:2940 (запас 80 справа — половина шире 720u на узких окнах).
+    В файле 971 × 959 это x 259…791,8, y 319,8…719,4: окно Figma 720 × 340 найдено в corporate-d-1942 поиском по шаблону
+    (масштаб 1,332, совпадение 0,97). Кроп — из исходника, тон и gain — как у formats/corporate d.
+    Телефон и планшет берут тот же увеличенный ряд гостей (окна Figma 392:3450 / 392:3501 найдены в том же файле: масштаб 2,352 и 1,868 к corporate-d-1942, совпадение 0,94 и 0,93), а не кропы «Форматов»."""
+    c = next(c for c in catalog if names[c["hash"]]["block"] == "formats" and names[c["hash"]]["name"] == "corporate"
+             and c["layout"] == "d")
+    rep = replace.get("formats/corporate")
+    src, (x, y, w, h) = replaced(c, rep) if rep else (c["src"], c["rect"])
+    k = w / 971  # пикселей исходника на пиксель файла 971
+    im = ImageOps.exif_transpose(Image.open(PROJECT / src)).convert("RGB")
+    gain = (rep or {}).get("gain")
+    entries = []
+    # слоты: (слот, кадр w, кадр h, box в файле 971 × 959: x0, y0, x1, y1)
+    for layout, fw, fh, bx0, by0, bx1, by1 in (
+        ("d", 800, 600, 259, 319.8, 791.8, 719.4),
+        ("t", 770, 520, 126, 429.5, 845.2, 915.2),
+        ("m", 358, 448, 274.5, 383.5, 695.5, 910.3),
+    ):
+        box = (x + bx0 * k, y + by0 * k, x + bx1 * k, y + by1 * k)
+        bw = int(box[2] - box[0])
+        avail = (box[2] - box[0]) / fw
+        widths = [round(fw * d) for d in DENSITIES[layout] if avail >= d * 0.98]
+        if avail < DENSITIES[layout][-1] * 0.98 and bw > widths[-1] * 1.15:
+            widths.append(bw)
+        mw = max(widths)
+        crop = im.resize((mw, round(mw * fh / fw)), Image.LANCZOS, box=box)
+        crop = apply(crop, np.load(V1 / "tone" / f'{c["hash"]}.npy'))
+        if gain:
+            crop = Image.fromarray(np.clip(np.asarray(crop, np.float32) * gain + 0.5, 0, 255).astype(np.uint8))
+        crop.save(MASTERS / f"etiquette-ladies-{layout}.png")
+        print(f"etiquette-ladies-{layout}.png  {mw}  ширины {widths}  (исходника {avail:.2f}×)")
+        entries.append({"block": "etiquette", "name": "ladies", "media": layout,
+                        "src": f"Доработка/вёрстка/tools/.cache/masters/etiquette-ladies-{layout}.png",
+                        "frame": [fw, fh], "widths": widths})
+    return entries
 
 
 if __name__ == "__main__":

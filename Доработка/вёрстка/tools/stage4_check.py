@@ -1,4 +1,4 @@
-"""Проверка поведения этапа 4: 05 Шоу, 06 Ассистент, 07 Уроки, 08 Этикет, шапка «Над светлым» по частям.
+"""Проверка поведения этапа 4: 05 Шоу, 06 Ассистент, 07 Уроки (после Ц3 — только горизонтальный скролл), 08 Этикет (после Ц2 — только горизонтальный скролл).
 
   python tools/stage4_check.py            # chromium
   python tools/stage4_check.py -b webkit
@@ -199,55 +199,12 @@ def main():
               s1 == ["3", "0", "0", "1"] and s2 == "3" and s3 == ["2", "1"], f"{s1} / {s2} / {s3}")
         ctx.close()
 
-        # --- 07: зигзаг на телефоне ---
-        ctx, p = open_page(b, base, 390, 844)
-        z = p.evaluate("""() => [...document.querySelectorAll('.less__step')].map((s, i) => {
-            const g = s.querySelector('.less__gist').getBoundingClientRect(), t = s.querySelector('.less__text').getBoundingClientRect();
-            return [Math.round(g.left), Math.round(t.left), Math.round(t.right)]; })""")
-        check("07 телефон: нечётные от поля, чётные — абзац от x 158", z[0][1] == 16 and z[1][1] == 158 and z[1][2] == 374, str(z))
-        ctx.close()
+        # 07 (Ц3): the phone zigzag check is removed (the gist and the 16 / 87 / 158 stairs are gone).
+        # 07 stays in the horizontal-scroll loop above, as 08 does after Ц2.
 
-        # --- 08: смена роли без наложения, повторный тап, тап по панели ---
-        ctx, p = open_page(b, base, 390, 844)
-        to(p, ".etq__book", -200)
-        p.wait_for_timeout(1500)
-        p.evaluate("document.querySelectorAll('.etq__btn')[1].click()")
-        p.wait_for_timeout(100)
-        mid = p.evaluate("""() => { const op = s => [...document.querySelectorAll(s)].map(e => +getComputedStyle(e).opacity);
-            return { k: Math.max(...op('[data-who=k]')), d: Math.max(...op('[data-who=d]')) }; }""")
-        p.evaluate("document.querySelector('.etq__panel').click()")      # во время смены — не принимается
-        p.wait_for_timeout(600)
-        end = p.evaluate("""() => ({ role: document.querySelector('.s-etiquette').dataset.role,
-            n: document.querySelector('.etq__count-n').textContent,
-            pressed: [...document.querySelectorAll('.etq__btn')].map(b => b.getAttribute('aria-pressed')).join(','),
-            kv: getComputedStyle(document.querySelector('[data-who=k]')).visibility,
-            d: +getComputedStyle(document.querySelector('[data-who=d]')).opacity })""")
-        check("08: на 0,1 с старые уходят, новые ещё не пришли (без наложения)", mid["k"] < 0.9 and mid["d"] == 0, str(mid))
-        check("08: «Дамам» — роль, счётчик, aria-pressed; повторный тап во время смены не принят; старые скрыты",
-              end == {"role": "d", "n": "02", "pressed": "false,true", "kv": "hidden", "d": 1.0}, str(end))
-        p.evaluate("document.querySelector('.etq__panel').click()")
-        p.wait_for_timeout(600)
-        check("08: тап по панели — обратно «Кавалерам»", p.evaluate("document.querySelector('.s-etiquette').dataset.role") == "k")
-        h = p.evaluate("""() => { const rows = [...document.querySelectorAll('.etq__row')].map(r => Math.round(r.getBoundingClientRect().height));
-            return rows; }""")
-        check("08 телефон: строка — по более длинному правилу пары (56 / 72 / 56 / 72)", h == [56, 72, 56, 72], str(h))
-        ctx.close()
+        # Шапка над панелью 08 — снято в Ц2 (у 08 нет светлой панели); шапка над светлым — stage5_check (панель Контактов)
 
-        # --- Шапка над панелью 08: по частям ---
-        for w, want in ((390, ("light", "light")), (834, (None, "light")), (1440, (None, "light"))):
-            ctx, p = open_page(b, base, w, 900)
-            y = p.evaluate("document.querySelector('.etq__panel').getBoundingClientRect().top + scrollY")
-            p.evaluate("y => scrollTo({ top: y - 20, behavior: 'instant' })", y)
-            p.wait_for_timeout(1500)                                   # вход панели (подъём 24, 0,8 с) доиграл
-            got = p.evaluate("[document.querySelector('.site-header__logo').dataset.over || null, document.querySelector('.site-header__menu').dataset.over || null]")
-            p.evaluate("y => scrollTo({ top: y - 200, behavior: 'instant' })", y)
-            p.wait_for_timeout(500)
-            off = p.evaluate("document.querySelector('.site-header__menu').dataset.over || null")
-            check(f"шапка над панелью 08, {w}: логотип {want[0] or 'светлый'}, «Меню» Ink; выше панели — светлая",
-                  tuple(got) == want and off is None, f"{got} / {off}")
-            ctx.close()
-
-        # --- reduced-motion: всё в покое, смена 08 мгновенная ---
+        # --- reduced-motion: всё в покое ---
         ctx, p = open_page(b, base, 390, 844, reduced=True)
         to(p, ".s-show")
         n = p.evaluate("document.getAnimations().length")

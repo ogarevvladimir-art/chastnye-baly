@@ -1,10 +1,9 @@
-"""Сверка этапа 5 (09 Дресс-код, 10 Вечера, 11–подвал, лист формы): кадры сайта под кадры Figma и пары «Figma | сайт».
+"""Сверка этапа 5 (09 Дресс-код, 10 Вечера, лист формы): кадры сайта под кадры Figma и пары «Figma | сайт».
 
-  python tools/stage5_shots.py                  # всё → сверка/09, 10, 11, форма
+  python tools/stage5_shots.py                  # всё → сверка/09, 10, форма
   python tools/stage5_shots.py --only eves -b webkit
 
 Покой — секция целиком на 390 / 834 / 1440 в окне её высоты (шапка скрыта, переходы мгновенные, reduced-motion).
-11–подвал — одной лентой от «О нас» до конца подвала (на 1440 кадры Figma 191:890 / 895 / 901 / 930 склеены в v5_d_end).
 Состояния: 09 наведение на правило (десктоп), 10 «Кашемир» (пункт) на трёх ширинах, середина смены О→К на 50 % (телефон, планшет).
 Лист формы — экран: пусто, ввод (значения из десктопа), ошибки, «отправлено»; на 1440 кадра Figma нет.
 Рендеры Figma — _figma/v5/.
@@ -15,7 +14,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 from _serve import SVERKA, serve
-from stage4_shots import FIG as _FIG4, PFX, finish_entries, mid_change, page_at, pair, scroll_to, section_shot  # noqa: F401
+from stage4_shots import FIG as _FIG4, PFX, mid_change, page_at, pair, scroll_to, section_shot  # noqa: F401
 import stage4_shots
 
 FIG = _FIG4.parent / "v5"
@@ -42,37 +41,16 @@ def run_block(browser, base, sel, fig, out, actions=None):
         ctx.close()
 
 
-def end_strip(browser, base, out):
-    """11 О нас → подвал одной лентой."""
-    for w in (390, 834, 1440):
-        ctx, page = page_at(browser, base, w)
-        top, bottom = page.evaluate("""() => { const a = document.querySelector('.s-about').getBoundingClientRect(),
-            f = document.querySelector('.s-footer').getBoundingClientRect(); return [a.top + scrollY, f.bottom + scrollY]; }""")
-        page.set_viewport_size({"width": w, "height": int(bottom - top) + 2})
-        page.evaluate("y => scrollTo({ top: y, behavior: 'instant' })", top)
-        page.wait_for_timeout(1500)
-        for s in (".s-about", ".s-cta", ".s-contact", ".s-footer"):
-            finish_entries(page, s)
-        # Высота окна меняет hero и закрепления (svh) — координаты ленты заново. Конец страницы не прокручивается
-        # до верха ленты — снимок всей страницы с вырезом в её координатах
-        top, bottom = page.evaluate("""() => { const a = document.querySelector('.s-about').getBoundingClientRect(),
-            f = document.querySelector('.s-footer').getBoundingClientRect(); return [a.top + scrollY, f.bottom + scrollY]; }""")
-        p = out / f"site_{w}.png"
-        page.screenshot(path=str(p), full_page=True, clip={"x": 0, "y": top, "width": w, "height": bottom - top})
-        pair(FIG / f"v5_{PFX[w]}_end.png", p, out / f"pair_{w}.png")
-        ctx.close()
-
-
 def sheet(browser, base, out):
-    """Лист формы: экран после открытия с поля «Как вас зовут»."""
+    """Лист формы: экран после открытия ссылкой финала."""
     fill = """() => { const f = document.querySelector('#form form');
         f.elements.name.value = 'Анна'; f.elements.phone.value = '+7 916 …';
         f.elements.message.value = 'Юбилей родителей, около шестидесяти гостей, весной.';
         f.elements.message.dispatchEvent(new Event('input')); }"""
     for w in (390, 834, 1440):
         ctx, page = page_at(browser, base, w, HEIGHTS[w])
-        scroll_to(page, ".s-contact")
-        page.locator(".cp__field").first.click()
+        scroll_to(page, "#contact")
+        page.locator(".fin__link").first.click()
         page.wait_for_timeout(600)
         page.screenshot(path=str(out / f"site_{w}.png"))
         pair(FIG / f"v5_{PFX[w]}_form.png", out / f"site_{w}.png", out / f"pair_{w}.png")
@@ -113,11 +91,6 @@ def main():
             for w in (390, 834):
                 mid_change(b, base, w, ".s-eves", tab, FIG / f"v5_{PFX[w]}_eves_ok50.png",
                            out / f"site_{w}_ok50.png", out / f"pair_{w}_ok50.png", 600)
-
-        if a.only in (None, "end"):
-            out = SVERKA / f"11{sfx}"
-            out.mkdir(parents=True, exist_ok=True)
-            end_strip(b, base, out)
 
         if a.only in (None, "form"):
             out = SVERKA / f"форма{sfx}"

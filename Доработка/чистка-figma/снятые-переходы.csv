@@ -1,0 +1,238 @@
+source_id,source_name,trigger,action,destination_id,destination_name
+238:1337,Ссылка 01,ON_CLICK,NODE / NAVIGATE / DISSOLVE,253:2035,M390 / Форма · B · открыто · пусто
+238:1346,Ссылка 02,ON_CLICK,NODE / NAVIGATE / DISSOLVE,253:2035,M390 / Форма · B · открыто · пусто
+302:1502,Стрелка ↓,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2
+302:1526,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:1527,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1549,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1570,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:1582,Стрелка ↓,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2
+302:1606,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:1607,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1629,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1650,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:1662,Стрелка ↓,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2
+302:1686,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:1687,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1709,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1730,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:1742,Стрелка ↓,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2
+302:1766,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:1767,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1789,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1810,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:1822,Стрелка ↓,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2
+302:1846,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:1847,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1869,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:1890,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:2065,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:2066,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:2093,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:2117,Зона / Частный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»
+302:2118,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+302:2145,Зона / Корпоративный,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»
+306:2184,Шаг 01 · Разговор,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор
+306:2189,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+306:2194,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+306:2199,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+306:2204,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+306:2250,Шаг 01 · Разговор,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор
+306:2255,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+306:2260,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+306:2265,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+306:2270,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+306:2288,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+306:2293,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+306:2298,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+306:2303,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+306:2328,Формат 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+306:2328,Формат 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+306:2334,Формат 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+306:2334,Формат 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+306:2386,Формат 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+306:2386,Формат 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+306:2392,Формат 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+306:2392,Формат 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+306:2405,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+306:2405,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+306:2412,Панель / Участники,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+306:2412,Панель / Участники,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+306:2451,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+306:2451,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+306:2458,Панель / Участники,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+306:2458,Панель / Участники,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+307:2568,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2568,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2609,Шаг 01 · Разговор,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор
+307:2614,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+307:2619,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+307:2624,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+307:2629,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+307:2648,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+307:2653,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+307:2658,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+307:2663,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+307:2689,Формат 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+307:2689,Формат 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+307:2695,Формат 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+307:2695,Формат 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+307:2721,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2721,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2728,Панель / Участники,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+307:2728,Панель / Участники,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+307:2744,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2744,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2778,Шаг 01 · Разговор,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор
+307:2783,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+307:2788,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+307:2793,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+307:2798,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+307:2817,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+307:2822,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+307:2827,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+307:2832,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+307:2858,Формат 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+307:2858,Формат 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+307:2864,Формат 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+307:2864,Формат 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+307:2890,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2890,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2897,Панель / Участники,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+307:2897,Панель / Участники,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+307:2913,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2913,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:2947,Шаг 01 · Разговор,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор
+307:2952,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+307:2957,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+307:2962,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+307:2967,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+307:2986,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+307:2991,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+307:2996,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+307:3001,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+307:3027,Формат 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+307:3027,Формат 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+307:3033,Формат 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+307:3033,Формат 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+307:3059,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:3059,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:3066,Панель / Участники,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+307:3066,Панель / Участники,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+307:3082,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+307:3082,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+308:3116,Шаг 01 · Разговор,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор
+308:3121,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+308:3126,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+308:3131,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+308:3136,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+308:3155,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+308:3160,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+308:3165,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+308:3170,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+308:3196,Формат 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+308:3196,Формат 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+308:3202,Формат 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+308:3202,Формат 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+308:3228,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+308:3228,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+308:3235,Панель / Участники,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+308:3235,Панель / Участники,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+308:3251,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+308:3251,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+308:3285,Шаг 01 · Разговор,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор
+308:3290,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+308:3295,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+308:3300,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+308:3305,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+308:3324,Шаг 02 · Концепция,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция
+308:3329,Шаг 03 · Репетиции,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции
+308:3334,Шаг 04 · Вечер,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер
+308:3339,Шаг 05 · Воспоминания,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания
+308:3365,Формат 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+308:3365,Формат 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой
+308:3371,Формат 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+308:3371,Формат 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа
+308:3397,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+308:3397,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+308:3404,Панель / Участники,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+308:3404,Панель / Участники,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники
+308:3420,Панель / Зрители,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+308:3420,Панель / Зрители,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители
+328:2287,Строка 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:2287,Строка 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:2291,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:2291,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:2326,Строка 01,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:2326,Строка 01,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:2334,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:2334,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:2416,Строка 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:2416,Строка 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:2420,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:2420,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3081,Строка 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3081,Строка 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3085,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3085,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3116,Строка 01,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3116,Строка 01,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3124,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3124,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3253,Строка 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3253,Строка 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3257,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3257,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3288,Строка 01,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3288,Строка 01,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3296,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3296,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3425,Строка 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3425,Строка 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3429,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3429,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3460,Строка 01,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3460,Строка 01,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3468,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3468,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3597,Строка 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3597,Строка 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3601,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3601,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3632,Строка 01,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3632,Строка 01,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3640,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3640,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3769,Строка 02,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3769,Строка 02,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать
+328:3773,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3773,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3804,Строка 01,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3804,Строка 01,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь
+328:3812,Строка 03,MOUSE_ENTER,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+328:3812,Строка 03,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары
+332:4487,Д3в · B · 10 · экран 1 — шапка · 1440×900,AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+332:4537,Д3в · B · 10 · экран 2 — тело одним экраном · 1440×900,AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+332:4544,Пункт · Кашемир,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+332:4545,Слот B · Омега,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:1918,Д3в · 1440×900 · 10 · экран 1 — шапка,AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:1928,Д3в · 1440×900 · 10 · экран 2 — тело (Омега),AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:1931,Пункт · Кашемир,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:1932,Слот B · Омега,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2099,Д3в · 1920×950 · 10 · экран 1 — шапка,AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2109,Д3в · 1920×950 · 10 · экран 2 — тело (Омега),AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2112,Пункт · Кашемир,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2113,Слот B · Омега,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2280,Д3в · 1366×650 · 10 · экран 1 — шапка,AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2290,Д3в · 1366×650 · 10 · экран 2 — тело (Омега),AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2293,Пункт · Кашемир,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2294,Слот B · Омега,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2461,Д3в · 1280×600 · 10 · экран 1 — шапка,AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2471,Д3в · 1280×600 · 10 · экран 2 — тело (Омега),AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2474,Пункт · Кашемир,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2475,Слот B · Омега,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2642,Д3в · 1024×650 · 10 · экран 1 — шапка,AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2652,Д3в · 1024×650 · 10 · экран 2 — тело (Омега),AFTER_TIMEOUT,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2655,Пункт · Кашемир,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+334:2656,Слот B · Омега,ON_CLICK,NODE / NAVIGATE / SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир
+I238:1351;229:1162,Зона нажатия · Меню,ON_CLICK,NODE / NAVIGATE / MOVE_IN,238:1357,M390 / Пилот · меню открыто

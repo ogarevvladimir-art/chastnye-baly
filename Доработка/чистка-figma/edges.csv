@@ -1,0 +1,906 @@
+page_id,page_name,edge_no,source_id,source_name,source_type,source_unit_id,trigger,action_type,navigation,transition,destination_id,destination_name,destination_type,destination_unit_id,status,src_status,dst_status
+47:930,Page 2,1,205:1615,Зона / Книжка,FRAME,205:1549,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,205:1687,Section / 08 Этикет · B+D «Бальная книжка» · переворот → Кавалерам,FRAME,205:1687,ok,top,top
+47:930,Page 2,2,205:1617,Зона / Таб Кавалерам,FRAME,205:1549,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,205:1687,Section / 08 Этикет · B+D «Бальная книжка» · переворот → Кавалерам,FRAME,205:1687,ok,top,top
+47:930,Page 2,3,205:1684,Зона / Книжка,FRAME,205:1618,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,205:1756,Section / 08 Этикет · B+D «Бальная книжка» · переворот → Дамам,FRAME,205:1756,ok,top,top
+47:930,Page 2,4,205:1685,Зона / Таб Дамам,FRAME,205:1618,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,205:1756,Section / 08 Этикет · B+D «Бальная книжка» · переворот → Дамам,FRAME,205:1756,ok,top,top
+47:930,Page 2,5,205:1687,Section / 08 Этикет · B+D «Бальная книжка» · переворот → Кавалерам,FRAME,205:1687,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,205:1618,Section / 08 Этикет · B+D «Бальная книжка» · 2 Кавалерам,FRAME,205:1618,ok,top,top
+47:930,Page 2,6,205:1756,Section / 08 Этикет · B+D «Бальная книжка» · переворот → Дамам,FRAME,205:1756,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,205:1549,Section / 08 Этикет · B+D «Бальная книжка» · 1 Дамам,FRAME,205:1549,ok,top,top
+47:930,Page 2,7,209:2055,Section / 04 Танцмейстер · B+D · ore · 1 Зрители,FRAME,209:2055,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,209:2084,Section / 04 Танцмейстер · B+D · ore · 2 Участники,FRAME,209:2084,ok,top,top
+47:930,Page 2,8,209:2142,Зона / Сцена,RECTANGLE,209:2055,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,209:2084,Section / 04 Танцмейстер · B+D · ore · 2 Участники,FRAME,209:2084,ok,top,top
+47:930,Page 2,9,209:2084,Section / 04 Танцмейстер · B+D · ore · 2 Участники,FRAME,209:2084,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,209:2113,Section / 04 Танцмейстер · B+D · ore · 2b Участники · дыхание (служебный),FRAME,209:2113,ok,top,top
+47:930,Page 2,10,209:2143,Зона / Сцена,RECTANGLE,209:2084,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,209:2055,Section / 04 Танцмейстер · B+D · ore · 1 Зрители,FRAME,209:2055,ok,top,top
+47:930,Page 2,11,209:2113,Section / 04 Танцмейстер · B+D · ore · 2b Участники · дыхание (служебный),FRAME,209:2113,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,209:2084,Section / 04 Танцмейстер · B+D · ore · 2 Участники,FRAME,209:2084,ok,top,top
+47:930,Page 2,12,209:2144,Зона / Сцена,RECTANGLE,209:2113,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,209:2055,Section / 04 Танцмейстер · B+D · ore · 1 Зрители,FRAME,209:2055,ok,top,top
+47:930,Page 2,13,218:946,Section / 10 Вечера · C «Лента вечеров» · 1 Омега,FRAME,218:946,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,218:967,Section / 10 Вечера · C «Лента вечеров» · 2 Кашемир,FRAME,218:967,ok,top,top
+47:930,Page 2,14,218:957,Стрелка ←,TEXT,218:946,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,218:967,Section / 10 Вечера · C «Лента вечеров» · 2 Кашемир,FRAME,218:967,ok,top,top
+47:930,Page 2,15,218:958,Стрелка →,TEXT,218:946,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,218:967,Section / 10 Вечера · C «Лента вечеров» · 2 Кашемир,FRAME,218:967,ok,top,top
+47:930,Page 2,16,218:967,Section / 10 Вечера · C «Лента вечеров» · 2 Кашемир,FRAME,218:967,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,218:946,Section / 10 Вечера · C «Лента вечеров» · 1 Омега,FRAME,218:946,ok,top,top
+47:930,Page 2,17,218:978,Стрелка ←,TEXT,218:967,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,218:946,Section / 10 Вечера · C «Лента вечеров» · 1 Омега,FRAME,218:946,ok,top,top
+47:930,Page 2,18,218:979,Стрелка →,TEXT,218:967,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,218:946,Section / 10 Вечера · C «Лента вечеров» · 1 Омега,FRAME,218:946,ok,top,top
+47:930,Page 2,19,197:1271,Зона / Частный,RECTANGLE,197:1225,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,197:1239,Section / Форматы · A+C · 2 наведение «Частный»,FRAME,197:1239,ok,top,top
+47:930,Page 2,20,197:1272,Зона / Корпоративный,RECTANGLE,197:1225,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,197:1253,Section / Форматы · A+C · 3 наведение «Корпоративный»,FRAME,197:1253,ok,top,top
+47:930,Page 2,21,197:1274,Зона / Корпоративный,RECTANGLE,197:1239,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,197:1253,Section / Форматы · A+C · 3 наведение «Корпоративный»,FRAME,197:1253,ok,top,top
+47:930,Page 2,22,197:1275,Зона / Частный,RECTANGLE,197:1253,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,197:1239,Section / Форматы · A+C · 2 наведение «Частный»,FRAME,197:1239,ok,top,top
+47:930,Page 2,23,197:1550,Зона / Дальше,RECTANGLE,225:863,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,197:1551,Section / 02 Вечер · C+D · 2 19:00,FRAME,225:863,ok,top,top
+47:930,Page 2,24,197:1576,Зона / Дальше,RECTANGLE,225:863,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,197:1577,Section / 02 Вечер · C+D · 3 19:20,FRAME,225:863,ok,top,top
+47:930,Page 2,25,197:1602,Зона / Дальше,RECTANGLE,225:863,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,197:1603,Section / 02 Вечер · C+D · 4 21:50,FRAME,225:863,ok,top,top
+47:930,Page 2,26,197:1628,Зона / Дальше,RECTANGLE,225:863,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,197:1629,Section / 02 Вечер · C+D · 5 22:20,FRAME,225:863,ok,top,top
+47:930,Page 2,27,197:1654,Зона / Дальше,RECTANGLE,225:863,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,197:1520,Section / 02 Вечер · C+D · 1 18:00,FRAME,225:863,ok,top,top
+47:930,Page 2,28,198:795,Формат 02,FRAME,223:2731,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:807,Section / 03 Музыка · B+D · 2 Духовой,FRAME,223:2731,ok,top,top
+47:930,Page 2,29,198:795,Формат 02,FRAME,223:2731,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:807,Section / 03 Музыка · B+D · 2 Духовой,FRAME,223:2731,ok,top,top
+47:930,Page 2,30,198:801,Формат 03,FRAME,223:2731,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:835,Section / 03 Музыка · B+D · 3 Группа,FRAME,223:2731,ok,top,top
+47:930,Page 2,31,198:801,Формат 03,FRAME,223:2731,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:835,Section / 03 Музыка · B+D · 3 Группа,FRAME,223:2731,ok,top,top
+47:930,Page 2,32,198:817,Формат 01,FRAME,223:2731,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:778,Section / 03 Музыка · B+D · 1 Симфонический,FRAME,223:2731,ok,top,top
+47:930,Page 2,33,198:817,Формат 01,FRAME,223:2731,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:778,Section / 03 Музыка · B+D · 1 Симфонический,FRAME,223:2731,ok,top,top
+47:930,Page 2,34,198:829,Формат 03,FRAME,223:2731,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:835,Section / 03 Музыка · B+D · 3 Группа,FRAME,223:2731,ok,top,top
+47:930,Page 2,35,198:829,Формат 03,FRAME,223:2731,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:835,Section / 03 Музыка · B+D · 3 Группа,FRAME,223:2731,ok,top,top
+47:930,Page 2,36,198:845,Формат 01,FRAME,223:2731,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:778,Section / 03 Музыка · B+D · 1 Симфонический,FRAME,223:2731,ok,top,top
+47:930,Page 2,37,198:845,Формат 01,FRAME,223:2731,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:778,Section / 03 Музыка · B+D · 1 Симфонический,FRAME,223:2731,ok,top,top
+47:930,Page 2,38,198:851,Формат 02,FRAME,223:2731,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:807,Section / 03 Музыка · B+D · 2 Духовой,FRAME,223:2731,ok,top,top
+47:930,Page 2,39,198:851,Формат 02,FRAME,223:2731,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:807,Section / 03 Музыка · B+D · 2 Духовой,FRAME,223:2731,ok,top,top
+47:930,Page 2,40,215:1021,Hero · B «Окно в буквах» · 1 окно,FRAME,215:1021,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,215:1040,Hero · B «Окно в буквах» · 2 раскрытие,FRAME,215:1040,ok,top,top
+47:930,Page 2,41,215:1040,Hero · B «Окно в буквах» · 2 раскрытие,FRAME,215:1040,ON_CLICK,NODE,NAVIGATE,DISSOLVE,215:1021,Hero · B «Окно в буквах» · 1 окно,FRAME,215:1021,ok,top,top
+47:930,Page 2,42,215:1065,Hero · C «Первый танец» · 1 общий план,FRAME,215:1065,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,215:1084,Hero · C «Первый танец» · 2 наезд,FRAME,215:1084,ok,top,top
+47:930,Page 2,43,215:1084,Hero · C «Первый танец» · 2 наезд,FRAME,215:1084,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,215:1103,Hero · C «Первый танец» · 3 крупно,FRAME,215:1103,ok,top,top
+47:930,Page 2,44,223:2159,Стрелка ↓,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2,FRAME,225:864,ok,top,top
+47:930,Page 2,45,223:2183,Зона / Частный,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,top,top
+47:930,Page 2,46,223:2184,Зона / Корпоративный,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,top,top
+47:930,Page 2,47,219:1912,Шаг 01 · Разговор,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,top,top
+47:930,Page 2,48,219:1917,Шаг 02 · Концепция,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,top,top
+47:930,Page 2,49,219:1922,Шаг 03 · Репетиции,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,top,top
+47:930,Page 2,50,219:1927,Шаг 04 · Вечер,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,51,219:1932,Шаг 05 · Воспоминания,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,top,top
+47:930,Page 2,52,223:2642,Формат 02,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,top,top
+47:930,Page 2,53,223:2642,Формат 02,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,top,top
+47:930,Page 2,54,223:2648,Формат 03,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,top,top
+47:930,Page 2,55,223:2648,Формат 03,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,top,top
+47:930,Page 2,56,198:881,Панель / Зрители,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,top,top
+47:930,Page 2,57,198:881,Панель / Зрители,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,top,top
+47:930,Page 2,58,198:883,Панель / Участники,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,top,top
+47:930,Page 2,59,198:883,Панель / Участники,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,top,top
+47:930,Page 2,60,213:778,Section / 05 Шоу · ore «Занавес» · 1 Профессионалы,FRAME,225:864,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,213:872,Section / 05 Шоу · ore «Занавес» · 2 Совместный,FRAME,225:864,ok,top,top
+47:930,Page 2,61,213:849,Сцена,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,213:872,Section / 05 Шоу · ore «Занавес» · 2 Совместный,FRAME,225:864,ok,top,top
+47:930,Page 2,62,213:866,Пункт · 02,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,213:872,Section / 05 Шоу · ore «Занавес» · 2 Совместный,FRAME,225:864,ok,top,top
+47:930,Page 2,63,213:867,Пункт · 03,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,213:899,Section / 05 Шоу · ore «Занавес» · 3 Номер от своих,FRAME,225:864,ok,top,top
+47:930,Page 2,64,198:1179,Строка 02,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,top,top
+47:930,Page 2,65,198:1179,Строка 02,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,top,top
+47:930,Page 2,66,198:1184,Строка 03,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,top,top
+47:930,Page 2,67,198:1184,Строка 03,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,top,top
+47:930,Page 2,68,218:882,Section / 10 Вечера · B «Смена вечеров» · 1 Омега,FRAME,225:864,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,top,top
+47:930,Page 2,69,218:889,Пункт · Кашемир,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,top,top
+47:930,Page 2,70,218:890,Слот B · Омега,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,top,top
+47:930,Page 2,71,198:908,Панель / Участники,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,top,top
+47:930,Page 2,72,198:908,Панель / Участники,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,top,top
+47:930,Page 2,73,198:916,Зона / Покой · верх,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:876,Section / 04 Танцмейстер · B+D · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,74,198:916,Зона / Покой · верх,RECTANGLE,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:876,Section / 04 Танцмейстер · B+D · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,75,198:917,Зона / Покой · низ,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:876,Section / 04 Танцмейстер · B+D · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,76,198:917,Зона / Покой · низ,RECTANGLE,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:876,Section / 04 Танцмейстер · B+D · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,77,198:923,Панель / Зрители,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,top,top
+47:930,Page 2,78,198:923,Панель / Зрители,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,top,top
+47:930,Page 2,79,198:937,Зона / Покой · верх,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:876,Section / 04 Танцмейстер · B+D · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,80,198:937,Зона / Покой · верх,RECTANGLE,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:876,Section / 04 Танцмейстер · B+D · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,81,198:938,Зона / Покой · низ,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:876,Section / 04 Танцмейстер · B+D · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,82,198:938,Зона / Покой · низ,RECTANGLE,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:876,Section / 04 Танцмейстер · B+D · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,83,198:1212,Строка 01,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,top,top
+47:930,Page 2,84,198:1212,Строка 01,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,top,top
+47:930,Page 2,85,198:1220,Строка 03,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,top,top
+47:930,Page 2,86,198:1220,Строка 03,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,top,top
+47:930,Page 2,87,198:1247,Строка 01,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,top,top
+47:930,Page 2,88,198:1247,Строка 01,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,top,top
+47:930,Page 2,89,198:1251,Строка 02,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,top,top
+47:930,Page 2,90,198:1251,Строка 02,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,top,top
+47:930,Page 2,91,213:872,Section / 05 Шоу · ore «Занавес» · 2 Совместный,FRAME,225:864,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,213:899,Section / 05 Шоу · ore «Занавес» · 3 Номер от своих,FRAME,225:864,ok,top,top
+47:930,Page 2,92,213:876,Сцена,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,213:899,Section / 05 Шоу · ore «Занавес» · 3 Номер от своих,FRAME,225:864,ok,top,top
+47:930,Page 2,93,213:892,Пункт · 01,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,213:778,Section / 05 Шоу · ore «Занавес» · 1 Профессионалы,FRAME,225:864,ok,top,top
+47:930,Page 2,94,213:894,Пункт · 03,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,213:899,Section / 05 Шоу · ore «Занавес» · 3 Номер от своих,FRAME,225:864,ok,top,top
+47:930,Page 2,95,213:903,Сцена,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,213:778,Section / 05 Шоу · ore «Занавес» · 1 Профессионалы,FRAME,225:864,ok,top,top
+47:930,Page 2,96,213:919,Пункт · 01,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,213:778,Section / 05 Шоу · ore «Занавес» · 1 Профессионалы,FRAME,225:864,ok,top,top
+47:930,Page 2,97,213:920,Пункт · 02,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,213:872,Section / 05 Шоу · ore «Занавес» · 2 Совместный,FRAME,225:864,ok,top,top
+47:930,Page 2,98,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,218:882,Section / 10 Вечера · B «Смена вечеров» · 1 Омега,FRAME,225:864,ok,top,top
+47:930,Page 2,99,219:1012,Пункт · Омега,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,218:882,Section / 10 Вечера · B «Смена вечеров» · 1 Омега,FRAME,225:864,ok,top,top
+47:930,Page 2,100,219:1016,Слот B · Кашемир,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,218:882,Section / 10 Вечера · B «Смена вечеров» · 1 Омега,FRAME,225:864,ok,top,top
+47:930,Page 2,101,219:1069,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,102,219:1070,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,103,219:1071,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,104,219:1072,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,105,219:1073,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,106,219:1074,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,107,219:1075,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,108,219:1076,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,109,219:1077,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,110,219:1078,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,111,219:1079,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,112,219:1080,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,113,219:1081,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,114,219:1098,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,115,219:1099,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,116,219:1100,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,117,219:1101,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,118,219:1102,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,119,219:1103,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,120,219:1104,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,121,219:1105,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,122,219:1106,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,123,219:1107,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,124,219:1108,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,125,219:1109,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,126,219:1110,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,127,219:1127,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,128,219:1128,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,129,219:1129,Пункт 02 · Вечер,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,130,219:1130,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,131,219:1131,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,132,219:1132,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,133,219:1133,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,134,219:1134,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,135,219:1135,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,136,219:1136,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,137,219:1137,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,138,219:1138,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,139,219:1139,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,140,219:1156,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,141,219:1157,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,142,219:1158,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,143,219:1159,Пункт 03 · Музыка,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,144,219:1160,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,145,219:1161,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,146,219:1162,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,147,219:1163,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,148,219:1164,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,149,219:1165,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,150,219:1166,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,151,219:1167,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,152,219:1168,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,153,219:1185,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,154,219:1186,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,155,219:1187,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,156,219:1188,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,157,219:1189,Пункт 04 · Танцы,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,158,219:1190,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,159,219:1191,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,160,219:1192,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,161,219:1193,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,162,219:1194,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,163,219:1195,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,164,219:1196,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,165,219:1197,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,166,219:1214,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,167,219:1215,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,168,219:1216,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,169,219:1217,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,170,219:1218,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,171,219:1219,Пункт 05 · Шоу,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,172,219:1220,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,173,219:1221,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,174,219:1222,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,175,219:1223,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,176,219:1224,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,177,219:1225,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,178,219:1226,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,179,219:1243,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,180,219:1244,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,181,219:1245,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,182,219:1246,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,183,219:1247,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,184,219:1248,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,185,219:1249,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,186,219:1250,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,187,219:1251,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,188,219:1252,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,189,219:1253,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,190,219:1254,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,191,219:1255,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,192,219:1272,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,193,219:1273,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,194,219:1274,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,195,219:1275,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,196,219:1276,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,197,219:1277,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,198,219:1278,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,199,219:1279,Пункт 07 · Уроки,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,200,219:1280,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,201,219:1281,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,202,219:1282,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,203,219:1283,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,204,219:1284,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,205,219:1301,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,206,219:1302,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,207,219:1303,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,208,219:1304,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,209,219:1305,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,210,219:1306,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,211,219:1307,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,212,219:1308,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,213,219:1309,Пункт 08 · Этикет,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,214,219:1310,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,215,219:1311,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,216,219:1312,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,217,219:1313,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,218,219:1330,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,219,219:1331,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,220,219:1332,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,221,219:1333,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,222,219:1334,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,223,219:1335,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,224,219:1336,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,225,219:1337,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,226,219:1338,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,227,219:1339,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,228,219:1340,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,229,219:1341,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,230,219:1342,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,231,219:1359,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,232,219:1360,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,233,219:1361,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,234,219:1362,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,235,219:1363,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,236,219:1364,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,237,219:1365,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,238,219:1366,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,239,219:1367,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,240,219:1368,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,241,219:1369,Пункт 10 · Вечера,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,242,219:1370,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,243,219:1371,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,244,219:1388,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,245,219:1389,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,246,219:1390,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,247,219:1391,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,248,219:1392,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,249,219:1393,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,250,219:1394,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,251,219:1395,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,252,219:1396,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,253,219:1397,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,254,219:1398,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,255,219:1399,Пункт 11 · О нас,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,256,219:1400,Пункт 12 · Связаться,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1415,Меню · ore · 3 Наведение · 12 Связаться,FRAME,225:864,ok,top,top
+47:930,Page 2,257,219:1417,Закрыть,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1444,Меню · ore · 1 Закрыто (поверх hero A),FRAME,225:864,ok,top,top
+47:930,Page 2,258,219:1418,Пункт 01 · Подготовка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1096,Меню · ore · 3 Наведение · 01 Подготовка,FRAME,225:864,ok,top,top
+47:930,Page 2,259,219:1419,Пункт 02 · Вечер,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1125,Меню · ore · 3 Наведение · 02 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,260,219:1420,Пункт 03 · Музыка,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1154,Меню · ore · 3 Наведение · 03 Музыка,FRAME,225:864,ok,top,top
+47:930,Page 2,261,219:1421,Пункт 04 · Танцы,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1183,Меню · ore · 3 Наведение · 04 Танцы,FRAME,225:864,ok,top,top
+47:930,Page 2,262,219:1422,Пункт 05 · Шоу,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1212,Меню · ore · 3 Наведение · 05 Шоу,FRAME,225:864,ok,top,top
+47:930,Page 2,263,219:1423,Пункт 06 · Ассистент,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1241,Меню · ore · 3 Наведение · 06 Ассистент,FRAME,225:864,ok,top,top
+47:930,Page 2,264,219:1424,Пункт 07 · Уроки,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1270,Меню · ore · 3 Наведение · 07 Уроки,FRAME,225:864,ok,top,top
+47:930,Page 2,265,219:1425,Пункт 08 · Этикет,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1299,Меню · ore · 3 Наведение · 08 Этикет,FRAME,225:864,ok,top,top
+47:930,Page 2,266,219:1426,Пункт 09 · Дресс-код,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1328,Меню · ore · 3 Наведение · 09 Дресс-код,FRAME,225:864,ok,top,top
+47:930,Page 2,267,219:1427,Пункт 10 · Вечера,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1357,Меню · ore · 3 Наведение · 10 Вечера,FRAME,225:864,ok,top,top
+47:930,Page 2,268,219:1428,Пункт 11 · О нас,TEXT,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1386,Меню · ore · 3 Наведение · 11 О нас,FRAME,225:864,ok,top,top
+47:930,Page 2,269,219:1429,Пункт 12 · Связаться,TEXT,225:864,MOUSE_LEAVE,NODE,NAVIGATE,SMART_ANIMATE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,270,219:1464,Меню,TEXT,225:864,ON_CLICK,NODE,NAVIGATE,DISSOLVE,219:1067,Меню · ore · 2 Открыто · покой,FRAME,225:864,ok,top,top
+47:930,Page 2,271,219:1949,Шаг 02 · Концепция,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,top,top
+47:930,Page 2,272,219:1954,Шаг 03 · Репетиции,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,top,top
+47:930,Page 2,273,219:1959,Шаг 04 · Вечер,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,274,219:1964,Шаг 05 · Воспоминания,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,top,top
+47:930,Page 2,275,219:1971,Зона / Покой · верх,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,276,219:1972,Зона / Покой · низ,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,277,219:1978,Шаг 01 · Разговор,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,top,top
+47:930,Page 2,278,219:1988,Шаг 03 · Репетиции,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,top,top
+47:930,Page 2,279,219:1993,Шаг 04 · Вечер,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,280,219:1998,Шаг 05 · Воспоминания,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,top,top
+47:930,Page 2,281,219:2005,Зона / Покой · верх,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,282,219:2006,Зона / Покой · низ,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,283,219:2012,Шаг 01 · Разговор,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,top,top
+47:930,Page 2,284,219:2017,Шаг 02 · Концепция,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,top,top
+47:930,Page 2,285,219:2027,Шаг 04 · Вечер,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,286,219:2032,Шаг 05 · Воспоминания,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,top,top
+47:930,Page 2,287,219:2039,Зона / Покой · верх,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,288,219:2040,Зона / Покой · низ,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,289,219:2046,Шаг 01 · Разговор,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,top,top
+47:930,Page 2,290,219:2051,Шаг 02 · Концепция,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,top,top
+47:930,Page 2,291,219:2056,Шаг 03 · Репетиции,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,top,top
+47:930,Page 2,292,219:2066,Шаг 05 · Воспоминания,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,top,top
+47:930,Page 2,293,219:2073,Зона / Покой · верх,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,294,219:2074,Зона / Покой · низ,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,295,219:2080,Шаг 01 · Разговор,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,top,top
+47:930,Page 2,296,219:2085,Шаг 02 · Концепция,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,top,top
+47:930,Page 2,297,219:2090,Шаг 03 · Репетиции,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,top,top
+47:930,Page 2,298,219:2095,Шаг 04 · Вечер,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,top,top
+47:930,Page 2,299,219:2107,Зона / Покой · верх,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,300,219:2108,Зона / Покой · низ,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1907,Section / 01 Подготовка · ore-заголовок · 0 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,301,223:2202,Зона / Корпоративный,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,top,top
+47:930,Page 2,302,223:2219,Зона / Частный,RECTANGLE,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,top,top
+47:930,Page 2,303,223:2223,Снимок,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,PUSH,223:2169,Section / Форматы · ore · стык · C+B · 1 покой,FRAME,225:864,ok,top,top
+47:930,Page 2,304,223:2664,Формат 01,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2626,Section / 03 Музыка · ore-заголовок · шапка · 1 Симфонический,FRAME,225:864,ok,top,top
+47:930,Page 2,305,223:2664,Формат 01,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2626,Section / 03 Музыка · ore-заголовок · шапка · 1 Симфонический,FRAME,225:864,ok,top,top
+47:930,Page 2,306,223:2676,Формат 03,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,top,top
+47:930,Page 2,307,223:2676,Формат 03,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,top,top
+47:930,Page 2,308,223:2692,Формат 01,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2626,Section / 03 Музыка · ore-заголовок · шапка · 1 Симфонический,FRAME,225:864,ok,top,top
+47:930,Page 2,309,223:2692,Формат 01,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2626,Section / 03 Музыка · ore-заголовок · шапка · 1 Симфонический,FRAME,225:864,ok,top,top
+47:930,Page 2,310,223:2698,Формат 02,FRAME,225:864,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,top,top
+47:930,Page 2,311,223:2698,Формат 02,FRAME,225:864,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,top,top
+47:930,Page 2,312,I229:1166;229:1162,Зона нажатия · Меню,RECTANGLE,229:966,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,313,I229:1170;229:1162,Зона нажатия · Меню,RECTANGLE,229:1012,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,314,I229:1174;229:1162,Зона нажатия · Меню,RECTANGLE,229:1045,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,315,I229:1178;229:1162,Зона нажатия · Меню,RECTANGLE,229:1078,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,316,I229:1182;229:1163,Зона нажатия · Закрыть,RECTANGLE,229:1138,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,317,229:1162,Зона нажатия · Меню,RECTANGLE,229:1164,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,318,229:1163,Зона нажатия · Закрыть,RECTANGLE,229:1165,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,319,I229:1214;229:1162,Зона нажатия · Меню,RECTANGLE,229:1186,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,320,I229:1304;229:1163,Зона нажатия · Закрыть,RECTANGLE,229:1220,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,321,I229:1282;229:1162,Зона нажатия · Меню,RECTANGLE,229:1254,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,322,238:1337,Ссылка 01,TEXT,238:1323,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2035,M390 / Форма · B · открыто · пусто,FRAME,253:2035,ok,top,top
+47:930,Page 2,323,238:1346,Ссылка 02,TEXT,238:1323,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2035,M390 / Форма · B · открыто · пусто,FRAME,253:2035,ok,top,top
+47:930,Page 2,324,I238:1351;229:1162,Зона нажатия · Меню,RECTANGLE,238:1323,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,325,I238:1372;229:1163,Зона нажатия · Закрыть,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,326,238:1376,Зона · пункт 01,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,327,238:1377,Зона · пункт 02,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,328,238:1378,Зона · пункт 03,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,329,238:1379,Зона · пункт 04,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,330,238:1380,Зона · пункт 05,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,331,238:1381,Зона · пункт 06,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,332,238:1382,Зона · пункт 07,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,333,238:1383,Зона · пункт 08,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,334,238:1384,Зона · пункт 09,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,335,238:1385,Зона · пункт 10,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,336,238:1386,Зона · пункт 11,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,337,238:1387,Зона · пункт 12,RECTANGLE,238:1357,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,338,I240:1413;229:1162,Зона нажатия · Меню,RECTANGLE,240:1412,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,339,I241:1570;229:1162,Зона нажатия · Меню,RECTANGLE,241:1449,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,340,I241:1574;229:1162,Зона нажатия · Меню,RECTANGLE,241:1450,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,341,I241:1578;229:1162,Зона нажатия · Меню,RECTANGLE,241:1451,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,342,I241:1586;229:1162,Зона нажатия · Меню,RECTANGLE,241:1585,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,343,I242:1840;229:1162,Зона нажатия · Меню,RECTANGLE,242:1647,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,344,I242:1844;229:1162,Зона нажатия · Меню,RECTANGLE,242:1648,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,345,I242:1848;229:1162,Зона нажатия · Меню,RECTANGLE,242:1649,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,346,I242:1856;229:1162,Зона нажатия · Меню,RECTANGLE,242:1855,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,347,I242:1886;229:1162,Зона нажатия · Меню,RECTANGLE,242:1885,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,348,I242:1916;229:1162,Зона нажатия · Меню,RECTANGLE,242:1915,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,349,I242:1949;229:1162,Зона нажатия · Меню,RECTANGLE,242:1948,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,350,I242:2067;229:1162,Зона нажатия · Меню,RECTANGLE,242:1973,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,351,I242:2071;229:1162,Зона нажатия · Меню,RECTANGLE,242:1974,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,352,I242:2075;229:1162,Зона нажатия · Меню,RECTANGLE,242:1975,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,353,242:2095,Сцена,FRAME,242:2090,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,242:2122,M390 / 05 Шоу · B · свайп · формат 02,FRAME,242:2122,ok,top,top
+47:930,Page 2,354,242:2105,Слово · барабан,FRAME,242:2090,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,242:2122,M390 / 05 Шоу · B · свайп · формат 02,FRAME,242:2122,ok,top,top
+47:930,Page 2,355,I242:2118;229:1162,Зона нажатия · Меню,RECTANGLE,242:2090,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,356,242:2218,Зона нажатия · Пункт 02,RECTANGLE,242:2090,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,242:2122,M390 / 05 Шоу · B · свайп · формат 02,FRAME,242:2122,ok,top,top
+47:930,Page 2,357,242:2219,Зона нажатия · Пункт 03,RECTANGLE,242:2090,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,242:2154,M390 / 05 Шоу · B · свайп · формат 03,FRAME,242:2154,ok,top,top
+47:930,Page 2,358,242:2127,Сцена,FRAME,242:2122,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,242:2154,M390 / 05 Шоу · B · свайп · формат 03,FRAME,242:2154,ok,top,top
+47:930,Page 2,359,242:2137,Слово · барабан,FRAME,242:2122,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,242:2154,M390 / 05 Шоу · B · свайп · формат 03,FRAME,242:2154,ok,top,top
+47:930,Page 2,360,I242:2150;229:1162,Зона нажатия · Меню,RECTANGLE,242:2122,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,361,242:2220,Зона нажатия · Пункт 01,RECTANGLE,242:2122,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,242:2090,M390 / 05 Шоу · B · покой,FRAME,242:2090,ok,top,top
+47:930,Page 2,362,242:2221,Зона нажатия · Пункт 03,RECTANGLE,242:2122,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,242:2154,M390 / 05 Шоу · B · свайп · формат 03,FRAME,242:2154,ok,top,top
+47:930,Page 2,363,242:2159,Сцена,FRAME,242:2154,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,242:2090,M390 / 05 Шоу · B · покой,FRAME,242:2090,ok,top,top
+47:930,Page 2,364,242:2169,Слово · барабан,FRAME,242:2154,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,242:2090,M390 / 05 Шоу · B · покой,FRAME,242:2090,ok,top,top
+47:930,Page 2,365,I242:2182;229:1162,Зона нажатия · Меню,RECTANGLE,242:2154,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,366,242:2222,Зона нажатия · Пункт 01,RECTANGLE,242:2154,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,242:2090,M390 / 05 Шоу · B · покой,FRAME,242:2090,ok,top,top
+47:930,Page 2,367,242:2223,Зона нажатия · Пункт 02,RECTANGLE,242:2154,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,242:2122,M390 / 05 Шоу · B · свайп · формат 02,FRAME,242:2122,ok,top,top
+47:930,Page 2,368,I242:2214;229:1162,Зона нажатия · Меню,RECTANGLE,242:2186,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,369,I242:2269;229:1162,Зона нажатия · Меню,RECTANGLE,242:2240,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,370,I242:2290;229:1162,Зона нажатия · Меню,RECTANGLE,242:2240,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,371,I242:2323;229:1162,Зона нажатия · Меню,RECTANGLE,242:2294,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,372,I242:2341;229:1162,Зона нажатия · Меню,RECTANGLE,242:2294,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,373,I242:2377;229:1162,Зона нажатия · Меню,RECTANGLE,242:2348,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,374,I242:2395;229:1162,Зона нажатия · Меню,RECTANGLE,242:2348,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,375,I242:2452;229:1162,Зона нажатия · Меню,RECTANGLE,242:2425,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,376,I242:2485;229:1162,Зона нажатия · Меню,RECTANGLE,242:2457,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,377,I242:2502;229:1162,Зона нажатия · Меню,RECTANGLE,242:2457,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,378,I242:2534;229:1162,Зона нажатия · Меню,RECTANGLE,242:2506,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,379,I242:2548;229:1162,Зона нажатия · Меню,RECTANGLE,242:2506,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,380,I242:2583;229:1162,Зона нажатия · Меню,RECTANGLE,242:2555,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,381,I242:2597;229:1162,Зона нажатия · Меню,RECTANGLE,242:2555,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,382,I246:1022;229:1162,Зона нажатия · Меню,RECTANGLE,246:991,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,383,I246:1058;229:1162,Зона нажатия · Меню,RECTANGLE,246:1026,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,384,I246:1134;229:1162,Зона нажатия · Меню,RECTANGLE,246:1026,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,385,I246:1094;229:1162,Зона нажатия · Меню,RECTANGLE,246:1062,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,386,I246:1138;229:1162,Зона нажатия · Меню,RECTANGLE,246:1062,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,387,I246:1130;229:1162,Зона нажатия · Меню,RECTANGLE,246:1098,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,388,I246:1142;229:1162,Зона нажатия · Меню,RECTANGLE,246:1098,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,389,247:1046,Зона нажатия · Дамам,RECTANGLE,247:998,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,247:1106,"M390 / 08 Этикет · A · смена К→Д · 50 % (старые ушли, новые на старте)",FRAME,247:1106,ok,top,top
+47:930,Page 2,390,247:1047,Зона нажатия · Панель,RECTANGLE,247:998,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,247:1106,"M390 / 08 Этикет · A · смена К→Д · 50 % (старые ушли, новые на старте)",FRAME,247:1106,ok,top,top
+47:930,Page 2,391,I247:1048;229:1162,Зона нажатия · Меню,RECTANGLE,247:998,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,392,247:1099,Зона нажатия · Кавалерам,RECTANGLE,247:1052,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,247:1167,"M390 / 08 Этикет · A · смена Д→К · 50 % (старые ушли, новые на старте)",FRAME,247:1167,ok,top,top
+47:930,Page 2,393,247:1101,Зона нажатия · Панель,RECTANGLE,247:1052,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,247:1167,"M390 / 08 Этикет · A · смена Д→К · 50 % (старые ушли, новые на старте)",FRAME,247:1167,ok,top,top
+47:930,Page 2,394,I247:1102;229:1162,Зона нажатия · Меню,RECTANGLE,247:1052,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,395,247:1106,"M390 / 08 Этикет · A · смена К→Д · 50 % (старые ушли, новые на старте)",FRAME,247:1106,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,247:1052,M390 / 08 Этикет · A · тап · Дамам,FRAME,247:1052,ok,top,top
+47:930,Page 2,396,I247:1156;229:1162,Зона нажатия · Меню,RECTANGLE,247:1106,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,397,247:1167,"M390 / 08 Этикет · A · смена Д→К · 50 % (старые ушли, новые на старте)",FRAME,247:1167,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,247:998,M390 / 08 Этикет · A · покой (Кавалерам),FRAME,247:998,ok,top,top
+47:930,Page 2,398,I247:1217;229:1162,Зона нажатия · Меню,RECTANGLE,247:1167,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,399,I250:1065;229:1162,Зона нажатия · Меню,RECTANGLE,250:1006,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,400,I250:1132;229:1162,Зона нажатия · Меню,RECTANGLE,250:1072,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,401,I250:1136;229:1162,Зона нажатия · Меню,RECTANGLE,250:1072,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,402,I250:1202;229:1162,Зона нажатия · Меню,RECTANGLE,250:1141,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,403,I250:1203;229:1162,Зона нажатия · Меню,RECTANGLE,250:1141,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,404,I250:1271;229:1162,Зона нажатия · Меню,RECTANGLE,250:1210,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,405,I250:1272;229:1162,Зона нажатия · Меню,RECTANGLE,250:1210,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,406,251:1362,Зона нажатия · Кашемир,RECTANGLE,251:1319,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,252:1413,"M390 / 10 Вечера · A · смена О→К · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,252:1413,ok,top,top
+47:930,Page 2,407,252:1367,Зона свайпа · главный слот,RECTANGLE,251:1319,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,252:1413,"M390 / 10 Вечера · A · смена О→К · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,252:1413,ok,top,top
+47:930,Page 2,408,I251:1363;229:1162,Зона нажатия · Меню,RECTANGLE,251:1319,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,409,252:1406,Зона нажатия · Омега,RECTANGLE,252:1368,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,252:1458,"M390 / 10 Вечера · A · смена К→О · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,252:1458,ok,top,top
+47:930,Page 2,410,252:1408,Зона свайпа · главный слот,RECTANGLE,252:1368,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,252:1458,"M390 / 10 Вечера · A · смена К→О · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,252:1458,ok,top,top
+47:930,Page 2,411,I252:1409;229:1162,Зона нажатия · Меню,RECTANGLE,252:1368,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,412,252:1413,"M390 / 10 Вечера · A · смена О→К · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,252:1413,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,252:1368,M390 / 10 Вечера · A · свайп · Кашемир,FRAME,252:1368,ok,top,top
+47:930,Page 2,413,I252:1454;229:1162,Зона нажатия · Меню,RECTANGLE,252:1413,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,414,252:1458,"M390 / 10 Вечера · A · смена К→О · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,252:1458,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,251:1319,M390 / 10 Вечера · A · покой (= Омега),FRAME,251:1319,ok,top,top
+47:930,Page 2,415,I252:1499;229:1162,Зона нажатия · Меню,RECTANGLE,252:1458,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,416,I253:1567;229:1162,Зона нажатия · Меню,RECTANGLE,253:1525,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,417,I253:1689;229:1162,Зона нажатия · Меню,RECTANGLE,253:1525,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,418,I253:1613;229:1162,Зона нажатия · Меню,RECTANGLE,253:1571,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,419,I253:1693;229:1162,Зона нажатия · Меню,RECTANGLE,253:1571,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,420,I253:1659;229:1162,Зона нажатия · Меню,RECTANGLE,253:1617,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,421,I253:1663;229:1162,Зона нажатия · Меню,RECTANGLE,253:1617,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,422,253:1740,Зона нажатия · → оставить заявку,RECTANGLE,253:1706,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2035,M390 / Форма · B · открыто · пусто,FRAME,253:2035,ok,top,top
+47:930,Page 2,423,253:1741,Зона нажатия · tel:,RECTANGLE,253:1706,ON_CLICK,URL,,,,,,,no-destination,top,no-destination
+47:930,Page 2,424,253:1742,Зона нажатия · mailto:,RECTANGLE,253:1706,ON_CLICK,URL,,,,,,,no-destination,top,no-destination
+47:930,Page 2,425,253:1743,Зона нажатия · поле Имя,RECTANGLE,253:1706,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2053,"M390 / Форма · B · фокус (поле Имя, без подсветки)",FRAME,253:2053,ok,top,top
+47:930,Page 2,426,253:1744,Зона нажатия · поле Телефон,RECTANGLE,253:1706,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2035,M390 / Форма · B · открыто · пусто,FRAME,253:2035,ok,top,top
+47:930,Page 2,427,253:1745,Зона нажатия · поле О вечере,RECTANGLE,253:1706,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2035,M390 / Форма · B · открыто · пусто,FRAME,253:2035,ok,top,top
+47:930,Page 2,428,253:1746,Зона нажатия · → отправить,RECTANGLE,253:1706,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2035,M390 / Форма · B · открыто · пусто,FRAME,253:2035,ok,top,top
+47:930,Page 2,429,I253:1747;229:1162,Зона нажатия · Меню,RECTANGLE,253:1706,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,430,253:1758,Зона нажатия · Меню,RECTANGLE,253:1755,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,431,I253:1810;229:1162,Зона нажатия · Меню,RECTANGLE,253:1759,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,432,I253:1864;253:1758,Зона нажатия · Меню,RECTANGLE,253:1759,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,433,I253:1859;229:1162,Зона нажатия · Меню,RECTANGLE,253:1814,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,434,I253:1868;253:1758,Зона нажатия · Меню,RECTANGLE,253:1814,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,435,I253:1918;229:1162,Зона нажатия · Меню,RECTANGLE,253:1872,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,436,I253:2022;229:1162,Зона нажатия · Меню,RECTANGLE,253:1872,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,437,I253:1968;229:1162,Зона нажатия · Меню,RECTANGLE,253:1922,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,438,I253:2026;229:1162,Зона нажатия · Меню,RECTANGLE,253:1922,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,439,I253:2018;229:1162,Зона нажатия · Меню,RECTANGLE,253:1972,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,440,I253:2030;229:1162,Зона нажатия · Меню,RECTANGLE,253:1972,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,441,253:2048,Зона нажатия · ×,RECTANGLE,253:2035,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,442,253:2049,Зона нажатия · поле Имя,RECTANGLE,253:2035,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2053,"M390 / Форма · B · фокус (поле Имя, без подсветки)",FRAME,253:2053,ok,top,top
+47:930,Page 2,443,253:2050,Зона нажатия · поле Телефон,RECTANGLE,253:2035,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2053,"M390 / Форма · B · фокус (поле Имя, без подсветки)",FRAME,253:2053,ok,top,top
+47:930,Page 2,444,253:2051,Зона нажатия · поле О вечере,RECTANGLE,253:2035,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:2053,"M390 / Форма · B · фокус (поле Имя, без подсветки)",FRAME,253:2053,ok,top,top
+47:930,Page 2,445,253:2053,"M390 / Форма · B · фокус (поле Имя, без подсветки)",FRAME,253:2053,AFTER_TIMEOUT,NODE,NAVIGATE,DISSOLVE,253:2072,M390 / Форма · B · ввод,FRAME,253:2072,ok,top,top
+47:930,Page 2,446,253:2066,Зона нажатия · ×,RECTANGLE,253:2053,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:1706,M390 / 11–12 О нас → Контакты → подвал · A · покой,FRAME,253:1706,ok,top,top
+47:930,Page 2,447,253:2085,Зона нажатия · ×,RECTANGLE,253:2072,ON_CLICK,NODE,NAVIGATE,DISSOLVE,253:1706,M390 / 11–12 О нас → Контакты → подвал · A · покой,FRAME,253:1706,ok,top,top
+47:930,Page 2,448,I253:2139;229:1162,Зона нажатия · Меню,RECTANGLE,253:2093,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,449,I253:2143;229:1162,Зона нажатия · Меню,RECTANGLE,253:2093,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,450,I254:2330;254:2285,Зона нажатия · Меню,RECTANGLE,254:2294,ON_CLICK,NODE,NAVIGATE,MOVE_IN,254:2334,T834 / Меню · открыто (покой меню),FRAME,254:2334,ok,top,top
+47:930,Page 2,451,254:2481,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,452,254:2482,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,453,254:2483,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,454,254:2484,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,455,254:2485,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,456,254:2486,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,457,254:2487,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,458,254:2488,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,459,254:2489,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,460,254:2490,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,461,254:2491,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,462,254:2492,Зона нажатия · пункт 834 × 80,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,463,I254:2353;254:2289,Зона нажатия · Закрыть,RECTANGLE,254:2334,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,464,256:2926,Сцена,FRAME,256:2921,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,256:3092,T834 / 05 Шоу · свайп · формат 02,FRAME,256:3092,ok,top,top
+47:930,Page 2,465,256:2936,Слово · барабан,FRAME,256:2921,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,256:3092,T834 / 05 Шоу · свайп · формат 02,FRAME,256:3092,ok,top,top
+47:930,Page 2,466,256:2950,Зона нажатия · Пункт 02,RECTANGLE,256:2921,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3092,T834 / 05 Шоу · свайп · формат 02,FRAME,256:3092,ok,top,top
+47:930,Page 2,467,256:2951,Зона нажатия · Пункт 03,RECTANGLE,256:2921,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3126,T834 / 05 Шоу · свайп · формат 03,FRAME,256:3126,ok,top,top
+47:930,Page 2,468,256:3082,Зона нажатия · Дамам,RECTANGLE,256:3034,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3543,"T834 / 08 Этикет · смена К→Д · 50 % (старые ушли, новые на старте)",FRAME,256:3543,ok,top,top
+47:930,Page 2,469,256:3083,Зона нажатия · Панель,RECTANGLE,256:3034,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3543,"T834 / 08 Этикет · смена К→Д · 50 % (старые ушли, новые на старте)",FRAME,256:3543,ok,top,top
+47:930,Page 2,470,256:3097,Сцена,FRAME,256:3092,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,256:3126,T834 / 05 Шоу · свайп · формат 03,FRAME,256:3126,ok,top,top
+47:930,Page 2,471,256:3107,Слово · барабан,FRAME,256:3092,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,256:3126,T834 / 05 Шоу · свайп · формат 03,FRAME,256:3126,ok,top,top
+47:930,Page 2,472,256:3121,Зона нажатия · Пункт 03,RECTANGLE,256:3092,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3126,T834 / 05 Шоу · свайп · формат 03,FRAME,256:3126,ok,top,top
+47:930,Page 2,473,256:3195,Зона нажатия · Пункт 01,RECTANGLE,256:3092,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:2921,T834 / 05 Шоу · покой (= формат 01),FRAME,256:2921,ok,top,top
+47:930,Page 2,474,256:3131,Сцена,FRAME,256:3126,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,256:2921,T834 / 05 Шоу · покой (= формат 01),FRAME,256:2921,ok,top,top
+47:930,Page 2,475,256:3141,Слово · барабан,FRAME,256:3126,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,256:2921,T834 / 05 Шоу · покой (= формат 01),FRAME,256:2921,ok,top,top
+47:930,Page 2,476,256:3154,Зона нажатия · Пункт 02,RECTANGLE,256:3126,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3092,T834 / 05 Шоу · свайп · формат 02,FRAME,256:3092,ok,top,top
+47:930,Page 2,477,256:3196,Зона нажатия · Пункт 01,RECTANGLE,256:3126,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:2921,T834 / 05 Шоу · покой (= формат 01),FRAME,256:2921,ok,top,top
+47:930,Page 2,478,256:3536,Зона нажатия · Кавалерам,RECTANGLE,256:3489,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3597,"T834 / 08 Этикет · смена Д→К · 50 % (старые ушли, новые на старте)",FRAME,256:3597,ok,top,top
+47:930,Page 2,479,256:3538,Зона нажатия · Панель,RECTANGLE,256:3489,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3597,"T834 / 08 Этикет · смена Д→К · 50 % (старые ушли, новые на старте)",FRAME,256:3597,ok,top,top
+47:930,Page 2,480,256:3543,"T834 / 08 Этикет · смена К→Д · 50 % (старые ушли, новые на старте)",FRAME,256:3543,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,256:3489,T834 / 08 Этикет · тап · Дамам,FRAME,256:3489,ok,top,top
+47:930,Page 2,481,256:3597,"T834 / 08 Этикет · смена Д→К · 50 % (старые ушли, новые на старте)",FRAME,256:3597,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,256:3034,T834 / 08 Этикет · покой (Кавалерам),FRAME,256:3034,ok,top,top
+47:930,Page 2,482,256:3775,Зона нажатия · Кашемир,RECTANGLE,256:3736,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3909,"T834 / 10 Вечера · смена О→К · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,256:3909,ok,top,top
+47:930,Page 2,483,256:3776,Зона свайпа · главный слот,RECTANGLE,256:3736,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,256:3909,"T834 / 10 Вечера · смена О→К · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,256:3909,ok,top,top
+47:930,Page 2,484,256:3823,Зона нажатия · → оставить заявку,RECTANGLE,256:3789,ON_CLICK,NODE,NAVIGATE,DISSOLVE,256:3842,T834 / Форма · открыто · пусто (покой формы),FRAME,256:3842,ok,top,top
+47:930,Page 2,485,256:3824,Зона нажатия · tel:,RECTANGLE,256:3789,ON_CLICK,URL,,,,,,,no-destination,top,no-destination
+47:930,Page 2,486,256:3825,Зона нажатия · mailto:,RECTANGLE,256:3789,ON_CLICK,URL,,,,,,,no-destination,top,no-destination
+47:930,Page 2,487,256:3826,Зона нажатия · поле Имя,RECTANGLE,256:3789,ON_CLICK,NODE,NAVIGATE,DISSOLVE,256:3842,T834 / Форма · открыто · пусто (покой формы),FRAME,256:3842,ok,top,top
+47:930,Page 2,488,256:3827,Зона нажатия · поле Телефон,RECTANGLE,256:3789,ON_CLICK,NODE,NAVIGATE,DISSOLVE,256:3842,T834 / Форма · открыто · пусто (покой формы),FRAME,256:3842,ok,top,top
+47:930,Page 2,489,256:3828,Зона нажатия · поле О вечере,RECTANGLE,256:3789,ON_CLICK,NODE,NAVIGATE,DISSOLVE,256:3842,T834 / Форма · открыто · пусто (покой формы),FRAME,256:3842,ok,top,top
+47:930,Page 2,490,256:3829,Зона нажатия · → отправить,RECTANGLE,256:3789,ON_CLICK,NODE,NAVIGATE,DISSOLVE,256:3842,T834 / Форма · открыто · пусто (покой формы),FRAME,256:3842,ok,top,top
+47:930,Page 2,491,256:3855,Зона нажатия · ×,RECTANGLE,256:3842,ON_CLICK,BACK,,,,,,,no-destination,top,no-destination
+47:930,Page 2,492,256:3898,Зона нажатия · Омега,RECTANGLE,256:3860,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,256:3958,"T834 / 10 Вечера · смена К→О · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,256:3958,ok,top,top
+47:930,Page 2,493,256:3900,Зона свайпа · главный слот,RECTANGLE,256:3860,ON_DRAG,NODE,NAVIGATE,SMART_ANIMATE,256:3958,"T834 / 10 Вечера · смена К→О · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,256:3958,ok,top,top
+47:930,Page 2,494,256:3909,"T834 / 10 Вечера · смена О→К · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,256:3909,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,256:3860,T834 / 10 Вечера · свайп · Кашемир,FRAME,256:3860,ok,top,top
+47:930,Page 2,495,256:3958,"T834 / 10 Вечера · смена К→О · 50 % (занавес наполовину, старый текст ушёл, новый на старте)",FRAME,256:3958,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,256:3736,T834 / 10 Вечера · покой (= Омега),FRAME,256:3736,ok,top,top
+47:930,Page 2,496,I258:4063;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,497,260:6234,Зона нажатия · → обсудить вечер,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5066,M390 / Главная · оверлей · форма · пусто,FRAME,259:5066,ok,top,top
+47:930,Page 2,498,260:6235,Зона нажатия · Обсудить частный бал,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5066,M390 / Главная · оверлей · форма · пусто,FRAME,259:5066,ok,top,top
+47:930,Page 2,499,260:6236,Зона нажатия · Обсудить корпоративный бал,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5066,M390 / Главная · оверлей · форма · пусто,FRAME,259:5066,ok,top,top
+47:930,Page 2,500,I258:4070;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,501,I258:4109;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,502,I258:4164;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,503,I258:4194;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,504,258:4221,Сцена,FRAME,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5124,M390 / Главная · оверлей · 05 занавес 01→02 · 50 %,FRAME,259:5124,ok,top,top
+47:930,Page 2,505,258:4231,Слово · барабан,FRAME,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5124,M390 / Главная · оверлей · 05 занавес 01→02 · 50 %,FRAME,259:5124,ok,top,top
+47:930,Page 2,506,I258:4244;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,507,258:4245,Зона нажатия · Пункт 02,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5124,M390 / Главная · оверлей · 05 занавес 01→02 · 50 %,FRAME,259:5124,ok,top,top
+47:930,Page 2,508,258:4246,Зона нажатия · Пункт 03,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5200,M390 / Главная · оверлей · 05 формат 03,FRAME,259:5200,ok,top,top
+47:930,Page 2,509,I258:4277;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,510,I258:4312;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,511,258:4364,Зона нажатия · Дамам,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5239,M390 / Главная · оверлей · 08 смена К→Д · 50 %,FRAME,259:5239,ok,top,top
+47:930,Page 2,512,258:4365,Зона нажатия · Панель,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5239,M390 / Главная · оверлей · 08 смена К→Д · 50 %,FRAME,259:5239,ok,top,top
+47:930,Page 2,513,I258:4366;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,514,I258:4429;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,515,258:4472,Зона нажатия · Кашемир,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5416,M390 / Главная · оверлей · 10 смена О→К · 50 %,FRAME,259:5416,ok,top,top
+47:930,Page 2,516,258:4473,Зона свайпа · главный слот,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5416,M390 / Главная · оверлей · 10 смена О→К · 50 %,FRAME,259:5416,ok,top,top
+47:930,Page 2,517,I258:4474;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,518,258:4512,Зона нажатия · → оставить заявку,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5066,M390 / Главная · оверлей · форма · пусто,FRAME,259:5066,ok,top,top
+47:930,Page 2,519,258:4513,Зона нажатия · tel:,RECTANGLE,258:4034,ON_CLICK,URL,,,,,,,no-destination,top,no-destination
+47:930,Page 2,520,258:4514,Зона нажатия · mailto:,RECTANGLE,258:4034,ON_CLICK,URL,,,,,,,no-destination,top,no-destination
+47:930,Page 2,521,258:4515,Зона нажатия · поле Имя,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5084,M390 / Главная · оверлей · форма · фокус,FRAME,259:5084,ok,top,top
+47:930,Page 2,522,258:4516,Зона нажатия · поле Телефон,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5066,M390 / Главная · оверлей · форма · пусто,FRAME,259:5066,ok,top,top
+47:930,Page 2,523,258:4517,Зона нажатия · поле О вечере,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5066,M390 / Главная · оверлей · форма · пусто,FRAME,259:5066,ok,top,top
+47:930,Page 2,524,258:4518,Зона нажатия · → отправить,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5066,M390 / Главная · оверлей · форма · пусто,FRAME,259:5066,ok,top,top
+47:930,Page 2,525,258:4519,Зона нажатия · Как это происходит,RECTANGLE,258:4034,ON_CLICK,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4101,M390 / 02 Вечер · A · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,526,258:4520,Зона нажатия · Вечера,RECTANGLE,258:4034,ON_CLICK,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4433,M390 / 10 Вечера · A · покой (= Омега),FRAME,258:4034,ok,top,top
+47:930,Page 2,527,258:4521,Зона нажатия · О нас,RECTANGLE,258:4034,ON_CLICK,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4479,Секция · 11 О нас (Slate),RECTANGLE,258:4034,ok,top,top
+47:930,Page 2,528,258:4522,Зона нажатия · Связаться,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5066,M390 / Главная · оверлей · форма · пусто,FRAME,259:5066,ok,top,top
+47:930,Page 2,529,I258:4523;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,530,I258:4527;229:1162,Зона нажатия · Меню,RECTANGLE,258:4034,ON_CLICK,NODE,OVERLAY,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,531,I258:4562;254:2285,Зона нажатия · Меню,RECTANGLE,258:4531,ON_CLICK,NODE,NAVIGATE,MOVE_IN,254:2334,T834 / Меню · открыто (покой меню),FRAME,254:2334,ok,top,top
+47:930,Page 2,532,260:6243,Зона нажатия · → обсудить вечер,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,533,260:6244,Зона нажатия · Обсудить частный бал,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,534,260:6245,Зона нажатия · Обсудить корпоративный бал,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,535,258:4720,Сцена,FRAME,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5698,T834 / Главная · оверлей · 05 занавес 01→02 · 50 %,FRAME,259:5698,ok,top,top
+47:930,Page 2,536,258:4730,Слово · барабан,FRAME,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5698,T834 / Главная · оверлей · 05 занавес 01→02 · 50 %,FRAME,259:5698,ok,top,top
+47:930,Page 2,537,258:4743,Зона нажатия · Пункт 02,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5698,T834 / Главная · оверлей · 05 занавес 01→02 · 50 %,FRAME,259:5698,ok,top,top
+47:930,Page 2,538,258:4744,Зона нажатия · Пункт 03,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5777,T834 / Главная · оверлей · 05 формат 03,FRAME,259:5777,ok,top,top
+47:930,Page 2,539,258:4864,Зона нажатия · Дамам,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5817,T834 / Главная · оверлей · 08 смена К→Д · 50 %,FRAME,259:5817,ok,top,top
+47:930,Page 2,540,258:4865,Зона нажатия · Панель,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5817,T834 / Главная · оверлей · 08 смена К→Д · 50 %,FRAME,259:5817,ok,top,top
+47:930,Page 2,541,258:4972,Зона нажатия · Кашемир,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5994,T834 / Главная · оверлей · 10 смена О→К · 50 %,FRAME,259:5994,ok,top,top
+47:930,Page 2,542,258:4973,Зона свайпа · главный слот,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5994,T834 / Главная · оверлей · 10 смена О→К · 50 %,FRAME,259:5994,ok,top,top
+47:930,Page 2,543,258:5016,Зона нажатия · → оставить заявку,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,544,258:5017,Зона нажатия · tel:,RECTANGLE,258:4531,ON_CLICK,URL,,,,,,,no-destination,top,no-destination
+47:930,Page 2,545,258:5018,Зона нажатия · mailto:,RECTANGLE,258:4531,ON_CLICK,URL,,,,,,,no-destination,top,no-destination
+47:930,Page 2,546,258:5019,Зона нажатия · поле Имя,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,547,258:5020,Зона нажатия · поле Телефон,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,548,258:5021,Зона нажатия · поле О вечере,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,549,258:5022,Зона нажатия · → отправить,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,550,258:5023,Зона нажатия · Как это происходит,RECTANGLE,258:4531,ON_CLICK,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4600,T834 / 02 Вечер · покой,FRAME,258:4531,ok,top,top
+47:930,Page 2,551,258:5024,Зона нажатия · Вечера,RECTANGLE,258:4531,ON_CLICK,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4933,T834 / 10 Вечера · покой (= Омега),FRAME,258:4531,ok,top,top
+47:930,Page 2,552,258:5025,Зона нажатия · О нас,RECTANGLE,258:4531,ON_CLICK,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4983,Секция · 11 О нас (Slate),RECTANGLE,258:4531,ok,top,top
+47:930,Page 2,553,258:5026,Зона нажатия · Связаться,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,554,I258:5031;254:2285,Зона нажатия · Меню,RECTANGLE,258:4531,ON_CLICK,NODE,OVERLAY,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,555,I259:5050;229:1163,Зона нажатия · Закрыть,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,556,259:5051,Зона · пункт 01,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4069,M390 / 01 Подготовка · A·V · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,557,259:5051,Зона · пункт 01,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,558,259:5052,Зона · пункт 02,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4101,M390 / 02 Вечер · A · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,559,259:5052,Зона · пункт 02,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,560,259:5053,Зона · пункт 03,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4163,M390 / 03 Музыка · A · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,561,259:5053,Зона · пункт 03,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,562,259:5054,Зона · пункт 04,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4193,M390 / 04 Танцмейстер · A·V · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,563,259:5054,Зона · пункт 04,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,564,259:5055,Зона · пункт 05,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4216,M390 / 05 Шоу · B · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,565,259:5055,Зона · пункт 05,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,566,259:5056,Зона · пункт 06,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4250,M390 / 06 Ассистент · A·V · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,567,259:5056,Зона · пункт 06,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,568,259:5057,Зона · пункт 07,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4281,M390 / 07 Уроки · A · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,569,259:5057,Зона · пункт 07,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,570,259:5058,Зона · пункт 08,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4316,M390 / 08 Этикет · A · покой (Кавалерам),FRAME,258:4034,ok,top,top
+47:930,Page 2,571,259:5058,Зона · пункт 08,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,572,259:5059,Зона · пункт 09,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4370,M390 / 09 Дресс-код · A · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,573,259:5059,Зона · пункт 09,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,574,259:5060,Зона · пункт 10,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4433,M390 / 10 Вечера · A · покой (= Омега),FRAME,258:4034,ok,top,top
+47:930,Page 2,575,259:5060,Зона · пункт 10,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,576,259:5061,Зона · пункт 11,RECTANGLE,259:5035,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4478,M390 / 11–12 О нас → Контакты → подвал · A · покой,FRAME,258:4034,ok,top,top
+47:930,Page 2,577,259:5061,Зона · пункт 11,RECTANGLE,259:5035,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,578,259:5062,Зона · пункт 12,RECTANGLE,259:5035,ON_CLICK,NODE,SWAP,DISSOLVE,259:5066,M390 / Главная · оверлей · форма · пусто,FRAME,259:5066,ok,top,top
+47:930,Page 2,579,259:5079,Зона нажатия · ×,RECTANGLE,259:5066,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,580,259:5080,Зона нажатия · поле Имя,RECTANGLE,259:5066,ON_CLICK,NODE,SWAP,DISSOLVE,259:5084,M390 / Главная · оверлей · форма · фокус,FRAME,259:5084,ok,top,top
+47:930,Page 2,581,259:5081,Зона нажатия · поле Телефон,RECTANGLE,259:5066,ON_CLICK,NODE,SWAP,DISSOLVE,259:5084,M390 / Главная · оверлей · форма · фокус,FRAME,259:5084,ok,top,top
+47:930,Page 2,582,259:5082,Зона нажатия · поле О вечере,RECTANGLE,259:5066,ON_CLICK,NODE,SWAP,DISSOLVE,259:5084,M390 / Главная · оверлей · форма · фокус,FRAME,259:5084,ok,top,top
+47:930,Page 2,583,259:5084,M390 / Главная · оверлей · форма · фокус,FRAME,259:5084,AFTER_TIMEOUT,NODE,SWAP,DISSOLVE,259:5103,M390 / Главная · оверлей · форма · ввод,FRAME,259:5103,ok,top,top
+47:930,Page 2,584,259:5097,Зона нажатия · ×,RECTANGLE,259:5084,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,585,259:5116,Зона нажатия · ×,RECTANGLE,259:5103,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,586,259:5124,M390 / Главная · оверлей · 05 занавес 01→02 · 50 %,FRAME,259:5124,AFTER_TIMEOUT,NODE,SWAP,SMART_ANIMATE,259:5161,M390 / Главная · оверлей · 05 формат 02,FRAME,259:5161,ok,top,top
+47:930,Page 2,587,I259:5153;229:1162,Зона нажатия · Меню,RECTANGLE,259:5124,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,588,I259:5157;229:1162,Зона нажатия · Меню,RECTANGLE,259:5124,ON_CLICK,NODE,SWAP,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,589,259:5167,Сцена,FRAME,259:5161,ON_DRAG,NODE,SWAP,SMART_ANIMATE,259:5200,M390 / Главная · оверлей · 05 формат 03,FRAME,259:5200,ok,top,top
+47:930,Page 2,590,259:5177,Слово · барабан,FRAME,259:5161,ON_DRAG,NODE,SWAP,SMART_ANIMATE,259:5200,M390 / Главная · оверлей · 05 формат 03,FRAME,259:5200,ok,top,top
+47:930,Page 2,591,I259:5190;229:1162,Зона нажатия · Меню,RECTANGLE,259:5161,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,592,259:5191,Зона нажатия · Пункт 01,RECTANGLE,259:5161,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,593,259:5192,Зона нажатия · Пункт 03,RECTANGLE,259:5161,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:5200,M390 / Главная · оверлей · 05 формат 03,FRAME,259:5200,ok,top,top
+47:930,Page 2,594,I259:5196;229:1162,Зона нажатия · Меню,RECTANGLE,259:5161,ON_CLICK,NODE,SWAP,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,595,259:5206,Сцена,FRAME,259:5200,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,596,259:5216,Слово · барабан,FRAME,259:5200,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,597,I259:5229;229:1162,Зона нажатия · Меню,RECTANGLE,259:5200,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,598,259:5230,Зона нажатия · Пункт 01,RECTANGLE,259:5200,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,599,259:5231,Зона нажатия · Пункт 02,RECTANGLE,259:5200,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:5161,M390 / Главная · оверлей · 05 формат 02,FRAME,259:5161,ok,top,top
+47:930,Page 2,600,I259:5235;229:1162,Зона нажатия · Меню,RECTANGLE,259:5200,ON_CLICK,NODE,SWAP,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,601,259:5239,M390 / Главная · оверлей · 08 смена К→Д · 50 %,FRAME,259:5239,AFTER_TIMEOUT,NODE,SWAP,SMART_ANIMATE,259:5298,M390 / Главная · оверлей · 08 Дамам,FRAME,259:5298,ok,top,top
+47:930,Page 2,602,I259:5290;229:1162,Зона нажатия · Меню,RECTANGLE,259:5239,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,603,I259:5294;229:1162,Зона нажатия · Меню,RECTANGLE,259:5239,ON_CLICK,NODE,SWAP,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,604,259:5346,Зона нажатия · Кавалерам,RECTANGLE,259:5298,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:5357,M390 / Главная · оверлей · 08 смена Д→К · 50 %,FRAME,259:5357,ok,top,top
+47:930,Page 2,605,259:5348,Зона нажатия · Панель,RECTANGLE,259:5298,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:5357,M390 / Главная · оверлей · 08 смена Д→К · 50 %,FRAME,259:5357,ok,top,top
+47:930,Page 2,606,I259:5349;229:1162,Зона нажатия · Меню,RECTANGLE,259:5298,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,607,I259:5353;229:1162,Зона нажатия · Меню,RECTANGLE,259:5298,ON_CLICK,NODE,SWAP,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,608,259:5357,M390 / Главная · оверлей · 08 смена Д→К · 50 %,FRAME,259:5357,AFTER_TIMEOUT,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,609,I259:5408;229:1162,Зона нажатия · Меню,RECTANGLE,259:5357,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,610,I259:5412;229:1162,Зона нажатия · Меню,RECTANGLE,259:5357,ON_CLICK,NODE,SWAP,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,611,259:5416,M390 / Главная · оверлей · 10 смена О→К · 50 %,FRAME,259:5416,AFTER_TIMEOUT,NODE,SWAP,SMART_ANIMATE,259:5466,M390 / Главная · оверлей · 10 Кашемир,FRAME,259:5466,ok,top,top
+47:930,Page 2,612,I259:5458;229:1162,Зона нажатия · Меню,RECTANGLE,259:5416,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,613,I259:5462;229:1162,Зона нажатия · Меню,RECTANGLE,259:5416,ON_CLICK,NODE,SWAP,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,614,259:5505,Зона нажатия · Омега,RECTANGLE,259:5466,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:5516,M390 / Главная · оверлей · 10 смена К→О · 50 %,FRAME,259:5516,ok,top,top
+47:930,Page 2,615,259:5507,Зона свайпа · главный слот,RECTANGLE,259:5466,ON_DRAG,NODE,SWAP,SMART_ANIMATE,259:5516,M390 / Главная · оверлей · 10 смена К→О · 50 %,FRAME,259:5516,ok,top,top
+47:930,Page 2,616,I259:5508;229:1162,Зона нажатия · Меню,RECTANGLE,259:5466,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,617,I259:5512;229:1162,Зона нажатия · Меню,RECTANGLE,259:5466,ON_CLICK,NODE,SWAP,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,618,259:5516,M390 / Главная · оверлей · 10 смена К→О · 50 %,FRAME,259:5516,AFTER_TIMEOUT,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,619,I259:5558;229:1162,Зона нажатия · Меню,RECTANGLE,259:5516,ON_CLICK,NODE,NAVIGATE,MOVE_IN,238:1357,M390 / Пилот · меню открыто,FRAME,238:1357,ok,top,top
+47:930,Page 2,620,I259:5562;229:1162,Зона нажатия · Меню,RECTANGLE,259:5516,ON_CLICK,NODE,SWAP,MOVE_IN,259:5035,M390 / Главная · оверлей · меню,FRAME,259:5035,ok,top,top
+47:930,Page 2,621,259:5664,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4568,T834 / 01 Подготовка · H · покой,FRAME,258:4531,ok,top,top
+47:930,Page 2,622,259:5664,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,623,259:5665,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4600,T834 / 02 Вечер · покой,FRAME,258:4531,ok,top,top
+47:930,Page 2,624,259:5665,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,625,259:5666,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4662,T834 / 03 Музыка · покой (форматы 01–02),FRAME,258:4531,ok,top,top
+47:930,Page 2,626,259:5666,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,627,259:5667,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4692,T834 / 04 Танцмейстер · покой,FRAME,258:4531,ok,top,top
+47:930,Page 2,628,259:5667,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,629,259:5668,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4715,T834 / 05 Шоу · покой (= формат 01),FRAME,258:4531,ok,top,top
+47:930,Page 2,630,259:5668,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,631,259:5669,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4750,T834 / 06 Ассистент · покой,FRAME,258:4531,ok,top,top
+47:930,Page 2,632,259:5669,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,633,259:5670,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4781,T834 / 07 Уроки · покой,FRAME,258:4531,ok,top,top
+47:930,Page 2,634,259:5670,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,635,259:5671,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4816,T834 / 08 Этикет · покой (Кавалерам),FRAME,258:4531,ok,top,top
+47:930,Page 2,636,259:5671,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,637,259:5672,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4870,T834 / 09 Дресс-код · покой,FRAME,258:4531,ok,top,top
+47:930,Page 2,638,259:5672,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,639,259:5673,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4933,T834 / 10 Вечера · покой (= Омега),FRAME,258:4531,ok,top,top
+47:930,Page 2,640,259:5673,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,641,259:5674,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,MOUSE_DOWN,NODE,SCROLL_TO,SCROLL_ANIMATE,258:4982,T834 / 11–12 О нас → Контакты → подвал · покой,FRAME,258:4531,ok,top,top
+47:930,Page 2,642,259:5674,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,643,259:5675,Зона нажатия · пункт 834 × 80,RECTANGLE,259:5649,ON_CLICK,NODE,SWAP,DISSOLVE,259:5680,T834 / Главная · оверлей · форма,FRAME,259:5680,ok,top,top
+47:930,Page 2,644,I259:5676;254:2289,Зона нажатия · Закрыть,RECTANGLE,259:5649,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,645,259:5693,Зона нажатия · ×,RECTANGLE,259:5680,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,646,259:5698,T834 / Главная · оверлей · 05 занавес 01→02 · 50 %,FRAME,259:5698,AFTER_TIMEOUT,NODE,SWAP,SMART_ANIMATE,259:5737,T834 / Главная · оверлей · 05 формат 02,FRAME,259:5737,ok,top,top
+47:930,Page 2,647,I259:5733;254:2285,Зона нажатия · Меню,RECTANGLE,259:5698,ON_CLICK,NODE,SWAP,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,648,259:5743,Сцена,FRAME,259:5737,ON_DRAG,NODE,SWAP,SMART_ANIMATE,259:5777,T834 / Главная · оверлей · 05 формат 03,FRAME,259:5777,ok,top,top
+47:930,Page 2,649,259:5753,Слово · барабан,FRAME,259:5737,ON_DRAG,NODE,SWAP,SMART_ANIMATE,259:5777,T834 / Главная · оверлей · 05 формат 03,FRAME,259:5777,ok,top,top
+47:930,Page 2,650,259:5767,Зона нажатия · Пункт 03,RECTANGLE,259:5737,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:5777,T834 / Главная · оверлей · 05 формат 03,FRAME,259:5777,ok,top,top
+47:930,Page 2,651,259:5769,Зона нажатия · Пункт 01,RECTANGLE,259:5737,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,652,I259:5773;254:2285,Зона нажатия · Меню,RECTANGLE,259:5737,ON_CLICK,NODE,SWAP,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,653,259:5783,Сцена,FRAME,259:5777,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,654,259:5793,Слово · барабан,FRAME,259:5777,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,655,259:5806,Зона нажатия · Пункт 02,RECTANGLE,259:5777,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:5737,T834 / Главная · оверлей · 05 формат 02,FRAME,259:5737,ok,top,top
+47:930,Page 2,656,259:5809,Зона нажатия · Пункт 01,RECTANGLE,259:5777,ON_CLICK,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,657,I259:5813;254:2285,Зона нажатия · Меню,RECTANGLE,259:5777,ON_CLICK,NODE,SWAP,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,658,259:5817,T834 / Главная · оверлей · 08 смена К→Д · 50 %,FRAME,259:5817,AFTER_TIMEOUT,NODE,SWAP,SMART_ANIMATE,259:5876,T834 / Главная · оверлей · 08 Дамам,FRAME,259:5876,ok,top,top
+47:930,Page 2,659,I259:5872;254:2285,Зона нажатия · Меню,RECTANGLE,259:5817,ON_CLICK,NODE,SWAP,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,660,259:5924,Зона нажатия · Кавалерам,RECTANGLE,259:5876,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:5935,T834 / Главная · оверлей · 08 смена Д→К · 50 %,FRAME,259:5935,ok,top,top
+47:930,Page 2,661,259:5926,Зона нажатия · Панель,RECTANGLE,259:5876,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:5935,T834 / Главная · оверлей · 08 смена Д→К · 50 %,FRAME,259:5935,ok,top,top
+47:930,Page 2,662,I259:5931;254:2285,Зона нажатия · Меню,RECTANGLE,259:5876,ON_CLICK,NODE,SWAP,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,663,259:5935,T834 / Главная · оверлей · 08 смена Д→К · 50 %,FRAME,259:5935,AFTER_TIMEOUT,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,664,I259:5990;254:2285,Зона нажатия · Меню,RECTANGLE,259:5935,ON_CLICK,NODE,SWAP,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,665,259:5994,T834 / Главная · оверлей · 10 смена О→К · 50 %,FRAME,259:5994,AFTER_TIMEOUT,NODE,SWAP,SMART_ANIMATE,259:6048,T834 / Главная · оверлей · 10 Кашемир,FRAME,259:6048,ok,top,top
+47:930,Page 2,666,I259:6044;254:2285,Зона нажатия · Меню,RECTANGLE,259:5994,ON_CLICK,NODE,SWAP,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,667,259:6087,Зона нажатия · Омега,RECTANGLE,259:6048,ON_CLICK,NODE,SWAP,SMART_ANIMATE,259:6102,T834 / Главная · оверлей · 10 смена К→О · 50 %,FRAME,259:6102,ok,top,top
+47:930,Page 2,668,259:6089,Зона свайпа · главный слот,RECTANGLE,259:6048,ON_DRAG,NODE,SWAP,SMART_ANIMATE,259:6102,T834 / Главная · оверлей · 10 смена К→О · 50 %,FRAME,259:6102,ok,top,top
+47:930,Page 2,669,I259:6098;254:2285,Зона нажатия · Меню,RECTANGLE,259:6048,ON_CLICK,NODE,SWAP,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,670,259:6102,T834 / Главная · оверлей · 10 смена К→О · 50 %,FRAME,259:6102,AFTER_TIMEOUT,CLOSE,,,,,,,no-destination,top,no-destination
+47:930,Page 2,671,I259:6152;254:2285,Зона нажатия · Меню,RECTANGLE,259:6102,ON_CLICK,NODE,SWAP,MOVE_IN,259:5649,T834 / Главная · оверлей · меню,FRAME,259:5649,ok,top,top
+47:930,Page 2,672,302:1502,Стрелка ↓,TEXT,302:1493,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2,FRAME,225:864,ok,section-child,top
+47:930,Page 2,673,302:1526,Зона / Частный,RECTANGLE,302:1509,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,674,302:1527,Зона / Корпоративный,RECTANGLE,302:1509,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,675,302:1549,Зона / Корпоративный,RECTANGLE,302:1529,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,676,302:1570,Зона / Частный,RECTANGLE,302:1551,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,677,302:1582,Стрелка ↓,TEXT,302:1573,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2,FRAME,225:864,ok,section-child,top
+47:930,Page 2,678,302:1606,Зона / Частный,RECTANGLE,302:1589,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,679,302:1607,Зона / Корпоративный,RECTANGLE,302:1589,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,680,302:1629,Зона / Корпоративный,RECTANGLE,302:1609,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,681,302:1650,Зона / Частный,RECTANGLE,302:1631,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,682,302:1662,Стрелка ↓,TEXT,302:1653,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2,FRAME,225:864,ok,section-child,top
+47:930,Page 2,683,302:1686,Зона / Частный,RECTANGLE,302:1669,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,684,302:1687,Зона / Корпоративный,RECTANGLE,302:1669,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,685,302:1709,Зона / Корпоративный,RECTANGLE,302:1689,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,686,302:1730,Зона / Частный,RECTANGLE,302:1711,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,687,302:1742,Стрелка ↓,TEXT,302:1733,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2,FRAME,225:864,ok,section-child,top
+47:930,Page 2,688,302:1766,Зона / Частный,RECTANGLE,302:1749,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,689,302:1767,Зона / Корпоративный,RECTANGLE,302:1749,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,690,302:1789,Зона / Корпоративный,RECTANGLE,302:1769,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,691,302:1810,Зона / Частный,RECTANGLE,302:1791,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,692,302:1822,Стрелка ↓,TEXT,302:1813,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2222,Hero · ore · стык · C · 2,FRAME,225:864,ok,section-child,top
+47:930,Page 2,693,302:1846,Зона / Частный,RECTANGLE,302:1829,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,694,302:1847,Зона / Корпоративный,RECTANGLE,302:1829,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,695,302:1869,Зона / Корпоративный,RECTANGLE,302:1849,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,696,302:1890,Зона / Частный,RECTANGLE,302:1871,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,697,302:2065,Зона / Частный,RECTANGLE,302:2048,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,698,302:2066,Зона / Корпоративный,RECTANGLE,302:2048,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,699,302:2093,Зона / Корпоративный,RECTANGLE,302:2073,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,700,302:2117,Зона / Частный,RECTANGLE,302:2100,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2185,Section / Форматы · ore · стык · C+B · 2 наведение «Частные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,701,302:2118,Зона / Корпоративный,RECTANGLE,302:2100,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,702,302:2145,Зона / Корпоративный,RECTANGLE,302:2125,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2203,Section / Форматы · ore · стык · C+B · 3 наведение «Корпоративные»,FRAME,225:864,ok,section-child,top
+47:930,Page 2,703,306:2184,Шаг 01 · Разговор,FRAME,306:2179,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,section-child,top
+47:930,Page 2,704,306:2189,Шаг 02 · Концепция,FRAME,306:2179,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,705,306:2194,Шаг 03 · Репетиции,FRAME,306:2179,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,706,306:2199,Шаг 04 · Вечер,FRAME,306:2179,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,707,306:2204,Шаг 05 · Воспоминания,FRAME,306:2179,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,708,306:2250,Шаг 01 · Разговор,FRAME,306:2245,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,section-child,top
+47:930,Page 2,709,306:2255,Шаг 02 · Концепция,FRAME,306:2245,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,710,306:2260,Шаг 03 · Репетиции,FRAME,306:2245,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,711,306:2265,Шаг 04 · Вечер,FRAME,306:2245,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,712,306:2270,Шаг 05 · Воспоминания,FRAME,306:2245,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,713,306:2288,Шаг 02 · Концепция,FRAME,306:2278,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,714,306:2293,Шаг 03 · Репетиции,FRAME,306:2278,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,715,306:2298,Шаг 04 · Вечер,FRAME,306:2278,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,716,306:2303,Шаг 05 · Воспоминания,FRAME,306:2278,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,717,306:2328,Формат 02,FRAME,306:2313,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,718,306:2328,Формат 02,FRAME,306:2313,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,719,306:2334,Формат 03,FRAME,306:2313,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,720,306:2334,Формат 03,FRAME,306:2313,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,721,306:2386,Формат 02,FRAME,306:2371,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,722,306:2386,Формат 02,FRAME,306:2371,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,723,306:2392,Формат 03,FRAME,306:2371,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,724,306:2392,Формат 03,FRAME,306:2371,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,725,306:2405,Панель / Зрители,FRAME,306:2400,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,726,306:2405,Панель / Зрители,FRAME,306:2400,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,727,306:2412,Панель / Участники,FRAME,306:2400,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,728,306:2412,Панель / Участники,FRAME,306:2400,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,729,306:2451,Панель / Зрители,FRAME,306:2446,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,730,306:2451,Панель / Зрители,FRAME,306:2446,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,731,306:2458,Панель / Участники,FRAME,306:2446,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,732,306:2458,Панель / Участники,FRAME,306:2446,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,733,307:2568,Панель / Зрители,FRAME,307:2563,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,734,307:2568,Панель / Зрители,FRAME,307:2563,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,735,307:2609,Шаг 01 · Разговор,FRAME,307:2607,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,section-child,top
+47:930,Page 2,736,307:2614,Шаг 02 · Концепция,FRAME,307:2607,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,737,307:2619,Шаг 03 · Репетиции,FRAME,307:2607,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,738,307:2624,Шаг 04 · Вечер,FRAME,307:2607,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,739,307:2629,Шаг 05 · Воспоминания,FRAME,307:2607,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,740,307:2648,Шаг 02 · Концепция,FRAME,307:2641,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,741,307:2653,Шаг 03 · Репетиции,FRAME,307:2641,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,742,307:2658,Шаг 04 · Вечер,FRAME,307:2641,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,743,307:2663,Шаг 05 · Воспоминания,FRAME,307:2641,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,744,307:2689,Формат 02,FRAME,307:2675,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,745,307:2689,Формат 02,FRAME,307:2675,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,746,307:2695,Формат 03,FRAME,307:2675,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,747,307:2695,Формат 03,FRAME,307:2675,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,748,307:2721,Панель / Зрители,FRAME,307:2719,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,749,307:2721,Панель / Зрители,FRAME,307:2719,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,750,307:2728,Панель / Участники,FRAME,307:2719,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,751,307:2728,Панель / Участники,FRAME,307:2719,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,752,307:2744,Панель / Зрители,FRAME,307:2742,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,753,307:2744,Панель / Зрители,FRAME,307:2742,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,754,307:2778,Шаг 01 · Разговор,FRAME,307:2776,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,section-child,top
+47:930,Page 2,755,307:2783,Шаг 02 · Концепция,FRAME,307:2776,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,756,307:2788,Шаг 03 · Репетиции,FRAME,307:2776,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,757,307:2793,Шаг 04 · Вечер,FRAME,307:2776,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,758,307:2798,Шаг 05 · Воспоминания,FRAME,307:2776,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,759,307:2817,Шаг 02 · Концепция,FRAME,307:2810,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,760,307:2822,Шаг 03 · Репетиции,FRAME,307:2810,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,761,307:2827,Шаг 04 · Вечер,FRAME,307:2810,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,762,307:2832,Шаг 05 · Воспоминания,FRAME,307:2810,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,763,307:2858,Формат 02,FRAME,307:2844,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,764,307:2858,Формат 02,FRAME,307:2844,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,765,307:2864,Формат 03,FRAME,307:2844,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,766,307:2864,Формат 03,FRAME,307:2844,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,767,307:2890,Панель / Зрители,FRAME,307:2888,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,768,307:2890,Панель / Зрители,FRAME,307:2888,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,769,307:2897,Панель / Участники,FRAME,307:2888,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,770,307:2897,Панель / Участники,FRAME,307:2888,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,771,307:2913,Панель / Зрители,FRAME,307:2911,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,772,307:2913,Панель / Зрители,FRAME,307:2911,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,773,307:2947,Шаг 01 · Разговор,FRAME,307:2945,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,section-child,top
+47:930,Page 2,774,307:2952,Шаг 02 · Концепция,FRAME,307:2945,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,775,307:2957,Шаг 03 · Репетиции,FRAME,307:2945,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,776,307:2962,Шаг 04 · Вечер,FRAME,307:2945,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,777,307:2967,Шаг 05 · Воспоминания,FRAME,307:2945,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,778,307:2986,Шаг 02 · Концепция,FRAME,307:2979,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,779,307:2991,Шаг 03 · Репетиции,FRAME,307:2979,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,780,307:2996,Шаг 04 · Вечер,FRAME,307:2979,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,781,307:3001,Шаг 05 · Воспоминания,FRAME,307:2979,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,782,307:3027,Формат 02,FRAME,307:3013,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,783,307:3027,Формат 02,FRAME,307:3013,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,784,307:3033,Формат 03,FRAME,307:3013,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,785,307:3033,Формат 03,FRAME,307:3013,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,786,307:3059,Панель / Зрители,FRAME,307:3057,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,787,307:3059,Панель / Зрители,FRAME,307:3057,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,788,307:3066,Панель / Участники,FRAME,307:3057,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,789,307:3066,Панель / Участники,FRAME,307:3057,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,790,307:3082,Панель / Зрители,FRAME,307:3080,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,791,307:3082,Панель / Зрители,FRAME,307:3080,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,792,308:3116,Шаг 01 · Разговор,FRAME,308:3114,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,section-child,top
+47:930,Page 2,793,308:3121,Шаг 02 · Концепция,FRAME,308:3114,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,794,308:3126,Шаг 03 · Репетиции,FRAME,308:3114,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,795,308:3131,Шаг 04 · Вечер,FRAME,308:3114,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,796,308:3136,Шаг 05 · Воспоминания,FRAME,308:3114,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,797,308:3155,Шаг 02 · Концепция,FRAME,308:3148,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,798,308:3160,Шаг 03 · Репетиции,FRAME,308:3148,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,799,308:3165,Шаг 04 · Вечер,FRAME,308:3148,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,800,308:3170,Шаг 05 · Воспоминания,FRAME,308:3148,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,801,308:3196,Формат 02,FRAME,308:3182,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,802,308:3196,Формат 02,FRAME,308:3182,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,803,308:3202,Формат 03,FRAME,308:3182,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,804,308:3202,Формат 03,FRAME,308:3182,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,805,308:3228,Панель / Зрители,FRAME,308:3226,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,806,308:3228,Панель / Зрители,FRAME,308:3226,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,807,308:3235,Панель / Участники,FRAME,308:3226,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,808,308:3235,Панель / Участники,FRAME,308:3226,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,809,308:3251,Панель / Зрители,FRAME,308:3249,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,810,308:3251,Панель / Зрители,FRAME,308:3249,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,811,308:3285,Шаг 01 · Разговор,FRAME,308:3283,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1939,Section / 01 Подготовка · ore-заголовок · 1 Разговор,FRAME,225:864,ok,section-child,top
+47:930,Page 2,812,308:3290,Шаг 02 · Концепция,FRAME,308:3283,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,813,308:3295,Шаг 03 · Репетиции,FRAME,308:3283,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,814,308:3300,Шаг 04 · Вечер,FRAME,308:3283,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,815,308:3305,Шаг 05 · Воспоминания,FRAME,308:3283,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,816,308:3324,Шаг 02 · Концепция,FRAME,308:3317,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:1973,Section / 01 Подготовка · ore-заголовок · 2 Концепция,FRAME,225:864,ok,section-child,top
+47:930,Page 2,817,308:3329,Шаг 03 · Репетиции,FRAME,308:3317,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2007,Section / 01 Подготовка · ore-заголовок · 3 Репетиции,FRAME,225:864,ok,section-child,top
+47:930,Page 2,818,308:3334,Шаг 04 · Вечер,FRAME,308:3317,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2041,Section / 01 Подготовка · ore-заголовок · 4 Вечер,FRAME,225:864,ok,section-child,top
+47:930,Page 2,819,308:3339,Шаг 05 · Воспоминания,FRAME,308:3317,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,219:2075,Section / 01 Подготовка · ore-заголовок · 5 Воспоминания,FRAME,225:864,ok,section-child,top
+47:930,Page 2,820,308:3365,Формат 02,FRAME,308:3351,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,821,308:3365,Формат 02,FRAME,308:3351,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2654,Section / 03 Музыка · ore-заголовок · шапка · 2 Духовой,FRAME,225:864,ok,section-child,top
+47:930,Page 2,822,308:3371,Формат 03,FRAME,308:3351,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,823,308:3371,Формат 03,FRAME,308:3351,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,223:2682,Section / 03 Музыка · ore-заголовок · шапка · 3 Группа,FRAME,225:864,ok,section-child,top
+47:930,Page 2,824,308:3397,Панель / Зрители,FRAME,308:3395,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,825,308:3397,Панель / Зрители,FRAME,308:3395,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,826,308:3404,Панель / Участники,FRAME,308:3395,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,827,308:3404,Панель / Участники,FRAME,308:3395,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:918,Section / 04 Танцмейстер · B+D · 2 Участники,FRAME,225:864,ok,section-child,top
+47:930,Page 2,828,308:3420,Панель / Зрители,FRAME,308:3418,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,829,308:3420,Панель / Зрители,FRAME,308:3418,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:897,Section / 04 Танцмейстер · B+D · 1 Зрители,FRAME,225:864,ok,section-child,top
+47:930,Page 2,830,328:2287,Строка 02,FRAME,328:2279,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,831,328:2287,Строка 02,FRAME,328:2279,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,832,328:2291,Строка 03,FRAME,328:2279,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,833,328:2291,Строка 03,FRAME,328:2279,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,834,328:2326,Строка 01,FRAME,328:2322,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,835,328:2326,Строка 01,FRAME,328:2322,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,836,328:2334,Строка 03,FRAME,328:2322,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,837,328:2334,Строка 03,FRAME,328:2322,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,838,328:2416,Строка 02,FRAME,328:2408,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,839,328:2416,Строка 02,FRAME,328:2408,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,840,328:2420,Строка 03,FRAME,328:2408,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,841,328:2420,Строка 03,FRAME,328:2408,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,842,328:3081,Строка 02,FRAME,328:3073,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,843,328:3081,Строка 02,FRAME,328:3073,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,844,328:3085,Строка 03,FRAME,328:3073,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,845,328:3085,Строка 03,FRAME,328:3073,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,846,328:3116,Строка 01,FRAME,328:3112,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,847,328:3116,Строка 01,FRAME,328:3112,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,848,328:3124,Строка 03,FRAME,328:3112,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,849,328:3124,Строка 03,FRAME,328:3112,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,850,328:3253,Строка 02,FRAME,328:3245,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,851,328:3253,Строка 02,FRAME,328:3245,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,852,328:3257,Строка 03,FRAME,328:3245,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,853,328:3257,Строка 03,FRAME,328:3245,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,854,328:3288,Строка 01,FRAME,328:3284,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,855,328:3288,Строка 01,FRAME,328:3284,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,856,328:3296,Строка 03,FRAME,328:3284,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,857,328:3296,Строка 03,FRAME,328:3284,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,858,328:3425,Строка 02,FRAME,328:3417,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,859,328:3425,Строка 02,FRAME,328:3417,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,860,328:3429,Строка 03,FRAME,328:3417,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,861,328:3429,Строка 03,FRAME,328:3417,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,862,328:3460,Строка 01,FRAME,328:3456,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,863,328:3460,Строка 01,FRAME,328:3456,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,864,328:3468,Строка 03,FRAME,328:3456,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,865,328:3468,Строка 03,FRAME,328:3456,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,866,328:3597,Строка 02,FRAME,328:3589,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,867,328:3597,Строка 02,FRAME,328:3589,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,868,328:3601,Строка 03,FRAME,328:3589,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,869,328:3601,Строка 03,FRAME,328:3589,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,870,328:3632,Строка 01,FRAME,328:3628,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,871,328:3632,Строка 01,FRAME,328:3628,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,872,328:3640,Строка 03,FRAME,328:3628,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,873,328:3640,Строка 03,FRAME,328:3628,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,874,328:3769,Строка 02,FRAME,328:3761,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,875,328:3769,Строка 02,FRAME,328:3761,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1206,Section / 06 Ассистент · B+D · 2 Не умеете танцевать,FRAME,225:864,ok,section-child,top
+47:930,Page 2,876,328:3773,Строка 03,FRAME,328:3761,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,877,328:3773,Строка 03,FRAME,328:3761,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,878,328:3804,Строка 01,FRAME,328:3800,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,879,328:3804,Строка 01,FRAME,328:3800,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1168,Section / 06 Ассистент · B+D · 1 Стесняетесь,FRAME,225:864,ok,section-child,top
+47:930,Page 2,880,328:3812,Строка 03,FRAME,328:3800,MOUSE_ENTER,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,881,328:3812,Строка 03,FRAME,328:3800,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,198:1241,Section / 06 Ассистент · B+D · 3 Пришли без пары,FRAME,225:864,ok,section-child,top
+47:930,Page 2,882,332:4487,Д3в · B · 10 · экран 1 — шапка · 1440×900,FRAME,332:4487,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,883,332:4537,Д3в · B · 10 · экран 2 — тело одним экраном · 1440×900,FRAME,332:4537,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,884,332:4544,Пункт · Кашемир,TEXT,332:4537,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,885,332:4545,Слот B · Омега,FRAME,332:4537,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,886,334:1918,Д3в · 1440×900 · 10 · экран 1 — шапка,FRAME,334:1918,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,887,334:1928,Д3в · 1440×900 · 10 · экран 2 — тело (Омега),FRAME,334:1928,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,888,334:1931,Пункт · Кашемир,TEXT,334:1928,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,889,334:1932,Слот B · Омега,FRAME,334:1928,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,890,334:2099,Д3в · 1920×950 · 10 · экран 1 — шапка,FRAME,334:2099,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,891,334:2109,Д3в · 1920×950 · 10 · экран 2 — тело (Омега),FRAME,334:2109,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,892,334:2112,Пункт · Кашемир,TEXT,334:2109,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,893,334:2113,Слот B · Омега,FRAME,334:2109,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,894,334:2280,Д3в · 1366×650 · 10 · экран 1 — шапка,FRAME,334:2280,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,895,334:2290,Д3в · 1366×650 · 10 · экран 2 — тело (Омега),FRAME,334:2290,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,896,334:2293,Пункт · Кашемир,TEXT,334:2290,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,897,334:2294,Слот B · Омега,FRAME,334:2290,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,898,334:2461,Д3в · 1280×600 · 10 · экран 1 — шапка,FRAME,334:2461,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,899,334:2471,Д3в · 1280×600 · 10 · экран 2 — тело (Омега),FRAME,334:2471,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,900,334:2474,Пункт · Кашемир,TEXT,334:2471,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,901,334:2475,Слот B · Омега,FRAME,334:2471,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,902,334:2642,Д3в · 1024×650 · 10 · экран 1 — шапка,FRAME,334:2642,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,903,334:2652,Д3в · 1024×650 · 10 · экран 2 — тело (Омега),FRAME,334:2652,AFTER_TIMEOUT,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,904,334:2655,Пункт · Кашемир,TEXT,334:2652,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top
+47:930,Page 2,905,334:2656,Слот B · Омега,FRAME,334:2652,ON_CLICK,NODE,NAVIGATE,SMART_ANIMATE,219:1006,Section / 10 Вечера · B «Смена вечеров» · 2 Кашемир,FRAME,225:864,ok,section-child,top

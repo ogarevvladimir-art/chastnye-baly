@@ -1,5 +1,5 @@
-"""Проверка доработки Д1: П-01 (шапка и подвал), П-03 (закрытие меню), Р-2 (страховка JS), Р-3 (меню на низком окне),
-Р-8 / Р-9 / Р-10 (modulepreload, inert, h1), Р-14 (счётчик 08, фокус листа, автосмена 10), 360 (ссылка Форматов, слово меню).
+"""Проверка доработки Д1: П-01 (шапка), П-03 (закрытие меню), Р-2 (страховка JS), Р-3 (меню на низком окне),
+Р-8 / Р-9 / Р-10 (modulepreload, inert, h1), Р-14 (фокус листа, автосмена 10; счётчик 08 снят в Ц2), 360 (ссылка Форматов, слово меню).
 
   python tools/d1_check.py            # chromium
   python tools/d1_check.py -b webkit
@@ -62,14 +62,13 @@ def main():
 
         # --- П-01, Р-8, Р-10: разметка ---
         ctx, p = open_page(b, base, 1440, 900)
-        st = p.evaluate("""() => ({ nav: document.querySelectorAll('.site-header__nav, .site-header__phone, .footer__nav').length,
+        st = p.evaluate("""() => ({ nav: document.querySelectorAll('.site-header__nav, .site-header__phone').length,
             header: [...document.querySelector('.site-header__in').children].map(c => c.className.baseVal ?? c.className),
-            footer: document.querySelectorAll('.s-footer a').length,
             preload: document.querySelectorAll('link[rel=modulepreload]').length,
             first: document.querySelector('h1, h2').tagName,
             modal: document.getElementById('menu').hasAttribute('aria-modal') })""")
-        check("П-01: в шапке только логотип и «Меню», в подвале одна ссылка (логотип)",
-              st["nav"] == 0 and st["header"] == ["site-header__logo", "site-header__menu"] and st["footer"] == 1, str(st))
+        check("П-01: в шапке только логотип и «Меню»",
+              st["nav"] == 0 and st["header"] == ["site-header__logo", "site-header__menu"], str(st))
         check("Р-8: modulepreload у всех девяти модулей", st["preload"] == 9, str(st["preload"]))
         check("Р-10: первый заголовок страницы — h1", st["first"] == "H1", st["first"])
         check("Р-9: у меню нет aria-modal", not st["modal"])
@@ -80,8 +79,8 @@ def main():
         ctx, p = open_page(b, base, 1440, 932)
         p.click(".site-header__menu")
         p.wait_for_timeout(900)
-        st = p.evaluate("() => [document.querySelector('main').inert, document.querySelector('footer').inert, document.querySelector('.skip').inert]")
-        check("Р-9: при открытом меню main, подвал и «К содержанию» — inert", st == [True, True, True], str(st))
+        st = p.evaluate("() => [document.querySelector('main').inert, document.querySelector('.skip').inert]")
+        check("Р-9: при открытом меню main и «К содержанию» — inert", st == [True, True], str(st))
         p.hover('.menu__item[href="#etiquette"]')
         p.wait_for_timeout(400)
         p.click(".site-header__menu")
@@ -89,8 +88,8 @@ def main():
         op = p.evaluate("[...document.querySelectorAll('.menu__word')].map(w => +getComputedStyle(w).opacity)")
         check("П-03: «Закрыть» — гигантов не видно во время закрытия", max(op) == 0, str(op))
         p.wait_for_timeout(900)
-        st = p.evaluate("() => [document.querySelector('main').inert, document.querySelector('footer').inert]")
-        check("Р-9: после закрытия inert снят", st == [False, False], str(st))
+        st = p.evaluate("() => [document.querySelector('main').inert]")
+        check("Р-9: после закрытия inert снят", st == [False], str(st))
 
         p.click(".site-header__menu")
         p.wait_for_timeout(900)
@@ -147,16 +146,8 @@ def main():
             check(f"Р-3: меню {w}×{h} — гигант не заходит на метки и контакты (кегль {', '.join(fs)})", not bad, str(bad))
             ctx.close()
 
-        # --- Р-14: счётчик 08, фокус листа, автосмена 10 ---
+        # --- Р-14: фокус листа, автосмена 10 (счётчик 08 снят в Ц2: у 08 нет переключателя) ---
         ctx, p = open_page(b, base, 390, 844)
-        to(p, ".s-etiquette", 0)
-        p.wait_for_timeout(600)
-        n0 = p.evaluate("document.querySelector('.etq__count-n').textContent")
-        p.locator(".etq__btn").nth(1).click()
-        p.wait_for_timeout(600)
-        n1 = p.evaluate("document.querySelector('.etq__count-n').textContent")
-        total = p.evaluate("document.querySelector('.etq__count').textContent.trim()")
-        check("Р-14: счётчик 08 — «01 / 02» → «02 / 02»", n0 == "01" and n1 == "02" and total.endswith("02 / 02"), f"{n0} → {n1}, «{total}»")
         to(p, ".s-hero", 0)
         p.locator(".s-hero__link").click()
         p.wait_for_timeout(600)
@@ -169,11 +160,11 @@ def main():
         check("Р-14: «Обсудить частный бал →» — фокус на заголовке листа", p.evaluate("document.activeElement.id") == "form-h")
         p.keyboard.press("Escape")
         p.wait_for_timeout(600)
-        to(p, ".contact__panel", -300)
+        to(p, ".fin__link", -300)
         p.wait_for_timeout(1200)
-        p.locator(".cp__field").nth(0).click()
+        p.locator(".fin__link").nth(0).click()
         p.wait_for_timeout(600)
-        check("Р-14: тап по полю панели — фокус в поле", p.evaluate("document.activeElement.id") == "f-name")
+        check("Р-14: тап по ссылке финала — фокус на заголовке листа", p.evaluate("document.activeElement.id") == "form-h")
         ctx.close()
 
         ctx, p = open_page(b, base, 1440, 900)
@@ -199,15 +190,12 @@ def main():
         to(p, ".s-etiquette", 0)
         p.wait_for_timeout(1200)
         hidden = p.evaluate(HIDDEN)
-        p.locator(".etq__btn").nth(1).click()
-        p.wait_for_timeout(600)
-        role = p.evaluate("document.querySelector('.s-etiquette').dataset.role")
         p.click(".site-header__menu")
         p.wait_for_timeout(900)
         menu = p.evaluate("menu.dataset.state")
-        check("Р-2: ошибка в блоке 10 — входы работают, 08 и меню работают",
-              st["motion"] and "no-motion" not in st["js"] and hidden == 0 and role == "d" and menu == "open" and p.errors,
-              f"{st}, скрыто {hidden}, 08 {role}, меню {menu}, ошибки {len(p.errors)}")
+        check("Р-2: ошибка в блоке 10 — входы работают, меню работает",
+              st["motion"] and "no-motion" not in st["js"] and hidden == 0 and menu == "open" and p.errors,
+              f"{st}, скрыто {hidden}, меню {menu}, ошибки {len(p.errors)}")
         ctx.close()
 
         # Ошибка в motion.js (входы не запустились): no-motion сразу, всё видно, меню работает
@@ -223,15 +211,14 @@ def main():
               "no-motion" in st["cls"] and not st["motion"] and hidden == 0 and p.evaluate("menu.dataset.state") == "open", f"{st}, скрыто {hidden}")
         ctx.close()
 
-        # Модули не загрузились (404 главного модуля): сразу режим «без JS» — форма на странице, панели нет, описания открыты
+        # Модули не загрузились (404 главного модуля): сразу режим «без JS» — форма на странице, описания открыты
         ctx, p = open_page(b, base, 390, 844, wait=300, route=lambda p: p.route("**/js/main.js", lambda r: r.fulfill(status=404, body="")))
         st = p.evaluate("""() => ({ js: document.documentElement.classList.contains('js'),
-            sheet: getComputedStyle(document.getElementById('form')).display,
-            panel: getComputedStyle(document.querySelector('.contact__panel')).display })""")
+            sheet: getComputedStyle(document.getElementById('form')).display })""")
         to(p, ".s-prep", 0)
         hidden = p.evaluate(HIDDEN)
-        check("Р-2: модули не загрузились — сразу без JS: класс js снят, лист на странице, панели нет, текст виден",
-              st == {"js": False, "sheet": "block", "panel": "none"} and hidden == 0, f"{st}, скрыто {hidden}")
+        check("Р-2: модули не загрузились — сразу без JS: класс js снят, лист на странице, текст виден",
+              st == {"js": False, "sheet": "block"} and hidden == 0, f"{st}, скрыто {hidden}")
         ctx.close()
 
         # Синтаксическая ошибка в модуле: граф не выполняется — через 3 с режим «без JS»

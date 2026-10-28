@@ -31,20 +31,6 @@
    ]
   },
   {
-   "block": "evening",
-   "name": "step-05",
-   "media": "t",
-   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-05-t.png",
-   "frame": [
-    385,
-    481
-   ],
-   "widths": [
-    385,
-    770
-   ]
-  },
-  {
    "block": "formats",
    "name": "corporate",
    "media": "d",
@@ -86,50 +72,6 @@
    "widths": [
     770,
     1540
-   ]
-  },
-  {
-   "block": "evening",
-   "name": "hall",
-   "media": "d",
-   "src": "Доработка/вёрстка/tools/.cache/masters/evening-hall-d.png",
-   "frame": [
-    1440,
-    720
-   ],
-   "widths": [
-    1440,
-    2160,
-    2880
-   ]
-  },
-  {
-   "block": "evening",
-   "name": "hall",
-   "media": "m",
-   "src": "Доработка/вёрстка/tools/.cache/masters/evening-hall-m.png",
-   "frame": [
-    390,
-    640
-   ],
-   "widths": [
-    390,
-    780,
-    1170
-   ]
-  },
-  {
-   "block": "evening",
-   "name": "hall",
-   "media": "t",
-   "src": "Доработка/вёрстка/tools/.cache/masters/evening-hall-t.png",
-   "frame": [
-    834,
-    900
-   ],
-   "widths": [
-    834,
-    1668
    ]
   },
   {
@@ -248,20 +190,6 @@
     358,
     716,
     1074
-   ]
-  },
-  {
-   "block": "evening",
-   "name": "step-02",
-   "media": "t",
-   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-02-t.png",
-   "frame": [
-    385,
-    481
-   ],
-   "widths": [
-    385,
-    770
    ]
   },
   {
@@ -764,20 +692,6 @@
    ]
   },
   {
-   "block": "evening",
-   "name": "step-01",
-   "media": "t",
-   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-01-t.png",
-   "frame": [
-    385,
-    481
-   ],
-   "widths": [
-    385,
-    770
-   ]
-  },
-  {
    "block": "evenings",
    "name": "kashemir-d",
    "media": "d",
@@ -1143,20 +1057,6 @@
    ]
   },
   {
-   "block": "evening",
-   "name": "step-03",
-   "media": "t",
-   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-03-t.png",
-   "frame": [
-    385,
-    481
-   ],
-   "widths": [
-    385,
-    770
-   ]
-  },
-  {
    "block": "formats",
    "name": "private",
    "media": "d",
@@ -1231,20 +1131,6 @@
    ]
   },
   {
-   "block": "evening",
-   "name": "step-04",
-   "media": "t",
-   "src": "Доработка/вёрстка/tools/.cache/masters/evening-step-04-t.png",
-   "frame": [
-    385,
-    481
-   ],
-   "widths": [
-    385,
-    770
-   ]
-  },
-  {
    "block": "evenings",
    "name": "kashemir-b",
    "media": "d",
@@ -1287,50 +1173,6 @@
    ]
   },
   {
-   "block": "lessons",
-   "name": "ball",
-   "media": "d",
-   "src": "Доработка/вёрстка/tools/.cache/masters/lessons-ball-d.png",
-   "frame": [
-    1440,
-    480
-   ],
-   "widths": [
-    1440,
-    2160,
-    2880
-   ]
-  },
-  {
-   "block": "lessons",
-   "name": "ball",
-   "media": "m",
-   "src": "Доработка/вёрстка/tools/.cache/masters/lessons-ball-m.png",
-   "frame": [
-    390,
-    488
-   ],
-   "widths": [
-    390,
-    780,
-    1170
-   ]
-  },
-  {
-   "block": "lessons",
-   "name": "ball",
-   "media": "t",
-   "src": "Доработка/вёрстка/tools/.cache/masters/lessons-ball-t.png",
-   "frame": [
-    834,
-    556
-   ],
-   "widths": [
-    834,
-    1668
-   ]
-  },
-  {
    "block": "prep",
    "name": "hall",
    "media": "d",
@@ -1347,18 +1189,46 @@
   },
   {
    "block": "etiquette",
-   "name": "hall",
+   "name": "ladies",
    "media": "d",
-   "src": "Доработка/вёрстка/tools/.cache/masters/etiquette-hall-d.png",
+   "src": "Доработка/вёрстка/tools/.cache/masters/etiquette-ladies-d.png",
    "frame": [
-    656,
-    496
+    800,
+    600
    ],
    "widths": [
-    656,
-    984,
-    1312,
-    1792
+    800,
+    1200,
+    1556
+   ]
+  },
+  {
+   "block": "etiquette",
+   "name": "ladies",
+   "media": "t",
+   "src": "Доработка/вёрстка/tools/.cache/masters/etiquette-ladies-t.png",
+   "frame": [
+    770,
+    520
+   ],
+   "widths": [
+    770,
+    1540
+   ]
+  },
+  {
+   "block": "etiquette",
+   "name": "ladies",
+   "media": "m",
+   "src": "Доработка/вёрстка/tools/.cache/masters/etiquette-ladies-m.png",
+   "frame": [
+    358,
+    448
+   ],
+   "widths": [
+    358,
+    716,
+    1074
    ]
   }
  ]

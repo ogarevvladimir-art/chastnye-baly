@@ -1,12 +1,12 @@
-"""Д3б: сверка 06, 07, 08 «в экран» с кадрами секции Figma «Д3б · выбранное (06 A, 07 один экран, 08 A1) на проверочных окнах»
-(328:3071) — картинкой и цифрами.
+"""Д3б: сверка 06 «в экран» с кадрами секции Figma «Д3б · выбранное (06 A, 07 один экран, 08 A1) на проверочных окнах»
+(328:3071) — картинкой и цифрами. 07 — снят в Ц3, сверка нового 07 — c3_compare.py; 08 — снят в Ц2, сверка нового 08 — c2_compare.py.
 
   python tools/d3b_compare.py               # → сверка/d3b/pair_<движок>_<окно>.png (сверху Figma, снизу сайт) + таблица отклонений
   python tools/d3b_compare.py -b webkit
   python tools/d3b_compare.py --tree <get_nodes_info.json>   # пересобрать точки Figma из выгрузки 25 кадров (порядок FRAMES)
 
 Кадры Figma — сверка/d3b/windows/d3b_w_<ширина>_<вид>.png. Точки — сверка/d3b/figma_points.json: левый верхний угол узла от верха
-экрана (у «Принципа» — левый нижний: текст прижат низом; у слова роли 08 — правый верхний: оно прижато вправо). Сайт — getBoundingClientRect от верха того же экрана. Порог — 4 px.
+экрана (у «Принципа» — левый нижний: текст прижат низом; 08 — снят в Ц2, сверка нового 08 — c2_compare.py). Сайт — getBoundingClientRect от верха того же экрана. Порог — 4 px.
 """
 import argparse
 import json
@@ -22,27 +22,18 @@ OUT = SVERKA / "d3b"
 SHOTS = OUT / "windows"
 POINTS = OUT / "figma_points.json"
 WINDOWS = [(1440, 900), (1920, 950), (1366, 650), (1280, 600), (1024, 650)]
-KINDS = ["06", "06v", "07", "08h", "08p"]
+KINDS = ["06", "06v"]  # 07 is no longer compared here (stage Ц3): its check is c3_compare.py
+# 25 кадров Figma, по 5 на окно: 06, 06v, 07, 08h, 08p. 07 — снят в Ц3 (сверка — c3_compare.py), 08 — снят в Ц2, сверка нового 08 — c2_compare.py;
+# шаг 5 в build_points оставлен, чтобы индексы совпадали с порядком кадров в Figma
 FRAMES = ["328:3073", "328:3112", "328:3151", "328:3186", "328:3198", "328:3245", "328:3284", "328:3323", "328:3358", "328:3370",
           "328:3417", "328:3456", "328:3495", "328:3530", "328:3542", "328:3589", "328:3628", "328:3667", "328:3702", "328:3714",
           "328:3761", "328:3800", "328:3839", "328:3874", "328:3886"]
 
 HEAD06 = {"label": ("Метка",), "l1": ("Заголовок · 1",), "l2": ("Заголовок · 2 на оси",), "lead": ("Лид",),
           "r1": ("Строка 01",), "r2": ("Строка 02",), "r3": ("Строка 03",), "q2": ("Строка 02", "Название"), "pr": ("Принцип",)}
-STEP = lambda i: ("Ступени", f"Ступень 0{i}")
 PATHS = {
     "06": HEAD06 | {"ans": ("Ответ 01",), "photo": ("Кадр 01 Стесняетесь",)},
     "06v": HEAD06 | {"ans": ("Ответ 02",), "photo": ("Кадр 02 Не умеете танцевать",), "expl": ("Ответ 02", "Пояснение")},
-    "07": {"label": ("Метка",), "l1": ("Заголовок · 1",), "l2": ("Заголовок · 2 на оси",), "lead": ("Лид",)}
-          | {f"s{i}": STEP(i) + ("Разделитель",) for i in range(1, 5)}
-          | {"g1": STEP(1) + ("Текст ступени", "Суть"), "t1": STEP(1) + ("Текст ступени", "Абзац"),
-             "g4": STEP(4) + ("Текст ступени", "Суть")},
-    "08h": {"label": ("Метка",), "l1": ("Заголовок · строка 1",), "l2": ("Заголовок · строка 2 (курсив, на оси 720)",),
-            "i1": ("Интро 1",), "i2": ("Интро 2",), "i3": ("Интро 3",)},
-    "08p": {"tab1": ("Вкладка · Кавалерам · активна",), "tab2": ("Вкладка · Дамам",), "panel": ("Панель",), "count": ("Счётчик",),
-            "line1": ("Строка 1",), "line4": ("Строка 4",), "rule1": ("Правило · К1",), "rule4": ("Правило · К4",),
-            "role": ("Роль · Кавалерам",), "photo": ("Фото · Бал",), "f1": ("Финал · строка 1",), "f2": ("Финал · строка 2 (от поля)",),
-            "cont": ("Финал · продолжение капсом (к правому полю)",)},
 }
 
 SITE_JS = """([kind, sTop]) => {
@@ -57,21 +48,6 @@ SITE_JS = """([kind, sTop]) => {
       ans: box(on.querySelector('.asst__a')), photo: box(on.querySelector('.asst__photo')) });
     if (kind === '06v') o.expl = box(on.querySelector('.asst__note'));
     o.tight = q(s).hasAttribute('data-tight');
-  } else if (kind === '07') {
-    const s = '.s-lessons', st = qa('.less__step');
-    Object.assign(o, { label: box(q(s + ' .sh__label')), l1: box(q(s + ' .sh__l1')), l2: box(q(s + ' .sh__l2')), lead: box(q(s + ' .sh__lead')),
-      g1: box(st[0].querySelector('.less__gist')), t1: box(st[0].querySelector('.less__text')), g4: box(st[3].querySelector('.less__gist')) });
-    st.forEach((e, i) => (o['s' + (i + 1)] = box(e)));
-  } else if (kind === '08h') {
-    const s = '.s-etiquette';
-    Object.assign(o, { label: box(q(s + ' .sh__label')), l1: box(q(s + ' .sh__l1')), l2: box(q(s + ' .sh__l2')),
-      i1: box(q('.etq__i1')), i2: box(q('.etq__i2')), i3: box(q('.etq__i3')) });
-  } else {
-    const rows = qa('.etq__row');
-    Object.assign(o, { tab1: box(q('.etq__btn[data-role=k]')), tab2: box(q('.etq__btn[data-role=d]')), panel: box(q('.etq__panel')),
-      count: box(q('.etq__count')), line1: box(rows[0]), line4: box(rows[3]),
-      rule1: box(rows[0].querySelector('[data-who=k]')), rule4: box(rows[3].querySelector('[data-who=k]')),
-      role: [q('.etq__w[data-who=k]').getBoundingClientRect().right, box(q('.etq__w[data-who=k]'))[1]], photo: box(q('.etq__photo')), f1: box(q('.etq__f1')), f2: box(q('.etq__f3')), cont: box(q('.etq__cont')) });
   }
   return o;
 }"""
@@ -92,10 +68,6 @@ def build_points(tree):
                     x, y = x + node["bounds"]["x"], y + node["bounds"]["y"]
                 if key == "pr":
                     y += node["bounds"]["height"]
-                if key == "role":
-                    x += node["bounds"]["width"]             # слово роли прижато вправо: сравнивается правый край
-                if key == "tab2":
-                    x, y = x - 0.5, y - 0.5                  # контур вкладки в Figma — на 0,5 внутри
                 out[key] = [round(x, 1), round(y, 1)]
             pts[f"{w}x{h}_{kind}"] = out
     POINTS.write_text(json.dumps(pts, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -110,15 +82,11 @@ def shoot(browser, base, w, h, engine):
     page.add_style_tag(content=STILL)
     page.wait_for_timeout(300)
     files, meas = {}, {}
-    sec = {"06": "#assistant", "07": "#lessons", "08": "#etiquette"}
-    hs = page.evaluate("() => ['#assistant', '#lessons', '#etiquette'].map(s => document.querySelector(s).getBoundingClientRect().height)")
-    head08 = page.evaluate("() => { const i = document.querySelector('.etq__intro'); return i.offsetTop + i.offsetHeight; }")
-    hs[2] -= head08                                                     # шапка 08 не в экран (правка 2026-10-06)
-    meas["heights"] = [round(x / h, 2) for x in hs]                     # ожидается 1 / 1 / шапка + 1 экран
+    sec = {"06": "#assistant"}
+    hs = page.evaluate("() => ['#assistant'].map(s => document.querySelector(s).getBoundingClientRect().height)")
+    meas["heights"] = [round(x / h, 2) for x in hs]                     # ожидается 1; 07 — высота секции в c3_compare.py; 08 — снят в Ц2, сверка нового 08 — c2_compare.py
     for kind in KINDS:
         top = page.evaluate("s => document.querySelector(s).getBoundingClientRect().top + scrollY", sec[kind[:2]])
-        if kind == "08p":
-            top += head08
         page.evaluate("y => scrollTo({top: y, behavior: 'instant'})", top)
         page.mouse.move(w / 2, 2)
         if kind[:2] == "06":
@@ -164,9 +132,9 @@ def main():
             files, meas = shoot(browser, base, w, h, args.browser)
             pair_sheet(w, h, files, OUT / f"pair_{args.browser}_{w}x{h}.png")
             tight = meas["06"]["tight"]
-            okh = meas["heights"] == [1, 1, 1] and tight == (h < 900)
+            okh = meas["heights"] == [1] and tight == (h < 900)
             fails += not okh
-            print(f"{'ok ' if okh else '!! '} {w}×{h} высоты 06 / 07 / 08 (без шапки) в экранах {meas['heights']}, «Принцип» на фото: {tight}")
+            print(f"{'ok ' if okh else '!! '} {w}×{h} высота 06 в экране {meas['heights']}, «Принцип» на фото: {tight}")
             for kind in KINDS:
                 bad = []
                 for k, (fx, fy) in pts[f"{w}x{h}_{kind}"].items():

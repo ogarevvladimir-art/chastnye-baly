@@ -5,7 +5,9 @@
 стопка заливок (фото с цветом или простое фото), hash.
 
     python figma_images.py            # → _figma/v1/images.json + сводка в консоль
+    python figma_images.py -v         # + строка на каждый узел с фото
 """
+import argparse
 import json
 from pathlib import Path
 
@@ -58,6 +60,9 @@ def walk(node, ox, oy, clip, path, out, root):
 
 
 def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("-v", "--verbose", action="store_true", help="print one line per node with a photo")
+    args = ap.parse_args()
     out = []
     for t in TREES:
         for r in load(t):
@@ -65,11 +70,15 @@ def main():
             # корень — в своих координатах (0, 0)
             r = dict(r, bounds=dict(r["bounds"], x=0, y=0))
             walk(r, 0, 0, None, [], out, root)
-    (V1 / "images.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    dst = V1 / "images.json"
+    dst.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     hashes = {}
     for o in out:
         hashes.setdefault(o["hash"], []).append(o)
     print(f"узлов с фото: {len(out)}, разных картинок: {len(hashes)}")
+    if not args.verbose:
+        print(f"{len(out)} nodes written to {dst}")
+        return
     for o in out:
         st = "цвет" if len(o["stack"]) > 1 else "фото"
         print(f'{o["root"][:28]:28} | {o["section"][:30]:30} | {o["id"]:>12} | {o["hash"][:8]} | {st} | '

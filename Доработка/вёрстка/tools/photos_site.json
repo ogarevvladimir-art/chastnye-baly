@@ -54,31 +54,6 @@
     ],
     "figma_node": "258:4102",
     "override": "Д4: замена снимка (photo_replace.json)"
-   },
-   "t": {
-    "media": "(min-width: 600px) and (max-width: 1023px)",
-    "frame": [
-     385,
-     481
-    ],
-    "widths": [
-     385,
-     770
-    ],
-    "rest_window": [
-     417,
-     8739,
-     385,
-     481
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     385,
-     481
-    ],
-    "figma_node": "258:4601",
-    "override": "Д4: замена снимка (photo_replace.json)"
    }
   }
  },
@@ -162,89 +137,6 @@
     ],
     "figma_node": "258:4557",
     "override": "Д4: замена снимка (photo_replace.json)"
-   }
-  }
- },
- "evening/hall": {
-  "label": "02 Вечер · зал сверху",
-  "src": "assets/photos/BI4A1614.jpg",
-  "layouts": {
-   "d": {
-    "media": "(min-width: 1024px)",
-    "frame": [
-     1440,
-     720
-    ],
-    "widths": [
-     1440,
-     2160,
-     2880
-    ],
-    "rest_window": [
-     0,
-     5012,
-     1440,
-     720
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     1440,
-     720
-    ],
-    "figma_node": "223:2472",
-    "override": null
-   },
-   "m": {
-    "media": "(max-width: 599px)",
-    "frame": [
-     390,
-     640
-    ],
-    "widths": [
-     390,
-     780,
-     1170
-    ],
-    "rest_window": [
-     0,
-     9171,
-     390,
-     640
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     390,
-     640
-    ],
-    "figma_node": "258:4107",
-    "override": null
-   },
-   "t": {
-    "media": "(min-width: 600px) and (max-width: 1023px)",
-    "frame": [
-     834,
-     900
-    ],
-    "widths": [
-     834,
-     1668
-    ],
-    "rest_window": [
-     0,
-     9495,
-     834,
-     900
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     834,
-     900
-    ],
-    "figma_node": "258:4606",
-    "override": null
    }
   }
  },
@@ -453,31 +345,6 @@
      448
     ],
     "figma_node": "258:4105",
-    "override": "Д4: замена снимка (photo_replace.json)"
-   },
-   "t": {
-    "media": "(min-width: 600px) and (max-width: 1023px)",
-    "frame": [
-     385,
-     481
-    ],
-    "widths": [
-     385,
-     770
-    ],
-    "rest_window": [
-     417,
-     6363,
-     385,
-     481
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     385,
-     481
-    ],
-    "figma_node": "258:4604",
     "override": "Д4: замена снимка (photo_replace.json)"
    }
   }
@@ -1424,31 +1291,6 @@
     ],
     "figma_node": "258:4106",
     "override": "Д4: замена снимка (photo_replace.json)"
-   },
-   "t": {
-    "media": "(min-width: 600px) and (max-width: 1023px)",
-    "frame": [
-     385,
-     481
-    ],
-    "widths": [
-     385,
-     770
-    ],
-    "rest_window": [
-     417,
-     5607,
-     385,
-     481
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     385,
-     481
-    ],
-    "figma_node": "258:4605",
-    "override": "Д4: замена снимка (photo_replace.json)"
    }
   }
  },
@@ -2088,31 +1930,6 @@
     ],
     "figma_node": "258:4104",
     "override": "Д4: замена снимка (photo_replace.json)"
-   },
-   "t": {
-    "media": "(min-width: 600px) and (max-width: 1023px)",
-    "frame": [
-     385,
-     481
-    ],
-    "widths": [
-     385,
-     770
-    ],
-    "rest_window": [
-     417,
-     7173,
-     385,
-     481
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     385,
-     481
-    ],
-    "figma_node": "258:4603",
-    "override": "Д4: замена снимка (photo_replace.json)"
    }
   }
  },
@@ -2254,31 +2071,6 @@
     ],
     "figma_node": "258:4103",
     "override": "Д4: замена снимка (photo_replace.json)"
-   },
-   "t": {
-    "media": "(min-width: 600px) and (max-width: 1023px)",
-    "frame": [
-     385,
-     481
-    ],
-    "widths": [
-     385,
-     770
-    ],
-    "rest_window": [
-     417,
-     7965,
-     385,
-     481
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     385,
-     481
-    ],
-    "figma_node": "258:4602",
-    "override": "Д4: замена снимка (photo_replace.json)"
    }
   }
  },
@@ -2345,89 +2137,6 @@
     "rest_in_frame": null,
     "figma_node": "258:4944",
     "override": null
-   }
-  }
- },
- "lessons/ball": {
-  "label": "07 Уроки · бал",
-  "src": "assets/photos/nk-02.jpg",
-  "layouts": {
-   "d": {
-    "media": "(min-width: 1024px)",
-    "frame": [
-     1440,
-     480
-    ],
-    "widths": [
-     1440,
-     2160,
-     2880
-    ],
-    "rest_window": [
-     0,
-     13124,
-     1440,
-     480
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     1440,
-     480
-    ],
-    "figma_node": "198:1318",
-    "override": "Д4: замена снимка (photo_replace.json)"
-   },
-   "m": {
-    "media": "(max-width: 599px)",
-    "frame": [
-     390,
-     488
-    ],
-    "widths": [
-     390,
-     780,
-     1170
-    ],
-    "rest_window": [
-     0,
-     19194,
-     390,
-     488
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     390,
-     488
-    ],
-    "figma_node": "258:4311",
-    "override": "Д4: замена снимка (photo_replace.json)"
-   },
-   "t": {
-    "media": "(min-width: 600px) and (max-width: 1023px)",
-    "frame": [
-     834,
-     556
-    ],
-    "widths": [
-     834,
-     1668
-    ],
-    "rest_window": [
-     0,
-     21118,
-     834,
-     556
-    ],
-    "rest_in_frame": [
-     0,
-     0,
-     834,
-     556
-    ],
-    "figma_node": "258:4811",
-    "override": "Д4: замена снимка (photo_replace.json)"
    }
   }
  }
